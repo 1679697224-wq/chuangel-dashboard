@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="data:," />
+  <title>Chuangel 企业经营看板 · 内容呈现优化版</title>
+  <style>
+    :root{
+      --navy:#0b2342;--navy2:#12365f;--blue:#2f69c2;--blue2:#5f8fdb;
+      --ink:#0f2745;--muted:#6d7f96;--line:#d6e0ec;--bg:#e7edf4;
+      --card:#f9fbfd;--gold:#c79118;--gold2:#f4e1a8;--green:#188b70;
+      --orange:#c97921;--red:#c94d5c;--shadow:0 12px 28px rgba(15,39,69,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;font-size:16px}
+    button{font:inherit}
+    .app{min-height:100vh;display:grid;grid-template-columns:292px minmax(0,1fr)}
+    .sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#091e38 0%,#0d2b4f 100%);color:#fff;padding:28px 22px;display:flex;flex-direction:column;z-index:5}
+    .brand{padding:4px 6px 24px;border-bottom:1px solid rgba(255,255,255,.14)}
+    .brand-logo-wrap{background:transparent;padding:4px 0 2px}.brand-logo{display:block;width:100%;height:auto;max-height:58px;object-fit:contain;filter:brightness(0) invert(1)}
+    .brand p{margin:12px 0 0;color:#94aac2;font-size:13px;letter-spacing:2.2px}
+    .nav-label{margin:26px 12px 12px;color:#7890aa;font-size:13px;letter-spacing:2px}
+    .primary-nav{display:grid;gap:10px}
+    .nav-btn{appearance:none;border:1px solid transparent;border-radius:12px;background:transparent;color:#d8e4f2;text-align:left;padding:15px 14px;display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:center;cursor:pointer;transition:.2s}
+    .nav-btn:hover{background:rgba(255,255,255,.07)}
+    .nav-btn.active{background:linear-gradient(135deg,#2f69c2,#234e8c);border-color:rgba(255,255,255,.14);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+    .nav-index{height:34px;border:1px solid rgba(255,255,255,.22);border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700}
+    .nav-btn.active .nav-index{background:rgba(255,255,255,.12)}
+    .nav-copy strong{display:block;font-size:18px}.nav-copy span{display:block;margin-top:4px;color:#9fb2c8;font-size:12px}
+    .sidebar-foot{margin-top:auto;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:16px 17px}
+    .sidebar-foot .state{display:flex;align-items:center;gap:8px;color:#c4d2e1;font-size:13px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#34c6a1;box-shadow:0 0 0 5px rgba(52,198,161,.10)}
+    .sidebar-foot strong{display:block;font-size:18px;margin:9px 0;color:#fff}
+    .sidebar-foot small{color:#8298b0}
+    .main{min-width:0}
+    .topbar{height:88px;background:#102a4b;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 38px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:4}
+    .crumb{display:flex;gap:15px;align-items:center}.crumb-code{color:#86adf5;font-weight:700;letter-spacing:1.8px;font-size:13px}.crumb-line{width:1px;height:24px;background:#45607e}.crumb-title{font-size:24px;font-weight:700}
+    .top-actions{display:flex;align-items:center;gap:10px}
+    .period{display:flex;background:#0d2441;border:1px solid #365372;border-radius:10px;padding:4px}
+    .period button{border:0;background:transparent;color:#9db2c9;padding:8px 14px;border-radius:7px;cursor:pointer}.period button.active{background:#fff;color:#102a4b;font-weight:700}
+    .date-box{border:1px solid #365372;background:#0d2441;color:#dfe9f5;border-radius:10px;padding:11px 14px;min-width:145px;text-align:center}
+    .content{padding:28px 36px 54px;max-width:1780px;margin:auto}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#102e52 0%,#173f6d 72%,#285893 100%);color:#fff;border-radius:18px;padding:30px 34px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:30px;align-items:center}
+    .hero:after{content:"";position:absolute;width:410px;height:410px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-160px;top:-220px;box-shadow:0 0 0 70px rgba(255,255,255,.025),0 0 0 140px rgba(255,255,255,.018)}
+    .eyebrow{font-size:13px;letter-spacing:2.2px;font-weight:700;color:#91b7ff}
+    h1{font-size:34px;line-height:1.2;margin:9px 0 8px}.hero p{margin:0;color:#b9cce0;line-height:1.7;max-width:850px}
+    .hero-badge{position:relative;z-index:1;min-width:190px;border-left:3px solid #74a4ff;background:rgba(255,255,255,.06);padding:15px 18px}.hero-badge span{color:#a9bfd7;font-size:13px}.hero-badge strong{display:block;font-size:24px;margin-top:7px}
+    .sticky-controls{position:sticky;top:88px;z-index:3;background:rgba(231,237,244,.96);backdrop-filter:blur(10px);padding-top:1px;border-bottom:1px solid rgba(180,195,212,.58)}
+    .department-switch{margin-top:14px;background:linear-gradient(135deg,#f9fbfd,#eef4fa);border:1px solid #c5d4e4;border-top:4px solid #2f69c2;border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:190px repeat(3,minmax(190px,1fr));align-items:stretch;gap:12px;box-shadow:0 9px 22px rgba(25,55,90,.08);transition:.2s}
+    .department-switch:empty{display:none}.dept-heading{display:flex;flex-direction:column;justify-content:center;padding:3px 10px}.dept-heading span{color:#58789d;font-size:11px;font-weight:800;letter-spacing:1.7px}.dept-heading strong{font-size:19px;margin-top:6px;color:#163654}.department-switch button{position:relative;min-height:76px;border:1px solid #c8d6e5;background:#fff;color:#294765;border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:46px 1fr 18px;gap:12px;align-items:center;text-align:left;cursor:pointer;transition:.2s;box-shadow:0 4px 10px rgba(29,61,96,.05)}.department-switch button:hover{border-color:#7199d5;transform:translateY(-1px);box-shadow:0 8px 16px rgba(29,61,96,.10)}.department-switch button.active{background:linear-gradient(135deg,#12385f,#215a99);color:#fff;border-color:#2f69c2;box-shadow:0 9px 20px rgba(23,62,112,.22)}
+    .dept-code{width:46px;height:46px;border-radius:11px;background:#e7eff9;color:#2f69c2;display:grid;place-items:center;font-size:13px;font-weight:900;letter-spacing:.4px}.department-switch button.active .dept-code{background:rgba(255,255,255,.14);color:#fff}.dept-copy strong{display:block;font-size:17px}.dept-copy small{display:block;margin-top:5px;color:#7b8da2;font-size:12px}.department-switch button.active .dept-copy small{color:#bbd0e8}.dept-arrow{font-size:24px;color:#87a0bb}.department-switch button.active .dept-arrow{color:#fff}
+    .section-switch{position:relative;display:flex;gap:9px;overflow:auto;padding:12px 0 13px;background:transparent;scrollbar-width:thin}
+    .section-switch button{white-space:nowrap;border:1px solid #c9d6e4;background:#f7f9fc;color:#36506e;border-radius:10px;padding:11px 17px;cursor:pointer;font-weight:700;transition:.2s}
+    .section-switch button:hover{border-color:#8daee0}.section-switch button.active{background:#173e70;color:#fff;border-color:#173e70;box-shadow:0 7px 16px rgba(23,62,112,.17)}
+    .section-shell{animation:fade .24s ease}@keyframes fade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+    .section-block{scroll-margin-top:225px;padding-top:17px;margin-bottom:34px}
+    .sticky-controls.is-compact .department-switch{margin-top:7px;padding:7px 11px;border-top-width:2px;border-radius:12px;grid-template-columns:150px repeat(3,minmax(165px,1fr));gap:8px}.sticky-controls.is-compact .dept-heading strong{font-size:16px;margin-top:3px}.sticky-controls.is-compact .dept-heading span{font-size:9px}.sticky-controls.is-compact .department-switch button{min-height:49px;padding:7px 10px;grid-template-columns:36px 1fr 14px;gap:9px}.sticky-controls.is-compact .dept-code{width:36px;height:36px;border-radius:9px;font-size:11px}.sticky-controls.is-compact .dept-copy strong{font-size:14px}.sticky-controls.is-compact .dept-copy small{display:none}.sticky-controls.is-compact .section-switch{padding:7px 0 9px}.sticky-controls.is-compact .section-switch button{padding:8px 13px;font-size:13px}
+    .section-block+.section-block{border-top:1px solid #c9d5e2;padding-top:32px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin:8px 0 15px}.section-head h2{margin:0;font-size:27px}.section-head p{margin:7px 0 0;color:var(--muted)}
+    .section-tag{background:#eaf2ff;color:#2f69c2;border:1px solid #cbdcf7;border-radius:999px;padding:8px 13px;font-size:13px;font-weight:700}
+    .metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:17px}
+    .metric-card{background:var(--card);border:1px solid var(--line);border-radius:14px;min-height:142px;padding:19px 19px 17px;position:relative;overflow:hidden;box-shadow:0 7px 18px rgba(25,55,90,.055)}
+    .metric-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue)}
+    .metric-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.metric-name{font-weight:700;font-size:17px;line-height:1.45}.metric-icon{width:34px;height:34px;border-radius:9px;background:#e7effb;color:#2f69c2;display:grid;place-items:center;font-weight:800}
+    .waiting{display:inline-flex;align-items:center;gap:7px;margin-top:17px;font-size:21px;font-weight:800;color:#74879d}.waiting:before{content:"";width:7px;height:7px;border-radius:50%;background:#8da0b4}
+    .metric-sub{margin-top:9px;color:#8a9aab;font-size:13px}
+    .detail-panel{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.8fr);gap:17px;margin-bottom:17px}
+    .viz-card,.dimension-card,.analysis-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 8px 20px rgba(25,55,90,.06)}
+    .card-head{padding:18px 20px 15px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;align-items:center}.card-head h3{margin:0;font-size:19px}.card-head span{color:var(--muted);font-size:13px}
+    .chart-area{padding:22px 24px 18px;height:285px;display:flex;align-items:flex-end;gap:16px;position:relative;background:linear-gradient(180deg,transparent 0 93%,#e4eaf1 93%)}
+    .chart-area:before,.chart-area:after{content:"";position:absolute;left:24px;right:24px;border-top:1px dashed #d7e0ea}.chart-area:before{top:34%}.chart-area:after{top:64%}
+    .bar-set{height:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;gap:7px;position:relative;z-index:1}.bar{width:22px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#6d98dc,#315fa7);min-height:28px}.bar.alt{background:linear-gradient(180deg,#d9b354,#bd8414)}.bar-set span{position:absolute;bottom:-3px;transform:translateY(100%);color:#71839a;font-size:12px;white-space:nowrap}
+    .chart-note{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:2;background:rgba(255,255,255,.92);border:1px solid #d6e0ec;border-radius:10px;padding:10px 14px;color:#62758d;font-weight:700;box-shadow:0 5px 15px rgba(27,55,87,.08)}
+    .donut-wrap{padding:24px;display:flex;align-items:center;gap:25px;min-height:285px}.donut{width:148px;height:148px;border-radius:50%;background:conic-gradient(#2f69c2 0 28%,#64a4da 28% 51%,#c79118 51% 70%,#7b91ad 70% 100%);position:relative;flex:0 0 auto}.donut:after{content:"待接入";position:absolute;inset:25px;background:var(--card);border-radius:50%;display:grid;place-items:center;font-weight:800;color:#73859b}
+    .legend{display:grid;gap:12px;flex:1}.legend-item{display:grid;grid-template-columns:10px 1fr auto;gap:9px;align-items:center;padding-bottom:10px;border-bottom:1px solid #e5eaf0}.legend-item i{width:9px;height:9px;border-radius:50%}.legend-item strong{color:#71839a;font-size:13px}
+    .dimension-list{padding:7px 18px 17px;max-height:330px;overflow:auto}.dimension-row{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:start;padding:14px 4px;border-bottom:1px solid #e2e8ef}.dimension-row:last-child{border-bottom:0}.dim-no{width:30px;height:30px;border-radius:8px;background:#e8eff8;color:#486784;display:grid;place-items:center;font-size:12px;font-weight:800}.dim-copy strong{display:block;font-size:15px;line-height:1.45}.dim-copy small{color:#8494a6;display:block;margin-top:4px}.status{background:#eef2f6;color:#7a8b9e;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:700;white-space:nowrap}
+    .analysis-card{overflow:hidden;border-color:#bfd0e4}.analysis-top{background:linear-gradient(115deg,#102d50,#183f6d);color:#fff;padding:18px 21px;display:flex;justify-content:space-between;gap:15px;align-items:center}.analysis-top h3{margin:0;font-size:20px}.analysis-top span{font-size:12px;color:#a9bfd7;letter-spacing:1.2px}
+    .analysis-body{padding:19px 20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.analysis-item{border:1px solid #d8e2ed;border-radius:11px;padding:15px;background:#f6f9fc}.analysis-item b{display:block;font-size:14px;margin-bottom:9px}.analysis-item p{margin:0;color:#77899e;line-height:1.6;font-size:14px}.analysis-item:nth-child(2){border-top:3px solid var(--orange)}.analysis-item:nth-child(3){border-top:3px solid var(--green)}
+    .empty-state{min-height:520px;margin-top:20px;background:linear-gradient(145deg,#f9fbfd,#f1f5f9);border:1px solid #cedae7;border-radius:18px;box-shadow:var(--shadow);display:grid;place-items:center;text-align:center;padding:50px}.empty-icon{width:82px;height:82px;margin:0 auto 22px;border-radius:22px;background:#e4edf7;color:#2f69c2;display:grid;place-items:center;font-size:30px;font-weight:800}.empty-state h2{font-size:28px;margin:0 0 10px}.empty-state p{margin:0;color:#71839a;line-height:1.7}.empty-pill{display:inline-block;margin-top:21px;border:1px solid #c8d7e8;background:#eef4fb;color:#52708f;border-radius:999px;padding:9px 15px;font-weight:700}
+    .content-preview{display:grid;gap:16px;margin-bottom:17px}.preview-banner{background:linear-gradient(115deg,#102f53,#1d4f83);color:#fff;border-radius:15px;padding:18px 21px;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 8px 20px rgba(16,47,83,.12)}.preview-banner strong{font-size:19px}.preview-banner p{margin:5px 0 0;color:#b9cde1;font-size:13px}.preview-badge{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.09);border-radius:999px;padding:8px 12px;font-size:12px;white-space:nowrap}
+    .ops-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.ops-grid .ops-card:only-child{grid-column:1/-1}.ops-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);overflow:hidden}.ops-head{padding:17px 19px;border-bottom:1px solid #dde5ee;display:flex;justify-content:space-between;align-items:center;gap:12px}.ops-head h3{margin:0;font-size:18px}.ops-head span{color:#71839a;font-size:12px}.check-list{padding:7px 18px 14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}.check-row{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:13px 1px;border-bottom:1px solid #e4eaf1}.check-icon{width:28px;height:28px;border-radius:8px;background:#e7eff9;color:#2f69c2;display:grid;place-items:center;font-size:12px;font-weight:900}.check-row strong{font-size:14px}.pending-chip{color:#71839a;background:#edf2f7;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:700;white-space:nowrap}
+    .journey{padding:22px 20px 24px;display:flex;align-items:flex-start}.journey-step{position:relative;flex:1;text-align:center;min-width:0}.journey-step:not(:last-child):after{content:"";position:absolute;height:2px;background:#cbd8e6;top:17px;left:58%;right:-42%}.journey-dot{width:36px;height:36px;margin:auto;border-radius:50%;background:#e7eff9;border:1px solid #bbcee3;color:#2f69c2;display:grid;place-items:center;font-weight:900;position:relative;z-index:1}.journey-step strong{display:block;margin-top:9px;font-size:13px}.journey-step small{display:block;margin-top:4px;color:#8797a8;font-size:11px}.journey-note{margin:0 18px 18px;border-left:3px solid #c79118;background:#fbf7ea;padding:12px 14px;color:#6f6547;font-size:13px;line-height:1.6}
+    .training-board{padding:16px 18px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.training-item{border:1px solid #dce4ed;background:#f6f9fc;border-radius:10px;padding:13px}.training-item span{display:block;color:#71839a;font-size:12px}.training-item strong{display:block;margin-top:7px}.training-item small{display:block;margin-top:7px;color:#8494a6}
+    .persona-board{display:grid;grid-template-columns:280px minmax(0,1.2fr) minmax(280px,.8fr);gap:16px;margin-bottom:17px}.persona-card,.behavior-card,.strategy-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);padding:20px}.persona-avatar{width:68px;height:68px;border-radius:20px;background:linear-gradient(135deg,#2f69c2,#173e70);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:900}.persona-card h3{margin:15px 0 4px}.persona-card p{margin:0;color:#7a8b9e;font-size:13px}.tag-cloud{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}.tag-cloud span{background:#edf3fa;border:1px solid #d2deea;color:#55718e;border-radius:999px;padding:6px 9px;font-size:11px}.behavior-card h3,.strategy-card h3{margin:0 0 16px}.behavior-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.behavior-node{position:relative;background:#eef4fb;border:1px solid #d4e0ec;border-radius:10px;padding:13px 8px;text-align:center}.behavior-node:not(:last-child):after{content:"›";position:absolute;right:-8px;top:50%;transform:translateY(-50%);z-index:1;color:#6e8eb1;font-weight:900}.behavior-node strong{display:block;font-size:13px}.behavior-node small{display:block;margin-top:6px;color:#8494a6}.insight-list{display:grid;gap:10px}.insight-row{border-left:3px solid #2f69c2;background:#f2f6fb;padding:11px 12px}.insight-row b{display:block;font-size:13px}.insight-row span{display:block;margin-top:5px;color:#7d8da0;font-size:12px}
+    .commerce-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}.commerce-kpi{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:0 6px 15px rgba(25,55,90,.05);position:relative;overflow:hidden}.commerce-kpi:after{content:"";position:absolute;left:0;bottom:0;width:42%;height:4px;background:#2f69c2}.commerce-kpi span{display:block;color:#71839a;font-size:12px}.commerce-kpi strong{display:block;margin-top:8px;font-size:22px;color:#6f8298}.commerce-analysis-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:15px;margin-bottom:15px}.analysis-visual-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);overflow:hidden}.visual-head{padding:16px 18px;border-bottom:1px solid #dce4ed;display:flex;align-items:center;justify-content:space-between;gap:12px}.visual-head h3{margin:0;font-size:17px}.visual-head span{font-size:11px;color:#7b8c9f}.structure-layout{min-height:245px;padding:20px;display:flex;align-items:center;gap:24px}.structure-donut{width:154px;height:154px;border-radius:50%;background:conic-gradient(#2f69c2 0 34%,#65a6db 34% 61%,#c79218 61% 82%,#879bb4 82%);position:relative;flex:0 0 auto}.structure-donut:after{content:"待接入";position:absolute;inset:27px;background:#f9fbfd;border-radius:50%;display:grid;place-items:center;color:#75869a;font-weight:800}.structure-legend{display:grid;gap:10px;flex:1}.structure-legend div{display:grid;grid-template-columns:9px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid #e5eaf0;padding-bottom:8px}.structure-legend i{width:8px;height:8px;border-radius:50%}.structure-legend span{font-size:13px}.structure-legend b{font-size:12px;color:#7c8da0}.compare-list{padding:10px 18px 18px;display:grid;gap:8px}.compare-row{display:grid;grid-template-columns:145px 1fr 62px;gap:12px;align-items:center;padding:8px 0}.compare-row span{font-size:13px;font-weight:700}.compare-track{height:8px;background:#e1e8ef;border-radius:99px;overflow:hidden}.compare-track i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,#2f69c2,#78a4e1);border-radius:99px}.compare-row b{font-size:11px;color:#7b8da0;text-align:right}.profile-dashboard{display:grid;grid-template-columns:minmax(330px,.9fr) minmax(0,1.35fr) minmax(270px,.75fr);gap:15px;margin-bottom:17px}.profile-chart-card,.funnel-card,.decision-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);padding:18px}.profile-chart-card h3,.funnel-card h3,.decision-card h3{margin:0 0 15px;font-size:17px}.profile-pies{display:flex;justify-content:space-around;gap:14px}.profile-pie{text-align:center}.pie-ring{width:112px;height:112px;border-radius:50%;background:conic-gradient(#2f69c2 0 36%,#64a4da 36% 63%,#c79118 63% 82%,#91a2b7 82%);position:relative;margin:auto}.pie-ring.alt{background:conic-gradient(#173e70 0 45%,#4f85ca 45% 70%,#c79118 70% 88%,#9baabd 88%)}.pie-ring:after{content:"待接入";position:absolute;inset:22px;background:#f9fbfd;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#71839a;font-weight:700}.profile-pie strong{display:block;margin-top:9px;font-size:12px}.funnel-flow{display:grid;gap:7px}.funnel-step{height:33px;margin:auto;background:linear-gradient(90deg,#2f69c2,#5d8fd3);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 13px;border-radius:6px;font-size:12px}.funnel-step span:last-child{color:#cfdded}.decision-list{display:grid;gap:9px}.decision-item{border-left:3px solid #c79118;background:#f8f4e8;padding:11px 12px}.decision-item b{display:block;font-size:13px}.decision-item span{display:block;margin-top:5px;font-size:11px;color:#7b7460}
+    .assessment-board{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);overflow:hidden;margin-bottom:17px}.assessment-summary{display:grid;grid-template-columns:repeat(3,1fr);background:#14375f;color:#fff}.assessment-summary div{padding:18px 20px;border-right:1px solid rgba(255,255,255,.12)}.assessment-summary span{display:block;color:#aec3da;font-size:12px}.assessment-summary strong{display:block;margin-top:6px;font-size:20px}.assessment-table{width:100%;border-collapse:collapse}.assessment-table th{background:#eaf0f7;color:#49647f;font-size:12px;text-align:left;padding:12px 17px}.assessment-table td{padding:14px 17px;border-top:1px solid #e1e7ee;font-size:14px}.assessment-table td:last-child{text-align:right}.assessment-name{font-weight:700}.owner-placeholder{color:#8191a2}
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:17px}.project-card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:0 7px 18px rgba(25,55,90,.06)}.project-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.project-top h3{margin:0;font-size:17px}.project-state{background:#fff1da;color:#a56513;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:800;white-space:nowrap}.project-line{height:5px;background:#e3e9f0;border-radius:99px;margin:21px 0 13px;position:relative}.project-line:before{content:"";display:block;width:12%;height:100%;border-radius:99px;background:#c79118}.project-meta{display:flex;justify-content:space-between;color:#7c8da0;font-size:12px}
+    .commerce-kpis{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}.commerce-analysis-grid.single{grid-template-columns:1fr}.commerce-kpi small{display:block;margin-top:7px;color:#8a9aab;font-size:11px}.profile-chart-card,.funnel-card,.decision-card{padding:0;overflow:hidden}.profile-pies{padding:20px 16px 22px}.profile-pie small{display:block;margin-top:5px;color:#8292a4;font-size:11px}.pie-ring span{position:absolute;inset:22px;background:#f9fbfd;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#71839a;font-weight:700;z-index:1}.pie-ring:after{display:none}.funnel-flow{padding:18px 24px 22px}.funnel-step b{font-size:11px;color:#d9e6f3}.decision-list{padding:16px 18px 18px}.decision-item{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}.decision-item em{width:25px;height:25px;border-radius:7px;background:#e6d19e;color:#70531a;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:900}.decision-item span{line-height:1.45}.footnote{margin-top:17px;color:#71839a;font-size:13px;text-align:right}
+    @media(max-width:1180px){.app{grid-template-columns:230px minmax(0,1fr)}.sidebar{padding-left:14px;padding-right:14px}.content{padding-left:24px;padding-right:24px}.department-switch{grid-template-columns:150px repeat(3,minmax(160px,1fr));padding:14px}.metric-grid{grid-template-columns:repeat(2,1fr)}.detail-panel{grid-template-columns:1fr}.dimension-list{max-height:none}.persona-board{grid-template-columns:1fr 1fr}.strategy-card{grid-column:1/-1}.project-grid{grid-template-columns:repeat(2,1fr)}.commerce-analysis-grid{grid-template-columns:1fr}.profile-dashboard{grid-template-columns:1fr 1fr}.decision-card{grid-column:1/-1}}
+    @media(max-width:760px){.app{display:block}.sidebar{position:relative;width:100%;height:auto;padding:18px}.brand{padding-bottom:16px}.primary-nav{grid-template-columns:repeat(2,1fr)}.nav-label,.sidebar-foot{display:none}.nav-btn{padding:11px}.nav-copy strong{font-size:15px}.nav-copy span{display:none}.topbar{height:auto;min-height:72px;padding:12px 16px;position:sticky;gap:12px}.crumb-code,.crumb-line{display:none}.crumb-title{font-size:18px}.period{display:none}.date-box{min-width:auto;font-size:13px}.content{padding:18px 14px 34px}.hero{display:block;padding:24px}.hero h1{font-size:27px}.hero-badge{margin-top:20px}.sticky-controls{top:72px}.department-switch,.sticky-controls.is-compact .department-switch{grid-template-columns:1fr;padding:10px}.dept-heading{display:none}.department-switch button{min-height:58px}.metric-grid,.ops-grid,.persona-board,.project-grid,.commerce-kpis,.commerce-analysis-grid,.profile-dashboard{grid-template-columns:1fr}.strategy-card,.decision-card{grid-column:auto}.check-list{grid-template-columns:1fr}.behavior-flow{grid-template-columns:1fr}.behavior-node:not(:last-child):after{content:"↓";right:auto;left:50%;top:auto;bottom:-12px;transform:translateX(-50%)}.analysis-body{grid-template-columns:1fr}.chart-area{height:245px;padding-left:14px;padding-right:14px}.donut-wrap,.structure-layout{flex-direction:column;align-items:flex-start}.compare-row{grid-template-columns:110px 1fr 55px}.primary-nav{gap:7px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-logo-wrap"><img class="brand-logo" src="assets/chuangel-logo.png" alt="Chuangel 传天羽"></div><p>BUSINESS MANAGEMENT</p></div>
+      <div class="nav-label">经营看板一级区块</div>
+      <nav class="primary-nav" id="primaryNav"></nav>
+      <div class="sidebar-foot">
+        <div class="state"><span class="dot"></span>静态框架预览</div>
+        <strong>数据状态：待接入</strong>
+        <small>模板版本 · 2026.08</small>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb"><span class="crumb-code" id="crumbCode">01 / OVERVIEW</span><span class="crumb-line"></span><span class="crumb-title" id="crumbTitle">总表</span></div>
+        <div class="top-actions">
+          <div class="period"><button class="active">日</button><button>周</button><button>月</button><button>自定义</button></div>
+          <div class="date-box">数据日期 · 待选择</div>
+        </div>
+      </header>
+      <div class="content">
+        <section class="hero">
+          <div><div class="eyebrow" id="heroEyebrow">ENTERPRISE OVERVIEW</div><h1 id="heroTitle">企业经营全景总表</h1><p id="heroDesc">统一查看销售、库存、费用和利润框架；真实经营数据接入后，形成公司级经营判断。</p></div>
+          <div class="hero-badge"><span>当前数据状态</span><strong>待接入</strong></div>
+        </section>
+        <div class="sticky-controls" id="stickyControls">
+          <nav class="department-switch" id="departmentSwitch"></nav>
+          <nav class="section-switch" id="sectionSwitch"></nav>
+        </div>
+        <section class="section-shell" id="sectionShell"></section>
+        <div class="footnote">本页面为老板端内容呈现优化效果版 · 指标及层级依据《企业经营简报模板(1)》整理</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const config = [
+      {
+        id:'overview', code:'01 / OVERVIEW', name:'总表', en:'ENTERPRISE OVERVIEW', title:'企业经营全景总表', desc:'公司整体经营结果、库存资金、费用结构及利润结果的统一视图。',
+        sections:[
+          {name:'销售指标', intro:'公司整体销售结果与效率', type:'trend', groups:[
+            {name:'业务板块', items:['各业务板块汇总与对比']},{name:'任务指标',items:['任务目标','指标完成进度']},{name:'销售额',items:['销售总额','指标达成率']},{name:'毛利率',items:['整体毛利率']},{name:'毛利额',items:['整体毛利额']},{name:'客单价',items:['整体客单价']},{name:'流量',items:['整体流量']},{name:'转化率',items:['整体转化率']}
+          ]},
+          {name:'库存',intro:'库存规模、效率与风险结构',type:'donut',groups:[{name:'库存管理',items:['库存总额','库存周转','90天以上超龄分析','残次商品','周度/月度不动销','不动销处理进度','残次亏损率']}]},
+          {name:'费用',intro:'经营费用与资金占用结构',type:'bars',groups:[{name:'费用结构',items:['扣点租金','人工费用','推广费','物流费用','其他费用','资金占用','后台费用']}]},
+          {name:'店铺利润（月度）',intro:'利润结果与盈利质量',type:'kpi',groups:[{name:'利润结果',items:['店铺利润','营业利润']}]}]
+      },
+      {
+        id:'apr', code:'02 / APR RETAIL', name:'APR', en:'APR RETAIL NETWORK', title:'APR 门店经营看板', desc:'按门店识别销售结果、经营效率、库存风险、服务项目和组织执行质量。',
+        sections:[
+          {name:'销售指标',intro:'门店结果、效率及销售能力',type:'trend',groups:[
+            {name:'门店',items:['门店经营对比']},{name:'任务指标',items:['门店任务目标']},{name:'销售额',items:['销售总额','指标达成率','平均单店产能']},{name:'毛利率',items:['门店毛利率']},{name:'毛利额',items:['门店毛利额']},{name:'客单价',items:['门店客单价']},{name:'客流',items:['门店客流量']},{name:'转化率',items:['总转化率','四大品类转化率']}
+          ]},
+          {name:'库存',intro:'门店库存资金效率与处置情况',type:'donut',groups:[{name:'库存管理',items:['库存总额','库存周转','90天以上超龄分析','残次商品','周度/月度不动销','不动销处理进度','残次亏损率']}]},
+          {name:'销售分析',intro:'销售结构、连带与渠道贡献',type:'donut',groups:[
+            {name:'销售结构',items:['线上/线下占比','客流转化','配件搭售率','ACS连带率','AirPods连带率','四大主机销售结构','1PP销售结构','3PP销售结构','年货节等任务进度','音频节等任务进度']},
+            {name:'Apple经销商平均数对比（月度）',items:['单店产能','1PP/3PP销售额及占比','四大机型转化率','AirPods转化率','AirPods/1PP连带率','五种机型线下国补占比','人工费率','租金费率','合规检查','3D激活率','净利率']}
+          ]},
+          {name:'项目考核',intro:'关键服务与运营项目完成质量',type:'bars',groups:[{name:'项目考核',items:['3D激活率','门店合规分','O2O线上超时率','O2O商责率','值享焕新','分期付款','以旧换新','售后诊断','1对1私教','数据迁移','运营商收益']}]},
+          {name:'其他过程指标',intro:'门店SOP、客户与团队能力',type:'bars',groups:[
+            {name:'SOP完成率',items:['仪容仪表','晨晚会','店铺环境','主动接待与开口','门店自盘','换岗交接']},
+            {name:'客户与组织',items:['企微回访','二次消费','重大节点门店宣传','宣发数量','浏览量','样机亏损率','内部培训场次','培训考试结果']}
+          ]},
+          {name:'费用',intro:'门店费用和资产损失计提',type:'bars',groups:[{name:'月度费用',items:['门店租金','线上扣点','人工费用','物流费用','其他费用','资金占用','后台费用','滞销计提','残次计提']}]},
+          {name:'利润（月度）',intro:'门店盈利结果',type:'kpi',groups:[{name:'利润结果',items:['店铺利润','营业利润']}]},
+          {name:'其他',intro:'拓店、私域与宣传推进',type:'bars',groups:[{name:'其他经营事项',items:['线下拓店进展','私域流量','宣传推广']}]}
+        ]
+      },
+      {
+        id:'apple', code:'03 / APPLE E-COMMERCE', name:'Apple 电商', en:'APPLE E-COMMERCE', title:'Apple 电商经营看板', desc:'按店铺及渠道查看交易、流量、库存、竞争、服务质量和费用利润。',
+        sections:[
+          {name:'销售指标',intro:'店铺销售结果与流量转化',type:'trend',groups:[
+            {name:'店铺',items:['店铺/渠道经营对比']},{name:'任务指标',items:['店铺任务目标']},{name:'销售额',items:['销售总额','指标达成率']},{name:'毛利率',items:['店铺毛利率']},{name:'毛利额',items:['店铺毛利额']},{name:'客单价',items:['店铺客单价']},
+            {name:'流量',items:['进店人数','点击率','加购率','调价与定价','推广活动','推广ROI']},{name:'转化率',items:['总转化率','四大品类转化率','TOP产品转化率']}
+          ]},
+          {name:'库存',intro:'电商库存效率与风险',type:'donut',groups:[{name:'库存管理',items:['库存总额','库存周转','90天以上超龄分析','残次商品','周度/月度不动销','不动销处理进度','残次亏损率']}]},
+          {name:'销售分析',intro:'交易结构、退款、画像与竞店',type:'donut',groups:[
+            {name:'销售与客户',items:['四大主机销售结构','1PP销售结构','3PP销售结构','支付转化率','退款金额','退款率','平台用户画像','用户习惯分析','对应经营策略']},
+            {name:'竞店对比（周度/月度）',items:['竞店排名','竞店销售规模','竞店定价','各机型占比','访客数','活动推广','补贴优惠券']}
+          ]},
+          {name:'项目考核',intro:'激活、合规和服务评价',type:'bars',groups:[{name:'项目考核',items:['3D激活率','合规检查','售后评价','客服评价']}]},
+          {name:'其他过程指标',intro:'客户沉淀与团队能力',type:'bars',groups:[{name:'过程运营',items:['线上消费回访','二次消费','新增会员数','会员机制','会员黏性','内部培训场次','培训考试结果']}]},
+          {name:'费用',intro:'平台、推广及履约费用',type:'bars',groups:[{name:'月度费用',items:['平台扣点','平台优惠补贴','推广费用','人工费用','物流费用','其他费用','资金占用','后台费用','滞销计提','残次计提']}]},
+          {name:'店铺利润（月度）',intro:'店铺盈利结果',type:'kpi',groups:[{name:'利润结果',items:['店铺利润','营业利润']}]},
+          {name:'其他',intro:'应收与系统协同',type:'bars',groups:[{name:'其他经营事项',items:['国补应收进度','泛中台数据对接']}]}
+        ]
+      },
+      {
+        id:'shure', code:'04 / SHURE E-COMMERCE', name:'舒尔电商', en:'SHURE E-COMMERCE', title:'舒尔电商经营看板', desc:'聚焦专业音频电商的销售、流量、库存、竞品、内容营销、客户经营与品牌费用。',
+        sections:[
+          {name:'销售指标',intro:'店铺销售结果与流量转化',type:'trend',groups:[
+            {name:'店铺',items:['店铺/渠道经营对比']},{name:'任务指标',items:['店铺任务目标']},{name:'销售额',items:['销售总额','指标达成率']},{name:'毛利率',items:['店铺毛利率']},{name:'毛利额',items:['店铺毛利额']},{name:'客单价',items:['店铺客单价']},
+            {name:'流量',items:['进店人数','点击率','加购率','调价与定价','推广活动','推广ROI']},{name:'转化率',items:['总转化率','TOP产品转化率']}
+          ]},
+          {name:'库存',intro:'库存效率与残次风险',type:'donut',groups:[{name:'库存管理',items:['库存总额','库存周转','90天以上超龄分析','残次商品','周度/月度不动销','不动销处理进度','残次亏损率']}]},
+          {name:'销售分析',intro:'交易结构、用户与竞品表现',type:'donut',groups:[
+            {name:'销售与客户',items:['销售结构与占比','支付转化率','退款金额','退款率','平台用户画像','用户习惯分析','对应经营策略']},
+            {name:'竞店对比（周度/月度）',items:['竞店排名','竞店销售定价','竞店政策','各机型占比','访客数','活动推广','补贴优惠券']}
+          ]},
+          {name:'项目考核',intro:'售后质量与退货风险',type:'bars',groups:[{name:'项目考核',items:['售后评价','客服评价','残次退货率']}]},
+          {name:'其他过程指标',intro:'企业客户、会员、内容与培训',type:'bars',groups:[
+            {name:'客户经营',items:['企业客户维护与拓展','线上消费回访','二次消费','新增会员数','会员机制','会员黏性']},
+            {name:'内容与组织',items:['图文发布数','短视频发布数','内容浏览量','内容转化','内部培训场次','培训考试结果']}
+          ]},
+          {name:'费用',intro:'平台、推广及履约费用',type:'bars',groups:[{name:'月度费用',items:['平台扣点','平台优惠补贴','推广费用','人工费用','物流费用','其他费用','资金占用','后台费用','滞销计提','残次计提']}]},
+          {name:'店铺利润（月度）',intro:'店铺盈利结果',type:'kpi',groups:[{name:'利润结果',items:['店铺利润','营业利润']}]},
+          {name:'其他',intro:'品牌费用和平台政策支持',type:'bars',groups:[{name:'其他经营事项',items:['总代广告费支持','京东毛保','消费券']}]}
+        ]
+      }
+    ];
+
+    const departmentConfigs=config.slice(1);
+    const navConfig=[
+      config[0],
+      {id:'business',code:'02 / BUSINESS UNITS',name:'经营板块',en:'BUSINESS OPERATIONS',title:'业务经营板块',desc:'APR、Apple电商与舒尔电商统一归入经营板块，可在页面内选择部门查看完整经营内容。',departments:departmentConfigs},
+      {id:'management',code:'03 / MANAGEMENT',name:'管理',en:'MANAGEMENT',title:'管理看板',desc:'人员、财务、资产及组织效能等管理内容统一呈现。',placeholder:true},
+      {id:'priorities',code:'04 / PRIORITIES',name:'重点事项',en:'KEY PRIORITIES',title:'重点事项看板',desc:'公司重点任务、责任部门、推进节点和批复结果统一呈现。',placeholder:true},
+      {id:'risk',code:'05 / RISK CONTROL',name:'风险控制',en:'RISK CONTROL',title:'风险控制看板',desc:'经营、库存、资金、合规及执行风险统一呈现。',placeholder:true}
+    ];
+
+    let categoryIndex=0, sectionIndex=0, departmentIndex=0, activePeriod='day';
+    const periodLabels={day:'日度',week:'周度',month:'月度',custom:'全部周期'};
+    const nav=document.getElementById('primaryNav'), deptSwitch=document.getElementById('departmentSwitch'), switcher=document.getElementById('sectionSwitch'), shell=document.getElementById('sectionShell');
+    const esc=s=>String(s).replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+    function periodScope(name){const text=String(name);if(/周度\s*\/\s*月度/.test(text))return ['week','month','custom'];if(/月度/.test(text))return ['month','custom'];if(/周度/.test(text))return ['week','custom'];return ['day','week','month','custom'];}
+    function periodName(name){const text=String(name);if(activePeriod==='week')return text.replace(/周度\s*\/\s*月度/g,'周度');if(activePeriod==='month'){if(/周度\s*\/\s*月度/.test(text))return text.replace(/周度\s*\/\s*月度/g,'月度');return text.replace(/（月度）|\(月度\)/g,'');}return text;}
+    function visibleSections(view){return view.sections.map(section=>{if(!periodScope(section.name).includes(activePeriod))return null;const groups=section.groups.map(group=>{if(!periodScope(group.name).includes(activePeriod))return null;const items=group.items.filter(item=>periodScope(item).includes(activePeriod)).map(periodName);if(!items.length)return null;return {...group,name:periodName(group.name),items};}).filter(Boolean);if(!groups.length)return null;return {...section,name:periodName(section.name),groups};}).filter(Boolean);}
+    function navMeta(c){if(c.departments)return `${c.departments.length} 个经营部门`;if(c.placeholder)return '内容待接入';return `${c.sections.length} 个经营板块`;}
+    function activeContent(c){return c.departments?c.departments[departmentIndex]:c;}
+    function renderNav(){nav.innerHTML=navConfig.map((c,i)=>`<button class="nav-btn ${i===categoryIndex?'active':''}" data-i="${i}"><span class="nav-index">${String(i+1).padStart(2,'0')}</span><span class="nav-copy"><strong>${esc(c.name)}</strong><span>${esc(navMeta(c))}</span></span></button>`).join('');nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{categoryIndex=+b.dataset.i;sectionIndex=0;render();window.scrollTo({top:0,behavior:'smooth'});});}
+    function renderHeader(c){const view=activeContent(c);document.getElementById('crumbCode').textContent=c.code;document.getElementById('crumbTitle').textContent=c.departments?`${view.name}经营板块`:c.name;document.getElementById('heroEyebrow').textContent=view.en;document.getElementById('heroTitle').textContent=view.title;document.getElementById('heroDesc').textContent=view.desc;}
+    function renderDepartments(c){if(!c.departments){deptSwitch.innerHTML='';return}const deptMeta=[{code:'APR',desc:'线下零售门店'},{code:'AE',desc:'Apple线上业务'},{code:'SH',desc:'舒尔线上业务'}];deptSwitch.innerHTML=`<div class="dept-heading"><span>BUSINESS UNIT</span><strong>选择经营部门</strong></div>${c.departments.map((d,i)=>`<button class="${i===departmentIndex?'active':''}" data-i="${i}"><span class="dept-code">${deptMeta[i].code}</span><span class="dept-copy"><strong>${esc(d.name)}</strong><small>${deptMeta[i].desc}</small></span><span class="dept-arrow">›</span></button>`).join('')}`;deptSwitch.querySelectorAll('button').forEach(b=>b.onclick=()=>{departmentIndex=+b.dataset.i;sectionIndex=0;renderHeader(c);renderDepartments(c);renderSections(c);window.scrollTo({top:0,behavior:'smooth'});});}
+    function setActiveSection(i){sectionIndex=i;switcher.querySelectorAll('button').forEach((b,n)=>b.classList.toggle('active',n===i));}
+    function renderSwitch(c){const view=activeContent(c),sections=visibleSections(view);if(sectionIndex>=sections.length)sectionIndex=0;switcher.innerHTML=sections.map((s,i)=>`<button class="${i===sectionIndex?'active':''}" data-i="${i}">${esc(s.name)}</button>`).join('');switcher.querySelectorAll('button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;setActiveSection(i);document.getElementById(`section-${categoryIndex}-${departmentIndex}-${i}`).scrollIntoView({behavior:'smooth',block:'start'});});}
+    function flatItems(s){return s.groups.flatMap(g=>g.items.map(x=>({group:g.name,item:x})));}
+    function metricCards(s){let arr=flatItems(s).slice(0,8);return `<div class="metric-grid">${arr.map((x,i)=>`<article class="metric-card"><div class="metric-top"><div class="metric-name">${esc(x.item)}</div><div class="metric-icon">${String(i+1).padStart(2,'0')}</div></div><div class="waiting">待接入</div><div class="metric-sub">${esc(x.group)} · 数据口径待绑定</div></article>`).join('')}</div>`;}
+    function bars(){const hs=[52,78,66,88,58,73,84];return `<div class="chart-area">${hs.map((h,i)=>`<div class="bar-set"><i class="bar" style="height:${h}%"></i><i class="bar alt" style="height:${Math.max(24,h-18)}%"></i><span>${['D-6','D-5','D-4','D-3','D-2','D-1','当期'][i]}</span></div>`).join('')}<div class="chart-note">趋势及对比效果示意 · 数据待接入</div></div>`;}
+    function donut(items){return `<div class="donut-wrap"><div class="donut"></div><div class="legend">${items.slice(0,5).map((x,i)=>`<div class="legend-item"><i style="background:${['#2f69c2','#64a4da','#c79118','#7b91ad','#42a287'][i]}"></i><span>${esc(x.item)}</span><strong>待接入</strong></div>`).join('')}</div></div>`;}
+    function details(s){const items=flatItems(s);return `<div class="detail-panel"><article class="viz-card"><div class="card-head"><div><h3>${s.type==='donut'?'结构占比 / 透视效果':'趋势与对比效果'}</h3><span>示意图仅用于确认最终呈现形式</span></div><span class="section-tag">数据待接入</span></div>${s.type==='donut'?donut(items):bars()}</article><article class="dimension-card"><div class="card-head"><div><h3>完整数据维度</h3><span>共 ${items.length} 项</span></div></div><div class="dimension-list">${items.map((x,i)=>`<div class="dimension-row"><span class="dim-no">${String(i+1).padStart(2,'0')}</span><span class="dim-copy"><strong>${esc(x.item)}</strong><small>${esc(x.group)}</small></span><span class="status">待接入</span></div>`).join('')}</div></article></div>`;}
+    function analysis(s){return `<article class="analysis-card"><div class="analysis-top"><div><h3>总结分析 · ${esc(s.name)}</h3><span>ANALYSIS FOLLOWS EACH BUSINESS SECTION</span></div><span>当前：待接入</span></div><div class="analysis-body"><div class="analysis-item"><b>经营结论</b><p>待接入该板块数据后，自动提炼结果、结构、趋势和关键变化。</p></div><div class="analysis-item"><b>异常与特殊节点</b><p>待识别目标偏差、同比环比异常、重点活动节点及需关注事项。</p></div><div class="analysis-item"><b>管理动作建议</b><p>待结合数据形成明确动作、责任方向、处理优先级和复盘重点。</p></div></div></article>`;}
+    function allMetricCards(items,groupName){return `<div class="metric-grid">${items.map((x,i)=>`<article class="metric-card"><div class="metric-top"><div class="metric-name">${esc(x.item||x)}</div><div class="metric-icon">${String(i+1).padStart(2,'0')}</div></div><div class="waiting">待接入</div><div class="metric-sub">${esc(x.group||groupName)} · 数据口径待绑定</div></article>`).join('')}</div>`;}
+    function processGroup(g,i){const isSop=/SOP/.test(g.name), isJourney=/客户|过程运营/.test(g.name);if(isSop)return `<article class="ops-card"><div class="ops-head"><div><h3>${esc(g.name)} · 巡检清单</h3><span>不作为单一数值展示，按检查项呈现执行状态</span></div><span class="pending-chip">最新检查待接入</span></div><div class="check-list">${g.items.map((x,n)=>`<div class="check-row"><span class="check-icon">${String(n+1).padStart(2,'0')}</span><strong>${esc(x)}</strong><span class="pending-chip">待检查</span></div>`).join('')}</div></article>`;if(isJourney){const steps=g.items.slice(0,5),remain=g.items.slice(5);return `<article class="ops-card"><div class="ops-head"><div><h3>${esc(g.name)} · 运营闭环</h3><span>按动作路径查看推进和反馈结果</span></div><span class="pending-chip">状态待接入</span></div><div class="journey">${steps.map((x,n)=>`<div class="journey-step"><span class="journey-dot">${n+1}</span><strong>${esc(x)}</strong><small>待接入</small></div>`).join('')}</div>${remain.length?`<div class="training-board">${remain.map(x=>`<div class="training-item"><span>配套能力</span><strong>${esc(x)}</strong><small>执行记录待接入</small></div>`).join('')}</div>`:''}<p class="journey-note">预览逻辑：不仅看结果数值，同时呈现动作是否完成、客户反馈及下一步安排。</p></article>`}return `<article class="ops-card"><div class="ops-head"><div><h3>${esc(g.name)} · 内容与能力</h3><span>按任务、产出及复盘结果呈现</span></div><span class="pending-chip">内容待接入</span></div><div class="training-board">${g.items.map(x=>`<div class="training-item"><span>运营事项</span><strong>${esc(x)}</strong><small>最新进展与结果待接入</small></div>`).join('')}</div></article>`;}
+    function processPreview(s){return `<div class="content-preview"><div class="preview-banner"><div><strong>过程管理与运营闭环</strong><p>将制度、动作和团队能力从“指标卡”改为检查、推进和复盘视图。</p></div><span class="preview-badge">业务内容预览 · 待接入</span></div><div class="ops-grid">${s.groups.map(processGroup).join('')}</div></div>`;}
+    function personaPreview(s){
+      const items=flatItems(s),swatches=['#2f69c2','#65a6db','#c79218','#879bb4'];
+      const keyNames=['支付转化率','退款金额','退款率','访客数'];
+      let keyItems=keyNames.map(n=>items.find(x=>x.item===n)).filter(Boolean);
+      if(!keyItems.length)keyItems=items.slice(0,4);
+      const structure=items.filter(x=>/销售结构|主机|1PP|3PP|各机型占比/.test(x.item)).slice(0,4);
+      const structureItems=structure.length?structure:[{item:'销售结构'}];
+      const competitorGroup=s.groups.find(g=>/竞店/.test(g.name)),competitor=(competitorGroup||{items:[]}).items;
+      const compareItems=competitor.length?competitor:items.filter(x=>/竞店|活动|补贴|优惠/.test(x.item)).slice(0,6);
+      const narrative=items.filter(x=>/画像|习惯|策略/.test(x.item));
+      const insightItems=narrative.length?narrative:[{item:'平台用户画像'},{item:'用户习惯分析'},{item:'对应经营策略'}];
+      const widths=[72,56,81,64,48,75,59];
+      return `<div class="commerce-kpis">${keyItems.map((x,i)=>`<article class="commerce-kpi"><span>${esc(x.item)}</span><strong>待接入</strong><small>${esc(x.group||'交易指标')} · 数据口径待绑定</small></article>`).join('')}</div>
+      <div class="commerce-analysis-grid ${competitorGroup?'':'single'}">
+        <article class="analysis-visual-card"><div class="visual-head"><h3>销售结构透视</h3><span>品类 / 机型 / 业务结构</span></div><div class="structure-layout"><div class="structure-donut"></div><div class="structure-legend">${structureItems.map((x,i)=>`<div><i style="background:${swatches[i%swatches.length]}"></i><span>${esc(x.item)}</span><b>待接入</b></div>`).join('')}</div></div></article>
+        ${competitorGroup?`<article class="analysis-visual-card"><div class="visual-head"><h3>${esc(competitorGroup.name)}</h3><span>排名 / 规模 / 定价 / 活动</span></div><div class="compare-list">${compareItems.map((x,i)=>`<div class="compare-row"><span>${esc(typeof x==='string'?x:x.item)}</span><div class="compare-track"><i style="width:${widths[i%widths.length]}%"></i></div><b>待接入</b></div>`).join('')}</div></article>`:''}
+      </div>
+      <div class="profile-dashboard">
+        <article class="profile-chart-card"><div class="visual-head"><h3>平台用户画像</h3><span>人群结构可视化</span></div><div class="profile-pies"><div class="profile-pie"><div class="pie-ring"><span>待接入</span></div><strong>年龄层分布</strong><small>核心年龄与占比</small></div><div class="profile-pie"><div class="pie-ring alt"><span>待接入</span></div><strong>城市层级 / 偏好</strong><small>区域、价格与产品倾向</small></div></div></article>
+        <article class="funnel-card"><div class="visual-head"><h3>用户行为转化漏斗</h3><span>从访问到复购</span></div><div class="funnel-flow">${['浏览','点击','加购','支付','复购'].map((x,i)=>`<div class="funnel-step" style="width:${100-i*9}%"><span>${x}</span><b>待接入</b></div>`).join('')}</div></article>
+        <article class="decision-card"><div class="visual-head"><h3>洞察与经营策略</h3><span>画像驱动经营动作</span></div><div class="decision-list">${insightItems.slice(0,4).map((x,i)=>`<div class="decision-item"><em>${String(i+1).padStart(2,'0')}</em><div><b>${esc(x.item)}</b><span>分析结论与建议待接入</span></div></div>`).join('')}</div></article>
+      </div>`;
+    }
+    function assessmentPreview(s){const items=flatItems(s);return `<div class="assessment-board"><div class="assessment-summary"><div><span>考核事项</span><strong>${items.length} 项</strong></div><div><span>已完成</span><strong>待接入</strong></div><div><span>需整改</span><strong>待接入</strong></div></div><table class="assessment-table"><thead><tr><th>检查 / 考核项目</th><th>最近结果</th><th>责任归属</th><th>当前状态</th></tr></thead><tbody>${items.map(x=>`<tr><td class="assessment-name">${esc(x.item)}</td><td class="owner-placeholder">结果待接入</td><td class="owner-placeholder">责任人待接入</td><td><span class="pending-chip">待检查</span></td></tr>`).join('')}</tbody></table></div>`;}
+    function projectPreview(s){const items=flatItems(s);return `<div class="content-preview"><div class="preview-banner"><div><strong>项目与协同事项</strong><p>按事项状态、关键节点和下一步动作呈现，不使用销售类图表。</p></div><span class="preview-badge">推进视图 · 待接入</span></div><div class="project-grid">${items.map((x,i)=>`<article class="project-card"><div class="project-top"><h3>${esc(x.item)}</h3><span class="project-state">待更新</span></div><div class="project-line"></div><div class="project-meta"><span>当前节点：待接入</span><span>责任人：待接入</span></div></article>`).join('')}</div></div>`;}
+    function sectionContent(s){const items=flatItems(s);if(s.name==='其他过程指标')return processPreview(s);if(s.name==='项目考核')return assessmentPreview(s);if(s.name==='其他')return projectPreview(s);if(s.name==='销售分析'&&items.some(x=>/画像|习惯|策略/.test(x.item)))return personaPreview(s);return `${metricCards(s)}${details(s)}`;}
+    function sectionBlock(s,i){return `<section class="section-block" id="section-${categoryIndex}-${departmentIndex}-${i}" data-section-index="${i}"><div class="section-head"><div><h2>${esc(s.name)}</h2><p>${esc(s.intro)}</p></div><span class="section-tag">${periodLabels[activePeriod]} · ${flatItems(s).length} 项呈现维度</span></div>${sectionContent(s)}${analysis(s)}</section>`;}
+    function bindSectionObserver(){if(window.sectionObserver)window.sectionObserver.disconnect();window.sectionObserver=new IntersectionObserver(entries=>{const visible=entries.filter(x=>x.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];if(visible)setActiveSection(+visible.target.dataset.sectionIndex);},{rootMargin:'-230px 0px -62% 0px',threshold:.01});document.querySelectorAll('.section-block').forEach(x=>window.sectionObserver.observe(x));}
+    function renderPlaceholder(c){switcher.innerHTML='';shell.innerHTML=`<section class="empty-state"><div><div class="empty-icon">···</div><h2>${esc(c.name)}内容待接入</h2><p>${esc(c.desc)}<br>当前静态框架仅预留页面入口，后续根据确认的数据维度补充呈现。</p><span class="empty-pill">数据状态 · 待接入</span></div></section>`;if(window.sectionObserver)window.sectionObserver.disconnect();}
+    function renderSections(c){if(c.placeholder){renderPlaceholder(c);return}const view=activeContent(c),sections=visibleSections(view);renderSwitch(c);shell.innerHTML=sections.map(sectionBlock).join('');bindSectionObserver();}
+    function render(){const c=navConfig[categoryIndex];renderNav();renderHeader(c);renderDepartments(c);renderSections(c)}
+    const periodButtons=[...document.querySelectorAll('.period button')],periodKeys=['day','week','month','custom'],dateBox=document.querySelector('.date-box');
+    dateBox.textContent=`数据周期 · ${periodLabels[activePeriod]}待选择`;
+    periodButtons.forEach((b,i)=>b.onclick=()=>{activePeriod=periodKeys[i];sectionIndex=0;periodButtons.forEach(x=>x.classList.remove('active'));b.classList.add('active');dateBox.textContent=`数据周期 · ${periodLabels[activePeriod]}待选择`;renderSections(navConfig[categoryIndex]);window.scrollTo({top:0,behavior:'smooth'});});
+    const stickyControls=document.getElementById('stickyControls');
+    function updateStickyControls(){stickyControls.classList.toggle('is-compact',window.scrollY>300)}
+    window.addEventListener('scroll',updateStickyControls,{passive:true});
+    render();
+    updateStickyControls();
+  </script>
+</body>
+</html>

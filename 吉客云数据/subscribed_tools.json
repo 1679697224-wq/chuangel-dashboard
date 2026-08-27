@@ -1,0 +1,58 @@
+[
+ {
+  "名称": "入库单查询",
+  "方法": "erp.storage.goodsdocin.v2"
+ },
+ {
+  "名称": "出库单查询",
+  "方法": "erp.storage.goodsdocout.v2"
+ },
+ {
+  "名称": "货品查询",
+  "方法": "erp.storage.goodslist"
+ },
+ {
+  "名称": "销售单查询",
+  "方法": "oms.trade.fullinfoget"
+ },
+ {
+  "名称": "仓库查询",
+  "方法": "erp.warehouse.get"
+ },
+ {
+  "名称": "采购订单查询",
+  "方法": "erp.purch.get"
+ },
+ {
+  "名称": "采购退货单查询",
+  "方法": "erp.purchreturn.get"
+ },
+ {
+  "名称": "库存查询",
+  "方法": "erp.stockquantity.get"
+ },
+ {
+  "名称": "采购结算单查询",
+  "方法": "erp.purchordersett.get"
+ },
+ {
+  "名称": "退换补发单查询",
+  "方法": "ass-business.returnchange.fullinfoget"
+ },
+ {
+  "名称": "发货单查询",
+  "方法": "wms.order.query-info.page"
+ },
+ {
+  "名称": "调拨查询",
+  "方法": "erp.allocate.get"
+ },
+ {
+  "名称": "货品价目查询",
+  "方法": "erp-goods.pricelist.get"
+ },
+ {
+  "名称": "网店订单查询",
+  "方法": "omsapi-business.order.get"
+ }
+]

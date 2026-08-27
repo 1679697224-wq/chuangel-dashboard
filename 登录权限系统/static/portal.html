@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>传天羽经营看板 · 角色工作台</title>
+<style>
+:root{--navy:#0b2342;--blue:#2f69c2;--gold:#c79118;--line:#d6e0ec;--bg:#eef3f9;--ink:#0f2745}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif}
+.topbar{height:66px;background:linear-gradient(135deg,#0b2342,#173f6d);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:5}
+.topbar .t{font-size:16px;font-weight:800;letter-spacing:.5px}
+.topbar .u{font-size:12.5px;color:#9db4cc}
+.topbar a{color:#9fe3c8;font-size:12.5px;text-decoration:none;margin-left:14px}
+.wrap{max-width:1100px;margin:26px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 8px 20px rgba(25,55,90,.06)}
+.card h3{margin:0 0 4px;font-size:15.5px}
+.card .hint{font-size:12px;color:#6d7f96;margin-bottom:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;align-items:center}
+.row label{font-size:12.5px;color:#3d5a7a;font-weight:600}
+.row input{width:100%;padding:7px 9px;border:1px solid #d6e0ec;border-radius:8px;font-size:13px}
+.grp{border-top:1px dashed #e0e7ef;margin-top:10px;padding-top:10px;font-size:12.5px;color:#2f69c2;font-weight:800}
+.btn{background:linear-gradient(135deg,#2f69c2,#234e8c);color:#fff;border:0;border-radius:9px;padding:10px 18px;font-size:13.5px;font-weight:800;cursor:pointer;margin-top:10px}
+.btn.green{background:linear-gradient(135deg,#188b70,#116e58)}
+.btn:hover{filter:brightness(1.08)}
+.status{margin-top:10px;font-size:13px;min-height:18px}
+.status.ok{color:#116e58}.status.err{color:#c94d5c}
+.board-link{display:inline-block;margin:18px 0 6px;padding:12px 22px;background:#fff;border:1px solid #2f69c2;color:#2f69c2;border-radius:10px;text-decoration:none;font-weight:800;font-size:14px}
+.board-link:hover{background:#2f69c2;color:#fff}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="t">传天羽经营看板 · 角色工作台</div>
+  <div class="u" id="userInfo"></div><a href="javascript:changePwd()" style="color:#9fe3c8;font-size:12.5px;margin-left:14px">修改密码</a>
+</div>
+<div class="wrap">
+  <a class="board-link" id="boardLink" href="/board?role=boss">进入我的板块看板 →</a>
+  <div class="grid" id="uploadGrid"></div>
+  <div class="status" id="status"></div>
+  <div style="margin-top:20px;font-size:12px;color:#8a9aab">上传后，总看板（老板视图）刷新即自动合并显示；Excel 上传支持舒尔天猫/京东日报模板。</div>
+</div>
+<script>
+var ROLE = __ROLE__;
+document.getElementById('userInfo').textContent = ROLE.name + '（' + ROLE.username + '） · ' + ROLE.role;
+function changePwd(){
+  var o = prompt('请输入原密码');
+  if(!o) return;
+  var n = prompt('请输入新密码（至少 8 位）');
+  if(!n || n.length < 8){ alert('新密码至少 8 位'); return; }
+  fetch('/api/change-password', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({old:o, new:n})})
+    .then(function(res){ return res.json().then(function(d){ return {ok: res.ok, d: d}; }); })
+    .then(function(r){ alert(r.ok ? '密码已修改 ✓' : (r.d.error || '修改失败')); })
+    .catch(function(){ alert('网络错误'); });
+}
+document.getElementById('boardLink').href = '/board?role=' + ROLE.role;
+document.getElementById('boardLink').textContent = '进入我的板块看板（' + ROLE.meta.name + '）→';
+
+var CONFIGS = {
+  apr: {
+    title: 'APR 门店 · 客流/转化/目标上传',
+    hint: '10 家门店：客流（人次）与转化率（%），可选填目标（万元）',
+    kind: 'apr',
+    rows: [
+      {k:'徐州彭城店'},{k:'无锡店'},{k:'连云港店'},{k:'太原店'},{k:'宿州店'},
+      {k:'镇江店'},{k:'运城店'},{k:'日照店'},{k:'徐州宝龙店'},{k:'苏家屯店'}
+    ]
+  },
+  apple: {
+    title: 'Apple 电商 · 流量/转化上传',
+    hint: '两店：访客数(uv)、支付转化率(%)、退款率(%)',
+    kind: 'apple',
+    rows: [{k:'苏宁旗舰店（啟韬）'},{k:'京东旗舰店（羽通）'}]
+  },
+  shure: {
+    title: 'Shure 电商 · 流量/转化上传',
+    hint: '天猫：uv/转化率；京东：销售额(万)/uv/转化率（也可用下方 Excel 导入日报）',
+    kind: 'shure',
+    rows: [{k:'天猫旗舰店'},{k:'京东旗舰店'}],
+    excel: true
+  },
+  finance: {
+    title: '财务 · 费用/利润表上传',
+    hint: '粘贴 JSON 或后续接 Excel（格式待定）',
+    kind: 'finance',
+    json: true
+  },
+  hr: { title: '人事 · 数据上传', hint: '人事档案/考勤数据后续接入', kind: 'hr' }
+};
+
+function build(cfg){
+  var el = document.createElement('div');
+  el.className = 'card';
+  el.innerHTML = '<h3>' + cfg.title + '</h3><div class="hint">' + cfg.hint + '</div>';
+  var body = document.createElement('div');
+  if(cfg.json){
+    body.innerHTML = '<textarea id="jsonArea" style="width:100%;height:120px;border:1px solid #d6e0ec;border-radius:8px;padding:8px;font-size:12px" placeholder='{"fees":{"扣点租金":126,...},"profit":{...}}'></textarea>';
+  } else if(cfg.rows){
+    cfg.rows.forEach(function(r){
+      var grp = document.createElement('div');
+      grp.className = 'grp';
+      grp.textContent = r.k;
+      body.appendChild(grp);
+      var f1 = document.createElement('div'); f1.className = 'row';
+      var cols = cfg.kind === 'apr' ? ['flow','conv','task'] : (cfg.kind === 'apple' ? ['uv','cvr','refund'] : ['uv','cvr','sales']);
+      cols.forEach(function(col){
+        var lab = {flow:'客流', conv:'转化率%', task:'目标万', uv:'访客数', cvr:'转化率%', refund:'退款率%', sales:'销售额(万)'}[col];
+        var w = document.createElement('label');
+        w.textContent = r.k + ' · ' + lab;
+        var inp = document.createElement('input');
+        inp.id = 'f_' + encodeURIComponent(r.k) + '_' + col;
+        inp.placeholder = '留空=不修改';
+        var rowDiv = document.createElement('div');
+        rowDiv.style.cssText = 'display:flex;flex-direction:column;gap:3px';
+        rowDiv.appendChild(w); rowDiv.appendChild(inp);
+        f1.appendChild(rowDiv);
+      });
+      body.appendChild(f1);
+    });
+  }
+  if(cfg.excel){
+    var x = document.createElement('div');
+    x.style.marginTop = '12px';
+    x.innerHTML = '<div class="grp">Excel 日报导入（天猫/京东舒尔模板）</div><input type="file" id="xlsFile" accept=".xlsx"><button class="btn green" onclick="uploadExcel()">导入 Excel</button>';
+    body.appendChild(x);
+  }
+  var save = document.createElement('button');
+  save.className = 'btn';
+  save.textContent = '保存上传';
+  save.onclick = function(){ saveData(cfg.kind); };
+  body.appendChild(save);
+  el.appendChild(body);
+  return el;
+}
+
+function collect(kind){
+  var cfg = CONFIGS[kind];
+  if(cfg.json){
+    try { return JSON.parse(document.getElementById('jsonArea').value); }
+    catch(e){ status('JSON 格式错误: ' + e.message, true); return null; }
+  }
+  var data = {};
+  if(kind === 'apr') data.flow_conv = {};
+  else data.stores = {};
+  (cfg.rows || []).forEach(function(r){
+    var obj = {};
+    var cols = kind === 'apr' ? ['flow','conv','task'] : (kind === 'apple' ? ['uv','cvr','refund'] : ['uv','cvr','sales']);
+    cols.forEach(function(col){
+      var v = document.getElementById('f_' + encodeURIComponent(r.k) + '_' + col).value.trim();
+      if(v !== '') obj[col] = parseFloat(v);
+    });
+    if(Object.keys(obj).length){
+      if(kind === 'apr') data.flow_conv[r.k] = obj;
+      else data.stores[r.k] = obj;
+    }
+  });
+  return data;
+}
+
+function status(msg, isErr){
+  var s = document.getElementById('status');
+  s.textContent = msg;
+  s.className = 'status ' + (isErr ? 'err' : 'ok');
+}
+
+function saveData(kind){
+  var data = collect(kind);
+  if(!data) return;
+  fetch('/api/upload', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({data: data})})
+    .then(function(res){ return res.json().then(function(d){ return {ok: res.ok, d: d}; }); })
+    .then(function(r){
+      if(r.ok){ status('已保存 ✓ 总看板刷新后可见'); }
+      else { status(r.d.error || '保存失败', true); }
+    })
+    .catch(function(){ status('网络错误', true); });
+}
+
+function uploadExcel(){
+  var f = document.getElementById('xlsFile').files[0];
+  if(!f){ status('请选择 xlsx 文件', true); return; }
+  var fd = new FormData();
+  fd.append('file', f);
+  fetch('/api/upload-excel', {method:'POST', body: fd})
+    .then(function(res){ return res.json().then(function(d){ return {ok: res.ok, d: d}; }); })
+    .then(function(r){
+      if(r.ok){ status('Excel 导入成功：' + (r.d.msg || '')); }
+      else { status('导入失败：' + (r.d.error || ''), true); }
+    })
+    .catch(function(){ status('网络错误', true); });
+}
+
+var cfg = CONFIGS[ROLE.role] || CONFIGS.hr;
+document.getElementById('uploadGrid').appendChild(build(cfg));
+</script>
+</body>
+</html>

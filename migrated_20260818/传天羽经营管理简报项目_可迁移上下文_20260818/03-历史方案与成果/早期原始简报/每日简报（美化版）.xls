@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>简报</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+<style>
+  /* ===== 全局 ===== */
+  body { 
+    font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif; 
+    margin: 0; 
+    padding: 20px; 
+    background: #f4f7fc; 
+  }
+  table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    font-size: 12px; 
+    background: #ffffff; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 8px;
+  }
+  th, td { 
+    border: 1px solid #e2e8f0; 
+    padding: 8px 10px; 
+    text-align: center; 
+    vertical-align: middle; 
+  }
+  /* ===== 标题区 ===== */
+  .main-title {
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 16px 20px;
+    text-align: left;
+    border-radius: 8px 8px 0 0;
+  }
+  .main-title span { color: #60a5fa; }
+  .meta-bar {
+    background: #f8fafc;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .meta-bar td { padding: 10px 16px; }
+  /* ===== 摘要卡片（置顶） ===== */
+  .summary-section { background: #ffffff; }
+  .summary-card {
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    border-left: 6px solid;
+    border-radius: 4px;
+    margin: 4px 0;
+  }
+  .card-green { background: #f0fdf4; border-left-color: #16a34a; color: #14532d; }
+  .card-yellow { background: #fffbeb; border-left-color: #f59e0b; color: #78350f; }
+  .card-red   { background: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; }
+  /* ===== 板块标题 ===== */
+  .section-header {
+    background: #1e293b;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 18px;
+    letter-spacing: 1px;
+  }
+  .sub-header {
+    background: #eef2ff;
+    color: #1e3a8a;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    padding: 8px 16px;
+    border-bottom: 2px solid #c7d2fe;
+  }
+  .group-title {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: #0f172a;
+    text-align: left;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-left: 4px solid #3b82f6;
+  }
+  /* ===== 表格行样式 ===== */
+  .th-light {
+    background: #f8fafc;
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 12px;
+  }
+  .total-row {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: #0f172a;
+    border-top: 2px solid #94a3b8;
+  }
+  .even-row { background: #fafcff; }
+  .odd-row { background: #ffffff; }
+  .small-note {
+    background: #fefce8;
+    color: #713f12;
+    font-size: 11px;
+    text-align: left;
+    padding: 6px 14px;
+    border-left: 4px solid #eab308;
+  }
+  /* ===== 状态标识 ===== */
+  .status-ok { color: #16a34a; font-weight: 700; background: #dcfce7; padding: 2px 8px; border-radius: 12px; }
+  .status-warn { color: #ea580c; font-weight: 700; background: #ffedd5; padding: 2px 8px; border-radius: 12px; }
+  .status-danger { color: #dc2626; font-weight: 700; background: #fee2e2; padding: 2px 8px; border-radius: 12px; }
+  .arrow-up { color: #16a34a; font-weight: 700; }
+  .arrow-down { color: #dc2626; font-weight: 700; }
+  .badge-blue { background: #dbeafe; color: #1e40af; padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+  .badge-gray { background: #e2e8f0; color: #475569; padding: 2px 10px; border-radius: 12px; }
+  /* ===== 决策区 ===== */
+  .decision-area {
+    background: #fffbeb;
+    border-left: 6px solid #f59e0b;
+    text-align: left;
+    padding: 12px 18px;
+    font-weight: 500;
+    color: #78350f;
+  }
+  /* ===== 排版微调 ===== */
+  .text-left { text-align: left; }
+  .text-right { text-align: right; }
+  .indent { padding-left: 24px; }
+  .gap-row { background: #f4f7fc; height: 6px; border: none; }
+  .gap-row td { border: none; }
+</style>
+</head>
+<body>
+
+<table>
+  <!-- ========================================= -->
+  <!-- 1. 主标题 & 日期 -->
+  <!-- ========================================= -->
+  <tr>
+    <td colspan="12" class="main-title">
+      📊 综合办每日经营简报 <span>|</span> 数据看板
+    </td>
+  </tr>
+  <tr class="meta-bar">
+    <td colspan="6" class="text-left">📅 报送日期：2026年 ____ 月 ____ 日（周____）</td>
+    <td colspan="6" class="text-right">👤 报送人：综合办</td>
+  </tr>
+
+  <!-- ========================================= -->
+  <!-- 2. 核心摘要（置顶卡片） -->
+  <!-- ========================================= -->
+  <tr><td colspan="12" class="section-header">📌 今日简报核心摘要</td></tr>
+  <tr>
+    <td colspan="4" style="padding: 10px;">
+      <div class="summary-card card-green">✅ 经营亮点：________________________</div>
+    </td>
+    <td colspan="4" style="padding: 10px;">
+      <div class="summary-card card-yellow">⚠️ 经营风险 / 预警：________________________</div>
+    </td>
+    <td colspan="4" style="padding: 10px;">
+      <div class="summary-card card-red">🤝 需协调事项：________________________</div>
+    </td>
+  </tr>
+
+  <!-- 空行分隔 -->
+  <tr class="gap-row"><td colspan="12"></td></tr>
+
+  <!-- ========================================= -->
+  <!-- 3. 一、今日经营数据概览 -->
+  <!-- ========================================= -->
+  <tr><td colspan="12" class="section-header">一、今日经营数据概览</td></tr>
+
+  <!-- === 3-1. 苹果电商板块 === -->
+  <tr><td colspan="12" class="sub-header">▶ 1. 苹果电商板块</td></tr>
+
+  <!-- 京东Apple -->
+  <tr><td colspan="12" class="group-title">京东Apple</td></tr>
+  <tr class="th-light">
+    <td>指标</td><td>今日数据</td><td>较昨日</td><td>月度累计</td><td>月度目标</td><td>完成率</td>
+    <td colspan="6" style="background:#ffffff; border: none;"></td>
+  </tr>
+  <tr class="odd-row"><td>GMV（万元）</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>毛利率（%）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>访客数（人次）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>转化率（%）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>销售数量（台）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>ROI</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr><td colspan="12" class="small-note">⚡ 异常说明：________________________</td></tr>
+
+  <!-- 苏宁Apple -->
+  <tr><td colspan="12" class="group-title">苏宁Apple</td></tr>
+  <tr class="th-light">
+    <td>指标</td><td>今日数据</td><td>较昨日</td><td>月度累计</td><td>月度目标</td><td>完成率</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>GMV（万元）</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>毛利率（%）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>访客数（人次）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>转化率（%）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>销售数量（台）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>ROI</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr><td colspan="12" class="small-note">⚡ 异常说明：________________________</td></tr>
+
+  <!-- === 3-2. 舒尔电商板块 === -->
+  <tr><td colspan="12" class="sub-header">▶ 2. 舒尔电商板块</td></tr>
+
+  <!-- 京东舒尔 -->
+  <tr><td colspan="12" class="group-title">京东舒尔</td></tr>
+  <tr class="th-light">
+    <td>指标</td><td>今日数据</td><td>较昨日</td><td>月度累计</td><td>月度目标</td><td>完成率</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>GMV（万元）</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>GSV（万元）</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>访客数（人次）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>客服成交额（万元）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>ROI</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr><td colspan="12" class="small-note">⚡ 异常说明：________________________</td></tr>
+
+  <!-- 天猫舒尔 -->
+  <tr><td colspan="12" class="group-title">天猫舒尔</td></tr>
+  <tr class="th-light">
+    <td>指标</td><td>今日数据</td><td>较昨日</td><td>月度累计</td><td>月度目标</td><td>完成率</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>GMV（万元）</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>GSV（万元）</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>访客数（人次）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>客服成交额（万元）</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>ROI</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr><td colspan="12" class="small-note">⚡ 异常说明：________________________</td></tr>
+
+  <!-- === 3-3. APR板块 === -->
+  <tr><td colspan="12" class="sub-header">▶ 3. APR 门店板块</td></tr>
+  <tr><td colspan="12" style="background:#f1f5f9; font-weight:700; text-align:left; padding:6px 14px;">一、经营简报 · APR 全门店（好 / 异常自动标色）</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>门店</td><td>当日销售</td><td>当日目标</td><td>完成率</td>
+    <td>毛利额</td><td>客流</td><td>转化率</td><td>配件占比</td><td>状态</td><td colspan="2"></td>
+  </tr>
+  <!-- 10家门店 -->
+  <tr class="odd-row"><td>1</td><td>宿州苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="even-row"><td>2</td><td>镇江苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="odd-row"><td>3</td><td>徐州彭城苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="even-row"><td>4</td><td>无锡苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="odd-row"><td>5</td><td>连云港苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="even-row"><td>6</td><td>日照苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="odd-row"><td>7</td><td>徐州复兴（宝龙）店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="even-row"><td>8</td><td>运城苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="odd-row"><td>9</td><td>太原富力广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="even-row"><td>10</td><td>沈阳苏家屯苏宁广场店</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td><span class="status-ok">✅</span>/<span class="status-warn">⚠️</span>/<span class="status-danger">🔴</span></td><td colspan="2"></td></tr>
+  <tr class="total-row"><td></td><td>全店合计/平均</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>#DIV/0!</td><td>#DIV/0!</td><td>—</td><td colspan="2"></td></tr>
+
+  <!-- 异常门店清单 -->
+  <tr><td colspan="12" style="background:#fef2f2; font-weight:700; text-align:left; padding:6px 14px; border-top:2px solid #fca5a5;">⚠️ 异常情况（未达标门店 / 数据异常直接点名）</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>异常门店/事项</td><td>异常类型</td><td>数据表现</td><td>原因分析</td><td colspan="2">处理措施</td><td>责任人</td><td colspan="4"></td>
+  </tr>
+  <tr class="odd-row"><td>1</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="2">____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>2</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="2">____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>3</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="2">____</td><td>____</td><td colspan="4"></td></tr>
+
+  <!-- 空行分隔 -->
+  <tr class="gap-row"><td colspan="12"></td></tr>
+
+  <!-- ========================================= -->
+  <!-- 4. 二、管理动态 -->
+  <!-- ========================================= -->
+  <tr><td colspan="12" class="section-header">二、管理动态</td></tr>
+
+  <!-- 4-1. 商务板块 -->
+  <tr><td colspan="12" class="sub-header">1. 商务板块</td></tr>
+  <tr class="th-light">
+    <td>指标</td><td>昨日数据</td><td>较昨日</td><td>月度累计</td><td>月度目标</td><td>完成率</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>库存金额（万元）</td><td>____</td><td>____</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>返利应收（万元）</td><td>____</td><td>____</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td class="indent">其中：苹果返利应收</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td class="indent">舒尔返利应收</td><td>____</td><td>—</td><td>—</td><td>—</td><td>—</td><td colspan="6"></td></tr>
+  <tr><td colspan="12" class="small-note">⚠️ 异常提示：________________________</td></tr>
+
+  <!-- 4-2. 采销板块 -->
+  <tr><td colspan="12" class="sub-header">2. 采销板块</td></tr>
+  
+  <tr><td colspan="12" class="group-title">（1）渠道销售</td></tr>
+  <tr class="th-light">
+    <td>品类</td><td>月度目标</td><td>今日销售额（万元）</td><td>月度累计</td><td>完成率</td><td colspan="7"></td>
+  </tr>
+  <tr class="odd-row"><td>苹果产品</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="even-row"><td>舒尔产品</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="odd-row"><td>3PP产品</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（2）库存管理</td></tr>
+  <tr class="th-light">
+    <td>业务线</td><td>库存金额</td><td>库存周转率</td><td>超龄库存金额（万元）</td><td>本周处理进度</td><td>备注</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>苹果</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>舒尔</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>3PP</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（4）商品返利跟进</td></tr>
+  <tr class="th-light">
+    <td>品牌</td><td>供应商</td><td>金额（万元）</td><td>预计到账时间</td><td>跟进人</td><td>备注</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>苹果</td><td>佳华</td><td>265</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>苹果</td><td>神码</td><td>116</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>舒尔</td><td>Q4市场返利</td><td>11.2</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+
+  <!-- 4-3. 财务板块 -->
+  <tr><td colspan="12" class="sub-header">3. 财务板块</td></tr>
+  <tr><td colspan="12" class="group-title">（1）应收跟进</td></tr>
+  <tr class="th-light">
+    <td>项目</td><td>应收金额（万元）</td><td>已回款</td><td>未回款</td><td>预计回款时间</td><td>备注</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>国补回款</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>舒尔推广费用</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（2）重点工作</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>事项</td><td>负责人</td><td>当前进度</td><td>风险提示</td><td colspan="7"></td>
+  </tr>
+  <tr class="odd-row"><td>1</td><td>APR每日对账情况</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="even-row"><td>2</td><td>月度盘点</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+
+  <!-- 4-4. 人事板块 -->
+  <tr><td colspan="12" class="sub-header">4. 人事板块</td></tr>
+
+  <tr><td colspan="12" class="group-title">（1）编制与缺编情况</td></tr>
+  <tr class="th-light">
+    <td>部门</td><td>编制人数</td><td>在岗人数</td><td>缺编人数</td><td>备注</td><td colspan="7"></td>
+  </tr>
+  <tr class="odd-row"><td>总部</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="even-row"><td>门店</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="odd-row"><td>苹果电商</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="even-row"><td>舒尔电商</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="odd-row"><td>采销部</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="even-row"><td>财务</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="7"></td></tr>
+  <tr class="total-row"><td>合计</td><td>____</td><td>____</td><td>____</td><td>—</td><td colspan="7"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（2）招聘重点跟进</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>岗位</td><td>需求部门</td><td>紧急程度</td><td>当前进展</td><td>预计到岗时间</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>1</td><td>____</td><td>____</td><td>紧急/一般</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>2</td><td>____</td><td>____</td><td>紧急/一般</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（3）入离职动态</td></tr>
+  <tr class="th-light"><td>项目</td><td>今日人数</td><td>本月累计</td><td colspan="9"></td></tr>
+  <tr class="odd-row"><td>入职</td><td>____</td><td>____</td><td colspan="9"></td></tr>
+  <tr class="even-row"><td>离职</td><td>____</td><td>____</td><td colspan="9"></td></tr>
+  <tr class="odd-row"><td>净增（+/-）</td><td>____</td><td>____</td><td colspan="9"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（4）考勤每日情况</td></tr>
+  <tr class="th-light">
+    <td>考勤项目</td><td>今日人次</td><td>涉及人员</td><td>处理状态 / 备注</td><td colspan="8"></td>
+  </tr>
+  <tr class="odd-row"><td>迟到</td><td>____</td><td>____</td><td>已通报 / 待处理</td><td colspan="8"></td></tr>
+  <tr class="even-row"><td>事假</td><td>____</td><td>____</td><td>已审批 / 审批中</td><td colspan="8"></td></tr>
+  <tr class="odd-row"><td>病假</td><td>____</td><td>____</td><td>已审批 / 审批中</td><td colspan="8"></td></tr>
+  <tr class="even-row"><td>调休</td><td>____</td><td>____</td><td>已审批 / 审批中</td><td colspan="8"></td></tr>
+  <tr class="odd-row"><td>产假</td><td>____</td><td>____</td><td>已审批 / 审批中</td><td colspan="8"></td></tr>
+  <tr class="even-row"><td>旷工 / 异常</td><td>____</td><td>____</td><td>跟进中</td><td colspan="8"></td></tr>
+  <tr><td colspan="12" class="small-note">📝 考勤异常分析：________________________</td></tr>
+
+  <tr><td colspan="12" class="group-title">（5）全员周报情况分析</td></tr>
+  <tr class="th-light">
+    <td>部门</td><td>应提交人数</td><td>已提交人数</td><td>提交率</td><td>延迟/未交人数</td><td>本周核心风险/事项提炼</td><td colspan="6"></td>
+  </tr>
+  <tr class="odd-row"><td>APR部</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>商务</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>苹果电商</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>舒尔电商</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>设计</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>采销部</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="odd-row"><td>综合办</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr class="even-row"><td>财务</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="6"></td></tr>
+  <tr><td colspan="12" class="small-note">📝 周报共性问题/待协调事项：________________________</td></tr>
+
+  <tr><td colspan="12" class="group-title">（6）试用期人员跟进</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>姓名</td><td>岗位</td><td>入职日期</td><td>试用期节点</td><td>带教人</td><td>状态评估</td><td colspan="5"></td>
+  </tr>
+  <tr class="odd-row"><td>1</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>正常/预警</td><td colspan="5"></td></tr>
+  <tr class="even-row"><td>2</td><td>____</td><td>____</td><td>____</td><td>____</td><td>____</td><td>正常/预警</td><td colspan="5"></td></tr>
+
+  <tr><td colspan="12" class="group-title">（7）其他人事动态</td></tr>
+  <tr><td colspan="12" class="small-note">📌 今日重要人事异动：________________________</td></tr>
+  <tr><td colspan="12" class="small-note">📌 员工关系/重大事件：________________________</td></tr>
+
+  <!-- 空行分隔 -->
+  <tr class="gap-row"><td colspan="12"></td></tr>
+
+  <!-- ========================================= -->
+  <!-- 5. 三、重点事项 -->
+  <!-- ========================================= -->
+  <tr><td colspan="12" class="section-header">三、重点事项（今日 / 近期）</td></tr>
+
+  <!-- 紧急事项 -->
+  <tr><td colspan="12" style="background:#fef2f2; font-weight:700; text-align:left; padding:8px 16px; font-size:14px; border-left:6px solid #ef4444;">🚨 【紧急事项】</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>事项描述</td><td>负责人</td><td>截止时间</td><td>当前进展</td><td colspan="2">需协调资源</td><td colspan="5"></td>
+  </tr>
+  <tr class="odd-row"><td>1</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="2">____</td><td colspan="5"></td></tr>
+  <tr class="even-row"><td>2</td><td>____</td><td>____</td><td>____</td><td>____</td><td colspan="2">____</td><td colspan="5"></td></tr>
+
+  <!-- 阶段重点 -->
+  <tr><td colspan="12" style="background:#eff6ff; font-weight:700; text-align:left; padding:8px 16px; font-size:14px; border-left:6px solid #3b82f6;">📌 【阶段重点事项进度】（每日更新 · 闭环跟踪）</td></tr>
+  <tr class="th-light">
+    <td>序号</td><td>部门</td><td>事项类别</td><td>事项</td><td>进展 / 说明</td><td>责任人</td><td>状态</td><td>计划完成</td><td colspan="4"></td>
+  </tr>
+  <!-- 完整14项，全部保留 -->
+  <tr class="odd-row"><td>1</td><td>APR</td><td>拓店</td><td>镇江店开业</td><td>施工 7/6 进场，临时铺已审核，暂定 8/8 开业</td><td>黄思瑞</td><td><span class="badge-blue">进行中</span></td><td>8/8</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>2</td><td>APR</td><td>拓店</td><td>连云港店</td><td>资料已提交系统，跟进商场用印</td><td>黄思瑞</td><td><span class="badge-blue">持续</span></td><td>____</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>3</td><td>APR</td><td>拓店</td><td>徐州德基/镇江八佰伴/南京IFC</td><td>商务条件沟通中；IFC 强调 1 公里唯一性</td><td>黄思瑞</td><td><span class="badge-gray">待定</span></td><td>____</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>4</td><td>APR</td><td>拓店</td><td>杭州西田城/无锡璟隆</td><td>评估中；12 月需提前 3 个月沟通</td><td>黄思瑞</td><td><span class="badge-gray">评估</span></td><td>____</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>5</td><td>舒尔电商</td><td>品牌方对接</td><td>舒尔品牌方邮件回复</td><td>____</td><td>任毅</td><td>____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>6</td><td>舒尔电商</td><td>销售</td><td>双十一产品销售结构计划</td><td>周三完成</td><td>任毅</td><td><span class="badge-blue">进行中</span></td><td>本周三</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>7</td><td>舒尔电商</td><td>超龄库存</td><td>超龄库存处理进度</td><td>____</td><td>任毅</td><td>____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>8</td><td>舒尔电商</td><td>企业客户</td><td>企业客户汇总更新</td><td>周五完成</td><td>任毅</td><td><span class="badge-blue">进行中</span></td><td>本周五</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>9</td><td>财务</td><td>房租</td><td>日照免租期跟进</td><td>____</td><td>束铃铃</td><td>____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>10</td><td>财务</td><td>系统</td><td>泛中台与吉客云系统上线数据核对</td><td>____</td><td>束铃铃</td><td>____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>11</td><td>采销</td><td>库存</td><td>各业务超龄库存处理进度</td><td>____</td><td>王文学</td><td>____</td><td>____</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>12</td><td>苹果电商</td><td>国补</td><td>国补资料上传资料审核结果跟进</td><td>____</td><td>赵驰</td><td><span class="badge-blue">持续</span></td><td>本周五</td><td colspan="4"></td></tr>
+  <tr class="odd-row"><td>13</td><td>苹果电商</td><td>国补</td><td>国补回款</td><td>8月2日苏宁回40万，天猫在跟进平台新系统上线，京东审计异常在提交申诉资料</td><td>邵文昌</td><td><span class="badge-blue">持续</span></td><td>每周跟进</td><td colspan="4"></td></tr>
+  <tr class="even-row"><td>14</td><td>商务</td><td>返利</td><td>每周更新返利数据台账</td><td>每周五更新</td><td>杨雪凝</td><td><span class="badge-blue">持续</span></td><td>每周五</td><td colspan="4"></td></tr>
+
+  <!-- 决策事项 -->
+  <tr><td colspan="12" style="background:#fffbeb; font-weight:700; text-align:left; padding:8px 16px; font-size:14px; border-left:6px solid #f59e0b;">👔 【需老板决策 / 关注事项】</td></tr>
+  <tr><td colspan="12" class="decision-area">1. ________________________</td></tr>
+  <tr><td colspan="12" class="decision-area">2. ________________________</td></tr>
+  <tr><td colspan="12" class="decision-area">3. ________________________</td></tr>
+
+  <!-- 底部留白 -->
+  <tr><td colspan="12" style="background:#f8fafc; padding:6px; border:none; font-size:11px; color:#64748b; text-align:right;">📎 本简报为每日自动生成，数据截止至报送日 18:00</td></tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+{
+ "platform": "京东",
+ "our_shops": [
+  "羽通｜京东",
+  "啟韬｜苏宁"
+ ],
+ "models": [
+  {
+   "model": "iPhone 17 Pro Max",
+   "shops": {
+    "Apple产品游戏主题旗舰店": {
+     "count": 36,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 36,
+       "link": "https://item.jd.com/10181849395137.html?pcdk=A9gDv1qsBegkbEAp5RamHat3PSKQvT5XZrHWf9IBVVD6dgtqAOkYoZjxdT6IecGY.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "橙色",
+        "蓝色"
+       ]
+      }
+     ]
+    },
+    "Apple产品丰年时代分期免息专营店": {
+     "count": 36,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 36,
+       "link": "https://item.jd.com/10181852419377.html?pcdk=Hdy1tkFLKiibX_uTgevgd4PYbVFNSpJe9h4bKRzSlE3bUBytUlv73e87183N538I.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "橙色",
+        "蓝色"
+       ]
+      }
+     ]
+    },
+    "Apple产品扬笛教育优惠专营店": {
+     "count": 36,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 36,
+       "link": "https://item.jd.com/10181889743944.html?pcdk=wAeUFyviDFopU45xEJZLFR-X5h7bPO3tsFOSil1knFllsfZ-3PhRsX9RDP9QMOzw.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "橙色",
+        "蓝色"
+       ]
+      }
+     ]
+    }
+   },
+   "total": 108
+  },
+  {
+   "model": "iPhone 17 Pro",
+   "shops": {
+    "Apple产品游戏主题旗舰店": {
+     "count": 27,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 27,
+       "link": "https://item.jd.com/10181383409091.html?pcdk=DruxmvGrB0AL0U9to_tX-rz83c9OIC2J5Urgp9R3oSjshRaUW76a8E-ZSeYQ-FuD.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "橙色",
+        "蓝色"
+       ]
+      }
+     ]
+    },
+    "Apple产品丰年时代分期免息专营店": {
+     "count": 27,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 27,
+       "link": "https://item.jd.com/10181298553975.html?pcdk=s-9V3pVDrhPjSUuOQmAzoNBBKzTAAYrKZo5aoJH5JgtRXHQtI7DcqXuC1oRP7tlz.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "橙色",
+        "蓝色"
+       ]
+      }
+     ]
+    },
+    "Apple产品扬笛教育优惠专营店": {
+     "count": 27,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 27,
+       "link": "https://item.jd.com/10181617494230.html?pcdk=XHBIuLtiBrw9uIiJ7Ul9S7-YfGRjsCDmPWigqyQ_ElGVWN5mK878YNXYKeXkO2tq.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "橙色",
+        "蓝色"
+       ]
+      }
+     ]
+    }
+   },
+   "total": 81
+  },
+  {
+   "model": "iPhone 17",
+   "shops": {
+    "Apple产品游戏主题旗舰店": {
+     "count": 20,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 20,
+       "link": "https://item.jd.com/10181383335587.html?pcdk=2CPKLspqKCkH3pUT7WiwlClBfzd8g5Ad9DLtdo9vXYj9OrK3VBqLg70I9YRTQ4Ee.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "紫色",
+        "黑色",
+        "蓝色",
+        "白色"
+       ]
+      }
+     ]
+    },
+    "Apple产品丰年时代分期免息专营店": {
+     "count": 30,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 30,
+       "link": "https://item.jd.com/10181298251605.html?pcdk=qaX3ZFPYiECCEO7tG4CK5VXupiyfayuIAeaTmyrkswDomJALB_vu3Y2SlgZyONV6.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "紫色",
+        "黑色",
+        "蓝色",
+        "白色"
+       ]
+      }
+     ]
+    },
+    "Apple产品扬笛教育优惠专营店": {
+     "count": 30,
+     "caps": [
+      {
+       "cap": "—",
+       "count": 30,
+       "link": "https://item.jd.com/10181622935660.html?pcdk=NhB6wP_ousFVc0eWvCxUe1NaEimXygjntba7vuDaNT9zvoW6p6UjG8OHxUF8tJqg.rQ4a.tlbT#switch-sku",
+       "colors": [
+        "紫色",
+        "黑色",
+        "蓝色",
+        "白色"
+       ]
+      }
+     ]
+    }
+   },
+   "total": 80
+  }
+ ],
+ "summary": {
+  "total": {
+   "Apple产品游戏主题旗舰店": 83,
+   "Apple产品丰年时代分期免息专营店": 93,
+   "Apple产品扬笛教育优惠专营店": 93
+  },
+  "models_count": 3
+ }
+}

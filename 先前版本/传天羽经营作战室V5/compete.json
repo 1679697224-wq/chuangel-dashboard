@@ -1,0 +1,1098 @@
+{
+ "source": "京东平台竞争产品信息统计.xlsx（7月）",
+ "platform": "京东",
+ "total_products": 269,
+ "shops": [
+  {
+   "name": "Apple产品游戏主题旗舰店",
+   "products": [
+    {
+     "product": "iPhone 17 256G 蓝色 官方标配",
+     "link": "https://item.jd.com/10181383335547.html?pcdk=Padc4zeQa6BIlCKuXIjrN4fRODP9R6kaeJGR-RK8p5v-82TfFuSQqKhSe0efRViB.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 官方标配",
+     "link": "https://item.jd.com/10181383335556.html?pcdk=Ri1dmVkUupISC8_7dgqoZzmq1qzZJrlcN3s2v3PPW24rP76waNvVBYfIis_F6zsm.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 官方标配",
+     "link": "https://item.jd.com/10181383335565.html?pcdk=HmhGDgPjg-F-69hvW3eYcYgsHbMSIEOHhsA24eYHE0hCjzjHCbe4chkS-aySohMM.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 官方标配",
+     "link": "https://item.jd.com/10181383335574.html?pcdk=nVgh5-9A4dGSHHTHD9id2L009tRRZ2bG7hMCG6RhZjheba8uiqx9HvjIMEvRLOAy.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 官方标配",
+     "link": "https://item.jd.com/10181383335583.html?pcdk=Xf4KXp2TuxcPr55sxzx-z7JpVcNMrFs9XkqWE5RUYQ28j28odDtwiq5Q79bYgYY_.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 官方标配",
+     "link": "https://item.jd.com/10181383335550.html?pcdk=EOvdsp3jfffFMT8M6vTGZ--C5KXwNQNHjMxbDy76K9Se4k4i4SP4UY_mpvkWSik5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 官方标配",
+     "link": "https://item.jd.com/10181383335559.html?pcdk=MkpJtcaH-zzu6Hlg6bRSTK6w_fxx1V-qvDloqsqka8BcLJZXLApOeOQrBH2L4Gha.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 官方标配",
+     "link": "https://item.jd.com/10181383335568.html?pcdk=w4H0rirfpUFCqhtCnQEIayXDeaWndKaUKHq-vreYAcINn843rH9TCqiru_Gm45yl.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 官方标配",
+     "link": "https://item.jd.com/10181383335577.html?pcdk=h7meHkv6mMWOWFHQyWxWRE2SK72D-NIbWGGpTspJvLaV5GZaltYZylRmUu7BevJ9.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 官方标配",
+     "link": "https://item.jd.com/10181383335586.html?pcdk=10NWGv5lrEI0L89tR2XHKUgq7BAnQk_O7nITJMDwETD0NzggjYS0QQSs-o6SiNuS.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 蓝色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335548.html?pcdk=zYZ0iX4S-AhD36dvfcOKzJfiujnJqQYEHoYs2CAktcf4xr9N104jOF3Tn3kvmQi3.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335557.html?pcdk=W8tGIFr-Nln8XaxtbnxD0LjOH67ag0pPxXDbyRLtOC8RT76Iy3K69dAl0-mlSurr.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335566.html?pcdk=VTfBNm_hANR1PT4Fm3aESW-ixzbheAfxG543C39d4cAdpmd5wfm6J_jkan87iTtf.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335575.html?pcdk=ppG-LDBVaVtZzbzF0Y6mKWmMw57znxW2klrJCZKcDNV9fFY11EiQRFH24l-v_lG0.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335584.html?pcdk=dd2ef6EYhLhY1RyE5gwaR936SuC_IolbrikGZArT_thNLwOD7OOkMFGOYibQ7Tpc.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335551.html?pcdk=wzb8EZqlSiWtAfKBxkmS7Cb7uamAGPgzpi24OhtVuE_d4cL1V8L3F2xw2JXwwpbD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335560.html?pcdk=E53jQnjbgRt6ogxNgIB-_es27zxlriNgoH9LWBYGy7FbHNVcXnsl-3Ht2eGQRuZ6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335569.html?pcdk=aDNcR9rwd8nzDJ6be-7Qw9rxQpZ7ZbXrMR7fjBcm6PfDxx0TpDJTOLQEJpxMB6mY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335578.html?pcdk=g40rT-8_I5ctFA48D4gW7vXCHhdxY00Avmz92V1KAjFHP5J8q6Mou0PSf8TgTdCL.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 白条 12 期免息套装",
+     "link": "https://item.jd.com/10181383335587.html?pcdk=2CPKLspqKCkH3pUT7WiwlClBfzd8g5Ad9DLtdo9vXYj9OrK3VBqLg70I9YRTQ4Ee.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181383409047.html?pcdk=GRmSMyXGYmThZSWh-e-9ZP7B3G6TacrLF9gqhicnIW3ZGFph3CjYsJRnbb2wJqyy.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 官方标配",
+     "link": "https://item.jd.com/10181383409071.html?pcdk=RTRumjnYhygYCZLNW78arCpcdFvqqMxVtdFVQbd9yLwOkGZfjwIDovj1LZQyic7J.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181383409083.html?pcdk=fBPZaZqHDY8tw-LL1H5LR30NFBYj6Sab-V-GBxgBK64c292alwWIeDcOf4B8vZjH.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181383409050.html?pcdk=g5Ei1GPQUQZUv7w8hNv7sNYO4pQpC58--ZSNgJ8fmgOWqlBZYqE3lfuWLxHvO2hQ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 官方标配",
+     "link": "https://item.jd.com/10181383409074.html?pcdk=hmQMIWDJM3RsCxFMvVP3CEtYHj8c5EPvDGrfHFOB72E1Q5ixOc4FVav1anMB4Gcs.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181383409086.html?pcdk=j3jGwaL6P6YtN-ZePLwoor2spNgSsWrpDnIDuRlo5S3KG_r51NI27ykbpFwoOv7d.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181383409053.html?pcdk=DqPcYX8o3WguLpRnr_DoEMK3q7yI2qC8GHDACPLRSxaiGudD5KdYMQheL9HXerVD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 官方标配",
+     "link": "https://item.jd.com/10181383409077.html?pcdk=63KsjFjwUNSOJtCLDk-7V4hqyxgRSi7VPnlYf8GGSsi2hh8Nj39ncYbLOZT9UaT6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181383409089.html?pcdk=TK_-QzHckJhjQWnwq5LqI55zL388Wmkb8IWfGMj7vnyWlZmL4uaWMZjSCHh6YLFS.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409048.html?pcdk=mEKshxE386P46rU7LjS8P3UHOZVQf2f7D5snyfrOD4ma4O9VGQyb6mOD2EspAW6z.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409072.html?pcdk=Cz3agwKgSVRf30nt1je6Lt3HE634WZUmovAHSabwiwQRl6safLoq3Qz50uVWeZHj.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409084.html?pcdk=QqZzJGo-2MbzNfOvE3HuPpMf-9RtwH4tMEog6ZbgECwAaJY2qTPtUk63soi7kueQ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409051.html?pcdk=e6wrwqG7Qar_v53xRF92IO2VFqsT7WETuSZcUJ51sJhZm3FFVH2fnXymIfte8iGl.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409075.html?pcdk=PO8LbdPF2T1tMxFQHFxaVHYPdjmiTPzRuheTRSjpSjjMBJQh9HnZSop26bzbz1Ih.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409087.html?pcdk=W4e84vPViQupGwuRU_tvHmy4o2CZK8NU-8Vv3UB1vOQjfKU_UKksxeS9WonWbyXx.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409054.html?pcdk=IojdVyfbBENCWpoQADCI6n4rcFlKy5HLnbrmUsJ-3aF_vbQMStbI5mhPEIOJbh6o.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409078.html?pcdk=ddpSQFPpWneHmzpftcbwgg2NdcKqtldK4H7M9HSUUGOvcBMxVo6_neczgplzhQZV.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 12 期免息套装",
+     "link": "https://item.jd.com/10181383409090.html?pcdk=3h7Ig2ynsI3HByiTA6QHePeCtNeHiqAnhG50P2YtnyEPf14x6yNmYI5qvv6lZNFb.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409049.html?pcdk=-WToQss6VX9hU0QFQYBFjtv-gddq2Vjd0m76p3_KxRgxVoe1D5eHf12YY73Ujjyq.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409073.html?pcdk=Fw5Ry0iOLjBoddQsCNGNj2MuHHcE09ZCzBruxEhLwuComVfK3d8bsR4Skn740ufh.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409085.html?pcdk=pAF5DEcuLOC0G-v6pU-14-BXtBEeCHDP4Z9mJduzL53ePfy-99xJbisq5F9Dhgw0.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409052.html?pcdk=jk3S8voCY50S5JAAGTnvgrUnmOovPzmi7-qVpd54AnDGn5IHHzvsH4U4RN6dV2QJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409076.html?pcdk=1vGbtwZyv8HgCd9ps4wlVfwx-K10r-VwLTLrlatkSEkhlliQ3XZB1MIy0ZuQNUXp.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409088.html?pcdk=Rk7rsFB-t5WREbZNQj0u4sQHzN4wBGCoLiCt_DvLenSNf0ewYLEgU-1U0w-hAU04.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409055.html?pcdk=_wDba3_ji6j9KKRVA7qyj62c2M7qU7dw9Bo4HxC9uCdSakaFdrNl97uPMqUn_0kZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409079.html?pcdk=Gql7RXS4oVSjmmqZbH1nqFon9d40n_wA5Q0YNuyPsVDnqO43Sv82DPhqZcft6XW-.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 24 期免息套装",
+     "link": "https://item.jd.com/10181383409091.html?pcdk=DruxmvGrB0AL0U9to_tX-rz83c9OIC2J5Urgp9R3oSjshRaUW76a8E-ZSeYQ-FuD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181383848993.html?pcdk=e6Y8zS1hZtWXSmNbORHSrzVIAGRditJwMZz3QLbDLk0DNbgfDc8dImeczBuLbZe6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 官方标配",
+     "link": "https://item.jd.com/10181383849017.html?pcdk=Fexb2oWOxBRficWorbokYOhSzdBfxpY8TOqgk5DB8c6mLw5fKCFoBO2DazlsV7fo.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181383849029.html?pcdk=LlYL0fqHQ9ERUp1-_5BsdXmZUm_6YwAFOTWIaUBRKXpPvjKb6XwuJjT7p32rXzSV.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181383848997.html?pcdk=ho7r3DoDzAl-Huu8NpfodEY99wWld1vLNbkPPvChCLPH8JBOG6L8H8-0pIPRnqyu.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 官方标配",
+     "link": "https://item.jd.com/10181383849021.html?pcdk=jMFfQmHMohSxesbs4YoVaLy06ZfNujHs1QLvu4XAUbfNHshzZ1w8r6LMxqc7gg5M.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181383849033.html?pcdk=GNkc6IdcLlVAS5kTYjtw5V9WvSUAifSk0TskhoF9cWsxK1sWuet--XGxSZrl9HuU.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181849395120.html?pcdk=eDQbzTvQuJIVNHk1AbHYMC2EvqqGfyyOhjW-qKqv7R6zFY8YAH-TPbZC6r2ZktCJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 官方标配",
+     "link": "https://item.jd.com/10181849395126.html?pcdk=O5abkckWpCZSubkO-UHAdJuQqp98ncco-W8OAuWu9qeZJSp5XRBNYM-3BCHFPMtn.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181849395132.html?pcdk=WtIRYdGCKSKJ3DrwJGuHHExLm0UJf9wJM6SUp6cAyIVzGSjYVt3Xk7H-UM4qpRx6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181849395123.html?pcdk=gaO7SO-BDNlQv2nF_3cAp5ri6fs0FAQzvQR7zGuE1XCBYCjEEoNM0B2ZptuWLgdC.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 官方标配",
+     "link": "https://item.jd.com/10181849395129.html?pcdk=G7796BGe3S6Um3f1F5Ay2NsvuifxhFHAYMM86iS7RWexhqKbCYMZAL-TMqcBaPzi.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181849395135.html?pcdk=2pm9g6MY8u6uPh5dYEVkSVzk6GZApBdLGdjvEbVukmn18nWV7v3cjQ1Lgmj5_MjZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181383848994.html?pcdk=iwNR-jZe08XJ-FjFO8Yf8LuNzDKjvPBP0m7eUu5X-gSNfqBu_LexPwCNr9dXQGgZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181383849018.html?pcdk=q239yDhYZBKPwQQOVQNNarSHNZn16jrFIShT4gNM1nW4v7tiiLwYsdCwnhsSLLJ2.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181383849030.html?pcdk=QQIfRahM2Kc7PJ3uPuzqwdlQJQS1277q6J1E8tHUE0Oh_Olk10C1ktB3o-KTJa7h.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181383848998.html?pcdk=iAkzi9rJRCek9H9UtcOb56vKq8EFx5nrzK3T_C1uc_ntac3b7-ZTi8NuNABWjz1Z.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181383849022.html?pcdk=SgEzfqLlKXOFk0KlSoLU7XaMQeo8ZmIkyiKU8CmpS6R8SzPRqgI7xnj_pCM42jhp.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181383849034.html?pcdk=8SooGjd1QRkTHOSEJyjziftvHEnfcKwStm2JL18DUbItU5tkdPaoOaBk1fqpcHyq.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181849395121.html?pcdk=OSN8xHrLT_ZEg9AA-W-rIygV4XQQVSns2ZaXDMwfxidA6g5s7a6c74VpXgU9aUbT.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181849395127.html?pcdk=J-bsImfCv1nIGBUCwctoJvm3KpnzLLo__TdzIdTY6PRWPFPXu62wCQ_F16Y5m3zp.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181849395133.html?pcdk=3-oi7q6Wc_frEJLCczieqonRZ0ZluKe-V9YhNDRRCvZx3PcG_uXgoIpLASPFFjbJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181849395124.html?pcdk=6VkKQdc6bPmiwJhgWaPAdyRhoCmqWg8JfMSK-vdD8hWAsMKlH_jclpimfOphdx2K.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181849395130.html?pcdk=1tQF8ytwMnWkSSZCaAoL2jKWzTBIo4GELTKLJwmL_ba9l0wnqfnXLcEGo3qOIRf1.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 白条 12 期 0 利息",
+     "link": "https://item.jd.com/10181849395136.html?pcdk=QSPqedldTFSnLB93Nql3xkvwGyniLV0MXv5QUmrLo6iLA-2QCetXgqsvDl7sk8t6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181383848995.html?pcdk=o-g_mSofqrPnFQ0gFAnIx5UuPUdJyq3GwebmGpJfzU39Hk9dxsUelYSr5DRPDsKy.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181383849019.html?pcdk=u64nDYBruf9Tu5PF7YWxXFgMVdPa987Mqi7yR8UiMdlD0DzH2x_NrS7UG8g-jwd_.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181383849031.html?pcdk=w4h3hir_tV9-5ipO9hUdEZ6Jf2G9ZYr8jcVd3DVJIFWYO48gFmynjWgSB9m4SCBY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181383848999.html?pcdk=iUgbUftytHqdwyb5zTVKmg7jEeJ5d89Ua1xyzNddug2-4hJeP00sugfAwXZx6bNo.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181383849023.html?pcdk=wV1xKxifuP-nccTIKDcrQaZ_ZTb0uI39ne26CrKDBUMoeY5anXq1NoG1uDW7cs0G.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181383849035.html?pcdk=10VrriYxocwC63dtUCGATROyby0EP12AiNWesk17YsmKAFLCC4in8RHJxx-pPzFy.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181849395122.html?pcdk=oBGBUcbo2YlluhlFDIVrm3K1FDP9eL2rSbuTAHugycsh0HuLM-CFWyVupAmRXfDe.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181849395128.html?pcdk=CYW-6lb4gywX0uhXG94Z6JnptbsnZLTjA7pKxEq15gNMrBAerlPIcp9rb0XLwxGZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181849395134.html?pcdk=dSZRZ7b86ul3QeQMkSNlNIoEn_brYKYaM7Vuz3kyJu9B12lNBvDDzmACpsZlSOu-.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181849395125.html?pcdk=tSecTDqlhws4yW0BxIpF3jJFwIj6OjWMnZCqx0ABfZ-I7hY2mOXXuykE9wseUxO7.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181849395131.html?pcdk=g5igymO7p10Wq16MBmu-oHF5wx_veQQC83Sdr55wZvdvDjvF5V9jwU7Q-osEBHIu.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 白条 24 期 0 利息",
+     "link": "https://item.jd.com/10181849395137.html?pcdk=A9gDv1qsBegkbEAp5RamHat3PSKQvT5XZrHWf9IBVVD6dgtqAOkYoZjxdT6IecGY.rQ4a.tlbT#switch-sku"
+    }
+   ]
+  },
+  {
+   "name": "Apple产品丰年时代分期免息专营店",
+   "products": [
+    {
+     "product": "iPhone 17 256G 蓝色 官方标配",
+     "link": "https://item.jd.com/10181298251566.html?pcdk=FNF4w7wt0SZ-0fsyjgGmL6gPq5UD3-8hcSDgPNrN7G_4VfrtV_AgdRDVxduxqvFa.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 官方标配",
+     "link": "https://item.jd.com/10181298251584.html?pcdk=7c01DNavPLvlvVpMhX-dUV2BbpYUXCX743q6-3e8O7ykCmQPDI76Gsx1IQGsZc0p.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 官方标配",
+     "link": "https://item.jd.com/10181298251620.html?pcdk=WW0gQEvGTFsUe5kbHMHFp_C0OEYfVf4HkL1M8Xmk3NBA6ECmOIcwX-USCSqxaRvx.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 官方标配",
+     "link": "https://item.jd.com/10181298251548.html?pcdk=6PfRyJ0KWq-iE8vH0WqjVZgFQvny1YqD6Mw5Ndg6xfYtZi-NpQ6SbEG3Bckp8_A6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 官方标配",
+     "link": "https://item.jd.com/10181298251602.html?pcdk=moZwORa7TXrBUZ4Da21hTv3lrfl4iGXgbOUomitBViJKGmiszMY6vciwHDT4Z_xc.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 官方标配",
+     "link": "https://item.jd.com/10181298251572.html?pcdk=lL2XCFna7ZDjn-xzTY_UobsE-hOcQUPxktEAtTTCzfI4WSMHCOnHyp9VkWTrvkm4.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 官方标配",
+     "link": "https://item.jd.com/10181298251590.html?pcdk=oWXErrBanxiXqUhE9087LqMRvWnJa0XPcyaz4hiOG1pTN4uKn6s0MIU1HQPmm3_F.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 官方标配",
+     "link": "https://item.jd.com/10181298251626.html?pcdk=6ZUc84DUePbdiS1HjCstjIr0FED6mAMK4hWovUI6kNpXna8PyeGwgWsHhJXUNPAJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 官方标配",
+     "link": "https://item.jd.com/10181298251554.html?pcdk=xGzTNw0gJ-8HijoyJYDwvd0fEUUaSAo3TxObmgWZl2D2_VuJaM5-aZ_Dh6Kym89W.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 官方标配",
+     "link": "https://item.jd.com/10181298251608.html?pcdk=i5b0i2w6p54NsYSlR6G7VCfBor9YuwvRjiwcb4hpjvtxCCyvMg6oaM6twArGAYcW.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251564.html?pcdk=VEn2m2RnzlPJ3UlE9TXgg3JAhjEEMlSOVuZY-lqUbayzKokZOBZlnMKa73jh1hvO.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251582.html?pcdk=y_5IiVpGaUgpm2jxB5uU9mCWIGlWIS6NUrmY-P69Cmo8KBz8rq0BIQ2VapiqSH4B.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251618.html?pcdk=uUhCq8U5iJSfG39mwQUIyfy2cSv2VS4V7nKFiafcBhgspefRyguYERe4ry1GC1hz.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251546.html?pcdk=tXPD_xKBghF43RGaUT_srz-8q0wzEJwxxxnbi6A15R39uhVmfnnq1YrnlmRpVTWF.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251600.html?pcdk=_xqy0oJ-Y7NRzE9b2jzFFnmfUHPz3Kf1G0LYowymEcc51AS-QFtoPk1gIFMZprJY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251570.html?pcdk=9uTSxif2qxVFLJs6BgFG_L2nPWF5weJXSuEC0l5nJF4iaYjnFP7zMIDJAEvNseVS.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251588.html?pcdk=cOQsPoc6blT9MNNW211JmyAmgZR7n7inEvnFBv2SDaeDCwukUsl6kBaBUN7SzWVy.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251624.html?pcdk=fFEN3YZmsfCXJ3qLnRj86-heTNrEay-J7fv6VxIoumNoi0TpO1aC9VFMLa7ATenn.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251552.html?pcdk=XcdNCSn8xNNMcu9OcTuieGumScWKmSCiDNC2z5CAjKxFnRK479W_FbCarTjVDAJD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298251606.html?pcdk=li_H9dsYQZoC9V9es6G28kf6YpqW47qgHtl3CUG74uW4REGUeo3TX_XWOb856RMJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251563.html?pcdk=65AreysDXt0-ULtOVCQJ57Zu9PjmaEpRIPz3kY_egO9O2i8lIKnSvFON0T11vCSR.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251581.html?pcdk=Mw-XcKQxln73_Gz8C15ItrcVV__rneUMD5yJe_Yi7UWR08IHFom4OUepTytk5kf_.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251617.html?pcdk=2lT1WDUIvox3LCV8OoWpj950GPdjRx_UzcDa8xwQh9nA509DnGQThqP9hNs2FoBw.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251545.html?pcdk=w4VpaIas4QBCmWwYbnzzvPrsO7AjYOnMnsO1T6RXXclGAfJGbSwoV3j6fdz7YJn8.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251599.html?pcdk=MbB_YS300OVs0OVuj_-84odWJISiFxpXWhOsiPl4smSlG7TYEUEiXO7TZbsos57F.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251569.html?pcdk=BtgIXHf-8BknMggEQE1LcnZyUhADTLuCjvkGrrLd_ewBmvpq-SXIa8OYogMJPU5E.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251587.html?pcdk=m95lsOu8vpPNvfLepu3CvTH_3A9mg-jh6qAKDc466gwobFDjGYk8KI4SexQV-kUX.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251623.html?pcdk=94J5zMQDjPRJyBi1ici7rFysMYQ_wTUbgFYMnuFNCVS_YxMugyeALY_AjpxtZfYE.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251551.html?pcdk=rVKRbHms71GhURg0Jqo1MuSBXNhpMQVxv6nI_iibPiZkG81ejrMGD0f0Gg-f0cue.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298251605.html?pcdk=qaX3ZFPYiECCEO7tG4CK5VXupiyfayuIAeaTmyrkswDomJALB_vu3Y2SlgZyONV6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181298553942.html?pcdk=bwUTIDLizGudTp1HXfQ2Pap7rKDflzWZQt9-W6nKaLf8SgibMA0Nhmnw6skL__cG.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 官方标配",
+     "link": "https://item.jd.com/10181298553990.html?pcdk=rhRXNfqvRpAB6lPqHsZy_2_C775f_-CwkOyzEba0UPhtitdWQDz74D64RZ1sd8mv.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181298553966.html?pcdk=-lV89z8Wh5nEtQQAazF58L4L28c7205_a6ndqfnOdiQTqfCHlciFqQf3DB8EAH4E.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181298553948.html?pcdk=xy-42ubl48vZqDwxegiLRIbNpwjlWd2UA10R2rowBuN4TzlMKz3QxijjueVEoDy6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 官方标配",
+     "link": "https://item.jd.com/10181298553996.html?pcdk=Fw0HJYEkQnyfrWIPDAfIqaSZBBh6n_DkY0Wa4FMJ9CNP7wLKjzXu7VDrl6obv_v7.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181298553972.html?pcdk=yy7oG6Sa6xoOOeuipBqgz449LEJAEfhPxucATqirh9GSxzhbrsryN3sezE4Pi9l1.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181298553954.html?pcdk=FSe7KOKqhuPtbaOIipiD2a4OPO7MXGyH1upEruHYSHWdLd66gtJFjB8ZrcjYcj4x.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 官方标配",
+     "link": "https://item.jd.com/10181298554002.html?pcdk=-QFyvScpVzTi6kaXF5zb_Etoya3zERkY4clI2sOreRKuTBJGQ_A4Vjg_dtPyO51R.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181298553978.html?pcdk=mwATu3JWT-T2PMPSLGjrO0uXy4zq7YSklzNKRR51p5glAKoqHbaBI53f5UmtRjp8.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553940.html?pcdk=mJrPoL_ybrBFdC7FoeisWZGunaYIqKjkoFhm5xYrLWGEiWm9SUBpvtgj_v_eHMQw.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553988.html?pcdk=oHbMiN0Z7QO99QbhRW6XkdCAdiDbWE53xlgy19tpW7i-04v93LlgV2LYQy6tXFOu.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553964.html?pcdk=V8h5Xetu02jV1B2SBE6lWv63YbBeyLg87GxkVbyLpebStj1HLZ_SL4U9Pn32bTUJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553946.html?pcdk=aL1hq6xjl3BoiJsUMw9zVooyeRnouqvw5LopOOcqPbA2nkt3JhC_nduzgKedpG0c.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553994.html?pcdk=2topTj8GC8a1svTsvsikpiDszCWKJmx-QibIBFKSmUJpBpaX_yb3kK3WZ6X3TVsf.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553970.html?pcdk=mBff7XsXqPxNIWcUIndTmRRB-2s55fW4VEWRiscE2bCGjlx9_UKatq27YHYsjamJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553952.html?pcdk=D93kiC5R6FliSf3EOQB_4Xy-YzrbVgjqCjVpejcRW8sTiJwBRVFmsL-XaNbU6e3D.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298554000.html?pcdk=XYYRJ_5plBBPwV-6Bu1rQEStACmdmlQ2P65oCPA2AYIQiunctqs0-9IFA7Pb_6RE.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181298553976.html?pcdk=ioyLlT5mASZvEuVui9oLH87OrHB1GoGWMN_gp2yY2En613WRkbXQpbvA4b81QKaK.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553939.html?pcdk=9OK7QOjbG_1Xu3mQ8Ygf8YF6toQeOJ_r6GMu92G-9UnrM6WzdC-V6OetkcoPoiJL.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553987.html?pcdk=400-HVjGj1165WaIhunF7faoeUrwZxqBOANXXGaNlkJHRX6tuXgVvrskPLCgsStA.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553963.html?pcdk=5ttJ0jWA7Wm8-tq3mOaAH-Hm9eftrvjpu7hsBLttt-5oB09J48pRtss5lvOGC1A7.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553945.html?pcdk=kJYlEy222ISwwzBZfPEvEHVjwZd6YEY4NP0YMl1xR_z20oGqsEGcGboaS4f7SmaQ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553993.html?pcdk=V-C9uneAu6qwek10wsDYIFnd1uXqIxFRH8jDvyRmT4OaS1ym7lrUKj7py56HnONu.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553969.html?pcdk=BJR6jjuYZyoCkZCY43R3nwmwjmegy1UVCgOOiYnAYQLYi00eR0EdWmGpF0c6CarK.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553951.html?pcdk=IHPstUe9RYRIvwECgL7zvaiU3l7BgM_ULypMkaoXVQbgv2XNvlS5CeUj8tVxKIe5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553999.html?pcdk=JCb4F-tDDqn10VfxNwKX6a9aNkUzDYLEtTvTE1e--GmdU0PwQT3BHGlSL_YYF76W.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181298553975.html?pcdk=s-9V3pVDrhPjSUuOQmAzoNBBKzTAAYrKZo5aoJH5JgtRXHQtI7DcqXuC1oRP7tlz.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181297466214.html?pcdk=rCifBD3Tp_XenCr5-JWVc5zq1Npv5TIls0DmlYzszZoUwoLDIpRAg2LrstxmQrYd.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 官方标配",
+     "link": "https://item.jd.com/10181297466250.html?pcdk=lDHRswVfCwocj5Bd0X1tCfpoAEl2w6s7An87aTz-_ZTENvbj4wcfNWsAvDK54_vZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181297466232.html?pcdk=okk25cbdqLSvrFAtTpViFcVoSzpwbpnJDNdQLWQcVs51VgturbjdhF_aucnVxz1e.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181297466220.html?pcdk=-YLUjDzRlJRiwq06zv89q6ruMnkMbALVO7VYBfOlgiMIju06V08S0BHKTovP--Y-.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 官方标配",
+     "link": "https://item.jd.com/10181297466256.html?pcdk=nPkz9tvXpf_OQy7ofYzrcDJugt0McxyHQGL_YAQKk6dyQjtxONpm_ZGLuudt7iez.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181297466238.html?pcdk=7uAD3qpP_GaQjMEXKxBRugwkphw6nmagc1g5wZbExro7uTQooOfQkqeAkePBTIBg.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181297466226.html?pcdk=1ZQv8oy4xXrQl-Wyi9m8wG_i7U_uYn5qiqcUFQ_KlIDk5bjmxMDhUhU2xqPzMMKX.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 官方标配",
+     "link": "https://item.jd.com/10181297466262.html?pcdk=3a48C_86mCsInIUE-ELDpvBU-M_VAhdGWFccVnjIJ2oRAP-c9dT5i2e9oGo_ApVO.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181297466244.html?pcdk=9aKA4WWLjv9ZTCPa6YNyyzFHsxg00TwtOd__mQYSJZuvWb0gjXm0g69YsJLaF-QV.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181852419374.html?pcdk=BxkdxYre9Vm6aCC39I-oRBjZ64ICHdVPQN8dif94G3X6WnXOoJQHRp_NfT6BFbpH.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 官方标配",
+     "link": "https://item.jd.com/10181852419386.html?pcdk=vqUUFUkWUBlmCI_3T7MjVnTdd-cicZVqyJ6tcTW1qvVM0nZKMChDSPL01t6Z3eG3.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181852419380.html?pcdk=RJ6xi_uQudTx6yYlj2K-hbn3iZuto6u1s_Yk-Zt37PrZsBrgNPZmz-mcjRjivdMr.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466212.html?pcdk=rJjzLB-Ivq8Pb-Rg5qL-bCsRhQFt0u_bBzHerAyUXudHgFC4qLQUcwGziJEPBENG.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466248.html?pcdk=UmD3AU-NrVzwf4qDgSitccPXikK6-2qZz1KKhq8K7teSxLYuMjsBnlr2KFRSWnGo.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466230.html?pcdk=lRWyxpU6BIQwGVl7mNl1zfnCXR1Q99-6fXhchiD-sVkrP9V53vnA6vIPafVn-Y0p.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466218.html?pcdk=Lw6ZBdWidX3cgLvnfcnipBKjH1UVAOGzpWXskosunz-bin3JgDKoEBYFj9xB_q8E.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466254.html?pcdk=ozqsL6j3-QwV_Od4Dyv8JMefBgfM1i2cm7cAoPqMqV7qLLycdsGywA3fAHYHTIc6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466236.html?pcdk=Xh_Fk0oaTdxvQdJAyFzGosWYQHNcE7ozt7YAZlO26oohQ537TQJN-aNNPyowHfHi.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466224.html?pcdk=RE5ams8y3P-xIOndQC-nNMw-cidAZYBxksRKNLkNBc8yrQsyz0SOOxnCjmmwty3O.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466260.html?pcdk=LW422d-Mwmnc4mGlp0kCnDdc7hnQ6dmSoc2BO6w3TZGlHTU6G4is-4XKI1Fkue0B.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181297466242.html?pcdk=Wv2djB9eu6CYxNZqVLlp5gUgzGcc3d_Q_teevPWzwxf5EFEnFYgu9SJJy5mQuYXn.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181852419372.html?pcdk=_51bM-OrVFVj8xxwzQOcrm1o-i9W_B5w3GmedTt-zctOhNiAf_N4kxbIyT4b-EZe.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181852419384.html?pcdk=pdSgLRrMg7g6f_9nL6dskz06d-iAQcVCIWjd9_sRuiH9XcMdO3FTDvHGO6uJe7qV.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181852419378.html?pcdk=wwEQeuwlo6nfWWjMgTOQiBT7IaB-S8o1uuJ4cnWKewUFw3y2RIBz_XdDgjbY-yay.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466211.html?pcdk=tD1tXdcqWERBXjZanVPZx7NP2sRnoAOEgja7WPKcPKJuEBRe3TfvNqKinNUwf_jY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466247.html?pcdk=o98ep38_VUeZREz3EZpl1IuubqIRXit80Yke9kou3dWKw92ydRYEWEhMqC223j-u.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466229.html?pcdk=UFqNEihgmwHj71BuBgDncjmr1ZlvvZLhQLpLAigjWD17o_Zlobm5-gDWjifqQdzN.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466217.html?pcdk=I0VAG9BWJcwp_c3snF-Lf1SRGc-8R9QeCc1_HZ0vcXfsMT-C8WJbaFrFzvw1cEzr.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466253.html?pcdk=srWYMEHe3PbXg3kS-8q7PV1b7eoGd18mf1QdrCHmzLSnhuZdqOuYdXPRze6lWdGn.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466235.html?pcdk=YG3pqHLAvXFu54n1B45fcTUotUaC6ZoIXiad2Vx9yhQ1W51P2ZNqwYHVm6oh_AAJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466223.html?pcdk=1YoUUYLBsnrZM6A3E35cg4IAaM8W1pYSy5hlM9DB86Zk9i2ssRnNk3aQwqkjHOn5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466259.html?pcdk=6CubOQlwSqwacUOvzAvzbTDeKf7zNQZTAVqXnJMHEUao77P3lCUJBJaYoB4KoneH.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181297466241.html?pcdk=PtFz0SLt08-1-00e0-ibbOji0HftIWIImlSlkc-xzBpBJD3BhhJMS2mua7A3ej85.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181852419371.html?pcdk=Ehaa7ywr3XKPt2wBauegae9cX-5nasZSB7hESU2uiXK0tlKGFpNcJPEWLtLvzRQY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181852419383.html?pcdk=hAeyik7dwDMswAKTPrTFdVjb2AgeowLbMRgdkRtNwJrpcs40aJUdD2dSHY6iky7g.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181852419377.html?pcdk=Hdy1tkFLKiibX_uTgevgd4PYbVFNSpJe9h4bKRzSlE3bUBytUlv73e87183N538I.rQ4a.tlbT#switch-sku"
+    }
+   ]
+  },
+  {
+   "name": "Apple产品扬笛教育优惠专营店",
+   "products": [
+    {
+     "product": "iPhone 17 256G 蓝色 官方标配",
+     "link": "https://item.jd.com/10181311247123.html?pcdk=GhKhAEOdsYXnuPCS_RoW12Rvw219yQVa1uiyypc4IuJjUnB3LXmC__QIZ93HYYeO.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 官方标配",
+     "link": "https://item.jd.com/10181311247125.html?pcdk=UEahPYvdJYMjlYtDM4IXy4PO2qj3klJE0a4SFOwKv0sBMDXGBI79w7idILJOMH_9.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 官方标配",
+     "link": "https://item.jd.com/10181311247117.html?pcdk=iJl4Y-kfAe6ahq_5Z39FRBJyEn7LDcblE677OkAV6H6yhJqEDNPkwxcr_zwuN-TZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 官方标配",
+     "link": "https://item.jd.com/10181311247119.html?pcdk=wgTf99MKZAcFDl9w9hQaXmDT6sxaPpMWSHN1n13-2Wg=.M8AW.sbc1"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 官方标配",
+     "link": "https://item.jd.com/10181311247121.html?pcdk=Fq5hHhfht_9tE9s0znWKE4G0toShukqiGunut1HJz1q5e5yW3ffSK3QYK2OfGNoQ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 官方标配",
+     "link": "https://item.jd.com/10181611798163.html?pcdk=ZiUTg0IOPazWskOp7Bbg1f5031TZ3rZB_al-xBArZn66BZtTQz4pDfEK0zfiZoP7.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 官方标配",
+     "link": "https://item.jd.com/10181611798170.html?pcdk=XASmhKuX9E7kiWdOFoXRwEecEhQCaH0cdezZ6hhIeewfF7JkJ6Tbn-OLM6i12PyE.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 官方标配",
+     "link": "https://item.jd.com/10181611798142.html?pcdk=lG8PxLf92zvf-Roi6qe68Wh-gtkYdcYWRfot9N1r8AnXh8ICJAwSkzIozKde4M3l.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 官方标配",
+     "link": "https://item.jd.com/10181611798149.html?pcdk=OEBonWCD3BIJahi6PC4JF3st-spQG4vqUitPGtoqcEmXOjVT-0nqNjGZuVWQeVzZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 官方标配",
+     "link": "https://item.jd.com/10181611798156.html?pcdk=HvC4INcDodbwsJglP9TPMJWeQ0grHJAhcGwT6w_YCjIeQf4VsxYDrzsk3dlgDesm.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 蓝色 白条12期分期",
+     "link": "https://item.jd.com/10181622935663.html?pcdk=zt75io_cfQkKtmCBCwDA1_hKExuDszj-qA5RyqgbaPpx_XVxfNIwUVrvYwtV2x5J.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 白条12期分期",
+     "link": "https://item.jd.com/10181622935669.html?pcdk=sWnCtHpdkGq8pyKpyqT-3HBjEq9m2HAt-6WIg7BX91OHNW_Te4fxFyDV-vFkvW1q.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 白条12期分期",
+     "link": "https://item.jd.com/10181622935645.html?pcdk=n-hjt3XJMVbgzYORjKbv9BAt4Gd-VDj9AFgQsQdVc78fVC6aZw4mUCD8EVo-k4Ok.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 白条12期分期",
+     "link": "https://item.jd.com/10181622935651.html?pcdk=6SA2yy7GogfEpIzwQOjR0w3p5JyK60O087UCHdLduOGJhHiW4WGChG3kmQDnqdRq.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 白条12期分期",
+     "link": "https://item.jd.com/10181622935657.html?pcdk=JfGpOx4ctARqizcSbAXuthq_bwJQBy1vFSjEiEoh6Ec4KOd9nNKaofC5WaJq2rI8.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 白条12期分期",
+     "link": "https://item.jd.com/10181622935665.html?pcdk=MoSvm1vnPIhbwlg-e7pB4gd85iWiHXZ-nikXBw-DFvPfMaAn8gnxIA97G7swMhJV.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 白条12期分期",
+     "link": "https://item.jd.com/10181622935671.html?pcdk=hSplLwGZdtPNFT3xNw1PHlx91LM37aeNybhTUgp6NJFeFn2CFblFjfA2ZUmCPYaa.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 白条12期分期",
+     "link": "https://item.jd.com/10181622935647.html?pcdk=iDP-uU_aWRIWsKN4tgN2pf2xau-bjzXSbJyW3ELDllYyWFZ9OGsHIO9f_rGTIpTh.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 白条12期分期",
+     "link": "https://item.jd.com/10181622935653.html?pcdk=fhoWKdAw7RBSS8iCu01rMJT9S0WMXtgEDjcHk2G7G4-dLtV3WhbWR2koykP3b-2Q.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 白条12期分期",
+     "link": "https://item.jd.com/10181622935659.html?pcdk=WzZLFxnOByi3TxWsKCmyxuPUCXelAu_O77KPzkxmiLQIL-hsiFUN-tjYCq9A_w0k.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 蓝色 白条24期分期",
+     "link": "https://item.jd.com/10181622935664.html?pcdk=_K7l_7oCQIFi68N3U-w_Ftkb9K1GEW2tdUBFUGZeAKl1eli20ieFGI_PC4R0bIEZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 鼠尾草绿色 白条24期分期",
+     "link": "https://item.jd.com/10181622935670.html?pcdk=2ZVZVkTEIhIQa_V_ev3-tpJGcRcLpa1FwZQ11wcl5IZCVqyjw426nDk54M9E5JF0.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 黑色 白条24期分期",
+     "link": "https://item.jd.com/10181622935646.html?pcdk=EtINx8-kzgHLrRTutjqgBOnpL-eJQikln6OjI4OFuhnadNl-lDQEg1KiUqx3vgGZ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 白色 白条24期分期",
+     "link": "https://item.jd.com/10181622935652.html?pcdk=24k9sOwemW8I8Sa8uO-8ZI7G6Kkmbvi2TLIrzFYaZ_PYycyC4KVFCpXxyZy0B_M-.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 256G 薰衣草紫色 白条24期分期",
+     "link": "https://item.jd.com/10181622935658.html?pcdk=oHRmNuBP8FJAB3aGlsv_Xwozzg1gfdouJPRdsfOaMbFFTNmoDO3ZfMd-Oo-9DZQD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 蓝色 白条24期分期",
+     "link": "https://item.jd.com/10181622935666.html?pcdk=OMDYmtya2HCKZjnTUGSyvmXSAwoBkzKo-uyiP_cpGt7WQm_MZ08bFLumEdzNzSXK.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 鼠尾草绿色 白条24期分期",
+     "link": "https://item.jd.com/10181622935672.html?pcdk=GuqQ1g923jQIT0DkHHEPMdcdRRsaI-mILS0InSi6SJQDHC4NMkuOnBE4BKyBLjC5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 黑色 白条24期分期",
+     "link": "https://item.jd.com/10181622935648.html?pcdk=sQNeXXy_-aekw0M6givMAxFLOLm_G86fXqZ7XawDq2i6SIfMNGgG9vjhoQr2q1V5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 白色 白条24期分期",
+     "link": "https://item.jd.com/10181622935654.html?pcdk=PAB_vwTDlGX2PT2ZziFYsYJlwZ-TFrGMLt3Yxi31LgD54xKxgjLkRzdydB7bHsI1.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 512G 薰衣草紫色 白条24期分期",
+     "link": "https://item.jd.com/10181622935660.html?pcdk=NhB6wP_ousFVc0eWvCxUe1NaEimXygjntba7vuDaNT9zvoW6p6UjG8OHxUF8tJqg.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181313182285.html?pcdk=y-Ckf6zZWY914Og4X-NiZ56drUw_8jGMlJxFlChfFyx5WjW1NiWi5RXOd5EEMDRz.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 官方标配",
+     "link": "https://item.jd.com/10181313182261.html?pcdk=SBR_TOn73exaej3YNYCVCXTkL-N9mjDroN1mbLSd-nLW2xDzurF7FXlomcXzS97x.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181313182309.html?pcdk=GJnT4RetrJ-7WxDMBZQjhfXLhak9Zuf1ARyB1p4cwGWp0PCV9KsHQoiKR0l05S5q.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181313182291.html?pcdk=5gA0Wz5BGgyYL8WBd0SnQu6I7NpbV5Mc1aBQcpmKf9atU_nvbtT9yHVmsIKXry-a.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 官方标配",
+     "link": "https://item.jd.com/10181313182267.html?pcdk=yye2ZIwm9kqN_mas8QREAl45ozsLgdwlCZU4Y3WzGMNr-PiyLAUboZ9mhPYTsLz6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181313182315.html?pcdk=J8jfsEUgQiB1Wa8a74l7NCtfi3YGm1heK1-woiULvQt7N3tMJqoZFXeS-heKPNlC.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181313182297.html?pcdk=xmQp3t00WIXaomv6dlH-c6bBTA6r3IKgIxFYqDj99i_OMKWsFMKRe4wx2zLtPxGm.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 官方标配",
+     "link": "https://item.jd.com/10181313182273.html?pcdk=GYAteCf-VeE7hlizABpHiYt8IPCsitjPgOcyDTsQeJahHG2t8oKVr3He-QS4RjiP.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181313182321.html?pcdk=gNE8Y1Fl-M3KF8jFf67GroVZ-pytc3_I1b9cNbOIo0qUrmR3UyQPcJmBcpzgPd2r.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494205.html?pcdk=ORRjwxcujVthI-rAfeOnerG-QEpQPN9Vv-6rZY5mPQOBn0aVfP-6IOsjUD66XBrQ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494189.html?pcdk=SfUhXUyzSsBqiK66n6EgdpHwl9XEOZ3qxpdKV-_KBx3Alqwe6-DwHFzeJZClMZAv.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494221.html?pcdk=nYvGCWr0sWP1k9FU97ChSD01_G_QOsWYifE_2VNRQomrxeBD8eynAqlM_iiMG1CI.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494209.html?pcdk=krlipPt7fLD7INhXHR3dD7m9kxsi-WakTd_eQoKIoERhKJmxxSJqRgebPQ9_U_0g.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494193.html?pcdk=_p-lqsoS-lmewt-KFpjqHeVpM5GkwmI2xYmW3NsbkFCrJnRsJwYMfID8DOxghbug.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494225.html?pcdk=D8-3rBDnn_QqClPCp1s1pL9LQ4CUNm9gfM5Wk7M7wdrnfC1XndZYSaQVLj6adrvd.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494213.html?pcdk=_6EMneShCtVC4r557doQusEEo-Fh_Gopubr1lLDdbC9xCgYSgb9G3JwPFE3ROnxY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494197.html?pcdk=Sv6oHWbZrLywVtDMoNtIES9kZusyenAIZxTbi0Mt6Lc1FyGjxFVCoZTlVy8zEdwQ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 白条 12 期分期免息",
+     "link": "https://item.jd.com/10181617494229.html?pcdk=Ull5Dinw5VJCXSi8GFj0jXBGKLqvpOD56irIugzfh9r_rOvqvnq-ovULpSiz2IVl.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 星宇橙色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494206.html?pcdk=bvCLS5yGlSSWvEumn5l7-wP8yFNfx3jDpUWaUwkS0IrelMLQjYVnhvFCqEa4okXF.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 银色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494190.html?pcdk=Cu5o7ALugWgDsBU3AcBHb_RhfDY6MfG-n0m9uspnfj5IrAL4KVrQBWiMRqcLdQW4.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 256G 深蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494222.html?pcdk=DIMuEliSm0mAc2rr2JAhiZwAcV1Us81HcPJrxNUThynk3AGiKmTNu6RL-OsESP6z.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 星宇橙色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494210.html?pcdk=aw_FVNHEQRZsBdKR4r-byo14mHcQK4vDBmuOLZ7YeIDGchVyp9Em88XABgb4D6S5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 银色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494194.html?pcdk=3M1eXMvncLmwi0bjL0lZ9Mh-pgFpCegmUwJy-iC_tzumCLSM41MpI338Y6g8gWlj.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 512G 深蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494226.html?pcdk=VAxscijabV-F20GInqVw-Atz5XPJa-nkAWY92gwcfiJeceI1plbwtZ9FrHSuScuR.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 星宇橙色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494214.html?pcdk=6XhdwuA5nI9F31Do0kTLOd0AAKFwWT3p3cPHK08Zen49FFMPYY4DuCi2zqjyYuHW.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 银色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494198.html?pcdk=828suP-MPtCWc1S_QVu-oKvQETKbfAbnVQL-yPGOvYiQus8pyVK-lHedDTrZ0rdg.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro 1TB 深蓝色 白条 24 期分期免息",
+     "link": "https://item.jd.com/10181617494230.html?pcdk=XHBIuLtiBrw9uIiJ7Ul9S7-YfGRjsCDmPWigqyQ_ElGVWN5mK878YNXYKeXkO2tq.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181315046051.html?pcdk=Vlw3JL8jOXzganxgVByxXQFoVKZzPkzur4PbQX_-KdKx6g_cyzDAoriDxKN5gVG4.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 官方标配",
+     "link": "https://item.jd.com/10181315046033.html?pcdk=jnTOFDC0-sTqHWwBoM7MlB4DG-Vjoeg_EoVkbCEsUQo-of1OyXksiPsYCInS5zbj.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181315046069.html?pcdk=eop2_4FzwN4RC8fcjTYS8KyMLieVade0fkZZnr8grTDPk_VEc3_gKmCz_x22xurN.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181315046057.html?pcdk=gdDjJsI-ME3NWCoyPNGhFBHLUtT0TkdVSHT1dFWyGrWRnmxhoTHnDTzZqVjCBJVW.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 官方标配",
+     "link": "https://item.jd.com/10181315046039.html?pcdk=sLwxYoMJ7ettHMzUHPWJKgU11Hw2limgLSCwgs_c0Fq91Zo9ALy4gupd7hkGW2Qf.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181315046075.html?pcdk=-9a1CN5y1yFB4UCaI2TpCDanz2Ua1TO-xaq7nl0jHcN4ndJ0RLOslGQss73RYISd.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181315046063.html?pcdk=MivGfitl6fpXoqEem9pg8VfY66JLAsnR_LX0ywBeGjkGayprkQLyGjaVv3L7ycZJ.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 官方标配",
+     "link": "https://item.jd.com/10181315046045.html?pcdk=d-kHghoEmpb50Fe-qN3DdqyT9Thq7nOWsgEbKctRhYh91D4kb71OZWWohsWmPZGs.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181315046081.html?pcdk=J923Bg9Cwjy5yjzfsd-WsuDSsodgEUO8QWhnMIelVouCo8HITS0C0R3NfXI2NvAp.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 官方标配",
+     "link": "https://item.jd.com/10181889743935.html?pcdk=OevXtm6cqqCNusSoWtGNIP7sPyJyPQcp20ImN-I4izgBiCGEAto6WyQq2pDtjgLh.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 官方标配",
+     "link": "https://item.jd.com/10181889743930.html?pcdk=O-u3NyjYFsizFvDDv355Bg2ZzLz77FcTYsVZxRiLrhYe5xIushY1flBmbBJz3x-o.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 官方标配",
+     "link": "https://item.jd.com/10181889743940.html?pcdk=F5DACB5g32MPlVRiP-8s85uKWAq1Ah8y8AtVNpvheyXMYJ3SIXqxvBSWnpML2l4Z.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075356.html?pcdk=aAOsNjLxYvfxRvKFbAKpzu1oXmc5z1JNhzF14wb_xhLOFx-auZa58R3YnYDh2Y-g.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075344.html?pcdk=RYQsEI7KSWxo1w4L7XcP-rZE1PLbNaVbCWzXACytu9QzuqM5O9ucmfGk0s5flHYY.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075368.html?pcdk=1RyUacXoZtkr3N1bvyBtd5rlX6M6ZMIKR0Muy_a248Ujg4ARX4yn6MX8haOgig0Z.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075360.html?pcdk=B__4vKgWtL6kP9L48rX1G7PSb1SRGxzrWVUpK64g0A2vZaNsEkwPxRb2gkU-Y8De.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075348.html?pcdk=9WtIXVHI2tcvCFekTebPH0ldExjw0yEZBh8ZuI_NaGrjvB1XX_vkFFRgSu7BfuJD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075372.html?pcdk=L44gKDYiuR7Bqf-64IXiRlEAUXCU2xQNZSXMM9KNQEK_FL0l7ELtvnoPP8K8nlLb.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075364.html?pcdk=xjVvtfn9NxWZPq9XfvDWOzY8HIZG3QHiMJB7WvnxbjIz3W_ceDiQAEaiFeud-nP6.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075352.html?pcdk=YXq9qQzh8EhgdsXK-KdQ38WwaXVW4XCq4OlhkQHVxtpoVp3vsQ47dxWIqXkYitXz.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181610075376.html?pcdk=84vzWKzJZzInmtP2C61NeMTRHunYmZH2n3z1Blco5IfP3uCmF8ppxeLw30bxzn68.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条12期分期免息",
+     "link": "https://item.jd.com/10181889743938.html?pcdk=BRNdy_x1YGnrIx3WKucmJRVpQFEWsklsMBIUHtfq-2tEedItA_nIKi_dCklCBPNk.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 白条12期分期免息",
+     "link": "https://item.jd.com/10181889743933.html?pcdk=8uzWEXBCAdbOndvHpkuCyonme_KOWLiz1ooXc9fkh86nYrEpsP0ntkn1fY1rFahN.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 白条12期分期免息",
+     "link": "https://item.jd.com/10181889743943.html?pcdk=l4b7cRpMSoZeRT5jQAsmqB2geBF0DN2dXo7-hpyTOgqvPE4WS6hpeQcU0fYwaM6L.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075357.html?pcdk=Cjvs7Q-RGYYaiO-dbGDVNOmKsgPqNXVcybTDejNry6QPd4sPWIi89hQaCojKdeCz.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075345.html?pcdk=QQj6j3FqF-Zvwh4VNXzQVDQlkneaZadwKGTjD6Ohf5a78GyqwjESvhjM1fL63yJq.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 256G 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075369.html?pcdk=zO1tZPY6HH1TBWnj1ktEdNzYOWQ5B6N3DiijEcGM8Z88MOowxXjaq16-5cp7QI4t.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075361.html?pcdk=qde8HbCKEEJ8hM0v2MGL2yvxuB_r_AdYpWWmaShR5IeQ2mEShyGqyQlINkTAHqiB.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075349.html?pcdk=kYSHpMXK6W-8qnbEQ4vBlOpaTkSkh7BCnh8aPrjWbqM-C44W_BIRzUTpXinxxuP5.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 512G 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075373.html?pcdk=M-aWyAyTkAuGG5ylgnPKjKfKtQ1SzeaMQVEhRmVF1MrCpO9NKNZHPqxdbM7oLfVW.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075365.html?pcdk=kH0NAEkMmpPxa6qVAE1t4xnnCLLrc_w_rf5BBcKD-kluM4NtAapewB7pcHSSRTcj.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075353.html?pcdk=Am5AnfS2Ygaaihoo_mxI1TnzlalInF8gVwThlnrdTGszQyAo-BJwreH8fTiDJgiy.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 1TB 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181610075377.html?pcdk=GX0t2NOXa8bJOJ5CYbBGl5CoIwWnUbUBrRjfpy2-2z2eetl2hV69Jh3_gtHTgCPe.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条24期分期免息",
+     "link": "https://item.jd.com/10181889743939.html?pcdk=B8ceSszD4tt6ClqCHi4Dm1UIEegh8ZJFRh7oDreTF_emS1O8ULRgpGKyAXda2ZH1.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 银色 白条24期分期免息",
+     "link": "https://item.jd.com/10181889743934.html?pcdk=aslenAy1jEXS72JYfMctQQhWA6UCOhExdBsuK-_xPB3MB3N6nmFLbkqIn_qGL6aD.rQ4a.tlbT#switch-sku"
+    },
+    {
+     "product": "iPhone 17 Pro Max 2TB 深蓝色 白条24期分期免息",
+     "link": "https://item.jd.com/10181889743944.html?pcdk=wAeUFyviDFopU45xEJZLFR-X5h7bPO3tsFOSil1knFllsfZ-3PhRsX9RDP9QMOzw.rQ4a.tlbT#switch-sku"
+    }
+   ]
+  }
+ ]
+}

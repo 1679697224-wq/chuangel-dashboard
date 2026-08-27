@@ -1,0 +1,281 @@
+{
+ "source": "库存分析表_260807.xlsx（商务每日分析）",
+ "category": [
+  {
+   "name": "苹果主机",
+   "qty": 3024,
+   "amount": 1936.37,
+   "pct": 79.0
+  },
+  {
+   "name": "原装配件",
+   "qty": 2780,
+   "amount": 109.43,
+   "pct": 4.5
+  },
+  {
+   "name": "舒尔",
+   "qty": 7381,
+   "amount": 330.36,
+   "pct": 13.5
+  },
+  {
+   "name": "第三方配件",
+   "qty": 9046,
+   "amount": 73.8,
+   "pct": 3.0
+  }
+ ],
+ "warehouse": [
+  {
+   "name": "电商-羽通",
+   "qty": 2254,
+   "amount": 314.24,
+   "pct": 12.9
+  },
+  {
+   "name": "电商-啟韬",
+   "qty": 552,
+   "amount": 228.52,
+   "pct": 9.4
+  },
+  {
+   "name": "电商-舒尔",
+   "qty": 4397,
+   "amount": 177.0,
+   "pct": 7.3
+  },
+  {
+   "name": "京东-舒尔",
+   "qty": 1502,
+   "amount": 86.73,
+   "pct": 3.6
+  },
+  {
+   "name": "APR",
+   "qty": 13237,
+   "amount": 1610.32,
+   "pct": 66.3
+  },
+  {
+   "name": "电商-其他",
+   "qty": 90,
+   "amount": 13.42,
+   "pct": 0.6
+  }
+ ],
+ "aging": {
+  "0~30天": 1044.56,
+  "30~60天": 282.8,
+  "60~90天": 137.37,
+  "90~180天": 530.45,
+  "180~360天": 205.5,
+  "360天以上": 120.72
+ },
+ "aging_risk": [
+  {
+   "wh": "005南京羽",
+   "name": "iPhone 17 Pro Max 256GB 星宇",
+   "brand": "苹果",
+   "cat": "iPhone 17 Pro Max",
+   "age": 153,
+   "qty": 169,
+   "amount": 162.12
+  },
+  {
+   "wh": "005南京啟",
+   "name": "iPhone 17 256GB 黑色",
+   "brand": "苹果",
+   "cat": "iPhone 17",
+   "age": 146,
+   "qty": 84,
+   "amount": 48.3
+  },
+  {
+   "wh": "005南京啟",
+   "name": "iPhone 17 256GB 鼠尾草绿色",
+   "brand": "苹果",
+   "cat": "iPhone 17",
+   "age": 157,
+   "qty": 34,
+   "amount": 19.55
+  },
+  {
+   "wh": "005南京羽",
+   "name": "iPhone 17 Pro Max 2TB 银色",
+   "brand": "苹果",
+   "cat": "iPhone 17 Pro Max",
+   "age": 187,
+   "qty": 11,
+   "amount": 19.0
+  },
+  {
+   "wh": "005南京啟",
+   "name": "iPhone 17 256GB 青雾蓝色",
+   "brand": "苹果",
+   "cat": "iPhone 17",
+   "age": 152,
+   "qty": 33,
+   "amount": 18.98
+  },
+  {
+   "wh": "005南京羽",
+   "name": "iPhone 17 Pro Max 2TB 深蓝色",
+   "brand": "苹果",
+   "cat": "iPhone 17 Pro Max",
+   "age": 180,
+   "qty": 10,
+   "amount": 17.27
+  },
+  {
+   "wh": "005南京羽",
+   "name": "Shure Movemic双通道无线麦克风系统（套装",
+   "brand": "SHURE",
+   "cat": "motive",
+   "age": 99,
+   "qty": 58,
+   "amount": 9.87
+  },
+  {
+   "wh": "005南京啟",
+   "name": "iPhone 17e 256GB 白色",
+   "brand": "苹果",
+   "cat": "iPhone 17e",
+   "age": 143,
+   "qty": 14,
+   "amount": 6.04
+  },
+  {
+   "wh": "005南京啟",
+   "name": "iPhone 17 256GB 白色",
+   "brand": "苹果",
+   "cat": "iPhone 17",
+   "age": 146,
+   "qty": 10,
+   "amount": 5.75
+  },
+  {
+   "wh": "005南京羽",
+   "name": "iPhone Air 256GB 云白色",
+   "brand": "苹果",
+   "cat": "iPhone Air",
+   "age": 148,
+   "qty": 7,
+   "amount": 5.37
+  },
+  {
+   "wh": "欧瑞特南京云",
+   "name": "SE215(专业版）动圈有线耳机 强劲重低音 运动 ",
+   "brand": "SHURE",
+   "cat": "耳机",
+   "age": 272,
+   "qty": 87,
+   "amount": 3.85
+  },
+  {
+   "wh": "005南京羽",
+   "name": "iPhone Air 1TB 云白色",
+   "brand": "苹果",
+   "cat": "iPhone Air",
+   "age": 288,
+   "qty": 3,
+   "amount": 3.45
+  },
+  {
+   "wh": "005南京羽",
+   "name": "iPhone Air 1TB 深空黑色",
+   "brand": "苹果",
+   "cat": "iPhone Air",
+   "age": 288,
+   "qty": 3,
+   "amount": 3.45
+  },
+  {
+   "wh": "005南京啟",
+   "name": "iPhone 17e 256GB 浅粉色",
+   "brand": "苹果",
+   "cat": "iPhone 17e",
+   "age": 143,
+   "qty": 8,
+   "amount": 3.45
+  },
+  {
+   "wh": "欧瑞特南京云",
+   "name": "ShureGLXD24/SM58手持无线话筒",
+   "brand": "SHURE",
+   "cat": "无线麦克风",
+   "age": 328,
+   "qty": 13,
+   "amount": 3.36
+  }
+ ],
+ "virtual_removed": {
+  "count": 18467652.5,
+  "amount": 0.0,
+  "items": [
+   "发票",
+   "京东优惠券",
+   "店铺费用",
+   "发票",
+   "权益服务（无实物）",
+   "手机",
+   "权益服务（无实物）",
+   "128G U盘"
+  ]
+ },
+ "total": {
+  "qty": 19467,
+  "amount": 2322.07
+ },
+ "machine": {
+  "电商-羽通": {
+   "常规机": 306.62,
+   "样机": 0,
+   "残次机": 17.22
+  },
+  "电商-啟韬": {
+   "常规机": 217.45,
+   "样机": 0,
+   "残次机": 23.19
+  },
+  "电商-舒尔": {
+   "常规机": 160.5,
+   "样机": 0,
+   "残次机": 0.83
+  },
+  "APR": {
+   "常规机": 1249.07,
+   "样机": 293.13,
+   "残次机": 5.92
+  },
+  "电商-其他": {
+   "常规机": 12.45,
+   "样机": 0,
+   "残次机": 0.96
+  }
+ },
+ "aging_risk_count": 3436,
+ "aging_risk_amount": 858.44,
+ "aging_risk_pct": 37.0,
+ "severe_count": 1325,
+ "severe_amount": 120.86,
+ "coverage": [
+  {
+   "mpn": "MF984CH/B",
+   "desc": "42mm/玫瑰金色铝金属表壳/淡桃粉色运动型表带 - S/M",
+   "min_qty": 2,
+   "cur_qty": 0,
+   "gap": 2,
+   "status": "零库存"
+  },
+  {
+   "mpn": "MFEY4CH/A",
+   "desc": "Studio Display - 标准玻璃面板 - VESA 支架转换器 (不含",
+   "min_qty": 1,
+   "cur_qty": 0,
+   "gap": 1,
+   "status": "零库存"
+  }
+ ],
+ "coverage_count": 2
+}

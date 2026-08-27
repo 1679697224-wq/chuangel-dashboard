@@ -1,0 +1,19 @@
+{
+  "version": 4,
+  "pngPath": "C:\\Users\\w4245\\.codex\\.chatgpt-projects\\g-p-6a6753279f1c819185e6b06588ff3c4b\\outputs\\panorama-framework-final-v4\\江苏传天羽经营管理全景框架图_最终第四版.png",
+  "htmlPath": "C:\\Users\\w4245\\.codex\\.chatgpt-projects\\g-p-6a6753279f1c819185e6b06588ff3c4b\\outputs\\panorama-framework-final-v4\\框架结构图-第4轮.html",
+  "dimensions": {
+    "width": 2400,
+    "height": 4459
+  },
+  "fileSize": 870733,
+  "entropy": 2.419421321726986,
+  "expectedTextBlocks": 108,
+  "missingTextBlocks": [],
+  "nonBlank": true,
+  "conceptualReview": {
+    "result": "主链、双支撑、优先级、54节点、节奏和业务边界完整。",
+    "gap": "无阻断项。",
+    "next": "正式交付。"
+  }
+}

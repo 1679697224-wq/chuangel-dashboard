@@ -1,0 +1,63 @@
+{
+  "system": {
+    "base": "https://apple.winneryun.com/api/zh-cn",
+    "loginUrl": "https://apple.winneryun.com/#/login",
+    "user": "tygz",
+    "password": "Chuangel123456",
+    "loginCode": "999D8EF9-7FEC-4D40-A378-9247886709F4"
+  },
+  "business": {
+    "menuId": "2000101",
+    "businessKey": "BM00001,BM00025",
+    "module": "BM00001,BM00025"
+  },
+  "stores": {
+    "P03482": {
+      "name": "徐州彭城店",
+      "siteName": "英迈（天羽冠智）-江苏徐州彭城苏宁广场店"
+    },
+    "P03520": {
+      "name": "无锡店",
+      "siteName": "天羽冠智-江苏无锡Chuangel无锡苏宁广场店"
+    },
+    "P03625": {
+      "name": "连云港店",
+      "siteName": "英迈（天羽冠智）-江苏连云港苏宁广场店"
+    },
+    "P04195": {
+      "name": "太原店",
+      "siteName": "英迈（天羽冠智）-山西太原富力广场店"
+    },
+    "P03295": {
+      "name": "宿州店",
+      "siteName": "英迈（天羽冠智）-安徽宿州苏宁广场店"
+    },
+    "P03405": {
+      "name": "镇江店",
+      "siteName": "英迈（天羽冠智）-江苏镇江Chuangel镇江苏宁广场店"
+    },
+    "P03960": {
+      "name": "运城店",
+      "siteName": "英迈（天羽冠智）-山西运城苏宁广场店"
+    },
+    "P03781": {
+      "name": "日照店",
+      "siteName": "英迈（天羽冠智）-山东日照苏宁广场店"
+    },
+    "P03878": {
+      "name": "徐州宝龙店",
+      "siteName": "英迈（天羽冠智）-江苏徐州复兴苏宁广场店"
+    },
+    "P04245": {
+      "name": "苏家屯店",
+      "siteName": "英迈（天羽冠智）-辽宁沈阳苏家屯苏宁广场店"
+    }
+  },
+  "dashboard": {
+    "path": "/Users/lili/Desktop/deepseek harness/老板确认看板/boss-dashboard-v6.html",
+    "ordersSource": "/Users/lili/Desktop/deepseek harness/吉客云数据/sales_agg.json"
+  },
+  "ocr": {
+    "binary": "./bin/ocr_v2"
+  }
+}

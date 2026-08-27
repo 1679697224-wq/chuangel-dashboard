@@ -1,0 +1,50 @@
+{
+  "version": 4,
+  "outputPath": "C:\\Users\\w4245\\.codex\\.chatgpt-projects\\g-p-6a6753279f1c819185e6b06588ff3c4b\\outputs\\panorama-framework-final-v4\\江苏传天羽经营管理全景简报框架_最终第四版.xlsx",
+  "sheetCount": 17,
+  "sheets": [
+    "0-老板审阅总纲",
+    "1-全景框架明细",
+    "2-日报框架",
+    "3-周报框架",
+    "4-月报框架",
+    "5-业务板块专项",
+    "6-管理四维流程",
+    "7-重点事项优先级",
+    "8-预警与决策规则",
+    "9-AI智能体应用",
+    "10-纪律与运行机制",
+    "11-指标口径矩阵",
+    "12-数据责任与时效",
+    "13-事项风控模板",
+    "14-附表清单",
+    "15-完整性校验",
+    "16-来源版本说明"
+  ],
+  "htmlBaseline": {
+    "sections": 6,
+    "subsections": 18,
+    "items": 54
+  },
+  "htmlItemsExpected": 54,
+  "htmlItemsMissing": [],
+  "formulaErrors": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "coverageStatus": [
+    [
+      "PASS",
+      "HTML节点",
+      54,
+      "通过节点",
+      54,
+      "覆盖率",
+      1
+    ]
+  ],
+  "previewCount": 17,
+  "conceptualReview": {
+    "result": "HTML 54节点、第五版结构与会议部署全部承接。",
+    "gap": "无阻断项。",
+    "next": "提交老板审阅；阈值和具体姓名可按批复固化。"
+  },
+  "overviewInspect": "{\"kind\":\"table\",\"sheet\":\"0-老板审阅总纲\",\"address\":\"A1:J28\",\"rows\":28,\"cols\":10,\"values\":[[\"江苏传天羽经营管理全景简报框架 · 最终第四版\",null,null,null,null,null,null,null,null,null],[\"日盯运营 · 周抓变化 · 月看经营 | HTML为完整主骨架，会议纪要与第五版仅作补充\",null,null,null,null,null,null,null,null,null],[\"核心主线：经营结果 → 管理过程 → 重点事项 → 风险控制；AI智能体与纪律/数据责任作为双支撑。\",null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[\"一、老板看什么\",null,null,null,null,null,null,null,null,null],[\"序号\",\"核心层\",\"老板问题\",\"覆盖范围\",\"最终输出\",\"\",\"\",\"\",\"\",\"\"],[\"01\",\"经营数据\",\"公司卖了多少、赚了多少、目标进度如何\",null,\"销售/毛利/达成/驱动/板块/库存资金\",null,null,\"结论、差距、原因、动作\",null,null],[\"02\",\"管理数据\",\"经营过程是否顺畅、组织是否支撑\",null,\"物/人/外部资源/内部合规\",null,null,\"异常、责任、节点、证据\",null,null],[\"03\",\"重点事项\",\"公司最重要的事是否真正推进\",null,\"开优质店/分货资源/人员效率/3001/项目闭环\",null,null,\"进度、下一节点、需决策\",null,null],[\"04\",\"风控\",\"风险是否识别、处置并关闭\",null,\"资金/客户/定价/营销/收银结算/合规\",null,null,\"红黄分级、敞口、时限、验证\",null,null],[null,null,null,null,null,null,null,null,null,null],[\"二、双支撑与运行节奏\",null,null,null,null,null,null,null,null,null],[\"支撑层\",\"核心内容\",null,null,\"运行方式\",null,null,\"节奏/红线\",null,null],[\"AI智能体\",\"公司大智能体 + 岗位智能体 + 自动化任务\",null,null,\"自动取数/整理/提醒/推送；人工确认例外和结果\",null,null,\"一周搭建、二周使用、三周复盘\",null,null],[\"纪律与保障\",\"汇报纪律 + 数据责任 + 权限 + 复核\",null,null,\"有目标、有完成率、有复盘、有计划；缺失显式标记\",null,null,\"日报08:30、周一10:00、次月5日\",null,null],[null,null,null,null,null,null,null,null,null,null],[\"三、日周月分层\",null,null,null,null,null,null,null,null,null],[\"周期\",\"管理目的\",null,\"老板重点\",null,\"比较口径\",null,\"输出动作\",null,\"呈报时间\"],[\"日报\",\"看异常、抓当天动作\",null,\"红灯/缺口/到期/需决策\",null,\"目标进度、上周同日、数据状态\",null,\"责任人+今日动作+完成节点\",null,\"D+1 08:30\"],[\"周报\",\"看变化、抓差距与闭环\",null,\"趋势/驱动/排名/整改效果\",null,\"上周、同比、近4周、月度进度\",null,\"下周量化目标+资源需求\",null,\"周一10:00\"],[\"月报\",\"看全景、抓经营质量\",null,\"损益/现金/资产/组织/战略\",null,\"预算、同比、上月、滚动预测\",null,\"资源配置+下月三项决策\",null,\"次月5日前\"],[null,null,null,null,null,null,null,null,null,null],[\"四、当前业务边界与会议优先级\",null,null,null,null,null,null,null,null,null],[\"四大经营板块\",\"APR门店\",\"Apple电商\",\"Shure电商\",\"3PP/渠道分销\",\"\",\"\",\"\",\"\",\"\"],[\"实际范围\",\"线下授权门店\",\"京东羽通 / 苏宁啟韬\",\"京东官方旗舰店 / 天猫官方旗舰店\",\"客户/品牌/项目/分销\",\"\",\"\",\"\",\"\",\"\"],[null,null,null,null,null,null,null,null,null,null],[\"会议优先级\",\"第一：开优质门店\",\"第二：厂商/总代分货资源\",\"第三：人员效率与能力建设\",\"专项：3001设备产品线\",\"\",\"\",\"\",\"\",\"\"],[\"评价原则\",\"结果为先\",\"口径统一\",\"异常必有动作\",\"决策必须闭环\",\"AI提升效率\",\"数据透明\",\"权限可控\",\"证据关闭\",\"不静默补数\"]]}"
+}

@@ -1,0 +1,5151 @@
+{
+ "generated_at": "2026-08-11 17:53:17",
+ "today": "2026-08-11",
+ "today_fetch_note": "今日为吉客云实时部分数据（截至抓取时间）",
+ "today_total": {
+  "amount_wan": 123.1,
+  "orders": 256
+ },
+ "yesterday": {
+  "date": "2026-08-10",
+  "amount_wan": 223.9
+ },
+ "lastweek": {
+  "date": "2026-08-04",
+  "amount_wan": 259.7
+ },
+ "chg_vs_yest": -45.0,
+ "chg_vs_lastwk": -52.6,
+ "series": [
+  {
+   "date": "2026-08-01",
+   "amount_wan": 196.0,
+   "orders": 364,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 53.5,
+     "orders": 122
+    },
+    "Apple电商": {
+     "amount_wan": 140.2,
+     "orders": 175
+    },
+    "舒尔电商": {
+     "amount_wan": 2.3,
+     "orders": 67
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR徐州彭城苏宁广场店": {
+     "orders": 29,
+     "amount": 134280.18
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 18,
+     "amount": 111227.0
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 21,
+     "amount": 79639.2
+    },
+    "APR太原富力广场店": {
+     "orders": 12,
+     "amount": 60565.14
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 10,
+     "amount": 50421.0
+    },
+    "APR运城苏宁广场店": {
+     "orders": 10,
+     "amount": 48318.0
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 11,
+     "amount": 34377.0
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 6,
+     "amount": 14172.51
+    },
+    "APR日照苏宁广场店": {
+     "orders": 3,
+     "amount": 1587.0
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 2,
+     "amount": 298.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-02",
+   "amount_wan": 190.7,
+   "orders": 376,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 69.7,
+     "orders": 186
+    },
+    "Apple电商": {
+     "amount_wan": 120.4,
+     "orders": 158
+    },
+    "舒尔电商": {
+     "amount_wan": 0.5,
+     "orders": 32
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR徐州彭城苏宁广场店": {
+     "orders": 42,
+     "amount": 215314.84
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 29,
+     "amount": 116572.0
+    },
+    "APR太原富力广场店": {
+     "orders": 25,
+     "amount": 95803.01
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 23,
+     "amount": 75572.71
+    },
+    "APR日照苏宁广场店": {
+     "orders": 15,
+     "amount": 60150.0
+    },
+    "APR运城苏宁广场店": {
+     "orders": 20,
+     "amount": 57522.91
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 13,
+     "amount": 35331.51
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 11,
+     "amount": 26098.8
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 6,
+     "amount": 8657.34
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 2,
+     "amount": 6443.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-03",
+   "amount_wan": 194.1,
+   "orders": 384,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 53.8,
+     "orders": 135
+    },
+    "Apple电商": {
+     "amount_wan": 140.4,
+     "orders": 167
+    },
+    "舒尔电商": {
+     "amount_wan": -0.1,
+     "orders": 82
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR徐州彭城苏宁广场店": {
+     "orders": 38,
+     "amount": 168746.68
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 25,
+     "amount": 89210.79
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 19,
+     "amount": 75282.76
+    },
+    "APR运城苏宁广场店": {
+     "orders": 12,
+     "amount": 54640.28
+    },
+    "APR太原富力广场店": {
+     "orders": 7,
+     "amount": 43654.0
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 9,
+     "amount": 40669.0
+    },
+    "APR日照苏宁广场店": {
+     "orders": 6,
+     "amount": 22994.0
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 13,
+     "amount": 21662.45
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 4,
+     "amount": 21057.78
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 2,
+     "amount": 427.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-04",
+   "amount_wan": 259.7,
+   "orders": 441,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 77.2,
+     "orders": 147
+    },
+    "Apple电商": {
+     "amount_wan": 182.4,
+     "orders": 228
+    },
+    "舒尔电商": {
+     "amount_wan": 0.2,
+     "orders": 66
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR连云港苏宁广场店": {
+     "orders": 25,
+     "amount": 186622.29
+    },
+    "APR徐州彭城苏宁广场店": {
+     "orders": 19,
+     "amount": 115835.55
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 19,
+     "amount": 108381.51
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 18,
+     "amount": 86149.89
+    },
+    "APR运城苏宁广场店": {
+     "orders": 17,
+     "amount": 75476.73
+    },
+    "APR日照苏宁广场店": {
+     "orders": 12,
+     "amount": 58482.02
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 16,
+     "amount": 56528.51
+    },
+    "APR太原富力广场店": {
+     "orders": 10,
+     "amount": 45541.1
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 5,
+     "amount": 20340.22
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 6,
+     "amount": 18616.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-05",
+   "amount_wan": 215.6,
+   "orders": 438,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 76.3,
+     "orders": 152
+    },
+    "Apple电商": {
+     "amount_wan": 137.9,
+     "orders": 176
+    },
+    "舒尔电商": {
+     "amount_wan": 1.5,
+     "orders": 110
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR宿州苏宁广场店": {
+     "orders": 23,
+     "amount": 169213.01
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 24,
+     "amount": 145599.72
+    },
+    "APR徐州彭城苏宁广场店": {
+     "orders": 30,
+     "amount": 145463.23
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 21,
+     "amount": 85974.7
+    },
+    "APR运城苏宁广场店": {
+     "orders": 18,
+     "amount": 64546.89
+    },
+    "APR太原富力广场店": {
+     "orders": 10,
+     "amount": 51637.04
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 16,
+     "amount": 45630.5
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 3,
+     "amount": 29147.0
+    },
+    "APR日照苏宁广场店": {
+     "orders": 3,
+     "amount": 14597.0
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 4,
+     "amount": 10895.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-06",
+   "amount_wan": 303.0,
+   "orders": 510,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 181.5,
+     "orders": 271
+    },
+    "Apple电商": {
+     "amount_wan": 118.2,
+     "orders": 145
+    },
+    "舒尔电商": {
+     "amount_wan": 3.3,
+     "orders": 94
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR徐州彭城苏宁广场店": {
+     "orders": 56,
+     "amount": 406633.83
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 45,
+     "amount": 331269.8
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 42,
+     "amount": 276189.75
+    },
+    "APR太原富力广场店": {
+     "orders": 31,
+     "amount": 242982.24
+    },
+    "APR运城苏宁广场店": {
+     "orders": 26,
+     "amount": 165805.51
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 23,
+     "amount": 124933.0
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 25,
+     "amount": 108683.83
+    },
+    "APR日照苏宁广场店": {
+     "orders": 10,
+     "amount": 95520.01
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 12,
+     "amount": 62840.02
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 1,
+     "amount": 329.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-07",
+   "amount_wan": 287.7,
+   "orders": 481,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 151.1,
+     "orders": 256
+    },
+    "Apple电商": {
+     "amount_wan": 135.6,
+     "orders": 155
+    },
+    "舒尔电商": {
+     "amount_wan": 1.0,
+     "orders": 70
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR徐州彭城苏宁广场店": {
+     "orders": 43,
+     "amount": 308577.07
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 41,
+     "amount": 257959.58
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 37,
+     "amount": 193853.89
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 32,
+     "amount": 170030.01
+    },
+    "APR太原富力广场店": {
+     "orders": 30,
+     "amount": 146362.28
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 22,
+     "amount": 140753.53
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 13,
+     "amount": 102125.72
+    },
+    "APR日照苏宁广场店": {
+     "orders": 12,
+     "amount": 82387.0
+    },
+    "APR运城苏宁广场店": {
+     "orders": 20,
+     "amount": 72845.78
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 6,
+     "amount": 35832.28
+    }
+   }
+  },
+  {
+   "date": "2026-08-08",
+   "amount_wan": 239.0,
+   "orders": 410,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 110.9,
+     "orders": 218
+    },
+    "Apple电商": {
+     "amount_wan": 127.5,
+     "orders": 141
+    },
+    "舒尔电商": {
+     "amount_wan": 0.5,
+     "orders": 51
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR连云港苏宁广场店": {
+     "orders": 45,
+     "amount": 283668.23
+    },
+    "APR徐州彭城苏宁广场店": {
+     "orders": 48,
+     "amount": 250458.74
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 15,
+     "amount": 94246.81
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 20,
+     "amount": 93771.5
+    },
+    "APR太原富力广场店": {
+     "orders": 16,
+     "amount": 92022.52
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 23,
+     "amount": 80702.71
+    },
+    "APR运城苏宁广场店": {
+     "orders": 14,
+     "amount": 69844.12
+    },
+    "APR日照苏宁广场店": {
+     "orders": 12,
+     "amount": 58290.15
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 14,
+     "amount": 47391.28
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 11,
+     "amount": 39022.01
+    }
+   }
+  },
+  {
+   "date": "2026-08-09",
+   "amount_wan": 205.6,
+   "orders": 354,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 95.3,
+     "orders": 180
+    },
+    "Apple电商": {
+     "amount_wan": 109.1,
+     "orders": 128
+    },
+    "舒尔电商": {
+     "amount_wan": 1.3,
+     "orders": 46
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR徐州彭城苏宁广场店": {
+     "orders": 47,
+     "amount": 274439.71
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 37,
+     "amount": 207286.78
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 34,
+     "amount": 203008.02
+    },
+    "APR日照苏宁广场店": {
+     "orders": 11,
+     "amount": 67356.98
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 9,
+     "amount": 64453.78
+    },
+    "APR运城苏宁广场店": {
+     "orders": 8,
+     "amount": 44201.75
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 13,
+     "amount": 35727.01
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 5,
+     "amount": 20872.51
+    },
+    "APR太原富力广场店": {
+     "orders": 9,
+     "amount": 20083.82
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 7,
+     "amount": 15420.51
+    }
+   }
+  },
+  {
+   "date": "2026-08-10",
+   "amount_wan": 223.9,
+   "orders": 434,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 74.3,
+     "orders": 186
+    },
+    "Apple电商": {
+     "amount_wan": 148.1,
+     "orders": 165
+    },
+    "舒尔电商": {
+     "amount_wan": 1.5,
+     "orders": 83
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "APR连云港苏宁广场店*": {
+     "orders": 16,
+     "amount": 92869.23
+    },
+    "APR徐州彭城苏宁广场店": {
+     "orders": 18,
+     "amount": 74951.39
+    },
+    "AAR镇江苏宁广场店*": {
+     "orders": 12,
+     "amount": 72396.5
+    },
+    "APR徐州彭城苏宁广场店*": {
+     "orders": 21,
+     "amount": 62022.62
+    },
+    "APR太原富力广场店": {
+     "orders": 13,
+     "amount": 57597.27
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 14,
+     "amount": 52560.81
+    },
+    "APR宿州苏宁广场店*": {
+     "orders": 17,
+     "amount": 51364.13
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 10,
+     "amount": 47449.0
+    },
+    "APR太原富力广场店*": {
+     "orders": 12,
+     "amount": 44210.33
+    },
+    "APR运城苏宁广场店": {
+     "orders": 7,
+     "amount": 38227.4
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 6,
+     "amount": 27912.4
+    },
+    "APR苏家屯苏宁广场店*": {
+     "orders": 7,
+     "amount": 26868.4
+    },
+    "APR运城苏宁广场店*": {
+     "orders": 4,
+     "amount": 22628.75
+    },
+    "APR日照苏宁广场店*": {
+     "orders": 4,
+     "amount": 22425.1
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 3,
+     "amount": 18897.0
+    },
+    "APR徐州和信宝龙广场店*": {
+     "orders": 5,
+     "amount": 11327.21
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 3,
+     "amount": 9637.0
+    },
+    "AAR无锡苏宁广场店*": {
+     "orders": 11,
+     "amount": 6879.02
+    },
+    "APR日照苏宁广场店": {
+     "orders": 2,
+     "amount": 2548.0
+    },
+    "APR徐州和信宝龙广场店": {
+     "orders": 1,
+     "amount": 298.0
+    }
+   }
+  },
+  {
+   "date": "2026-08-11",
+   "amount_wan": 123.1,
+   "orders": 256,
+   "channel": {
+    "APR门店": {
+     "amount_wan": 49.1,
+     "orders": 108
+    },
+    "Apple电商": {
+     "amount_wan": 75.4,
+     "orders": 88
+    },
+    "舒尔电商": {
+     "amount_wan": -1.4,
+     "orders": 60
+    },
+    "3PP拓展渠道": {
+     "amount_wan": 0.0,
+     "orders": 0
+    }
+   },
+   "stores": {
+    "AAR无锡苏宁广场店*": {
+     "orders": 24,
+     "amount": 81563.52
+    },
+    "AAR无锡苏宁广场店": {
+     "orders": 11,
+     "amount": 57367.0
+    },
+    "APR徐州彭城苏宁广场店*": {
+     "orders": 10,
+     "amount": 50560.21
+    },
+    "APR连云港苏宁广场店": {
+     "orders": 6,
+     "amount": 41693.0
+    },
+    "APR运城苏宁广场店*": {
+     "orders": 8,
+     "amount": 39810.7
+    },
+    "APR徐州和信宝龙广场店*": {
+     "orders": 7,
+     "amount": 36286.5
+    },
+    "APR徐州彭城苏宁广场店": {
+     "orders": 6,
+     "amount": 34644.0
+    },
+    "APR日照苏宁广场店*": {
+     "orders": 6,
+     "amount": 32649.25
+    },
+    "APR太原富力广场店*": {
+     "orders": 6,
+     "amount": 28051.18
+    },
+    "AAR镇江苏宁广场店*": {
+     "orders": 9,
+     "amount": 27872.0
+    },
+    "APR宿州苏宁广场店": {
+     "orders": 3,
+     "amount": 14997.0
+    },
+    "AAR镇江苏宁广场店": {
+     "orders": 3,
+     "amount": 14946.0
+    },
+    "APR太原富力广场店": {
+     "orders": 2,
+     "amount": 13498.0
+    },
+    "APR连云港苏宁广场店*": {
+     "orders": 1,
+     "amount": 5999.0
+    },
+    "APR苏家屯苏宁广场店": {
+     "orders": 2,
+     "amount": 4798.0
+    },
+    "APR苏家屯苏宁广场店*": {
+     "orders": 2,
+     "amount": 3923.0
+    },
+    "APR日照苏宁广场店": {
+     "orders": 1,
+     "amount": 2599.0
+    },
+    "APR宿州苏宁广场店*": {
+     "orders": 1,
+     "amount": 119.0
+    }
+   }
+  }
+ ],
+ "channels": [
+  {
+   "name": "APR门店",
+   "amount_wan": 49.1,
+   "orders": 108,
+   "pct": 39.9,
+   "yest_chg": -33.9,
+   "lastwk_chg": -36.3
+  },
+  {
+   "name": "羽通｜京东",
+   "amount_wan": 32.5,
+   "orders": 45,
+   "pct": 26.4,
+   "yest_chg": null,
+   "lastwk_chg": null
+  },
+  {
+   "name": "啟韬｜苏宁",
+   "amount_wan": 26.8,
+   "orders": 26,
+   "pct": 21.8,
+   "yest_chg": null,
+   "lastwk_chg": null
+  },
+  {
+   "name": "3PP拓展渠道",
+   "amount_wan": 0.0,
+   "orders": 0,
+   "pct": 0.0,
+   "yest_chg": null,
+   "lastwk_chg": null
+  },
+  {
+   "name": "Shure电商",
+   "amount_wan": -1.4,
+   "orders": 60,
+   "pct": -1.1,
+   "yest_chg": null,
+   "lastwk_chg": null
+  }
+ ],
+ "stores_today": [
+  {
+   "name": "AAR无锡苏宁广场店",
+   "amount_wan": 13.9,
+   "orders": 35
+  },
+  {
+   "name": "APR徐州彭城苏宁广场店",
+   "amount_wan": 8.5,
+   "orders": 16
+  },
+  {
+   "name": "APR连云港苏宁广场店",
+   "amount_wan": 4.8,
+   "orders": 7
+  },
+  {
+   "name": "AAR镇江苏宁广场店",
+   "amount_wan": 4.3,
+   "orders": 12
+  },
+  {
+   "name": "APR太原富力广场店",
+   "amount_wan": 4.2,
+   "orders": 8
+  },
+  {
+   "name": "APR运城苏宁广场店",
+   "amount_wan": 4.0,
+   "orders": 8
+  },
+  {
+   "name": "APR徐州和信宝龙广场店",
+   "amount_wan": 3.6,
+   "orders": 7
+  },
+  {
+   "name": "APR日照苏宁广场店",
+   "amount_wan": 3.5,
+   "orders": 7
+  },
+  {
+   "name": "APR宿州苏宁广场店",
+   "amount_wan": 1.5,
+   "orders": 4
+  },
+  {
+   "name": "APR苏家屯苏宁广场店",
+   "amount_wan": 0.9,
+   "orders": 4
+  }
+ ],
+ "apr": {
+  "sales": 664.3,
+  "task": 2180,
+  "rate": 30.5,
+  "profit": 23.52,
+  "pm": 3.54,
+  "orders": 871,
+  "traffic": 10901,
+  "conv": 8.0,
+  "time_progress": 32.3,
+  "gap": -1.8,
+  "forecast_month_end": 2059.4,
+  "forecast_rate": 94.5,
+  "stores": [
+   {
+    "name": "徐州彭城店",
+    "sales": 149.5,
+    "task": 340,
+    "rate": 23.2,
+    "profit": 5.78,
+    "pm": 4.37,
+    "traffic": 3970,
+    "orders": 221,
+    "conv": 5.6,
+    "apt": 33.3,
+    "acs": 5.1,
+    "pp": 281.2,
+    "forecast": 463.4,
+    "forecast_rate": 136.3
+   },
+   {
+    "name": "无锡店",
+    "sales": 110.6,
+    "task": 380,
+    "rate": 8.9,
+    "profit": 2.69,
+    "pm": 2.75,
+    "traffic": 1385,
+    "orders": 134,
+    "conv": 9.7,
+    "apt": 23.2,
+    "acs": 4.7,
+    "pp": 107.4,
+    "forecast": 342.9,
+    "forecast_rate": 90.2
+   },
+   {
+    "name": "连云港店",
+    "sales": 95.6,
+    "task": 340,
+    "rate": 12.9,
+    "profit": 3.94,
+    "pm": 4.66,
+    "traffic": 1501,
+    "orders": 120,
+    "conv": 8.0,
+    "apt": 25.6,
+    "acs": 5.4,
+    "pp": 120.3,
+    "forecast": 296.4,
+    "forecast_rate": 87.2
+   },
+   {
+    "name": "太原店",
+    "sales": 68.7,
+    "task": 210,
+    "rate": 9.0,
+    "profit": 1.9,
+    "pm": 3.12,
+    "traffic": 616,
+    "orders": 70,
+    "conv": 11.4,
+    "apt": 16.3,
+    "acs": 4.6,
+    "pp": 34.7,
+    "forecast": 213.0,
+    "forecast_rate": 101.4
+   },
+   {
+    "name": "宿州店",
+    "sales": 62.1,
+    "task": 180,
+    "rate": 17.5,
+    "profit": 2.36,
+    "pm": 4.3,
+    "traffic": 1127,
+    "orders": 127,
+    "conv": 11.3,
+    "apt": 22.5,
+    "acs": 4.2,
+    "pp": 70.1,
+    "forecast": 192.5,
+    "forecast_rate": 106.9
+   },
+   {
+    "name": "运城店",
+    "sales": 53.9,
+    "task": 170,
+    "rate": 9.2,
+    "profit": 1.93,
+    "pm": 4.05,
+    "traffic": 1116,
+    "orders": 76,
+    "conv": 6.8,
+    "apt": 24.3,
+    "acs": 4.8,
+    "pp": 35.4,
+    "forecast": 167.1,
+    "forecast_rate": 98.3
+   },
+   {
+    "name": "镇江店",
+    "sales": 52.7,
+    "task": 240,
+    "rate": 8.8,
+    "profit": 2.4,
+    "pm": 5.15,
+    "traffic": 0,
+    "orders": 65,
+    "conv": 0,
+    "apt": 24.7,
+    "acs": 7.0,
+    "pp": 67.5,
+    "forecast": 163.4,
+    "forecast_rate": 68.1
+   },
+   {
+    "name": "日照店",
+    "sales": 33.6,
+    "task": 80,
+    "rate": 0.6,
+    "profit": 0.71,
+    "pm": 2.4,
+    "traffic": 218,
+    "orders": 19,
+    "conv": 8.7,
+    "apt": 43.5,
+    "acs": 4.7,
+    "pp": 1.0,
+    "forecast": 104.2,
+    "forecast_rate": 130.2
+   },
+   {
+    "name": "徐州宝龙店",
+    "sales": 23.8,
+    "task": 100,
+    "rate": 4.5,
+    "profit": 1.25,
+    "pm": 5.92,
+    "traffic": 368,
+    "orders": 18,
+    "conv": 4.9,
+    "apt": 35.0,
+    "acs": 1.7,
+    "pp": 7.5,
+    "forecast": 73.8,
+    "forecast_rate": 73.8
+   },
+   {
+    "name": "苏家屯店",
+    "sales": 13.9,
+    "task": 140,
+    "rate": 4.8,
+    "profit": 0.55,
+    "pm": 4.51,
+    "traffic": 600,
+    "orders": 21,
+    "conv": 3.5,
+    "apt": 19.4,
+    "acs": 7.6,
+    "pp": 15.9,
+    "forecast": 43.1,
+    "forecast_rate": 30.8
+   }
+  ],
+  "salespersons": [
+   {
+    "rank": 1,
+    "name": "王畅",
+    "store": "徐州店",
+    "pos": "店员",
+    "task": 90.0,
+    "sales": 50.8,
+    "rate": 56.5,
+    "offline": 31.5,
+    "online": 19.3,
+    "pp_sales": 1.7,
+    "pp_rate": 54.2,
+    "profit": 2.2,
+    "profit_rank": 1,
+    "profit_rate": 6.9,
+    "offline_profit_rate": 53.0,
+    "acs": 45.8,
+    "high_sell": 1.9,
+    "pp_amount_pct": 5.3,
+    "host_qty": 41,
+    "pp_qty": 43
+   },
+   {
+    "rank": 2,
+    "name": "鲁健",
+    "store": "连云港店",
+    "pos": "店员",
+    "task": 150.0,
+    "sales": 36.1,
+    "rate": 24.0,
+    "offline": 13.2,
+    "online": 22.9,
+    "pp_sales": 0.4,
+    "pp_rate": 9.1,
+    "profit": 1.1,
+    "profit_rank": 2,
+    "profit_rate": 8.6,
+    "offline_profit_rate": 19.0,
+    "acs": 30.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 3.1,
+    "host_qty": 16,
+    "pp_qty": 19
+   },
+   {
+    "rank": 3,
+    "name": "袁兆行",
+    "store": "无锡店",
+    "pos": "店员",
+    "task": 95.0,
+    "sales": 30.5,
+    "rate": 32.1,
+    "offline": 10.0,
+    "online": 20.5,
+    "pp_sales": 0.3,
+    "pp_rate": 8.5,
+    "profit": 0.8,
+    "profit_rank": 5,
+    "profit_rate": 7.6,
+    "offline_profit_rate": 18.8,
+    "acs": 37.5,
+    "high_sell": 0.0,
+    "pp_amount_pct": 2.5,
+    "host_qty": 13,
+    "pp_qty": 17
+   },
+   {
+    "rank": 4,
+    "name": "田国伟",
+    "store": "太原店",
+    "pos": "店员",
+    "task": 105.0,
+    "sales": 28.6,
+    "rate": 27.3,
+    "offline": 5.0,
+    "online": 23.6,
+    "pp_sales": 0.1,
+    "pp_rate": 6.9,
+    "profit": 0.5,
+    "profit_rank": 10,
+    "profit_rate": 9.1,
+    "offline_profit_rate": 17.5,
+    "acs": 50.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 2.7,
+    "host_qty": 8,
+    "pp_qty": 14
+   },
+   {
+    "rank": 5,
+    "name": "蒋玉玄",
+    "store": "运城店",
+    "pos": "店员",
+    "task": 90.0,
+    "sales": 26.5,
+    "rate": 29.4,
+    "offline": 6.4,
+    "online": 20.1,
+    "pp_sales": 0.2,
+    "pp_rate": 8.5,
+    "profit": 0.4,
+    "profit_rank": 12,
+    "profit_rate": 6.8,
+    "offline_profit_rate": 16.8,
+    "acs": 25.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 2.5,
+    "host_qty": 10,
+    "pp_qty": 13
+   },
+   {
+    "rank": 6,
+    "name": "查越",
+    "store": "太原店",
+    "pos": "店员",
+    "task": 105.0,
+    "sales": 25.4,
+    "rate": 24.2,
+    "offline": 5.7,
+    "online": 19.7,
+    "pp_sales": 0.2,
+    "pp_rate": 10.8,
+    "profit": 0.5,
+    "profit_rank": 11,
+    "profit_rate": 7.9,
+    "offline_profit_rate": 17.4,
+    "acs": 75.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 3.7,
+    "host_qty": 9,
+    "pp_qty": 20
+   },
+   {
+    "rank": 7,
+    "name": "徐婷婷",
+    "store": "连云港店",
+    "pos": "店员",
+    "task": 150.0,
+    "sales": 24.4,
+    "rate": 16.2,
+    "offline": 5.6,
+    "online": 18.8,
+    "pp_sales": 0.3,
+    "pp_rate": 7.0,
+    "profit": 0.4,
+    "profit_rank": 14,
+    "profit_rate": 7.3,
+    "offline_profit_rate": 6.8,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 5.6,
+    "host_qty": 8,
+    "pp_qty": 12
+   },
+   {
+    "rank": 8,
+    "name": "秦子杰",
+    "store": "徐州店",
+    "pos": "店员",
+    "task": 75.0,
+    "sales": 23.5,
+    "rate": 31.4,
+    "offline": 7.5,
+    "online": 16.0,
+    "pp_sales": 0.2,
+    "pp_rate": 8.1,
+    "profit": 0.5,
+    "profit_rank": 8,
+    "profit_rate": 7.0,
+    "offline_profit_rate": 15.5,
+    "acs": 28.6,
+    "high_sell": 1.8,
+    "pp_amount_pct": 2.6,
+    "host_qty": 10,
+    "pp_qty": 7
+   },
+   {
+    "rank": 9,
+    "name": "潘思源",
+    "store": "无锡店",
+    "pos": "店员",
+    "task": 95.0,
+    "sales": 21.4,
+    "rate": 22.5,
+    "offline": 5.1,
+    "online": 16.3,
+    "pp_sales": 0.2,
+    "pp_rate": 6.2,
+    "profit": 0.4,
+    "profit_rank": 15,
+    "profit_rate": 7.9,
+    "offline_profit_rate": 9.7,
+    "acs": 75.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 3.7,
+    "host_qty": 7,
+    "pp_qty": 12
+   },
+   {
+    "rank": 10,
+    "name": "李珍",
+    "store": "日照店",
+    "pos": "店员",
+    "task": 40.0,
+    "sales": 21.3,
+    "rate": 53.3,
+    "offline": 1.4,
+    "online": 19.9,
+    "pp_sales": 0.0,
+    "pp_rate": 0.0,
+    "profit": 0.1,
+    "profit_rank": 25,
+    "profit_rate": 3.5,
+    "offline_profit_rate": 4.3,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 0.0,
+    "host_qty": 4,
+    "pp_qty": 0
+   },
+   {
+    "rank": 11,
+    "name": "廉梦鸽",
+    "store": "运城店",
+    "pos": "店员",
+    "task": 80.0,
+    "sales": 20.1,
+    "rate": 25.1,
+    "offline": 9.7,
+    "online": 10.4,
+    "pp_sales": 0.2,
+    "pp_rate": 8.2,
+    "profit": 0.5,
+    "profit_rank": 9,
+    "profit_rate": 5.2,
+    "offline_profit_rate": 20.1,
+    "acs": 11.1,
+    "high_sell": 0.0,
+    "pp_amount_pct": 1.6,
+    "host_qty": 12,
+    "pp_qty": 13
+   },
+   {
+    "rank": 12,
+    "name": "杨明",
+    "store": "无锡店",
+    "pos": "店员",
+    "task": 95.0,
+    "sales": 19.0,
+    "rate": 20.1,
+    "offline": 7.7,
+    "online": 11.4,
+    "pp_sales": 0.3,
+    "pp_rate": 8.6,
+    "profit": 0.4,
+    "profit_rank": 13,
+    "profit_rate": 5.4,
+    "offline_profit_rate": 10.1,
+    "acs": 33.3,
+    "high_sell": 0.0,
+    "pp_amount_pct": 3.4,
+    "host_qty": 12,
+    "pp_qty": 15
+   },
+   {
+    "rank": 13,
+    "name": "马雨蒙",
+    "store": "宿州店",
+    "pos": "店员",
+    "task": 90.0,
+    "sales": 16.7,
+    "rate": 18.6,
+    "offline": 7.0,
+    "online": 9.8,
+    "pp_sales": 0.1,
+    "pp_rate": 7.3,
+    "profit": 0.4,
+    "profit_rank": 17,
+    "profit_rate": 5.1,
+    "offline_profit_rate": 11.9,
+    "acs": 50.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 1.9,
+    "host_qty": 8,
+    "pp_qty": 18
+   },
+   {
+    "rank": 14,
+    "name": "徐锁兰",
+    "store": "镇江店",
+    "pos": "店员",
+    "task": 90.0,
+    "sales": 16.3,
+    "rate": 18.1,
+    "offline": 6.2,
+    "online": 10.1,
+    "pp_sales": 0.3,
+    "pp_rate": 8.3,
+    "profit": 0.8,
+    "profit_rank": 4,
+    "profit_rate": 13.2,
+    "offline_profit_rate": 20.5,
+    "acs": 66.7,
+    "high_sell": 0.0,
+    "pp_amount_pct": 4.0,
+    "host_qty": 10,
+    "pp_qty": 10
+   },
+   {
+    "rank": 15,
+    "name": "朱正波",
+    "store": "徐州店",
+    "pos": "店员",
+    "task": 75.0,
+    "sales": 16.2,
+    "rate": 21.6,
+    "offline": 9.7,
+    "online": 6.5,
+    "pp_sales": 0.5,
+    "pp_rate": 21.0,
+    "profit": 1.1,
+    "profit_rank": 3,
+    "profit_rate": 11.1,
+    "offline_profit_rate": 31.4,
+    "acs": 28.6,
+    "high_sell": 0.0,
+    "pp_amount_pct": 5.4,
+    "host_qty": 15,
+    "pp_qty": 17
+   },
+   {
+    "rank": 16,
+    "name": "娄紫薇",
+    "store": "宿州店",
+    "pos": "店员",
+    "task": 90.0,
+    "sales": 14.7,
+    "rate": 16.3,
+    "offline": 9.1,
+    "online": 5.6,
+    "pp_sales": 0.3,
+    "pp_rate": 18.1,
+    "profit": 0.6,
+    "profit_rank": 7,
+    "profit_rate": 6.5,
+    "offline_profit_rate": 19.7,
+    "acs": 55.6,
+    "high_sell": 2.6,
+    "pp_amount_pct": 3.6,
+    "host_qty": 13,
+    "pp_qty": 28
+   },
+   {
+    "rank": 17,
+    "name": "彭展",
+    "store": "徐州店",
+    "pos": "店员",
+    "task": 75.0,
+    "sales": 14.3,
+    "rate": 19.1,
+    "offline": 3.7,
+    "online": 10.6,
+    "pp_sales": 0.1,
+    "pp_rate": 6.0,
+    "profit": 0.4,
+    "profit_rank": 18,
+    "profit_rate": 9.6,
+    "offline_profit_rate": 10.5,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 4.0,
+    "host_qty": 6,
+    "pp_qty": 4
+   },
+   {
+    "rank": 18,
+    "name": "白国良",
+    "store": "无锡店",
+    "pos": "店员",
+    "task": 95.0,
+    "sales": 13.9,
+    "rate": 14.6,
+    "offline": 6.6,
+    "online": 7.3,
+    "pp_sales": 0.3,
+    "pp_rate": 10.3,
+    "profit": 0.7,
+    "profit_rank": 6,
+    "profit_rate": 11.1,
+    "offline_profit_rate": 17.9,
+    "acs": 40.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 4.7,
+    "host_qty": 11,
+    "pp_qty": 16
+   },
+   {
+    "rank": 19,
+    "name": "贺媛媛",
+    "store": "镇江店",
+    "pos": "店员",
+    "task": 60.0,
+    "sales": 12.2,
+    "rate": 20.2,
+    "offline": 4.5,
+    "online": 7.6,
+    "pp_sales": 0.2,
+    "pp_rate": 10.9,
+    "profit": 0.3,
+    "profit_rank": 20,
+    "profit_rate": 7.5,
+    "offline_profit_rate": 13.6,
+    "acs": 20.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 4.1,
+    "host_qty": 6,
+    "pp_qty": 7
+   },
+   {
+    "rank": 20,
+    "name": "王拓",
+    "store": "镇江店",
+    "pos": "店员",
+    "task": 90.0,
+    "sales": 10.5,
+    "rate": 11.7,
+    "offline": 5.6,
+    "online": 4.9,
+    "pp_sales": 0.2,
+    "pp_rate": 5.8,
+    "profit": 0.4,
+    "profit_rank": 16,
+    "profit_rate": 6.5,
+    "offline_profit_rate": 9.0,
+    "acs": 33.3,
+    "high_sell": 0.0,
+    "pp_amount_pct": 3.1,
+    "host_qty": 9,
+    "pp_qty": 8
+   },
+   {
+    "rank": 21,
+    "name": "颜方岳",
+    "store": "徐州店",
+    "pos": "店员",
+    "task": 75.0,
+    "sales": 9.0,
+    "rate": 12.0,
+    "offline": 5.7,
+    "online": 3.4,
+    "pp_sales": 0.1,
+    "pp_rate": 5.6,
+    "profit": 0.3,
+    "profit_rank": 19,
+    "profit_rate": 6.1,
+    "offline_profit_rate": 10.2,
+    "acs": 40.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 2.4,
+    "host_qty": 7,
+    "pp_qty": 6
+   },
+   {
+    "rank": 22,
+    "name": "师梓聪",
+    "store": "徐州店",
+    "pos": "店员",
+    "task": 50.0,
+    "sales": 6.8,
+    "rate": 13.7,
+    "offline": 2.4,
+    "online": 4.4,
+    "pp_sales": 0.1,
+    "pp_rate": 6.5,
+    "profit": 0.2,
+    "profit_rank": 21,
+    "profit_rate": 8.3,
+    "offline_profit_rate": 16.6,
+    "acs": 33.3,
+    "high_sell": 0.0,
+    "pp_amount_pct": 2.3,
+    "host_qty": 4,
+    "pp_qty": 2
+   },
+   {
+    "rank": 23,
+    "name": "纪元野",
+    "store": "日照店",
+    "pos": "代店",
+    "task": 40.0,
+    "sales": 4.0,
+    "rate": 10.0,
+    "offline": 2.2,
+    "online": 1.8,
+    "pp_sales": 0.0,
+    "pp_rate": 1.1,
+    "profit": 0.1,
+    "profit_rank": 24,
+    "profit_rate": 4.0,
+    "offline_profit_rate": 7.2,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 0.4,
+    "host_qty": 3,
+    "pp_qty": 1
+   },
+   {
+    "rank": 24,
+    "name": "杨鑫鑫",
+    "store": "苏家屯店",
+    "pos": "店员",
+    "task": 60.0,
+    "sales": 2.9,
+    "rate": 4.9,
+    "offline": 2.9,
+    "online": 0.0,
+    "pp_sales": 0.1,
+    "pp_rate": 4.6,
+    "profit": 0.2,
+    "profit_rank": 22,
+    "profit_rate": 6.3,
+    "offline_profit_rate": 10.3,
+    "acs": 33.3,
+    "high_sell": 0.0,
+    "pp_amount_pct": 2.1,
+    "host_qty": 3,
+    "pp_qty": 4
+   },
+   {
+    "rank": 25,
+    "name": "池昌健",
+    "store": "苏家屯店",
+    "pos": "店员",
+    "task": 50.0,
+    "sales": 0.8,
+    "rate": 1.6,
+    "offline": 0.8,
+    "online": 0.0,
+    "pp_sales": 0.1,
+    "pp_rate": 8.3,
+    "profit": 0.1,
+    "profit_rank": 23,
+    "profit_rate": 14.0,
+    "offline_profit_rate": 6.4,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 12.8,
+    "host_qty": 1,
+    "pp_qty": 4
+   },
+   {
+    "rank": 26,
+    "name": "李楷璐",
+    "store": "苏家屯店",
+    "pos": "店员",
+    "task": 30.0,
+    "sales": 0.0,
+    "rate": 0.0,
+    "offline": 0.0,
+    "online": 0.0,
+    "pp_sales": 0.0,
+    "pp_rate": 0.0,
+    "profit": 0.0,
+    "profit_rank": 26,
+    "profit_rate": 0.0,
+    "offline_profit_rate": 0.0,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 0.0,
+    "host_qty": 0,
+    "pp_qty": 0
+   },
+   {
+    "rank": 27,
+    "name": "朱尹辉",
+    "store": "连云港店",
+    "pos": "Coach",
+    "task": 0.0,
+    "sales": 0.0,
+    "rate": 0.0,
+    "offline": 5.5,
+    "online": 0,
+    "pp_sales": 0.2,
+    "pp_rate": 0.0,
+    "profit": 0.6,
+    "profit_rank": 0,
+    "profit_rate": 11.6,
+    "offline_profit_rate": 0.0,
+    "acs": 33.3,
+    "high_sell": 2.6,
+    "pp_amount_pct": 3.5,
+    "host_qty": 7,
+    "pp_qty": 9
+   },
+   {
+    "rank": 28,
+    "name": "王君瑶",
+    "store": "日照店",
+    "pos": "Coach",
+    "task": 0.0,
+    "sales": 0.0,
+    "rate": 0.0,
+    "offline": 0.0,
+    "online": 0.0,
+    "pp_sales": 0.0,
+    "pp_rate": 0.0,
+    "profit": 0.0,
+    "profit_rank": 0,
+    "profit_rate": 0.0,
+    "offline_profit_rate": 0.0,
+    "acs": 0.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 0.0,
+    "host_qty": 0,
+    "pp_qty": 0
+   },
+   {
+    "rank": 29,
+    "name": "柏雪美",
+    "store": "宿州店",
+    "pos": "Coach",
+    "task": 0.0,
+    "sales": 0.0,
+    "rate": 0.0,
+    "offline": 9.1,
+    "online": 0,
+    "pp_sales": 0.2,
+    "pp_rate": 0.0,
+    "profit": 0.5,
+    "profit_rank": 0,
+    "profit_rate": 5.2,
+    "offline_profit_rate": 0.0,
+    "acs": 40.0,
+    "high_sell": 3.5,
+    "pp_amount_pct": 1.7,
+    "host_qty": 11,
+    "pp_qty": 12
+   },
+   {
+    "rank": 30,
+    "name": "齐浩楠",
+    "store": "徐州店",
+    "pos": "Coach",
+    "task": 0.0,
+    "sales": 0.0,
+    "rate": 0.0,
+    "offline": 4.0,
+    "online": 0,
+    "pp_sales": 0.0,
+    "pp_rate": 0.0,
+    "profit": 0.2,
+    "profit_rank": 0,
+    "profit_rate": 5.2,
+    "offline_profit_rate": 0.0,
+    "acs": 50.0,
+    "high_sell": 0.0,
+    "pp_amount_pct": 0.8,
+    "host_qty": 5,
+    "pp_qty": 4
+   },
+   {
+    "rank": 31,
+    "name": "吴昱",
+    "store": "运城苏宁广场店",
+    "pos": "运城苏宁广场店店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   },
+   {
+    "rank": 32,
+    "name": "唐成",
+    "store": "无锡苏宁广场店",
+    "pos": "店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   },
+   {
+    "rank": 33,
+    "name": "王兴禄",
+    "store": "沈阳苏家屯苏宁广场店",
+    "pos": "沈阳苏家屯苏宁广场店 店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   },
+   {
+    "rank": 34,
+    "name": "王凯",
+    "store": "连云港苏宁广场店",
+    "pos": "连云港苏宁广场店 店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   },
+   {
+    "rank": 35,
+    "name": "黄丽蓉",
+    "store": "镇江苏宁广场店",
+    "pos": "镇江苏宁广场店 店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   },
+   {
+    "rank": 36,
+    "name": "徐腾飞",
+    "store": "太原富力广场店",
+    "pos": "太原富力广场店 店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   },
+   {
+    "rank": 37,
+    "name": "史力如",
+    "store": "徐州彭城苏宁广场店",
+    "pos": "徐州彭城苏宁广场店 店长",
+    "task": null,
+    "sales": 0,
+    "rate": 0,
+    "offline": 0,
+    "online": 0,
+    "pp_sales": 0,
+    "pp_rate": 0,
+    "profit": 0,
+    "profit_rank": null,
+    "profit_rate": 0,
+    "offline_profit_rate": 0,
+    "acs": 0,
+    "high_sell": 0,
+    "pp_amount_pct": 0,
+    "host_qty": 0,
+    "pp_qty": 0,
+    "no_sales": true
+   }
+  ]
+ },
+ "inventory": {
+  "fetched_at": "2026-08-11 07:18:17",
+  "total_skus": 1506,
+  "total_qty": 6335542,
+  "by_category": [
+   {
+    "name": "其他",
+    "qty": 6327875
+   },
+   {
+    "name": "服务/AppleCare",
+    "qty": 6073
+   },
+   {
+    "name": "iPhone",
+    "qty": 612
+   },
+   {
+    "name": "配件",
+    "qty": 259
+   },
+   {
+    "name": "AirPods/音频",
+    "qty": 236
+   },
+   {
+    "name": "iPad",
+    "qty": 213
+   },
+   {
+    "name": "Watch",
+    "qty": 172
+   },
+   {
+    "name": "Mac",
+    "qty": 102
+   }
+  ],
+  "by_warehouse": [
+   {
+    "name": "[005]南京羽通正品仓",
+    "qty": 3260133
+   },
+   {
+    "name": "[001]江苏传天羽正品仓",
+    "qty": 1399759
+   },
+   {
+    "name": "[005]天羽聚智正品仓",
+    "qty": 1199169
+   },
+   {
+    "name": "[009]APR太原富力店正品仓",
+    "qty": 89167
+   },
+   {
+    "name": "[009]AAR苏家屯苏宁广场店正品仓",
+    "qty": 89034
+   },
+   {
+    "name": "[009]APR运城苏宁广场店正品仓",
+    "qty": 59132
+   },
+   {
+    "name": "[009]APR徐州复兴苏宁广场店正品仓",
+    "qty": 59107
+   },
+   {
+    "name": "[009]APR日照苏宁广场店正品仓",
+    "qty": 38642
+   }
+  ],
+  "other_qty": 6327875,
+  "other_pct": 99.88
+ },
+ "ecomm": {
+  "apple": {
+   "amount_wan": 75.4,
+   "orders": 88
+  },
+  "shure": {
+   "amount_wan": -1.4,
+   "orders": 60
+  }
+ },
+ "inventory_biz": {
+  "source": "库存分析表_260807.xlsx（商务每日分析）",
+  "category": [
+   {
+    "name": "苹果主机",
+    "qty": 3024,
+    "amount": 1936.37,
+    "pct": 79.0
+   },
+   {
+    "name": "原装配件",
+    "qty": 2780,
+    "amount": 109.43,
+    "pct": 4.5
+   },
+   {
+    "name": "舒尔",
+    "qty": 7381,
+    "amount": 330.36,
+    "pct": 13.5
+   },
+   {
+    "name": "第三方配件",
+    "qty": 9046,
+    "amount": 73.8,
+    "pct": 3.0
+   }
+  ],
+  "warehouse": [
+   {
+    "name": "电商-羽通",
+    "qty": 2254,
+    "amount": 314.24,
+    "pct": 12.9
+   },
+   {
+    "name": "电商-啟韬",
+    "qty": 552,
+    "amount": 228.52,
+    "pct": 9.4
+   },
+   {
+    "name": "电商-舒尔",
+    "qty": 4397,
+    "amount": 177.0,
+    "pct": 7.3
+   },
+   {
+    "name": "京东-舒尔",
+    "qty": 1502,
+    "amount": 86.73,
+    "pct": 3.6
+   },
+   {
+    "name": "APR",
+    "qty": 13237,
+    "amount": 1610.32,
+    "pct": 66.3
+   },
+   {
+    "name": "电商-其他",
+    "qty": 90,
+    "amount": 13.42,
+    "pct": 0.6
+   }
+  ],
+  "aging": {
+   "0~30天": 1044.56,
+   "30~60天": 282.8,
+   "60~90天": 137.37,
+   "90~180天": 530.45,
+   "180~360天": 205.5,
+   "360天以上": 120.72
+  },
+  "aging_risk": [
+   {
+    "wh": "005南京羽",
+    "name": "iPhone 17 Pro Max 256GB 星宇",
+    "brand": "苹果",
+    "cat": "iPhone 17 Pro Max",
+    "age": 153,
+    "qty": 169,
+    "amount": 162.12
+   },
+   {
+    "wh": "005南京啟",
+    "name": "iPhone 17 256GB 黑色",
+    "brand": "苹果",
+    "cat": "iPhone 17",
+    "age": 146,
+    "qty": 84,
+    "amount": 48.3
+   },
+   {
+    "wh": "005南京啟",
+    "name": "iPhone 17 256GB 鼠尾草绿色",
+    "brand": "苹果",
+    "cat": "iPhone 17",
+    "age": 157,
+    "qty": 34,
+    "amount": 19.55
+   },
+   {
+    "wh": "005南京羽",
+    "name": "iPhone 17 Pro Max 2TB 银色",
+    "brand": "苹果",
+    "cat": "iPhone 17 Pro Max",
+    "age": 187,
+    "qty": 11,
+    "amount": 19.0
+   },
+   {
+    "wh": "005南京啟",
+    "name": "iPhone 17 256GB 青雾蓝色",
+    "brand": "苹果",
+    "cat": "iPhone 17",
+    "age": 152,
+    "qty": 33,
+    "amount": 18.98
+   },
+   {
+    "wh": "005南京羽",
+    "name": "iPhone 17 Pro Max 2TB 深蓝色",
+    "brand": "苹果",
+    "cat": "iPhone 17 Pro Max",
+    "age": 180,
+    "qty": 10,
+    "amount": 17.27
+   },
+   {
+    "wh": "005南京羽",
+    "name": "Shure Movemic双通道无线麦克风系统（套装",
+    "brand": "SHURE",
+    "cat": "motive",
+    "age": 99,
+    "qty": 58,
+    "amount": 9.87
+   },
+   {
+    "wh": "005南京啟",
+    "name": "iPhone 17e 256GB 白色",
+    "brand": "苹果",
+    "cat": "iPhone 17e",
+    "age": 143,
+    "qty": 14,
+    "amount": 6.04
+   },
+   {
+    "wh": "005南京啟",
+    "name": "iPhone 17 256GB 白色",
+    "brand": "苹果",
+    "cat": "iPhone 17",
+    "age": 146,
+    "qty": 10,
+    "amount": 5.75
+   },
+   {
+    "wh": "005南京羽",
+    "name": "iPhone Air 256GB 云白色",
+    "brand": "苹果",
+    "cat": "iPhone Air",
+    "age": 148,
+    "qty": 7,
+    "amount": 5.37
+   },
+   {
+    "wh": "欧瑞特南京云",
+    "name": "SE215(专业版）动圈有线耳机 强劲重低音 运动 ",
+    "brand": "SHURE",
+    "cat": "耳机",
+    "age": 272,
+    "qty": 87,
+    "amount": 3.85
+   },
+   {
+    "wh": "005南京羽",
+    "name": "iPhone Air 1TB 云白色",
+    "brand": "苹果",
+    "cat": "iPhone Air",
+    "age": 288,
+    "qty": 3,
+    "amount": 3.45
+   },
+   {
+    "wh": "005南京羽",
+    "name": "iPhone Air 1TB 深空黑色",
+    "brand": "苹果",
+    "cat": "iPhone Air",
+    "age": 288,
+    "qty": 3,
+    "amount": 3.45
+   },
+   {
+    "wh": "005南京啟",
+    "name": "iPhone 17e 256GB 浅粉色",
+    "brand": "苹果",
+    "cat": "iPhone 17e",
+    "age": 143,
+    "qty": 8,
+    "amount": 3.45
+   },
+   {
+    "wh": "欧瑞特南京云",
+    "name": "ShureGLXD24/SM58手持无线话筒",
+    "brand": "SHURE",
+    "cat": "无线麦克风",
+    "age": 328,
+    "qty": 13,
+    "amount": 3.36
+   }
+  ],
+  "virtual_removed": {
+   "count": 18467652.5,
+   "amount": 0.0,
+   "items": [
+    "发票",
+    "京东优惠券",
+    "店铺费用",
+    "发票",
+    "权益服务（无实物）",
+    "手机",
+    "权益服务（无实物）",
+    "128G U盘"
+   ]
+  },
+  "total": {
+   "qty": 19467,
+   "amount": 2322.07
+  },
+  "machine": {
+   "电商-羽通": {
+    "常规机": 306.62,
+    "样机": 0,
+    "残次机": 17.22
+   },
+   "电商-啟韬": {
+    "常规机": 217.45,
+    "样机": 0,
+    "残次机": 23.19
+   },
+   "电商-舒尔": {
+    "常规机": 160.5,
+    "样机": 0,
+    "残次机": 0.83
+   },
+   "APR": {
+    "常规机": 1249.07,
+    "样机": 293.13,
+    "残次机": 5.92
+   },
+   "电商-其他": {
+    "常规机": 12.45,
+    "样机": 0,
+    "残次机": 0.96
+   }
+  },
+  "aging_risk_count": 3436,
+  "aging_risk_amount": 858.44,
+  "aging_risk_pct": 37.0,
+  "severe_count": 1325,
+  "severe_amount": 120.86,
+  "coverage": [
+   {
+    "mpn": "MF984CH/B",
+    "desc": "42mm/玫瑰金色铝金属表壳/淡桃粉色运动型表带 - S/M",
+    "min_qty": 2,
+    "cur_qty": 0,
+    "gap": 2,
+    "status": "零库存"
+   },
+   {
+    "mpn": "MFEY4CH/A",
+    "desc": "Studio Display - 标准玻璃面板 - VESA 支架转换器 (不含",
+    "min_qty": 1,
+    "cur_qty": 0,
+    "gap": 1,
+    "status": "零库存"
+   }
+  ],
+  "coverage_count": 2
+ },
+ "apr_struct": {
+  "month": "2026-8",
+  "host": {
+   "store": "整体",
+   "total_amount": 308.67,
+   "total_qty": 1202,
+   "host_amount": 288.68,
+   "host_qty": 436,
+   "iphone": {
+    "amount": 206.95,
+    "pct": 71.7,
+    "qty": 260
+   },
+   "ipad": {
+    "amount": 22.33,
+    "pct": 7.7,
+    "qty": 42
+   },
+   "watch": {
+    "amount": 24.15,
+    "pct": 8.4,
+    "qty": 94
+   },
+   "mac": {
+    "amount": 35.25,
+    "pct": 12.2,
+    "qty": 40
+   }
+  },
+  "acc": {
+   "store": "整体",
+   "acc_amount": 10.21,
+   "acc_qty": 519,
+   "phone": {
+    "amount": 5.39,
+    "pct": 52.8,
+    "qty": 396
+   },
+   "pad": {
+    "amount": 0.41,
+    "pct": 4.0,
+    "qty": 20
+   },
+   "watch": {
+    "amount": 0.14,
+    "pct": 1.3,
+    "qty": 10
+   },
+   "other": {
+    "amount": 3.2,
+    "pct": 31.3,
+    "qty": 62
+   }
+  },
+  "stores_host": [
+   {
+    "store": "宿州店",
+    "total_amount": 35.0,
+    "total_qty": 159,
+    "host_amount": 32.89,
+    "host_qty": 46,
+    "iphone": {
+     "amount": 27.87,
+     "pct": 84.7,
+     "qty": 34
+    },
+    "ipad": {
+     "amount": 1.38,
+     "pct": 4.2,
+     "qty": 2
+    },
+    "watch": {
+     "amount": 1.99,
+     "pct": 6.0,
+     "qty": 8
+    },
+    "mac": {
+     "amount": 1.65,
+     "pct": 5.0,
+     "qty": 2
+    }
+   },
+   {
+    "store": "镇江店",
+    "total_amount": 18.56,
+    "total_qty": 74,
+    "host_amount": 16.6,
+    "host_qty": 31,
+    "iphone": {
+     "amount": 12.3,
+     "pct": 74.1,
+     "qty": 17
+    },
+    "ipad": {
+     "amount": 1.89,
+     "pct": 11.4,
+     "qty": 4
+    },
+    "watch": {
+     "amount": 2.4,
+     "pct": 14.4,
+     "qty": 10
+    },
+    "mac": {
+     "amount": 0.02,
+     "pct": 0.1,
+     "qty": 0
+    }
+   },
+   {
+    "store": "徐州彭城店",
+    "total_amount": 101.29,
+    "total_qty": 328,
+    "host_amount": 94.92,
+    "host_qty": 142,
+    "iphone": {
+     "amount": 62.52,
+     "pct": 65.9,
+     "qty": 80
+    },
+    "ipad": {
+     "amount": 9.2,
+     "pct": 9.7,
+     "qty": 17
+    },
+    "watch": {
+     "amount": 7.69,
+     "pct": 8.1,
+     "qty": 28
+    },
+    "mac": {
+     "amount": 15.52,
+     "pct": 16.3,
+     "qty": 17
+    }
+   },
+   {
+    "store": "无锡店",
+    "total_amount": 47.51,
+    "total_qty": 195,
+    "host_amount": 44.64,
+    "host_qty": 67,
+    "iphone": {
+     "amount": 32.85,
+     "pct": 73.6,
+     "qty": 41
+    },
+    "ipad": {
+     "amount": 0.94,
+     "pct": 2.1,
+     "qty": 2
+    },
+    "watch": {
+     "amount": 3.85,
+     "pct": 8.6,
+     "qty": 16
+    },
+    "mac": {
+     "amount": 7.01,
+     "pct": 15.7,
+     "qty": 8
+    }
+   },
+   {
+    "store": "连云港店",
+    "total_amount": 43.26,
+    "total_qty": 174,
+    "host_amount": 40.22,
+    "host_qty": 56,
+    "iphone": {
+     "amount": 26.5,
+     "pct": 65.9,
+     "qty": 31
+    },
+    "ipad": {
+     "amount": 5.06,
+     "pct": 12.6,
+     "qty": 8
+    },
+    "watch": {
+     "amount": 2.17,
+     "pct": 5.4,
+     "qty": 9
+    },
+    "mac": {
+     "amount": 6.49,
+     "pct": 16.1,
+     "qty": 8
+    }
+   },
+   {
+    "store": "日照店",
+    "total_amount": 13.04,
+    "total_qty": 34,
+    "host_amount": 12.57,
+    "host_qty": 21,
+    "iphone": {
+     "amount": 8.15,
+     "pct": 64.8,
+     "qty": 10
+    },
+    "ipad": {
+     "amount": 0.43,
+     "pct": 3.4,
+     "qty": 1
+    },
+    "watch": {
+     "amount": 2.06,
+     "pct": 16.4,
+     "qty": 8
+    },
+    "mac": {
+     "amount": 1.92,
+     "pct": 15.3,
+     "qty": 2
+    }
+   },
+   {
+    "store": "徐州宝龙店",
+    "total_amount": 9.08,
+    "total_qty": 31,
+    "host_amount": 8.74,
+    "host_qty": 14,
+    "iphone": {
+     "amount": 6.46,
+     "pct": 73.9,
+     "qty": 9
+    },
+    "ipad": {
+     "amount": 0.43,
+     "pct": 4.9,
+     "qty": 1
+    },
+    "watch": {
+     "amount": 0.7,
+     "pct": 8.1,
+     "qty": 3
+    },
+    "mac": {
+     "amount": 1.15,
+     "pct": 13.2,
+     "qty": 1
+    }
+   },
+   {
+    "store": "运城店",
+    "total_amount": 21.99,
+    "total_qty": 90,
+    "host_amount": 20.76,
+    "host_qty": 30,
+    "iphone": {
+     "amount": 17.9,
+     "pct": 86.2,
+     "qty": 23
+    },
+    "ipad": {
+     "amount": 1.78,
+     "pct": 8.6,
+     "qty": 4
+    },
+    "watch": {
+     "amount": 1.08,
+     "pct": 5.2,
+     "qty": 3
+    },
+    "mac": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    }
+   },
+   {
+    "store": "苏家屯店",
+    "total_amount": 6.21,
+    "total_qty": 30,
+    "host_amount": 5.73,
+    "host_qty": 8,
+    "iphone": {
+     "amount": 5.1,
+     "pct": 89.0,
+     "qty": 6
+    },
+    "ipad": {
+     "amount": 0.38,
+     "pct": 6.6,
+     "qty": 1
+    },
+    "watch": {
+     "amount": 0.25,
+     "pct": 4.4,
+     "qty": 1
+    },
+    "mac": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    }
+   },
+   {
+    "store": "太原店",
+    "total_amount": 12.73,
+    "total_qty": 87,
+    "host_amount": 11.59,
+    "host_qty": 21,
+    "iphone": {
+     "amount": 7.32,
+     "pct": 63.1,
+     "qty": 9
+    },
+    "ipad": {
+     "amount": 0.84,
+     "pct": 7.2,
+     "qty": 2
+    },
+    "watch": {
+     "amount": 1.95,
+     "pct": 16.8,
+     "qty": 8
+    },
+    "mac": {
+     "amount": 1.48,
+     "pct": 12.8,
+     "qty": 2
+    }
+   }
+  ],
+  "stores_acc": [
+   {
+    "store": "宿州店",
+    "acc_amount": 0.94,
+    "acc_qty": 81,
+    "phone": {
+     "amount": 0.42,
+     "pct": 44.5,
+     "qty": 65
+    },
+    "pad": {
+     "amount": 0.08,
+     "pct": 8.5,
+     "qty": 4
+    },
+    "watch": {
+     "amount": 0.01,
+     "pct": 0.5,
+     "qty": 2
+    },
+    "other": {
+     "amount": 0.44,
+     "pct": 46.5,
+     "qty": 10
+    }
+   },
+   {
+    "store": "镇江店",
+    "acc_amount": 0.79,
+    "acc_qty": 30,
+    "phone": {
+     "amount": 0.58,
+     "pct": 73.6,
+     "qty": 27
+    },
+    "pad": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0.21,
+     "pct": 26.4,
+     "qty": 3
+    }
+   },
+   {
+    "store": "徐州彭城店",
+    "acc_amount": 3.62,
+    "acc_qty": 125,
+    "phone": {
+     "amount": 1.25,
+     "pct": 34.6,
+     "qty": 73
+    },
+    "pad": {
+     "amount": 0.07,
+     "pct": 2.0,
+     "qty": 5
+    },
+    "watch": {
+     "amount": 0.09,
+     "pct": 2.6,
+     "qty": 5
+    },
+    "other": {
+     "amount": 1.37,
+     "pct": 37.8,
+     "qty": 27
+    }
+   },
+   {
+    "store": "无锡店",
+    "acc_amount": 1.45,
+    "acc_qty": 92,
+    "phone": {
+     "amount": 1.03,
+     "pct": 71.0,
+     "qty": 82
+    },
+    "pad": {
+     "amount": 0.01,
+     "pct": 0.7,
+     "qty": 1
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0.38,
+     "pct": 26.0,
+     "qty": 7
+    }
+   },
+   {
+    "store": "连云港店",
+    "acc_amount": 1.8,
+    "acc_qty": 86,
+    "phone": {
+     "amount": 0.98,
+     "pct": 54.5,
+     "qty": 62
+    },
+    "pad": {
+     "amount": 0.2,
+     "pct": 11.3,
+     "qty": 6
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0.41,
+     "pct": 23.1,
+     "qty": 8
+    }
+   },
+   {
+    "store": "日照店",
+    "acc_amount": 0.04,
+    "acc_qty": 4,
+    "phone": {
+     "amount": 0.03,
+     "pct": 75.1,
+     "qty": 3
+    },
+    "pad": {
+     "amount": 0.01,
+     "pct": 24.9,
+     "qty": 1
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    }
+   },
+   {
+    "store": "徐州宝龙店",
+    "acc_amount": 0.23,
+    "acc_qty": 12,
+    "phone": {
+     "amount": 0.23,
+     "pct": 100,
+     "qty": 12
+    },
+    "pad": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    }
+   },
+   {
+    "store": "运城店",
+    "acc_amount": 0.4,
+    "acc_qty": 35,
+    "phone": {
+     "amount": 0.31,
+     "pct": 77.8,
+     "qty": 32
+    },
+    "pad": {
+     "amount": 0.01,
+     "pct": 3.7,
+     "qty": 1
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0.07,
+     "pct": 18.5,
+     "qty": 2
+    }
+   },
+   {
+    "store": "苏家屯店",
+    "acc_amount": 0.24,
+    "acc_qty": 11,
+    "phone": {
+     "amount": 0.19,
+     "pct": 79.1,
+     "qty": 10
+    },
+    "pad": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "watch": {
+     "amount": 0,
+     "pct": 0,
+     "qty": 0
+    },
+    "other": {
+     "amount": 0.05,
+     "pct": 20.9,
+     "qty": 1
+    }
+   },
+   {
+    "store": "太原店",
+    "acc_amount": 0.67,
+    "acc_qty": 42,
+    "phone": {
+     "amount": 0.34,
+     "pct": 50.0,
+     "qty": 29
+    },
+    "pad": {
+     "amount": 0.02,
+     "pct": 3.0,
+     "qty": 2
+    },
+    "watch": {
+     "amount": 0.04,
+     "pct": 5.9,
+     "qty": 3
+    },
+    "other": {
+     "amount": 0.27,
+     "pct": 39.6,
+     "qty": 4
+    }
+   }
+  ]
+ },
+ "roster": {
+  "李楷璐": {
+   "name": "李楷璐",
+   "store": "沈阳苏家屯苏宁广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "3702900",
+   "hire_date": "2026-07-30",
+   "tenure": "0年0月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "21",
+   "gender": "女",
+   "first_work": "2024-04-18",
+   "work_years": "2年3月",
+   "edu": "大专",
+   "school": "大连教育",
+   "grad_date": "2027-01-16",
+   "major": "物流管理",
+   "contract_co": "沈阳天霖聚智科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "贺媛媛": {
+   "name": "贺媛媛",
+   "store": "镇江苏宁广场店",
+   "pos": "镇江苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "3510289",
+   "hire_date": "2026-07-25",
+   "tenure": "0年0月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "30",
+   "gender": "女",
+   "first_work": "2016-03-24",
+   "work_years": "10年4月",
+   "edu": "大专",
+   "school": "江苏农林职业技术学院",
+   "grad_date": "2024-07-08",
+   "major": "物流管理",
+   "contract_co": "南京天霖聚智科技有限公司镇江分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "廉梦鸽": {
+   "name": "廉梦鸽",
+   "store": "运城苏宁广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2026-06-29",
+   "tenure": "0年1月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "26",
+   "gender": "女",
+   "first_work": "2025-12-28",
+   "work_years": "0年7月",
+   "edu": "大专",
+   "school": "中北大学",
+   "grad_date": "2026-01-30",
+   "major": "会计信息管理",
+   "contract_co": "太原天霖聚智科技有限公司运城分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "吴昱": {
+   "name": "吴昱",
+   "store": "运城苏宁广场店",
+   "pos": "运城苏宁广场店店长",
+   "rank": "店长",
+   "store_apple_id": "",
+   "hire_date": "2026-06-25",
+   "tenure": "0年1月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "23",
+   "gender": "女",
+   "first_work": "2024-07-05",
+   "work_years": "2年1月",
+   "edu": "本科",
+   "school": "河北金融学院",
+   "grad_date": "2024-06-10",
+   "major": "金融学",
+   "contract_co": "太原天霖聚智科技有限公司运城分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "潘思源": {
+   "name": "潘思源",
+   "store": "无锡苏宁广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2026-05-25",
+   "tenure": "0年2月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "20",
+   "gender": "女",
+   "first_work": "2025-07-19",
+   "work_years": "1年0月",
+   "edu": "大专",
+   "school": "无锡旅游商贸职业技术",
+   "grad_date": "2025-06-25",
+   "major": "国际商务",
+   "contract_co": "南京天霖聚智科技有限公司无锡分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "白国良": {
+   "name": "白国良",
+   "store": "无锡苏宁广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2026-05-23",
+   "tenure": "0年2月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "21",
+   "gender": "男",
+   "first_work": "2023-02-15",
+   "work_years": "3年5月",
+   "edu": "大专",
+   "school": "安徽合肥信息工程",
+   "grad_date": "2023-01-20",
+   "major": "计算机",
+   "contract_co": "南京天霖聚智科技有限公司无锡分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "唐成": {
+   "name": "唐成",
+   "store": "无锡苏宁广场店",
+   "pos": "店长",
+   "rank": "店长",
+   "store_apple_id": "",
+   "hire_date": "2026-05-23",
+   "tenure": "0年2月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "30",
+   "gender": "男",
+   "first_work": "2018-07-01",
+   "work_years": "8年1月",
+   "edu": "本科",
+   "school": "江南大学",
+   "grad_date": "2023-07-20",
+   "major": "工商管理",
+   "contract_co": "南京天霖聚智科技有限公司无锡分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "彭展": {
+   "name": "彭展",
+   "store": "徐州和信宝龙广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "3522422",
+   "hire_date": "2026-05-12",
+   "tenure": "0年2月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "24",
+   "gender": "男",
+   "first_work": "2020-09-01",
+   "work_years": "5年11月",
+   "edu": "中专",
+   "school": "徐州财经",
+   "grad_date": "2019-07-01",
+   "major": "计算机网络",
+   "contract_co": "南京天霖聚智科技有限公司徐州分公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "马雨蒙": {
+   "name": "马雨蒙",
+   "store": "宿州苏宁广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "3500761",
+   "hire_date": "2026-05-09",
+   "tenure": "0年3月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "27",
+   "gender": "女",
+   "first_work": "2019-11-09",
+   "work_years": "6年9月",
+   "edu": "大专",
+   "school": "皖北卫生职业学院",
+   "grad_date": "2020-07-01",
+   "major": "护理",
+   "contract_co": "宿州霖智网络科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "朱正波": {
+   "name": "朱正波",
+   "store": "徐州和信宝龙广场店",
+   "pos": "店员",
+   "rank": "店员",
+   "store_apple_id": "3522422",
+   "hire_date": "2026-04-17",
+   "tenure": "0年3月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "22",
+   "gender": "男",
+   "first_work": "2024-07-21",
+   "work_years": "2年0月",
+   "edu": "大专",
+   "school": "江苏建筑职业技术学院",
+   "grad_date": "2024-07-10",
+   "major": "计算机网络技术",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "王君瑶": {
+   "name": "王君瑶",
+   "store": "日照苏宁广场店",
+   "pos": "coach 讲师",
+   "rank": "Coach讲师",
+   "store_apple_id": "",
+   "hire_date": "2026-03-25",
+   "tenure": "0年4月",
+   "emp_type": "全职",
+   "emp_status": "试用",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "25",
+   "gender": "女",
+   "first_work": "2021-11-01",
+   "work_years": "4年9月",
+   "edu": "大专",
+   "school": "烟台黄金职业学院",
+   "grad_date": "2021-06-30",
+   "major": "云计算技术与应用",
+   "contract_co": "日照霖智网络科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "蒋玉玄": {
+   "name": "蒋玉玄",
+   "store": "运城苏宁广场店",
+   "pos": "运城苏宁广场店店员",
+   "rank": "店员",
+   "store_apple_id": "3573482",
+   "hire_date": "2026-01-12",
+   "tenure": "0年6月",
+   "emp_type": "实习",
+   "emp_status": "正式",
+   "probation": "",
+   "regular_date": "",
+   "level": "",
+   "age": "21",
+   "gender": "女",
+   "first_work": "2024-12-01",
+   "work_years": "1年8月",
+   "edu": "大专",
+   "school": "山西管理职业学院",
+   "grad_date": "2026-06-01",
+   "major": "视觉传达设计",
+   "contract_co": "太原天霖聚智科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "鲁健": {
+   "name": "鲁健",
+   "store": "连云港苏宁广场店",
+   "pos": "连云港苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2025-12-01",
+   "tenure": "0年8月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2026-03-01",
+   "level": "",
+   "age": "29",
+   "gender": "男",
+   "first_work": "2021-07-01",
+   "work_years": "5年1月",
+   "edu": "本科",
+   "school": "浙江海洋大学",
+   "grad_date": "2021-06-30",
+   "major": "市场营销",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "王兴禄": {
+   "name": "王兴禄",
+   "store": "沈阳苏家屯苏宁广场店",
+   "pos": "沈阳苏家屯苏宁广场店 店长",
+   "rank": "店长",
+   "store_apple_id": "",
+   "hire_date": "2025-09-17",
+   "tenure": "0年10月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2025-12-17",
+   "level": "",
+   "age": "25",
+   "gender": "男",
+   "first_work": "2021-09-01",
+   "work_years": "4年11月",
+   "edu": "本科",
+   "school": "沈阳师范大学",
+   "grad_date": "2026-06-20",
+   "major": "大数据",
+   "contract_co": "沈阳天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "田国伟": {
+   "name": "田国伟",
+   "store": "太原富力广场店",
+   "pos": "太原富力广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "3674573",
+   "hire_date": "2025-08-29",
+   "tenure": "0年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2025-11-30",
+   "level": "",
+   "age": "29",
+   "gender": "男",
+   "first_work": "2016-08-28",
+   "work_years": "9年11月",
+   "edu": "大专",
+   "school": "山西职业技术学院",
+   "grad_date": "2018-07-28",
+   "major": "计算机技术",
+   "contract_co": "太原天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "柏雪美": {
+   "name": "柏雪美",
+   "store": "宿州苏宁广场店",
+   "pos": "宿州苏宁广场店 coach",
+   "rank": "Coach讲师",
+   "store_apple_id": "3500761",
+   "hire_date": "2025-08-01",
+   "tenure": "1年0月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "2个月",
+   "regular_date": "2025-10-01",
+   "level": "",
+   "age": "36",
+   "gender": "女",
+   "first_work": "2008-02-10",
+   "work_years": "18年6月",
+   "edu": "大专",
+   "school": "电子科技大学",
+   "grad_date": "2021-09-15",
+   "major": "行政管理",
+   "contract_co": "宿州霖智网络科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "朱尹辉": {
+   "name": "朱尹辉",
+   "store": "连云港苏宁广场店",
+   "pos": "连云港苏宁广场店 coach 讲师",
+   "rank": "Coach讲师",
+   "store_apple_id": "3500760",
+   "hire_date": "2025-07-07",
+   "tenure": "1年1月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2025-10-07",
+   "level": "",
+   "age": "28",
+   "gender": "男",
+   "first_work": "2019-01-01",
+   "work_years": "7年7月",
+   "edu": "本科",
+   "school": "江苏海洋大学",
+   "grad_date": "2023-06-01",
+   "major": "工商管理",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "秦子杰": {
+   "name": "秦子杰",
+   "store": "徐州彭城苏宁广场店",
+   "pos": "徐州彭城苏宁广场店店员",
+   "rank": "店员",
+   "store_apple_id": "3522422",
+   "hire_date": "2025-04-15",
+   "tenure": "1年3月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2025-07-15",
+   "level": "",
+   "age": "25",
+   "gender": "男",
+   "first_work": "2024-03-01",
+   "work_years": "2年5月",
+   "edu": "本科",
+   "school": "扬州大学",
+   "grad_date": "2024-12-30",
+   "major": "园林",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "王凯": {
+   "name": "王凯",
+   "store": "连云港苏宁广场店",
+   "pos": "连云港苏宁广场店 店长",
+   "rank": "店长",
+   "store_apple_id": "",
+   "hire_date": "2025-04-12",
+   "tenure": "1年3月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2025-07-12",
+   "level": "",
+   "age": "34",
+   "gender": "男",
+   "first_work": "2013-09-01",
+   "work_years": "12年11月",
+   "edu": "本科",
+   "school": "南京大学金陵学院",
+   "grad_date": "2020-06-14",
+   "major": "人力资源管理",
+   "contract_co": "",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "齐浩楠": {
+   "name": "齐浩楠",
+   "store": "徐州彭城苏宁广场店",
+   "pos": "徐州彭城苏宁广场店 coach 讲师",
+   "rank": "Coach讲师",
+   "store_apple_id": "",
+   "hire_date": "2025-03-10",
+   "tenure": "1年5月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2025-06-10",
+   "level": "",
+   "age": "29",
+   "gender": "男",
+   "first_work": "2021-07-01",
+   "work_years": "5年1月",
+   "edu": "本科",
+   "school": "东北师范大学",
+   "grad_date": "2025-01-25",
+   "major": "美术学",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "",
+   "contract_term": ""
+  },
+  "王畅": {
+   "name": "王畅",
+   "store": "徐州彭城苏宁广场店",
+   "pos": "徐州彭城苏宁广场店店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2024-09-01",
+   "tenure": "1年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "",
+   "regular_date": "",
+   "level": "",
+   "age": "24",
+   "gender": "女",
+   "first_work": "2022-07-05",
+   "work_years": "4年1月",
+   "edu": "大专",
+   "school": "徐州市财校",
+   "grad_date": "2021-06-21",
+   "major": "会计",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "杨鑫鑫": {
+   "name": "杨鑫鑫",
+   "store": "沈阳苏家屯苏宁广场店",
+   "pos": "沈阳苏家屯苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "3702900",
+   "hire_date": "2024-02-26",
+   "tenure": "2年5月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2024-05-26",
+   "level": "",
+   "age": "24",
+   "gender": "女",
+   "first_work": "2022-06-01",
+   "work_years": "4年2月",
+   "edu": "大专",
+   "school": "辽宁生态工程职业学院",
+   "grad_date": "2023-07-17",
+   "major": "风景园林设计",
+   "contract_co": "上海天羽冠智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "娄紫薇": {
+   "name": "娄紫薇",
+   "store": "宿州苏宁广场店",
+   "pos": "宿州苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2023-11-16",
+   "tenure": "2年8月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2024-02-16",
+   "level": "",
+   "age": "25",
+   "gender": "女",
+   "first_work": "2020-12-01",
+   "work_years": "5年8月",
+   "edu": "大专",
+   "school": "天津商务学院",
+   "grad_date": "2021-06-30",
+   "major": "商务英语",
+   "contract_co": "宿州霖智网络科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "池昌健": {
+   "name": "池昌健",
+   "store": "沈阳苏家屯苏宁广场店",
+   "pos": "沈阳苏家屯苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "3702900",
+   "hire_date": "2023-10-16",
+   "tenure": "2年9月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2024-01-26",
+   "level": "",
+   "age": "25",
+   "gender": "女",
+   "first_work": "2021-07-13",
+   "work_years": "5年0月",
+   "edu": "大专",
+   "school": "锦州师范高等专科学校",
+   "grad_date": "2022-07-12",
+   "major": "学前教育",
+   "contract_co": "上海天羽冠智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "徐锁兰": {
+   "name": "徐锁兰",
+   "store": "镇江苏宁广场店",
+   "pos": "镇江苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2023-10-01",
+   "tenure": "2年10月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2024-01-01",
+   "level": "",
+   "age": "33",
+   "gender": "女",
+   "first_work": "2014-03-14",
+   "work_years": "12年4月",
+   "edu": "大专",
+   "school": "中国地质大学（北京）",
+   "grad_date": "2020-01-03",
+   "major": "会计",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "黄丽蓉": {
+   "name": "黄丽蓉",
+   "store": "镇江苏宁广场店",
+   "pos": "镇江苏宁广场店 店长",
+   "rank": "店长",
+   "store_apple_id": "",
+   "hire_date": "2023-09-07",
+   "tenure": "2年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2023-12-07",
+   "level": "",
+   "age": "37",
+   "gender": "女",
+   "first_work": "2010-01-01",
+   "work_years": "16年7月",
+   "edu": "本科",
+   "school": "江苏科技大学",
+   "grad_date": "2023-07-10",
+   "major": "工商管理",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "师梓聪": {
+   "name": "师梓聪",
+   "store": "徐州和信宝龙广场店",
+   "pos": "徐州和信宝龙广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2023-09-01",
+   "tenure": "2年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2023-12-01",
+   "level": "",
+   "age": "27",
+   "gender": "男",
+   "first_work": "2020-09-01",
+   "work_years": "5年11月",
+   "edu": "本科",
+   "school": "中国矿业大学(徐州)",
+   "grad_date": "2023-07-16",
+   "major": "工商管理",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "查越": {
+   "name": "查越",
+   "store": "太原富力广场店",
+   "pos": "太原富力广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2023-09-01",
+   "tenure": "2年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2023-12-01",
+   "level": "",
+   "age": "27",
+   "gender": "男",
+   "first_work": "2020-01-27",
+   "work_years": "6年6月",
+   "edu": "大专",
+   "school": "山西国际商务职业学院",
+   "grad_date": "2019-07-01",
+   "major": "市场营销",
+   "contract_co": "太原天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "袁兆行": {
+   "name": "袁兆行",
+   "store": "无锡苏宁广场店",
+   "pos": "无锡苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "3544129",
+   "hire_date": "2023-03-01",
+   "tenure": "3年5月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "",
+   "level": "",
+   "age": "34",
+   "gender": "男",
+   "first_work": "2013-11-19",
+   "work_years": "12年8月",
+   "edu": "大专",
+   "school": "宿迁职业技术学院",
+   "grad_date": "2014-07-01",
+   "major": "计算机网络",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "杨明": {
+   "name": "杨明",
+   "store": "无锡苏宁广场店",
+   "pos": "无锡苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "无锡店",
+   "hire_date": "2023-02-15",
+   "tenure": "3年5月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2023-05-15",
+   "level": "",
+   "age": "26",
+   "gender": "男",
+   "first_work": "2022-02-14",
+   "work_years": "4年5月",
+   "edu": "大专",
+   "school": "常州机电职业技术学院",
+   "grad_date": "2021-06-30",
+   "major": "电子商务",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "徐腾飞": {
+   "name": "徐腾飞",
+   "store": "太原富力广场店",
+   "pos": "太原富力广场店 店长",
+   "rank": "店长",
+   "store_apple_id": "3674573",
+   "hire_date": "2023-01-14",
+   "tenure": "3年6月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2023-04-14",
+   "level": "",
+   "age": "35",
+   "gender": "男",
+   "first_work": "2014-07-01",
+   "work_years": "12年1月",
+   "edu": "大专",
+   "school": "吉林大学",
+   "grad_date": "2020-01-01",
+   "major": "人力资源管理",
+   "contract_co": "太原天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "王拓": {
+   "name": "王拓",
+   "store": "镇江苏宁广场店",
+   "pos": "镇江苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2022-10-01",
+   "tenure": "3年10月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2023-01-01",
+   "level": "",
+   "age": "26",
+   "gender": "男",
+   "first_work": "2021-03-17",
+   "work_years": "5年4月",
+   "edu": "大专",
+   "school": "镇江市高等专科学校",
+   "grad_date": "2021-06-30",
+   "major": "环境艺术设计",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "纪元野": {
+   "name": "纪元野",
+   "store": "日照苏宁广场店",
+   "pos": "日照苏宁广场店 代理店长",
+   "rank": "代理店长",
+   "store_apple_id": "",
+   "hire_date": "2022-09-02",
+   "tenure": "3年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2022-12-02",
+   "level": "",
+   "age": "25",
+   "gender": "男",
+   "first_work": "2022-09-02",
+   "work_years": "3年11月",
+   "edu": "大专",
+   "school": "山东水利职业学院",
+   "grad_date": "2022-07-03",
+   "major": "投资与理财",
+   "contract_co": "上海天羽冠智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "李珍": {
+   "name": "李珍",
+   "store": "日照苏宁广场店",
+   "pos": "日照苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2022-08-17",
+   "tenure": "3年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2022-11-01",
+   "level": "L0",
+   "age": "37",
+   "gender": "女",
+   "first_work": "2015-06-17",
+   "work_years": "11年1月",
+   "edu": "中专",
+   "school": "日照市东港职业教育",
+   "grad_date": "2007-05-20",
+   "major": "计算机",
+   "contract_co": "上海天羽冠智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": ""
+  },
+  "史力如": {
+   "name": "史力如",
+   "store": "徐州彭城苏宁广场店",
+   "pos": "徐州彭城苏宁广场店 店长",
+   "rank": "店长",
+   "store_apple_id": "3640986",
+   "hire_date": "2022-08-14",
+   "tenure": "3年11月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2022-11-14",
+   "level": "",
+   "age": "29",
+   "gender": "女",
+   "first_work": "2022-03-24",
+   "work_years": "4年4月",
+   "edu": "本科",
+   "school": "中央大学（韩国）",
+   "grad_date": "2022-02-14",
+   "major": "日本语文学",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "徐婷婷": {
+   "name": "徐婷婷",
+   "store": "连云港苏宁广场店",
+   "pos": "连云港苏宁广场店 店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2022-06-17",
+   "tenure": "4年1月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2022-09-17",
+   "level": "",
+   "age": "36",
+   "gender": "女",
+   "first_work": "2010-07-21",
+   "work_years": "16年0月",
+   "edu": "中专",
+   "school": "旅游学校",
+   "grad_date": "2010-06-30",
+   "major": "导游",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  },
+  "颜方岳": {
+   "name": "颜方岳",
+   "store": "徐州彭城苏宁广场店",
+   "pos": "徐州彭城苏宁广场店  店员",
+   "rank": "店员",
+   "store_apple_id": "",
+   "hire_date": "2022-03-23",
+   "tenure": "4年4月",
+   "emp_type": "全职",
+   "emp_status": "正式",
+   "probation": "3个月",
+   "regular_date": "2022-06-24",
+   "level": "",
+   "age": "28",
+   "gender": "男",
+   "first_work": "2018-09-05",
+   "work_years": "7年11月",
+   "edu": "大专",
+   "school": "无锡科技职业学院",
+   "grad_date": "2018-06-20",
+   "major": "视觉传达",
+   "contract_co": "南京天霖聚智科技有限公司",
+   "contract_type": "固定期限劳动合同",
+   "contract_term": "36个月或以上"
+  }
+ },
+ "compete": {
+  "source": "京东平台竞争产品信息统计.xlsx（7月）",
+  "platform": "京东",
+  "total_products": 269,
+  "shops": [
+   {
+    "name": "Apple产品游戏主题旗舰店",
+    "products": [
+     {
+      "product": "iPhone 17 256G 蓝色 官方标配",
+      "link": "https://item.jd.com/10181383335547.html?pcdk=Padc4zeQa6BIlCKuXIjrN4fRODP9R6kaeJGR-RK8p5v-82TfFuSQqKhSe0efRViB.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 官方标配",
+      "link": "https://item.jd.com/10181383335556.html?pcdk=Ri1dmVkUupISC8_7dgqoZzmq1qzZJrlcN3s2v3PPW24rP76waNvVBYfIis_F6zsm.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 官方标配",
+      "link": "https://item.jd.com/10181383335565.html?pcdk=HmhGDgPjg-F-69hvW3eYcYgsHbMSIEOHhsA24eYHE0hCjzjHCbe4chkS-aySohMM.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 官方标配",
+      "link": "https://item.jd.com/10181383335574.html?pcdk=nVgh5-9A4dGSHHTHD9id2L009tRRZ2bG7hMCG6RhZjheba8uiqx9HvjIMEvRLOAy.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 官方标配",
+      "link": "https://item.jd.com/10181383335583.html?pcdk=Xf4KXp2TuxcPr55sxzx-z7JpVcNMrFs9XkqWE5RUYQ28j28odDtwiq5Q79bYgYY_.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 官方标配",
+      "link": "https://item.jd.com/10181383335550.html?pcdk=EOvdsp3jfffFMT8M6vTGZ--C5KXwNQNHjMxbDy76K9Se4k4i4SP4UY_mpvkWSik5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 官方标配",
+      "link": "https://item.jd.com/10181383335559.html?pcdk=MkpJtcaH-zzu6Hlg6bRSTK6w_fxx1V-qvDloqsqka8BcLJZXLApOeOQrBH2L4Gha.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 官方标配",
+      "link": "https://item.jd.com/10181383335568.html?pcdk=w4H0rirfpUFCqhtCnQEIayXDeaWndKaUKHq-vreYAcINn843rH9TCqiru_Gm45yl.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 官方标配",
+      "link": "https://item.jd.com/10181383335577.html?pcdk=h7meHkv6mMWOWFHQyWxWRE2SK72D-NIbWGGpTspJvLaV5GZaltYZylRmUu7BevJ9.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 官方标配",
+      "link": "https://item.jd.com/10181383335586.html?pcdk=10NWGv5lrEI0L89tR2XHKUgq7BAnQk_O7nITJMDwETD0NzggjYS0QQSs-o6SiNuS.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 蓝色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335548.html?pcdk=zYZ0iX4S-AhD36dvfcOKzJfiujnJqQYEHoYs2CAktcf4xr9N104jOF3Tn3kvmQi3.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335557.html?pcdk=W8tGIFr-Nln8XaxtbnxD0LjOH67ag0pPxXDbyRLtOC8RT76Iy3K69dAl0-mlSurr.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335566.html?pcdk=VTfBNm_hANR1PT4Fm3aESW-ixzbheAfxG543C39d4cAdpmd5wfm6J_jkan87iTtf.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335575.html?pcdk=ppG-LDBVaVtZzbzF0Y6mKWmMw57znxW2klrJCZKcDNV9fFY11EiQRFH24l-v_lG0.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335584.html?pcdk=dd2ef6EYhLhY1RyE5gwaR936SuC_IolbrikGZArT_thNLwOD7OOkMFGOYibQ7Tpc.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335551.html?pcdk=wzb8EZqlSiWtAfKBxkmS7Cb7uamAGPgzpi24OhtVuE_d4cL1V8L3F2xw2JXwwpbD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335560.html?pcdk=E53jQnjbgRt6ogxNgIB-_es27zxlriNgoH9LWBYGy7FbHNVcXnsl-3Ht2eGQRuZ6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335569.html?pcdk=aDNcR9rwd8nzDJ6be-7Qw9rxQpZ7ZbXrMR7fjBcm6PfDxx0TpDJTOLQEJpxMB6mY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335578.html?pcdk=g40rT-8_I5ctFA48D4gW7vXCHhdxY00Avmz92V1KAjFHP5J8q6Mou0PSf8TgTdCL.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 白条 12 期免息套装",
+      "link": "https://item.jd.com/10181383335587.html?pcdk=2CPKLspqKCkH3pUT7WiwlClBfzd8g5Ad9DLtdo9vXYj9OrK3VBqLg70I9YRTQ4Ee.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181383409047.html?pcdk=GRmSMyXGYmThZSWh-e-9ZP7B3G6TacrLF9gqhicnIW3ZGFph3CjYsJRnbb2wJqyy.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 官方标配",
+      "link": "https://item.jd.com/10181383409071.html?pcdk=RTRumjnYhygYCZLNW78arCpcdFvqqMxVtdFVQbd9yLwOkGZfjwIDovj1LZQyic7J.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181383409083.html?pcdk=fBPZaZqHDY8tw-LL1H5LR30NFBYj6Sab-V-GBxgBK64c292alwWIeDcOf4B8vZjH.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181383409050.html?pcdk=g5Ei1GPQUQZUv7w8hNv7sNYO4pQpC58--ZSNgJ8fmgOWqlBZYqE3lfuWLxHvO2hQ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 官方标配",
+      "link": "https://item.jd.com/10181383409074.html?pcdk=hmQMIWDJM3RsCxFMvVP3CEtYHj8c5EPvDGrfHFOB72E1Q5ixOc4FVav1anMB4Gcs.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181383409086.html?pcdk=j3jGwaL6P6YtN-ZePLwoor2spNgSsWrpDnIDuRlo5S3KG_r51NI27ykbpFwoOv7d.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181383409053.html?pcdk=DqPcYX8o3WguLpRnr_DoEMK3q7yI2qC8GHDACPLRSxaiGudD5KdYMQheL9HXerVD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 官方标配",
+      "link": "https://item.jd.com/10181383409077.html?pcdk=63KsjFjwUNSOJtCLDk-7V4hqyxgRSi7VPnlYf8GGSsi2hh8Nj39ncYbLOZT9UaT6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181383409089.html?pcdk=TK_-QzHckJhjQWnwq5LqI55zL388Wmkb8IWfGMj7vnyWlZmL4uaWMZjSCHh6YLFS.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409048.html?pcdk=mEKshxE386P46rU7LjS8P3UHOZVQf2f7D5snyfrOD4ma4O9VGQyb6mOD2EspAW6z.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409072.html?pcdk=Cz3agwKgSVRf30nt1je6Lt3HE634WZUmovAHSabwiwQRl6safLoq3Qz50uVWeZHj.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409084.html?pcdk=QqZzJGo-2MbzNfOvE3HuPpMf-9RtwH4tMEog6ZbgECwAaJY2qTPtUk63soi7kueQ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409051.html?pcdk=e6wrwqG7Qar_v53xRF92IO2VFqsT7WETuSZcUJ51sJhZm3FFVH2fnXymIfte8iGl.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409075.html?pcdk=PO8LbdPF2T1tMxFQHFxaVHYPdjmiTPzRuheTRSjpSjjMBJQh9HnZSop26bzbz1Ih.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409087.html?pcdk=W4e84vPViQupGwuRU_tvHmy4o2CZK8NU-8Vv3UB1vOQjfKU_UKksxeS9WonWbyXx.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409054.html?pcdk=IojdVyfbBENCWpoQADCI6n4rcFlKy5HLnbrmUsJ-3aF_vbQMStbI5mhPEIOJbh6o.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409078.html?pcdk=ddpSQFPpWneHmzpftcbwgg2NdcKqtldK4H7M9HSUUGOvcBMxVo6_neczgplzhQZV.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 12 期免息套装",
+      "link": "https://item.jd.com/10181383409090.html?pcdk=3h7Ig2ynsI3HByiTA6QHePeCtNeHiqAnhG50P2YtnyEPf14x6yNmYI5qvv6lZNFb.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409049.html?pcdk=-WToQss6VX9hU0QFQYBFjtv-gddq2Vjd0m76p3_KxRgxVoe1D5eHf12YY73Ujjyq.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409073.html?pcdk=Fw5Ry0iOLjBoddQsCNGNj2MuHHcE09ZCzBruxEhLwuComVfK3d8bsR4Skn740ufh.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409085.html?pcdk=pAF5DEcuLOC0G-v6pU-14-BXtBEeCHDP4Z9mJduzL53ePfy-99xJbisq5F9Dhgw0.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409052.html?pcdk=jk3S8voCY50S5JAAGTnvgrUnmOovPzmi7-qVpd54AnDGn5IHHzvsH4U4RN6dV2QJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409076.html?pcdk=1vGbtwZyv8HgCd9ps4wlVfwx-K10r-VwLTLrlatkSEkhlliQ3XZB1MIy0ZuQNUXp.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409088.html?pcdk=Rk7rsFB-t5WREbZNQj0u4sQHzN4wBGCoLiCt_DvLenSNf0ewYLEgU-1U0w-hAU04.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409055.html?pcdk=_wDba3_ji6j9KKRVA7qyj62c2M7qU7dw9Bo4HxC9uCdSakaFdrNl97uPMqUn_0kZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409079.html?pcdk=Gql7RXS4oVSjmmqZbH1nqFon9d40n_wA5Q0YNuyPsVDnqO43Sv82DPhqZcft6XW-.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 24 期免息套装",
+      "link": "https://item.jd.com/10181383409091.html?pcdk=DruxmvGrB0AL0U9to_tX-rz83c9OIC2J5Urgp9R3oSjshRaUW76a8E-ZSeYQ-FuD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181383848993.html?pcdk=e6Y8zS1hZtWXSmNbORHSrzVIAGRditJwMZz3QLbDLk0DNbgfDc8dImeczBuLbZe6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 官方标配",
+      "link": "https://item.jd.com/10181383849017.html?pcdk=Fexb2oWOxBRficWorbokYOhSzdBfxpY8TOqgk5DB8c6mLw5fKCFoBO2DazlsV7fo.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181383849029.html?pcdk=LlYL0fqHQ9ERUp1-_5BsdXmZUm_6YwAFOTWIaUBRKXpPvjKb6XwuJjT7p32rXzSV.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181383848997.html?pcdk=ho7r3DoDzAl-Huu8NpfodEY99wWld1vLNbkPPvChCLPH8JBOG6L8H8-0pIPRnqyu.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 官方标配",
+      "link": "https://item.jd.com/10181383849021.html?pcdk=jMFfQmHMohSxesbs4YoVaLy06ZfNujHs1QLvu4XAUbfNHshzZ1w8r6LMxqc7gg5M.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181383849033.html?pcdk=GNkc6IdcLlVAS5kTYjtw5V9WvSUAifSk0TskhoF9cWsxK1sWuet--XGxSZrl9HuU.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181849395120.html?pcdk=eDQbzTvQuJIVNHk1AbHYMC2EvqqGfyyOhjW-qKqv7R6zFY8YAH-TPbZC6r2ZktCJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 官方标配",
+      "link": "https://item.jd.com/10181849395126.html?pcdk=O5abkckWpCZSubkO-UHAdJuQqp98ncco-W8OAuWu9qeZJSp5XRBNYM-3BCHFPMtn.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181849395132.html?pcdk=WtIRYdGCKSKJ3DrwJGuHHExLm0UJf9wJM6SUp6cAyIVzGSjYVt3Xk7H-UM4qpRx6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181849395123.html?pcdk=gaO7SO-BDNlQv2nF_3cAp5ri6fs0FAQzvQR7zGuE1XCBYCjEEoNM0B2ZptuWLgdC.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 官方标配",
+      "link": "https://item.jd.com/10181849395129.html?pcdk=G7796BGe3S6Um3f1F5Ay2NsvuifxhFHAYMM86iS7RWexhqKbCYMZAL-TMqcBaPzi.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181849395135.html?pcdk=2pm9g6MY8u6uPh5dYEVkSVzk6GZApBdLGdjvEbVukmn18nWV7v3cjQ1Lgmj5_MjZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181383848994.html?pcdk=iwNR-jZe08XJ-FjFO8Yf8LuNzDKjvPBP0m7eUu5X-gSNfqBu_LexPwCNr9dXQGgZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181383849018.html?pcdk=q239yDhYZBKPwQQOVQNNarSHNZn16jrFIShT4gNM1nW4v7tiiLwYsdCwnhsSLLJ2.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181383849030.html?pcdk=QQIfRahM2Kc7PJ3uPuzqwdlQJQS1277q6J1E8tHUE0Oh_Olk10C1ktB3o-KTJa7h.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181383848998.html?pcdk=iAkzi9rJRCek9H9UtcOb56vKq8EFx5nrzK3T_C1uc_ntac3b7-ZTi8NuNABWjz1Z.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181383849022.html?pcdk=SgEzfqLlKXOFk0KlSoLU7XaMQeo8ZmIkyiKU8CmpS6R8SzPRqgI7xnj_pCM42jhp.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181383849034.html?pcdk=8SooGjd1QRkTHOSEJyjziftvHEnfcKwStm2JL18DUbItU5tkdPaoOaBk1fqpcHyq.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181849395121.html?pcdk=OSN8xHrLT_ZEg9AA-W-rIygV4XQQVSns2ZaXDMwfxidA6g5s7a6c74VpXgU9aUbT.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181849395127.html?pcdk=J-bsImfCv1nIGBUCwctoJvm3KpnzLLo__TdzIdTY6PRWPFPXu62wCQ_F16Y5m3zp.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181849395133.html?pcdk=3-oi7q6Wc_frEJLCczieqonRZ0ZluKe-V9YhNDRRCvZx3PcG_uXgoIpLASPFFjbJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181849395124.html?pcdk=6VkKQdc6bPmiwJhgWaPAdyRhoCmqWg8JfMSK-vdD8hWAsMKlH_jclpimfOphdx2K.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181849395130.html?pcdk=1tQF8ytwMnWkSSZCaAoL2jKWzTBIo4GELTKLJwmL_ba9l0wnqfnXLcEGo3qOIRf1.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 白条 12 期 0 利息",
+      "link": "https://item.jd.com/10181849395136.html?pcdk=QSPqedldTFSnLB93Nql3xkvwGyniLV0MXv5QUmrLo6iLA-2QCetXgqsvDl7sk8t6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181383848995.html?pcdk=o-g_mSofqrPnFQ0gFAnIx5UuPUdJyq3GwebmGpJfzU39Hk9dxsUelYSr5DRPDsKy.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181383849019.html?pcdk=u64nDYBruf9Tu5PF7YWxXFgMVdPa987Mqi7yR8UiMdlD0DzH2x_NrS7UG8g-jwd_.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181383849031.html?pcdk=w4h3hir_tV9-5ipO9hUdEZ6Jf2G9ZYr8jcVd3DVJIFWYO48gFmynjWgSB9m4SCBY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181383848999.html?pcdk=iUgbUftytHqdwyb5zTVKmg7jEeJ5d89Ua1xyzNddug2-4hJeP00sugfAwXZx6bNo.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181383849023.html?pcdk=wV1xKxifuP-nccTIKDcrQaZ_ZTb0uI39ne26CrKDBUMoeY5anXq1NoG1uDW7cs0G.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181383849035.html?pcdk=10VrriYxocwC63dtUCGATROyby0EP12AiNWesk17YsmKAFLCC4in8RHJxx-pPzFy.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181849395122.html?pcdk=oBGBUcbo2YlluhlFDIVrm3K1FDP9eL2rSbuTAHugycsh0HuLM-CFWyVupAmRXfDe.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181849395128.html?pcdk=CYW-6lb4gywX0uhXG94Z6JnptbsnZLTjA7pKxEq15gNMrBAerlPIcp9rb0XLwxGZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181849395134.html?pcdk=dSZRZ7b86ul3QeQMkSNlNIoEn_brYKYaM7Vuz3kyJu9B12lNBvDDzmACpsZlSOu-.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181849395125.html?pcdk=tSecTDqlhws4yW0BxIpF3jJFwIj6OjWMnZCqx0ABfZ-I7hY2mOXXuykE9wseUxO7.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181849395131.html?pcdk=g5igymO7p10Wq16MBmu-oHF5wx_veQQC83Sdr55wZvdvDjvF5V9jwU7Q-osEBHIu.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 白条 24 期 0 利息",
+      "link": "https://item.jd.com/10181849395137.html?pcdk=A9gDv1qsBegkbEAp5RamHat3PSKQvT5XZrHWf9IBVVD6dgtqAOkYoZjxdT6IecGY.rQ4a.tlbT#switch-sku"
+     }
+    ]
+   },
+   {
+    "name": "Apple产品丰年时代分期免息专营店",
+    "products": [
+     {
+      "product": "iPhone 17 256G 蓝色 官方标配",
+      "link": "https://item.jd.com/10181298251566.html?pcdk=FNF4w7wt0SZ-0fsyjgGmL6gPq5UD3-8hcSDgPNrN7G_4VfrtV_AgdRDVxduxqvFa.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 官方标配",
+      "link": "https://item.jd.com/10181298251584.html?pcdk=7c01DNavPLvlvVpMhX-dUV2BbpYUXCX743q6-3e8O7ykCmQPDI76Gsx1IQGsZc0p.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 官方标配",
+      "link": "https://item.jd.com/10181298251620.html?pcdk=WW0gQEvGTFsUe5kbHMHFp_C0OEYfVf4HkL1M8Xmk3NBA6ECmOIcwX-USCSqxaRvx.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 官方标配",
+      "link": "https://item.jd.com/10181298251548.html?pcdk=6PfRyJ0KWq-iE8vH0WqjVZgFQvny1YqD6Mw5Ndg6xfYtZi-NpQ6SbEG3Bckp8_A6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 官方标配",
+      "link": "https://item.jd.com/10181298251602.html?pcdk=moZwORa7TXrBUZ4Da21hTv3lrfl4iGXgbOUomitBViJKGmiszMY6vciwHDT4Z_xc.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 官方标配",
+      "link": "https://item.jd.com/10181298251572.html?pcdk=lL2XCFna7ZDjn-xzTY_UobsE-hOcQUPxktEAtTTCzfI4WSMHCOnHyp9VkWTrvkm4.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 官方标配",
+      "link": "https://item.jd.com/10181298251590.html?pcdk=oWXErrBanxiXqUhE9087LqMRvWnJa0XPcyaz4hiOG1pTN4uKn6s0MIU1HQPmm3_F.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 官方标配",
+      "link": "https://item.jd.com/10181298251626.html?pcdk=6ZUc84DUePbdiS1HjCstjIr0FED6mAMK4hWovUI6kNpXna8PyeGwgWsHhJXUNPAJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 官方标配",
+      "link": "https://item.jd.com/10181298251554.html?pcdk=xGzTNw0gJ-8HijoyJYDwvd0fEUUaSAo3TxObmgWZl2D2_VuJaM5-aZ_Dh6Kym89W.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 官方标配",
+      "link": "https://item.jd.com/10181298251608.html?pcdk=i5b0i2w6p54NsYSlR6G7VCfBor9YuwvRjiwcb4hpjvtxCCyvMg6oaM6twArGAYcW.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251564.html?pcdk=VEn2m2RnzlPJ3UlE9TXgg3JAhjEEMlSOVuZY-lqUbayzKokZOBZlnMKa73jh1hvO.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251582.html?pcdk=y_5IiVpGaUgpm2jxB5uU9mCWIGlWIS6NUrmY-P69Cmo8KBz8rq0BIQ2VapiqSH4B.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251618.html?pcdk=uUhCq8U5iJSfG39mwQUIyfy2cSv2VS4V7nKFiafcBhgspefRyguYERe4ry1GC1hz.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251546.html?pcdk=tXPD_xKBghF43RGaUT_srz-8q0wzEJwxxxnbi6A15R39uhVmfnnq1YrnlmRpVTWF.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251600.html?pcdk=_xqy0oJ-Y7NRzE9b2jzFFnmfUHPz3Kf1G0LYowymEcc51AS-QFtoPk1gIFMZprJY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251570.html?pcdk=9uTSxif2qxVFLJs6BgFG_L2nPWF5weJXSuEC0l5nJF4iaYjnFP7zMIDJAEvNseVS.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251588.html?pcdk=cOQsPoc6blT9MNNW211JmyAmgZR7n7inEvnFBv2SDaeDCwukUsl6kBaBUN7SzWVy.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251624.html?pcdk=fFEN3YZmsfCXJ3qLnRj86-heTNrEay-J7fv6VxIoumNoi0TpO1aC9VFMLa7ATenn.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251552.html?pcdk=XcdNCSn8xNNMcu9OcTuieGumScWKmSCiDNC2z5CAjKxFnRK479W_FbCarTjVDAJD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298251606.html?pcdk=li_H9dsYQZoC9V9es6G28kf6YpqW47qgHtl3CUG74uW4REGUeo3TX_XWOb856RMJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251563.html?pcdk=65AreysDXt0-ULtOVCQJ57Zu9PjmaEpRIPz3kY_egO9O2i8lIKnSvFON0T11vCSR.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251581.html?pcdk=Mw-XcKQxln73_Gz8C15ItrcVV__rneUMD5yJe_Yi7UWR08IHFom4OUepTytk5kf_.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251617.html?pcdk=2lT1WDUIvox3LCV8OoWpj950GPdjRx_UzcDa8xwQh9nA509DnGQThqP9hNs2FoBw.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251545.html?pcdk=w4VpaIas4QBCmWwYbnzzvPrsO7AjYOnMnsO1T6RXXclGAfJGbSwoV3j6fdz7YJn8.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251599.html?pcdk=MbB_YS300OVs0OVuj_-84odWJISiFxpXWhOsiPl4smSlG7TYEUEiXO7TZbsos57F.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251569.html?pcdk=BtgIXHf-8BknMggEQE1LcnZyUhADTLuCjvkGrrLd_ewBmvpq-SXIa8OYogMJPU5E.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251587.html?pcdk=m95lsOu8vpPNvfLepu3CvTH_3A9mg-jh6qAKDc466gwobFDjGYk8KI4SexQV-kUX.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251623.html?pcdk=94J5zMQDjPRJyBi1ici7rFysMYQ_wTUbgFYMnuFNCVS_YxMugyeALY_AjpxtZfYE.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251551.html?pcdk=rVKRbHms71GhURg0Jqo1MuSBXNhpMQVxv6nI_iibPiZkG81ejrMGD0f0Gg-f0cue.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298251605.html?pcdk=qaX3ZFPYiECCEO7tG4CK5VXupiyfayuIAeaTmyrkswDomJALB_vu3Y2SlgZyONV6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181298553942.html?pcdk=bwUTIDLizGudTp1HXfQ2Pap7rKDflzWZQt9-W6nKaLf8SgibMA0Nhmnw6skL__cG.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 官方标配",
+      "link": "https://item.jd.com/10181298553990.html?pcdk=rhRXNfqvRpAB6lPqHsZy_2_C775f_-CwkOyzEba0UPhtitdWQDz74D64RZ1sd8mv.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181298553966.html?pcdk=-lV89z8Wh5nEtQQAazF58L4L28c7205_a6ndqfnOdiQTqfCHlciFqQf3DB8EAH4E.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181298553948.html?pcdk=xy-42ubl48vZqDwxegiLRIbNpwjlWd2UA10R2rowBuN4TzlMKz3QxijjueVEoDy6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 官方标配",
+      "link": "https://item.jd.com/10181298553996.html?pcdk=Fw0HJYEkQnyfrWIPDAfIqaSZBBh6n_DkY0Wa4FMJ9CNP7wLKjzXu7VDrl6obv_v7.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181298553972.html?pcdk=yy7oG6Sa6xoOOeuipBqgz449LEJAEfhPxucATqirh9GSxzhbrsryN3sezE4Pi9l1.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181298553954.html?pcdk=FSe7KOKqhuPtbaOIipiD2a4OPO7MXGyH1upEruHYSHWdLd66gtJFjB8ZrcjYcj4x.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 官方标配",
+      "link": "https://item.jd.com/10181298554002.html?pcdk=-QFyvScpVzTi6kaXF5zb_Etoya3zERkY4clI2sOreRKuTBJGQ_A4Vjg_dtPyO51R.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181298553978.html?pcdk=mwATu3JWT-T2PMPSLGjrO0uXy4zq7YSklzNKRR51p5glAKoqHbaBI53f5UmtRjp8.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553940.html?pcdk=mJrPoL_ybrBFdC7FoeisWZGunaYIqKjkoFhm5xYrLWGEiWm9SUBpvtgj_v_eHMQw.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553988.html?pcdk=oHbMiN0Z7QO99QbhRW6XkdCAdiDbWE53xlgy19tpW7i-04v93LlgV2LYQy6tXFOu.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553964.html?pcdk=V8h5Xetu02jV1B2SBE6lWv63YbBeyLg87GxkVbyLpebStj1HLZ_SL4U9Pn32bTUJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553946.html?pcdk=aL1hq6xjl3BoiJsUMw9zVooyeRnouqvw5LopOOcqPbA2nkt3JhC_nduzgKedpG0c.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553994.html?pcdk=2topTj8GC8a1svTsvsikpiDszCWKJmx-QibIBFKSmUJpBpaX_yb3kK3WZ6X3TVsf.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553970.html?pcdk=mBff7XsXqPxNIWcUIndTmRRB-2s55fW4VEWRiscE2bCGjlx9_UKatq27YHYsjamJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553952.html?pcdk=D93kiC5R6FliSf3EOQB_4Xy-YzrbVgjqCjVpejcRW8sTiJwBRVFmsL-XaNbU6e3D.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298554000.html?pcdk=XYYRJ_5plBBPwV-6Bu1rQEStACmdmlQ2P65oCPA2AYIQiunctqs0-9IFA7Pb_6RE.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181298553976.html?pcdk=ioyLlT5mASZvEuVui9oLH87OrHB1GoGWMN_gp2yY2En613WRkbXQpbvA4b81QKaK.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553939.html?pcdk=9OK7QOjbG_1Xu3mQ8Ygf8YF6toQeOJ_r6GMu92G-9UnrM6WzdC-V6OetkcoPoiJL.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553987.html?pcdk=400-HVjGj1165WaIhunF7faoeUrwZxqBOANXXGaNlkJHRX6tuXgVvrskPLCgsStA.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553963.html?pcdk=5ttJ0jWA7Wm8-tq3mOaAH-Hm9eftrvjpu7hsBLttt-5oB09J48pRtss5lvOGC1A7.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553945.html?pcdk=kJYlEy222ISwwzBZfPEvEHVjwZd6YEY4NP0YMl1xR_z20oGqsEGcGboaS4f7SmaQ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553993.html?pcdk=V-C9uneAu6qwek10wsDYIFnd1uXqIxFRH8jDvyRmT4OaS1ym7lrUKj7py56HnONu.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553969.html?pcdk=BJR6jjuYZyoCkZCY43R3nwmwjmegy1UVCgOOiYnAYQLYi00eR0EdWmGpF0c6CarK.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553951.html?pcdk=IHPstUe9RYRIvwECgL7zvaiU3l7BgM_ULypMkaoXVQbgv2XNvlS5CeUj8tVxKIe5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553999.html?pcdk=JCb4F-tDDqn10VfxNwKX6a9aNkUzDYLEtTvTE1e--GmdU0PwQT3BHGlSL_YYF76W.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181298553975.html?pcdk=s-9V3pVDrhPjSUuOQmAzoNBBKzTAAYrKZo5aoJH5JgtRXHQtI7DcqXuC1oRP7tlz.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181297466214.html?pcdk=rCifBD3Tp_XenCr5-JWVc5zq1Npv5TIls0DmlYzszZoUwoLDIpRAg2LrstxmQrYd.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 官方标配",
+      "link": "https://item.jd.com/10181297466250.html?pcdk=lDHRswVfCwocj5Bd0X1tCfpoAEl2w6s7An87aTz-_ZTENvbj4wcfNWsAvDK54_vZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181297466232.html?pcdk=okk25cbdqLSvrFAtTpViFcVoSzpwbpnJDNdQLWQcVs51VgturbjdhF_aucnVxz1e.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181297466220.html?pcdk=-YLUjDzRlJRiwq06zv89q6ruMnkMbALVO7VYBfOlgiMIju06V08S0BHKTovP--Y-.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 官方标配",
+      "link": "https://item.jd.com/10181297466256.html?pcdk=nPkz9tvXpf_OQy7ofYzrcDJugt0McxyHQGL_YAQKk6dyQjtxONpm_ZGLuudt7iez.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181297466238.html?pcdk=7uAD3qpP_GaQjMEXKxBRugwkphw6nmagc1g5wZbExro7uTQooOfQkqeAkePBTIBg.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181297466226.html?pcdk=1ZQv8oy4xXrQl-Wyi9m8wG_i7U_uYn5qiqcUFQ_KlIDk5bjmxMDhUhU2xqPzMMKX.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 官方标配",
+      "link": "https://item.jd.com/10181297466262.html?pcdk=3a48C_86mCsInIUE-ELDpvBU-M_VAhdGWFccVnjIJ2oRAP-c9dT5i2e9oGo_ApVO.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181297466244.html?pcdk=9aKA4WWLjv9ZTCPa6YNyyzFHsxg00TwtOd__mQYSJZuvWb0gjXm0g69YsJLaF-QV.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181852419374.html?pcdk=BxkdxYre9Vm6aCC39I-oRBjZ64ICHdVPQN8dif94G3X6WnXOoJQHRp_NfT6BFbpH.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 官方标配",
+      "link": "https://item.jd.com/10181852419386.html?pcdk=vqUUFUkWUBlmCI_3T7MjVnTdd-cicZVqyJ6tcTW1qvVM0nZKMChDSPL01t6Z3eG3.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181852419380.html?pcdk=RJ6xi_uQudTx6yYlj2K-hbn3iZuto6u1s_Yk-Zt37PrZsBrgNPZmz-mcjRjivdMr.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466212.html?pcdk=rJjzLB-Ivq8Pb-Rg5qL-bCsRhQFt0u_bBzHerAyUXudHgFC4qLQUcwGziJEPBENG.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466248.html?pcdk=UmD3AU-NrVzwf4qDgSitccPXikK6-2qZz1KKhq8K7teSxLYuMjsBnlr2KFRSWnGo.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466230.html?pcdk=lRWyxpU6BIQwGVl7mNl1zfnCXR1Q99-6fXhchiD-sVkrP9V53vnA6vIPafVn-Y0p.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466218.html?pcdk=Lw6ZBdWidX3cgLvnfcnipBKjH1UVAOGzpWXskosunz-bin3JgDKoEBYFj9xB_q8E.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466254.html?pcdk=ozqsL6j3-QwV_Od4Dyv8JMefBgfM1i2cm7cAoPqMqV7qLLycdsGywA3fAHYHTIc6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466236.html?pcdk=Xh_Fk0oaTdxvQdJAyFzGosWYQHNcE7ozt7YAZlO26oohQ537TQJN-aNNPyowHfHi.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466224.html?pcdk=RE5ams8y3P-xIOndQC-nNMw-cidAZYBxksRKNLkNBc8yrQsyz0SOOxnCjmmwty3O.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466260.html?pcdk=LW422d-Mwmnc4mGlp0kCnDdc7hnQ6dmSoc2BO6w3TZGlHTU6G4is-4XKI1Fkue0B.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181297466242.html?pcdk=Wv2djB9eu6CYxNZqVLlp5gUgzGcc3d_Q_teevPWzwxf5EFEnFYgu9SJJy5mQuYXn.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181852419372.html?pcdk=_51bM-OrVFVj8xxwzQOcrm1o-i9W_B5w3GmedTt-zctOhNiAf_N4kxbIyT4b-EZe.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181852419384.html?pcdk=pdSgLRrMg7g6f_9nL6dskz06d-iAQcVCIWjd9_sRuiH9XcMdO3FTDvHGO6uJe7qV.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181852419378.html?pcdk=wwEQeuwlo6nfWWjMgTOQiBT7IaB-S8o1uuJ4cnWKewUFw3y2RIBz_XdDgjbY-yay.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466211.html?pcdk=tD1tXdcqWERBXjZanVPZx7NP2sRnoAOEgja7WPKcPKJuEBRe3TfvNqKinNUwf_jY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466247.html?pcdk=o98ep38_VUeZREz3EZpl1IuubqIRXit80Yke9kou3dWKw92ydRYEWEhMqC223j-u.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466229.html?pcdk=UFqNEihgmwHj71BuBgDncjmr1ZlvvZLhQLpLAigjWD17o_Zlobm5-gDWjifqQdzN.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466217.html?pcdk=I0VAG9BWJcwp_c3snF-Lf1SRGc-8R9QeCc1_HZ0vcXfsMT-C8WJbaFrFzvw1cEzr.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466253.html?pcdk=srWYMEHe3PbXg3kS-8q7PV1b7eoGd18mf1QdrCHmzLSnhuZdqOuYdXPRze6lWdGn.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466235.html?pcdk=YG3pqHLAvXFu54n1B45fcTUotUaC6ZoIXiad2Vx9yhQ1W51P2ZNqwYHVm6oh_AAJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466223.html?pcdk=1YoUUYLBsnrZM6A3E35cg4IAaM8W1pYSy5hlM9DB86Zk9i2ssRnNk3aQwqkjHOn5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466259.html?pcdk=6CubOQlwSqwacUOvzAvzbTDeKf7zNQZTAVqXnJMHEUao77P3lCUJBJaYoB4KoneH.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181297466241.html?pcdk=PtFz0SLt08-1-00e0-ibbOji0HftIWIImlSlkc-xzBpBJD3BhhJMS2mua7A3ej85.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181852419371.html?pcdk=Ehaa7ywr3XKPt2wBauegae9cX-5nasZSB7hESU2uiXK0tlKGFpNcJPEWLtLvzRQY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181852419383.html?pcdk=hAeyik7dwDMswAKTPrTFdVjb2AgeowLbMRgdkRtNwJrpcs40aJUdD2dSHY6iky7g.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181852419377.html?pcdk=Hdy1tkFLKiibX_uTgevgd4PYbVFNSpJe9h4bKRzSlE3bUBytUlv73e87183N538I.rQ4a.tlbT#switch-sku"
+     }
+    ]
+   },
+   {
+    "name": "Apple产品扬笛教育优惠专营店",
+    "products": [
+     {
+      "product": "iPhone 17 256G 蓝色 官方标配",
+      "link": "https://item.jd.com/10181311247123.html?pcdk=GhKhAEOdsYXnuPCS_RoW12Rvw219yQVa1uiyypc4IuJjUnB3LXmC__QIZ93HYYeO.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 官方标配",
+      "link": "https://item.jd.com/10181311247125.html?pcdk=UEahPYvdJYMjlYtDM4IXy4PO2qj3klJE0a4SFOwKv0sBMDXGBI79w7idILJOMH_9.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 官方标配",
+      "link": "https://item.jd.com/10181311247117.html?pcdk=iJl4Y-kfAe6ahq_5Z39FRBJyEn7LDcblE677OkAV6H6yhJqEDNPkwxcr_zwuN-TZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 官方标配",
+      "link": "https://item.jd.com/10181311247119.html?pcdk=wgTf99MKZAcFDl9w9hQaXmDT6sxaPpMWSHN1n13-2Wg=.M8AW.sbc1"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 官方标配",
+      "link": "https://item.jd.com/10181311247121.html?pcdk=Fq5hHhfht_9tE9s0znWKE4G0toShukqiGunut1HJz1q5e5yW3ffSK3QYK2OfGNoQ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 官方标配",
+      "link": "https://item.jd.com/10181611798163.html?pcdk=ZiUTg0IOPazWskOp7Bbg1f5031TZ3rZB_al-xBArZn66BZtTQz4pDfEK0zfiZoP7.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 官方标配",
+      "link": "https://item.jd.com/10181611798170.html?pcdk=XASmhKuX9E7kiWdOFoXRwEecEhQCaH0cdezZ6hhIeewfF7JkJ6Tbn-OLM6i12PyE.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 官方标配",
+      "link": "https://item.jd.com/10181611798142.html?pcdk=lG8PxLf92zvf-Roi6qe68Wh-gtkYdcYWRfot9N1r8AnXh8ICJAwSkzIozKde4M3l.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 官方标配",
+      "link": "https://item.jd.com/10181611798149.html?pcdk=OEBonWCD3BIJahi6PC4JF3st-spQG4vqUitPGtoqcEmXOjVT-0nqNjGZuVWQeVzZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 官方标配",
+      "link": "https://item.jd.com/10181611798156.html?pcdk=HvC4INcDodbwsJglP9TPMJWeQ0grHJAhcGwT6w_YCjIeQf4VsxYDrzsk3dlgDesm.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 蓝色 白条12期分期",
+      "link": "https://item.jd.com/10181622935663.html?pcdk=zt75io_cfQkKtmCBCwDA1_hKExuDszj-qA5RyqgbaPpx_XVxfNIwUVrvYwtV2x5J.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 白条12期分期",
+      "link": "https://item.jd.com/10181622935669.html?pcdk=sWnCtHpdkGq8pyKpyqT-3HBjEq9m2HAt-6WIg7BX91OHNW_Te4fxFyDV-vFkvW1q.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 白条12期分期",
+      "link": "https://item.jd.com/10181622935645.html?pcdk=n-hjt3XJMVbgzYORjKbv9BAt4Gd-VDj9AFgQsQdVc78fVC6aZw4mUCD8EVo-k4Ok.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 白条12期分期",
+      "link": "https://item.jd.com/10181622935651.html?pcdk=6SA2yy7GogfEpIzwQOjR0w3p5JyK60O087UCHdLduOGJhHiW4WGChG3kmQDnqdRq.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 白条12期分期",
+      "link": "https://item.jd.com/10181622935657.html?pcdk=JfGpOx4ctARqizcSbAXuthq_bwJQBy1vFSjEiEoh6Ec4KOd9nNKaofC5WaJq2rI8.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 白条12期分期",
+      "link": "https://item.jd.com/10181622935665.html?pcdk=MoSvm1vnPIhbwlg-e7pB4gd85iWiHXZ-nikXBw-DFvPfMaAn8gnxIA97G7swMhJV.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 白条12期分期",
+      "link": "https://item.jd.com/10181622935671.html?pcdk=hSplLwGZdtPNFT3xNw1PHlx91LM37aeNybhTUgp6NJFeFn2CFblFjfA2ZUmCPYaa.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 白条12期分期",
+      "link": "https://item.jd.com/10181622935647.html?pcdk=iDP-uU_aWRIWsKN4tgN2pf2xau-bjzXSbJyW3ELDllYyWFZ9OGsHIO9f_rGTIpTh.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 白条12期分期",
+      "link": "https://item.jd.com/10181622935653.html?pcdk=fhoWKdAw7RBSS8iCu01rMJT9S0WMXtgEDjcHk2G7G4-dLtV3WhbWR2koykP3b-2Q.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 白条12期分期",
+      "link": "https://item.jd.com/10181622935659.html?pcdk=WzZLFxnOByi3TxWsKCmyxuPUCXelAu_O77KPzkxmiLQIL-hsiFUN-tjYCq9A_w0k.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 蓝色 白条24期分期",
+      "link": "https://item.jd.com/10181622935664.html?pcdk=_K7l_7oCQIFi68N3U-w_Ftkb9K1GEW2tdUBFUGZeAKl1eli20ieFGI_PC4R0bIEZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 鼠尾草绿色 白条24期分期",
+      "link": "https://item.jd.com/10181622935670.html?pcdk=2ZVZVkTEIhIQa_V_ev3-tpJGcRcLpa1FwZQ11wcl5IZCVqyjw426nDk54M9E5JF0.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 黑色 白条24期分期",
+      "link": "https://item.jd.com/10181622935646.html?pcdk=EtINx8-kzgHLrRTutjqgBOnpL-eJQikln6OjI4OFuhnadNl-lDQEg1KiUqx3vgGZ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 白色 白条24期分期",
+      "link": "https://item.jd.com/10181622935652.html?pcdk=24k9sOwemW8I8Sa8uO-8ZI7G6Kkmbvi2TLIrzFYaZ_PYycyC4KVFCpXxyZy0B_M-.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 256G 薰衣草紫色 白条24期分期",
+      "link": "https://item.jd.com/10181622935658.html?pcdk=oHRmNuBP8FJAB3aGlsv_Xwozzg1gfdouJPRdsfOaMbFFTNmoDO3ZfMd-Oo-9DZQD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 蓝色 白条24期分期",
+      "link": "https://item.jd.com/10181622935666.html?pcdk=OMDYmtya2HCKZjnTUGSyvmXSAwoBkzKo-uyiP_cpGt7WQm_MZ08bFLumEdzNzSXK.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 鼠尾草绿色 白条24期分期",
+      "link": "https://item.jd.com/10181622935672.html?pcdk=GuqQ1g923jQIT0DkHHEPMdcdRRsaI-mILS0InSi6SJQDHC4NMkuOnBE4BKyBLjC5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 黑色 白条24期分期",
+      "link": "https://item.jd.com/10181622935648.html?pcdk=sQNeXXy_-aekw0M6givMAxFLOLm_G86fXqZ7XawDq2i6SIfMNGgG9vjhoQr2q1V5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 白色 白条24期分期",
+      "link": "https://item.jd.com/10181622935654.html?pcdk=PAB_vwTDlGX2PT2ZziFYsYJlwZ-TFrGMLt3Yxi31LgD54xKxgjLkRzdydB7bHsI1.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 512G 薰衣草紫色 白条24期分期",
+      "link": "https://item.jd.com/10181622935660.html?pcdk=NhB6wP_ousFVc0eWvCxUe1NaEimXygjntba7vuDaNT9zvoW6p6UjG8OHxUF8tJqg.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181313182285.html?pcdk=y-Ckf6zZWY914Og4X-NiZ56drUw_8jGMlJxFlChfFyx5WjW1NiWi5RXOd5EEMDRz.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 官方标配",
+      "link": "https://item.jd.com/10181313182261.html?pcdk=SBR_TOn73exaej3YNYCVCXTkL-N9mjDroN1mbLSd-nLW2xDzurF7FXlomcXzS97x.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181313182309.html?pcdk=GJnT4RetrJ-7WxDMBZQjhfXLhak9Zuf1ARyB1p4cwGWp0PCV9KsHQoiKR0l05S5q.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181313182291.html?pcdk=5gA0Wz5BGgyYL8WBd0SnQu6I7NpbV5Mc1aBQcpmKf9atU_nvbtT9yHVmsIKXry-a.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 官方标配",
+      "link": "https://item.jd.com/10181313182267.html?pcdk=yye2ZIwm9kqN_mas8QREAl45ozsLgdwlCZU4Y3WzGMNr-PiyLAUboZ9mhPYTsLz6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181313182315.html?pcdk=J8jfsEUgQiB1Wa8a74l7NCtfi3YGm1heK1-woiULvQt7N3tMJqoZFXeS-heKPNlC.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181313182297.html?pcdk=xmQp3t00WIXaomv6dlH-c6bBTA6r3IKgIxFYqDj99i_OMKWsFMKRe4wx2zLtPxGm.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 官方标配",
+      "link": "https://item.jd.com/10181313182273.html?pcdk=GYAteCf-VeE7hlizABpHiYt8IPCsitjPgOcyDTsQeJahHG2t8oKVr3He-QS4RjiP.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181313182321.html?pcdk=gNE8Y1Fl-M3KF8jFf67GroVZ-pytc3_I1b9cNbOIo0qUrmR3UyQPcJmBcpzgPd2r.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494205.html?pcdk=ORRjwxcujVthI-rAfeOnerG-QEpQPN9Vv-6rZY5mPQOBn0aVfP-6IOsjUD66XBrQ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494189.html?pcdk=SfUhXUyzSsBqiK66n6EgdpHwl9XEOZ3qxpdKV-_KBx3Alqwe6-DwHFzeJZClMZAv.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494221.html?pcdk=nYvGCWr0sWP1k9FU97ChSD01_G_QOsWYifE_2VNRQomrxeBD8eynAqlM_iiMG1CI.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494209.html?pcdk=krlipPt7fLD7INhXHR3dD7m9kxsi-WakTd_eQoKIoERhKJmxxSJqRgebPQ9_U_0g.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494193.html?pcdk=_p-lqsoS-lmewt-KFpjqHeVpM5GkwmI2xYmW3NsbkFCrJnRsJwYMfID8DOxghbug.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494225.html?pcdk=D8-3rBDnn_QqClPCp1s1pL9LQ4CUNm9gfM5Wk7M7wdrnfC1XndZYSaQVLj6adrvd.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494213.html?pcdk=_6EMneShCtVC4r557doQusEEo-Fh_Gopubr1lLDdbC9xCgYSgb9G3JwPFE3ROnxY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494197.html?pcdk=Sv6oHWbZrLywVtDMoNtIES9kZusyenAIZxTbi0Mt6Lc1FyGjxFVCoZTlVy8zEdwQ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 白条 12 期分期免息",
+      "link": "https://item.jd.com/10181617494229.html?pcdk=Ull5Dinw5VJCXSi8GFj0jXBGKLqvpOD56irIugzfh9r_rOvqvnq-ovULpSiz2IVl.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 星宇橙色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494206.html?pcdk=bvCLS5yGlSSWvEumn5l7-wP8yFNfx3jDpUWaUwkS0IrelMLQjYVnhvFCqEa4okXF.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 银色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494190.html?pcdk=Cu5o7ALugWgDsBU3AcBHb_RhfDY6MfG-n0m9uspnfj5IrAL4KVrQBWiMRqcLdQW4.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 256G 深蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494222.html?pcdk=DIMuEliSm0mAc2rr2JAhiZwAcV1Us81HcPJrxNUThynk3AGiKmTNu6RL-OsESP6z.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 星宇橙色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494210.html?pcdk=aw_FVNHEQRZsBdKR4r-byo14mHcQK4vDBmuOLZ7YeIDGchVyp9Em88XABgb4D6S5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 银色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494194.html?pcdk=3M1eXMvncLmwi0bjL0lZ9Mh-pgFpCegmUwJy-iC_tzumCLSM41MpI338Y6g8gWlj.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 512G 深蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494226.html?pcdk=VAxscijabV-F20GInqVw-Atz5XPJa-nkAWY92gwcfiJeceI1plbwtZ9FrHSuScuR.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 星宇橙色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494214.html?pcdk=6XhdwuA5nI9F31Do0kTLOd0AAKFwWT3p3cPHK08Zen49FFMPYY4DuCi2zqjyYuHW.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 银色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494198.html?pcdk=828suP-MPtCWc1S_QVu-oKvQETKbfAbnVQL-yPGOvYiQus8pyVK-lHedDTrZ0rdg.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro 1TB 深蓝色 白条 24 期分期免息",
+      "link": "https://item.jd.com/10181617494230.html?pcdk=XHBIuLtiBrw9uIiJ7Ul9S7-YfGRjsCDmPWigqyQ_ElGVWN5mK878YNXYKeXkO2tq.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181315046051.html?pcdk=Vlw3JL8jOXzganxgVByxXQFoVKZzPkzur4PbQX_-KdKx6g_cyzDAoriDxKN5gVG4.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 官方标配",
+      "link": "https://item.jd.com/10181315046033.html?pcdk=jnTOFDC0-sTqHWwBoM7MlB4DG-Vjoeg_EoVkbCEsUQo-of1OyXksiPsYCInS5zbj.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181315046069.html?pcdk=eop2_4FzwN4RC8fcjTYS8KyMLieVade0fkZZnr8grTDPk_VEc3_gKmCz_x22xurN.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181315046057.html?pcdk=gdDjJsI-ME3NWCoyPNGhFBHLUtT0TkdVSHT1dFWyGrWRnmxhoTHnDTzZqVjCBJVW.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 官方标配",
+      "link": "https://item.jd.com/10181315046039.html?pcdk=sLwxYoMJ7ettHMzUHPWJKgU11Hw2limgLSCwgs_c0Fq91Zo9ALy4gupd7hkGW2Qf.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181315046075.html?pcdk=-9a1CN5y1yFB4UCaI2TpCDanz2Ua1TO-xaq7nl0jHcN4ndJ0RLOslGQss73RYISd.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181315046063.html?pcdk=MivGfitl6fpXoqEem9pg8VfY66JLAsnR_LX0ywBeGjkGayprkQLyGjaVv3L7ycZJ.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 官方标配",
+      "link": "https://item.jd.com/10181315046045.html?pcdk=d-kHghoEmpb50Fe-qN3DdqyT9Thq7nOWsgEbKctRhYh91D4kb71OZWWohsWmPZGs.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181315046081.html?pcdk=J923Bg9Cwjy5yjzfsd-WsuDSsodgEUO8QWhnMIelVouCo8HITS0C0R3NfXI2NvAp.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 官方标配",
+      "link": "https://item.jd.com/10181889743935.html?pcdk=OevXtm6cqqCNusSoWtGNIP7sPyJyPQcp20ImN-I4izgBiCGEAto6WyQq2pDtjgLh.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 官方标配",
+      "link": "https://item.jd.com/10181889743930.html?pcdk=O-u3NyjYFsizFvDDv355Bg2ZzLz77FcTYsVZxRiLrhYe5xIushY1flBmbBJz3x-o.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 官方标配",
+      "link": "https://item.jd.com/10181889743940.html?pcdk=F5DACB5g32MPlVRiP-8s85uKWAq1Ah8y8AtVNpvheyXMYJ3SIXqxvBSWnpML2l4Z.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075356.html?pcdk=aAOsNjLxYvfxRvKFbAKpzu1oXmc5z1JNhzF14wb_xhLOFx-auZa58R3YnYDh2Y-g.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075344.html?pcdk=RYQsEI7KSWxo1w4L7XcP-rZE1PLbNaVbCWzXACytu9QzuqM5O9ucmfGk0s5flHYY.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075368.html?pcdk=1RyUacXoZtkr3N1bvyBtd5rlX6M6ZMIKR0Muy_a248Ujg4ARX4yn6MX8haOgig0Z.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075360.html?pcdk=B__4vKgWtL6kP9L48rX1G7PSb1SRGxzrWVUpK64g0A2vZaNsEkwPxRb2gkU-Y8De.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075348.html?pcdk=9WtIXVHI2tcvCFekTebPH0ldExjw0yEZBh8ZuI_NaGrjvB1XX_vkFFRgSu7BfuJD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075372.html?pcdk=L44gKDYiuR7Bqf-64IXiRlEAUXCU2xQNZSXMM9KNQEK_FL0l7ELtvnoPP8K8nlLb.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075364.html?pcdk=xjVvtfn9NxWZPq9XfvDWOzY8HIZG3QHiMJB7WvnxbjIz3W_ceDiQAEaiFeud-nP6.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075352.html?pcdk=YXq9qQzh8EhgdsXK-KdQ38WwaXVW4XCq4OlhkQHVxtpoVp3vsQ47dxWIqXkYitXz.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181610075376.html?pcdk=84vzWKzJZzInmtP2C61NeMTRHunYmZH2n3z1Blco5IfP3uCmF8ppxeLw30bxzn68.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条12期分期免息",
+      "link": "https://item.jd.com/10181889743938.html?pcdk=BRNdy_x1YGnrIx3WKucmJRVpQFEWsklsMBIUHtfq-2tEedItA_nIKi_dCklCBPNk.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 白条12期分期免息",
+      "link": "https://item.jd.com/10181889743933.html?pcdk=8uzWEXBCAdbOndvHpkuCyonme_KOWLiz1ooXc9fkh86nYrEpsP0ntkn1fY1rFahN.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 白条12期分期免息",
+      "link": "https://item.jd.com/10181889743943.html?pcdk=l4b7cRpMSoZeRT5jQAsmqB2geBF0DN2dXo7-hpyTOgqvPE4WS6hpeQcU0fYwaM6L.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075357.html?pcdk=Cjvs7Q-RGYYaiO-dbGDVNOmKsgPqNXVcybTDejNry6QPd4sPWIi89hQaCojKdeCz.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075345.html?pcdk=QQj6j3FqF-Zvwh4VNXzQVDQlkneaZadwKGTjD6Ohf5a78GyqwjESvhjM1fL63yJq.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 256G 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075369.html?pcdk=zO1tZPY6HH1TBWnj1ktEdNzYOWQ5B6N3DiijEcGM8Z88MOowxXjaq16-5cp7QI4t.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075361.html?pcdk=qde8HbCKEEJ8hM0v2MGL2yvxuB_r_AdYpWWmaShR5IeQ2mEShyGqyQlINkTAHqiB.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075349.html?pcdk=kYSHpMXK6W-8qnbEQ4vBlOpaTkSkh7BCnh8aPrjWbqM-C44W_BIRzUTpXinxxuP5.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 512G 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075373.html?pcdk=M-aWyAyTkAuGG5ylgnPKjKfKtQ1SzeaMQVEhRmVF1MrCpO9NKNZHPqxdbM7oLfVW.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075365.html?pcdk=kH0NAEkMmpPxa6qVAE1t4xnnCLLrc_w_rf5BBcKD-kluM4NtAapewB7pcHSSRTcj.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075353.html?pcdk=Am5AnfS2Ygaaihoo_mxI1TnzlalInF8gVwThlnrdTGszQyAo-BJwreH8fTiDJgiy.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 1TB 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181610075377.html?pcdk=GX0t2NOXa8bJOJ5CYbBGl5CoIwWnUbUBrRjfpy2-2z2eetl2hV69Jh3_gtHTgCPe.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 星宇橙色 白条24期分期免息",
+      "link": "https://item.jd.com/10181889743939.html?pcdk=B8ceSszD4tt6ClqCHi4Dm1UIEegh8ZJFRh7oDreTF_emS1O8ULRgpGKyAXda2ZH1.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 银色 白条24期分期免息",
+      "link": "https://item.jd.com/10181889743934.html?pcdk=aslenAy1jEXS72JYfMctQQhWA6UCOhExdBsuK-_xPB3MB3N6nmFLbkqIn_qGL6aD.rQ4a.tlbT#switch-sku"
+     },
+     {
+      "product": "iPhone 17 Pro Max 2TB 深蓝色 白条24期分期免息",
+      "link": "https://item.jd.com/10181889743944.html?pcdk=wAeUFyviDFopU45xEJZLFR-X5h7bPO3tsFOSil1knFllsfZ-3PhRsX9RDP9QMOzw.rQ4a.tlbT#switch-sku"
+     }
+    ]
+   }
+  ]
+ },
+ "compete_compare": {
+  "platform": "京东",
+  "our_shops": [
+   "羽通｜京东",
+   "啟韬｜苏宁"
+  ],
+  "models": [
+   {
+    "model": "iPhone 17 Pro Max",
+    "shops": {
+     "Apple产品游戏主题旗舰店": {
+      "count": 36,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 36,
+        "link": "https://item.jd.com/10181849395137.html?pcdk=A9gDv1qsBegkbEAp5RamHat3PSKQvT5XZrHWf9IBVVD6dgtqAOkYoZjxdT6IecGY.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "橙色",
+         "蓝色"
+        ]
+       }
+      ]
+     },
+     "Apple产品丰年时代分期免息专营店": {
+      "count": 36,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 36,
+        "link": "https://item.jd.com/10181852419377.html?pcdk=Hdy1tkFLKiibX_uTgevgd4PYbVFNSpJe9h4bKRzSlE3bUBytUlv73e87183N538I.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "橙色",
+         "蓝色"
+        ]
+       }
+      ]
+     },
+     "Apple产品扬笛教育优惠专营店": {
+      "count": 36,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 36,
+        "link": "https://item.jd.com/10181889743944.html?pcdk=wAeUFyviDFopU45xEJZLFR-X5h7bPO3tsFOSil1knFllsfZ-3PhRsX9RDP9QMOzw.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "橙色",
+         "蓝色"
+        ]
+       }
+      ]
+     }
+    },
+    "total": 108
+   },
+   {
+    "model": "iPhone 17 Pro",
+    "shops": {
+     "Apple产品游戏主题旗舰店": {
+      "count": 27,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 27,
+        "link": "https://item.jd.com/10181383409091.html?pcdk=DruxmvGrB0AL0U9to_tX-rz83c9OIC2J5Urgp9R3oSjshRaUW76a8E-ZSeYQ-FuD.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "橙色",
+         "蓝色"
+        ]
+       }
+      ]
+     },
+     "Apple产品丰年时代分期免息专营店": {
+      "count": 27,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 27,
+        "link": "https://item.jd.com/10181298553975.html?pcdk=s-9V3pVDrhPjSUuOQmAzoNBBKzTAAYrKZo5aoJH5JgtRXHQtI7DcqXuC1oRP7tlz.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "橙色",
+         "蓝色"
+        ]
+       }
+      ]
+     },
+     "Apple产品扬笛教育优惠专营店": {
+      "count": 27,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 27,
+        "link": "https://item.jd.com/10181617494230.html?pcdk=XHBIuLtiBrw9uIiJ7Ul9S7-YfGRjsCDmPWigqyQ_ElGVWN5mK878YNXYKeXkO2tq.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "橙色",
+         "蓝色"
+        ]
+       }
+      ]
+     }
+    },
+    "total": 81
+   },
+   {
+    "model": "iPhone 17",
+    "shops": {
+     "Apple产品游戏主题旗舰店": {
+      "count": 20,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 20,
+        "link": "https://item.jd.com/10181383335587.html?pcdk=2CPKLspqKCkH3pUT7WiwlClBfzd8g5Ad9DLtdo9vXYj9OrK3VBqLg70I9YRTQ4Ee.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "紫色",
+         "黑色",
+         "蓝色",
+         "白色"
+        ]
+       }
+      ]
+     },
+     "Apple产品丰年时代分期免息专营店": {
+      "count": 30,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 30,
+        "link": "https://item.jd.com/10181298251605.html?pcdk=qaX3ZFPYiECCEO7tG4CK5VXupiyfayuIAeaTmyrkswDomJALB_vu3Y2SlgZyONV6.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "紫色",
+         "黑色",
+         "蓝色",
+         "白色"
+        ]
+       }
+      ]
+     },
+     "Apple产品扬笛教育优惠专营店": {
+      "count": 30,
+      "caps": [
+       {
+        "cap": "—",
+        "count": 30,
+        "link": "https://item.jd.com/10181622935660.html?pcdk=NhB6wP_ousFVc0eWvCxUe1NaEimXygjntba7vuDaNT9zvoW6p6UjG8OHxUF8tJqg.rQ4a.tlbT#switch-sku",
+        "colors": [
+         "紫色",
+         "黑色",
+         "蓝色",
+         "白色"
+        ]
+       }
+      ]
+     }
+    },
+    "total": 80
+   }
+  ],
+  "summary": {
+   "total": {
+    "Apple产品游戏主题旗舰店": 83,
+    "Apple产品丰年时代分期免息专营店": 93,
+    "Apple产品扬笛教育优惠专营店": 93
+   },
+   "models_count": 3
+  }
+ },
+ "ecomm_platform": {
+  "generated_at": "2026-08-11 16:09:06",
+  "days": {
+   "2026-08-11": {
+    "苏宁啟韬": {
+     "amount": 267874.0,
+     "orders": 26
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 21
+    },
+    "京东羽通": {
+     "amount": 325265.0,
+     "orders": 45
+    }
+   },
+   "2026-08-10": {
+    "苏宁啟韬": {
+     "amount": 805170.0,
+     "orders": 80
+    },
+    "京东羽通": {
+     "amount": 701239.0,
+     "orders": 91
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 40
+    }
+   },
+   "2026-08-09": {
+    "苏宁啟韬": {
+     "amount": 427758.0,
+     "orders": 42
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 34
+    },
+    "京东羽通": {
+     "amount": 783179.0,
+     "orders": 100
+    }
+   },
+   "2026-08-08": {
+    "苏宁啟韬": {
+     "amount": 606693.0,
+     "orders": 57
+    },
+    "京东羽通": {
+     "amount": 747567.0,
+     "orders": 93
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 33
+    }
+   },
+   "2026-08-07": {
+    "苏宁啟韬": {
+     "amount": 502301.0,
+     "orders": 50
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 37
+    },
+    "京东羽通": {
+     "amount": 853265.0,
+     "orders": 104
+    },
+    "其他": {
+     "amount": 0.0,
+     "orders": 1
+    }
+   },
+   "2026-08-06": {
+    "京东羽通": {
+     "amount": 964079.0,
+     "orders": 118
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 60
+    },
+    "苏宁啟韬": {
+     "amount": 217804.0,
+     "orders": 27
+    }
+   },
+   "2026-08-05": {
+    "苏宁啟韬": {
+     "amount": 637126.0,
+     "orders": 75
+    },
+    "京东羽通": {
+     "amount": 741728.0,
+     "orders": 100
+    },
+    "舒尔·天猫": {
+     "amount": 0.0,
+     "orders": 62
+    },
+    "其他": {
+     "amount": 0.0,
+     "orders": 1
+    }
+   }
+  }
+ },
+ "pm_note": "APR毛利率 3.54% 为含线上/线下综合口径（吉客云）；不含线上口径约3.1%（待财务确认），客流为线下实抓口径",
+ "task_note": "APR月目标¥2180万为公司下发口径，任务指标以每月正式下发为准"
+}

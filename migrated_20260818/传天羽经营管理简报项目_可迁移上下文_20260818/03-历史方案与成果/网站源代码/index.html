@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>江苏传天羽经营管理简报</title>
+  <link rel="icon" href="https://www.chuangel.com/favicon.ico">
+  <style>
+    :root {
+      --bg: #eef3f8;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #dbe5f0;
+      --navy: #102a4c;
+      --blue: #2367c6;
+      --green: #0f8b62;
+      --amber: #b76a00;
+      --red: #c53b3b;
+      --purple: #6757c8;
+      --teal: #14798a;
+      --shadow: 0 18px 40px rgba(16, 42, 76, .08);
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    button, input, select { font: inherit; }
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+    }
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      background: #112f55;
+      color: #fff;
+      padding: 22px 18px;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: #113966;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0;
+      overflow: hidden;
+    }
+    .brand-logo img {
+      max-width: 28px;
+      max-height: 28px;
+    }
+    .brand-name strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+    .brand-name small {
+      display: block;
+      margin-top: 4px;
+      color: #aebfd6;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+    }
+    .nav {
+      display: grid;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .nav a {
+      color: #bdd0e7;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 800;
+    }
+    .nav a:hover, .nav a.active {
+      color: #123b70;
+      background: #fff;
+    }
+    .nav i {
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      font-style: normal;
+      font-size: 11px;
+    }
+    .source-card {
+      margin-top: 22px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      color: #c0cee0;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    main {
+      min-width: 0;
+      width: 100%;
+      max-width: 1640px;
+      margin: 0 auto;
+      padding: 28px 32px 58px;
+    }
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+    }
+    h1 {
+      margin: 8px 0 6px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .chip, .action {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: #59687d;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .action {
+      cursor: pointer;
+      color: #123b70;
+    }
+    .action.primary {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+    .periods {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .periods button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #59687d;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+    .periods button.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+    .panel {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      padding: 18px;
+    }
+    .summary-main {
+      padding: 20px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #102a4c, #1e5fa8);
+      color: #fff;
+      min-height: 224px;
+      display: grid;
+      align-content: space-between;
+    }
+    .summary-main h2, .section-head h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .summary-main p {
+      margin: 14px 0 0;
+      line-height: 1.75;
+      font-size: 15px;
+      max-width: 940px;
+    }
+    .summary-mini {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .summary-mini div {
+      min-height: 74px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 8px;
+      background: rgba(255,255,255,.12);
+    }
+    .summary-mini b {
+      display: block;
+      color: #d9ecff;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .summary-mini span {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .summary-side {
+      display: grid;
+      align-content: start;
+      padding: 8px 4px 8px 18px;
+      border-left: 1px solid var(--line);
+    }
+    .pulse-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .pulse-head span {
+      display: block;
+      margin-bottom: 4px;
+      color: #667085;
+      font-size: 12px;
+    }
+    .pulse-head b {
+      display: block;
+      font-size: 17px;
+    }
+    .pulse-head strong {
+      color: #145fc2;
+      font-size: 25px;
+      line-height: 1;
+    }
+    .pulse-progress {
+      height: 8px;
+      margin-top: 16px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #dfe8f3;
+    }
+    .pulse-progress i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: #1769d2;
+    }
+    .pulse-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 7px;
+      color: #667085;
+      font-size: 12px;
+    }
+    .mix-title {
+      margin: 20px 0 9px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .mix-bar {
+      display: flex;
+      height: 12px;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #e7edf5;
+    }
+    .mix-bar i { min-width: 2px; }
+    .mix-legend {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px 18px;
+      margin-top: 13px;
+    }
+    .mix-legend div {
+      display: grid;
+      grid-template-columns: 8px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      font-size: 12px;
+    }
+    .mix-legend i {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+    }
+    .mix-legend span {
+      overflow: hidden;
+      color: #475467;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .mix-legend b { color: #101828; }
+    .pulse-insights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .pulse-insights div {
+      min-width: 0;
+      padding: 0 12px;
+      border-right: 1px solid var(--line);
+    }
+    .pulse-insights div:first-child { padding-left: 0; }
+    .pulse-insights div:last-child {
+      padding-right: 0;
+      border-right: 0;
+    }
+    .pulse-insights span {
+      display: block;
+      margin-bottom: 5px;
+      color: #667085;
+      font-size: 11px;
+    }
+    .pulse-insights b {
+      display: block;
+      overflow: hidden;
+      color: #101828;
+      font-size: 13px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .badge {
+      display: inline-block;
+      border-radius: 8px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .badge.good { background: #e9f8f0; color: var(--green); }
+    .badge.warn { background: #fff5df; color: var(--amber); }
+    .badge.danger { background: #fee9e9; color: var(--red); }
+    .badge.info { background: #e9f2ff; color: var(--blue); }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      padding: 18px;
+    }
+    .kpi {
+      min-height: 118px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi:after {
+      content: "";
+      position: absolute;
+      right: -26px;
+      top: -28px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .12;
+    }
+    .kpi small {
+      display: block;
+      color: var(--muted);
+      font-weight: 900;
+      margin-bottom: 9px;
+    }
+    .kpi strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 1.15;
+    }
+    .kpi span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .blue { color: var(--blue); }
+    .green { color: var(--green); }
+    .amber { color: var(--amber); }
+    .red { color: var(--red); }
+    .purple { color: var(--purple); }
+    .teal { color: var(--teal); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 18px 0;
+    }
+    .section-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .business-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: 18px;
+    }
+    .business-card {
+      min-height: 214px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+    .business-card h3 {
+      margin: 0 0 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+    }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #e7edf4;
+      font-size: 13px;
+    }
+    .metric:last-child { border-bottom: 0; }
+    .metric span { color: var(--muted); }
+    .metric b { text-align: right; }
+    .bar {
+      height: 8px;
+      background: #e7edf4;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 12px 0 4px;
+    }
+    .bar i {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2367c6, #32a3e8);
+    }
+    .table-wrap {
+      padding: 18px;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #e7edf4;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f5f7fb;
+      color: #536176;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    th.num, td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .status { font-weight: 900; white-space: nowrap; }
+    .risk-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 0 18px 12px;
+      flex-wrap: wrap;
+    }
+    .risk-toolbar button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #59687d;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+    .risk-toolbar button.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .import-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      padding: 18px;
+    }
+    .import-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      min-height: 130px;
+    }
+    .import-card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+    .import-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .import-card input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 10px;
+      color: #475467;
+    }
+    .import-status {
+      padding: 0 18px 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    @media (max-width: 1320px) {
+      .summary { grid-template-columns: 1fr; }
+      .summary-side {
+        padding: 18px 4px 4px;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+      .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .business-grid, .import-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 900px) {
+      .app { display: block; }
+      .sidebar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        height: auto;
+        padding: 10px;
+      }
+      .brand, .source-card { display: none; }
+      .nav {
+        margin-top: 0;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+      }
+      .nav a {
+        justify-content: center;
+        padding: 9px 4px;
+        text-align: center;
+        font-size: 12px;
+      }
+      .nav a i { display: none; }
+      main { padding: 18px 12px 36px; }
+      .topline { display: block; }
+      .toolbar { justify-content: flex-start; margin-top: 12px; }
+      .summary-mini, .kpi-grid, .business-grid, .import-grid { grid-template-columns: minmax(0, 1fr); }
+      h1 { font-size: 25px; }
+      table { min-width: 760px; }
+    }
+    @media (max-width: 720px) {
+      .pulse-insights { grid-template-columns: minmax(0, 1fr); }
+      .pulse-insights div {
+        padding: 9px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .pulse-insights div:first-child { padding-top: 0; }
+      .pulse-insights div:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+      #risk .table-wrap {
+        overflow-x: visible;
+      }
+      #risk table.risk-table {
+        min-width: 0;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+      }
+      #risk .risk-table thead {
+        display: none;
+      }
+      #risk .risk-table tr {
+        display: block;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+      #risk .risk-table td {
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 8px;
+        padding: 7px 0;
+        border-bottom: 1px dashed #e7edf4;
+        font-size: 12px;
+      }
+      #risk .risk-table td:last-child {
+        border-bottom: 0;
+      }
+      #risk .risk-table td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-weight: 900;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo" aria-label="传天羽品牌标识">CTY</div>
+        <div class="brand-name">
+          <strong>江苏传天羽</strong>
+          <small>CHUANGEL BRIEFING</small>
+        </div>
+      </div>
+      <nav class="nav" aria-label="页面导航">
+        <a class="active" href="#summary"><i>01</i>总览</a>
+        <a href="#operation"><i>02</i>经营</a>
+        <a href="#management"><i>03</i>管理</a>
+        <a href="#risk"><i>04</i>风控</a>
+        <a href="#import"><i>05</i>数据</a>
+      </nav>
+      <div class="source-card">
+        江苏传天羽网络股份有限公司<br>
+        智慧生活与办公解决方案专家<br>
+        Apple授权零售 / 电商运营 / Shure品牌运营 / 供应链与分销
+      </div>
+    </aside>
+
+    <main>
+      <div class="topline">
+        <div>
+          <div class="eyebrow">JIANGSU CHUANGEL NETWORK CO., LTD.</div>
+          <h1>经营管理简报</h1>
+          <p class="subtitle">经营数据 · 管理数据 · 重点事项 · 风险预警</p>
+        </div>
+        <div class="toolbar">
+          <span class="chip" id="reportDate">2026-08-08</span>
+          <span class="chip" id="dataTime">数据截止 18:00</span>
+          <button class="action primary" id="uploadBtn">上传数据</button>
+          <input id="fileInput" type="file" accept=".csv,.json" hidden>
+        </div>
+      </div>
+
+      <div class="periods" role="tablist" aria-label="简报周期">
+        <button class="active" data-period="daily">日报</button>
+        <button data-period="weekly">周报</button>
+        <button data-period="monthly">月报</button>
+      </div>
+
+      <section id="summary" class="panel summary">
+        <div class="summary-main">
+          <div>
+            <h2 id="summaryTitle">今日经营结论</h2>
+            <p id="summaryText"></p>
+          </div>
+          <div class="summary-mini">
+            <div><b>经营风险</b><span id="summaryRisk"></span></div>
+            <div><b>重点事项</b><span id="summaryTask"></span></div>
+            <div><b>老板决策</b><span id="summaryDecision"></span></div>
+          </div>
+        </div>
+        <div class="summary-side">
+          <div class="pulse-head">
+            <div><span>经营结构</span><b>月度进度与渠道贡献</b></div>
+            <strong id="pulseCompletion">-</strong>
+          </div>
+          <div class="pulse-progress"><i id="pulseProgress" style="width:0"></i></div>
+          <div class="pulse-meta"><span id="pulseMonth">月累计 -</span><span id="pulseTarget">目标 -</span></div>
+          <div class="mix-title">当日销售结构</div>
+          <div class="mix-bar" id="channelMixBar" aria-label="当日销售渠道结构"></div>
+          <div class="mix-legend" id="channelMixLegend"></div>
+          <div class="pulse-insights">
+            <div><span>达成偏差最大</span><b id="pulseGap">-</b></div>
+            <div><span>超龄库存最高</span><b id="pulseAged">-</b></div>
+            <div><span>需老板介入</span><b id="pulseDecision">-</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="kpi-grid">
+          <div class="kpi blue"><small>当日销售额</small><strong id="kpiSales"></strong><span>经营板块合计</span></div>
+          <div class="kpi green"><small>当日毛利额</small><strong id="kpiGross"></strong><span id="kpiGrossRate"></span></div>
+          <div class="kpi purple"><small>月累计达成</small><strong id="kpiCompletion"></strong><span>按月度目标</span></div>
+          <div class="kpi amber"><small>90天+库存</small><strong id="kpiAged"></strong><span>库存风险</span></div>
+          <div class="kpi red"><small>红色风险</small><strong id="kpiRed"></strong><span>重点跟进</span></div>
+          <div class="kpi teal"><small>事项闭环率</small><strong id="kpiClosure"></strong><span id="kpiOpenTasks"></span></div>
+        </div>
+      </section>
+
+      <section id="operation" class="panel">
+        <div class="section-head">
+          <div><h2>一、经营数据</h2><p>按实际业务板块呈现，支持上传数据后刷新。</p></div>
+          <span class="badge info">经营结果</span>
+        </div>
+        <div class="business-grid" id="businessCards"></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>业务板块</th><th>渠道范围</th><th class="num">当日销售</th><th class="num">月累计</th><th class="num">月目标</th><th class="num">达成率</th><th class="num">毛利率</th><th class="num">库存</th><th class="num">90天+库存</th><th>关注点</th><th>下一步动作</th></tr></thead>
+            <tbody id="operationRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="management" class="panel">
+        <div class="section-head">
+          <div><h2>二、管理数据</h2><p>呈现影响经营运转的管理指标。</p></div>
+          <span class="badge warn">经营保障</span>
+        </div>
+        <div class="kpi-grid" id="managementCards"></div>
+      </section>
+
+      <section id="risk" class="panel">
+        <div class="section-head">
+          <div><h2>三、重点事项与风控</h2><p>红色风险、逾期事项、今日到期及需老板介入事项集中呈现。</p></div>
+          <span class="badge danger">闭环跟进</span>
+        </div>
+        <div class="risk-toolbar">
+          <button class="active" data-risk="all">全部</button>
+          <button data-risk="red">红色风险</button>
+          <button data-risk="yellow">黄色风险</button>
+          <button data-risk="boss">需老板介入</button>
+        </div>
+        <div class="table-wrap">
+          <table class="risk-table">
+            <thead><tr><th>等级</th><th>事项</th><th>影响</th><th>责任端口</th><th>责任人</th><th>截止时间</th><th>当前进度</th><th>下一步动作</th><th>老板介入</th><th>状态</th></tr></thead>
+            <tbody id="riskRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="import" class="panel">
+        <div class="section-head">
+          <div><h2>四、数据入口</h2><p>当前支持CSV/JSON文件导入，保留钉钉与飞书直连入口。</p></div>
+          <span class="badge good">数据更新</span>
+        </div>
+        <div class="import-grid">
+          <div class="import-card">
+            <h3>文件导入</h3>
+            <p>上传包含经营、管理、风控数据的CSV或JSON文件，页面自动刷新并保存在当前浏览器。</p>
+            <button class="action primary" id="uploadBtn2">选择文件</button>
+          </div>
+          <div class="import-card">
+            <h3>钉钉接口</h3>
+            <p>填写钉钉机器人或业务系统接口地址后，可用于后续自动更新。</p>
+            <input id="dingtalkInput" placeholder="钉钉接口地址">
+          </div>
+          <div class="import-card">
+            <h3>飞书接口</h3>
+            <p>填写飞书多维表格、机器人或中转服务接口地址后，可用于后续自动更新。</p>
+            <input id="feishuInput" placeholder="飞书接口地址">
+          </div>
+        </div>
+        <div class="import-status" id="importStatus">数据状态：已加载当前简报数据。</div>
+      </section>
+
+      <div class="footer-note">江苏传天羽网络股份有限公司 · 经营管理简报</div>
+    </main>
+  </div>
+
+  <script>
+    const initialData = {
+      reportDate: "2026-08-08",
+      dataTime: "数据截止 18:00",
+      summary: {
+        daily: "今日公司销售158.6万元，月累计达成约24.1%，整体经营进度正常；APR门店表现较好，Apple电商受重点型号库存影响低于计划。当前重点关注3PP超龄库存、舒尔90天+库存、国补审核及逾期应收回款。",
+        weekly: "本周重点看目标差距和趋势变化：APR保持正向贡献，Apple电商需关注国补审核与重点型号库存，舒尔需把90天+库存清理目标纳入双十一规划，3PP需加快超龄库存调剂。",
+        monthly: "本月重点看经营质量：销售达成、毛利表现、库存周转、返利及回款共同决定经营结果。月报重点复盘库存结构、回款风险、渠道贡献和下月策略。"
+      },
+      summaryRisk: "3PP超龄库存与舒尔90天+库存偏高。",
+      summaryTask: "异常订单、库存清理、低水位SKU调剂。",
+      summaryDecision: "逾期应收如无法确认回款日，建议老板介入。",
+      operations: [
+        { block: "APR门店", scope: "线下授权门店", sales: 92.4, month: 721, target: 3100, gross: 10.8, inventory: 1280, aged: 46, exceptions: 1, status: "正常", focus: "异常门店、配件占比、线上SKU覆盖", next: "持续跟进低库存门店调剂" },
+        { block: "Apple电商", scope: "京东羽通 / 苏宁啟韬", sales: 38.7, month: 326, target: 1280, gross: 8.7, inventory: 680, aged: 32, exceptions: 2, status: "关注", focus: "国补、Forecast、重点型号库存", next: "形成异常订单及补货清单" },
+        { block: "舒尔电商", scope: "京东官方旗舰店 / 天猫官方旗舰店", sales: 16.8, month: 139, target: 520, gross: 18.6, inventory: 426, aged: 58, exceptions: 2, status: "关注", focus: "90天+库存、高存销比SKU", next: "纳入双十一清理目标" },
+        { block: "3PP/渠道分销", scope: "Apple / Shure / 3PP", sales: 10.7, month: 88, target: 390, gross: 21.4, inventory: 460, aged: 61, exceptions: 1, status: "预警", focus: "超龄库存、合规激活风险", next: "推动门店调剂与分销消化" }
+      ],
+      management: [
+        { metric: "重点任务完成率", value: "87.5%", status: "关注", note: "目标不低于90%" },
+        { metric: "未完成事项", value: "3项", status: "关注", note: "较控制线多1项" },
+        { metric: "逾期事项", value: "1项", status: "预警", note: "进入首页预警" },
+        { metric: "关键岗位缺编", value: "8人", status: "关注", note: "APR缺编5人" },
+        { metric: "逾期应收", value: "42万", status: "预警", note: "超过控制线12万" },
+        { metric: "低水位SKU", value: "18个", status: "关注", note: "需补货/调剂" }
+      ],
+      risks: [
+        { level: "红", item: "Apple线上异常订单及国补审核", impact: "影响国补回款及平台合规", department: "Apple电商", owner: "邵文昌", due: "2026-08-08", progress: "剩余6单待平台确认", next: "今晚形成清单并提交举证", boss: "否", status: "进行中" },
+        { level: "红", item: "逾期应收超过控制线", impact: "影响现金流及账期管理", department: "财务", owner: "束铃铃", due: "2026-08-10", progress: "逾期应收42万元", next: "锁定渠道并明确回款日期", boss: "是", status: "预警" },
+        { level: "黄", item: "舒尔90天+库存清理", impact: "占用库存资金，影响双十一前库存健康", department: "舒尔电商/采销", owner: "任毅/王文学", due: "2026-08-15", progress: "重点SKU已纳入清理计划", next: "形成SKU级清理目标", boss: "否", status: "进行中" },
+        { level: "黄", item: "3PP超龄库存处理", impact: "影响库存周转及资金效率", department: "3PP/采销", owner: "王文学", due: "2026-08-10", progress: "调剂方案待门店确认", next: "推动门店调剂并明确价格策略", boss: "否", status: "有风险" },
+        { level: "黄", item: "线上重点SKU库存覆盖不足", impact: "影响线上平台抓取及销售转化", department: "APR门店", owner: "黄思瑞", due: "2026-08-10", progress: "3家门店重点SKU低于2台", next: "跨店调剂或提交补货", boss: "否", status: "进行中" }
+      ]
+    };
+
+    let state = JSON.parse(localStorage.getItem("chuangelBriefingData") || "null") || initialData;
+    let currentPeriod = "daily";
+    let currentRisk = "all";
+
+    const fmt = (n, digits = 1) => Number(n || 0).toFixed(digits).replace(/\.0$/, "");
+    const pct = (n) => `${fmt(n, 1)}%`;
+    const sum = (items, key) => items.reduce((total, item) => total + Number(item[key] || 0), 0);
+    const completion = (item) => item.target ? item.month / item.target * 100 : 0;
+    const badgeClass = (status) => status === "正常" ? "good" : status === "预警" || status === "红" ? "danger" : "warn";
+    const colorClass = (status) => status === "正常" ? "green" : status === "预警" || status === "红" ? "red" : "amber";
+    const mixColors = ["#1769d2", "#10a36f", "#e99a18", "#d64b4b"];
+
+    function render() {
+      const ops = state.operations || [];
+      const risks = state.risks || [];
+      const mgmt = state.management || [];
+      const sales = sum(ops, "sales");
+      const month = sum(ops, "month");
+      const target = sum(ops, "target");
+      const grossAmount = ops.reduce((total, item) => total + Number(item.sales || 0) * Number(item.gross || 0) / 100, 0);
+      const aged = sum(ops, "aged");
+      const redCount = risks.filter((risk) => risk.level === "红").length;
+
+      document.getElementById("reportDate").textContent = state.reportDate || "";
+      document.getElementById("dataTime").textContent = state.dataTime || "";
+      document.getElementById("summaryTitle").textContent = currentPeriod === "daily" ? "今日经营结论" : currentPeriod === "weekly" ? "本周经营结论" : "本月经营结论";
+      document.getElementById("summaryText").textContent = (state.summary && state.summary[currentPeriod]) || "";
+      document.getElementById("summaryRisk").textContent = state.summaryRisk || "";
+      document.getElementById("summaryTask").textContent = state.summaryTask || "";
+      document.getElementById("summaryDecision").textContent = state.summaryDecision || "";
+      const targetProgress = target ? month / target * 100 : 0;
+      const mixSalesTotal = ops.reduce((total, item) => total + Math.max(Number(item.sales || 0), 0), 0);
+      const weakest = [...ops].filter((item) => item.target).sort((a, b) => completion(a) - completion(b))[0];
+      const agedLeader = [...ops].sort((a, b) => Number(b.aged || 0) - Number(a.aged || 0))[0];
+      const bossCount = risks.filter((risk) => risk.boss === "是").length;
+      document.getElementById("pulseCompletion").textContent = pct(targetProgress);
+      document.getElementById("pulseProgress").style.width = `${Math.min(targetProgress, 100)}%`;
+      document.getElementById("pulseMonth").textContent = `月累计 ${fmt(month)}万`;
+      document.getElementById("pulseTarget").textContent = `目标 ${fmt(target)}万`;
+      document.getElementById("channelMixBar").innerHTML = ops.map((item, index) => {
+        const ratio = mixSalesTotal ? Math.max(Number(item.sales || 0), 0) / mixSalesTotal * 100 : 0;
+        return `<i style="width:${ratio}%;background:${mixColors[index % mixColors.length]}" title="${item.block} ${pct(ratio)}"></i>`;
+      }).join("");
+      document.getElementById("channelMixLegend").innerHTML = ops.map((item, index) => {
+        const ratio = mixSalesTotal ? Math.max(Number(item.sales || 0), 0) / mixSalesTotal * 100 : 0;
+        return `<div><i style="background:${mixColors[index % mixColors.length]}"></i><span>${item.block}</span><b>${pct(ratio)}</b></div>`;
+      }).join("");
+      document.getElementById("pulseGap").textContent = weakest ? `${weakest.block} ${pct(completion(weakest))}` : "-";
+      document.getElementById("pulseAged").textContent = agedLeader ? `${agedLeader.block} ${fmt(agedLeader.aged, 0)}万` : "-";
+      document.getElementById("pulseDecision").textContent = `${bossCount}项`;
+      document.getElementById("kpiSales").textContent = `${fmt(sales)}万`;
+      document.getElementById("kpiGross").textContent = `${fmt(grossAmount)}万`;
+      document.getElementById("kpiGrossRate").textContent = `毛利率约${pct(sales ? grossAmount / sales * 100 : 0)}`;
+      document.getElementById("kpiCompletion").textContent = pct(target ? month / target * 100 : 0);
+      document.getElementById("kpiAged").textContent = `${fmt(aged, 0)}万`;
+      document.getElementById("kpiRed").textContent = `${redCount}项`;
+      document.getElementById("kpiClosure").textContent = (mgmt.find((item) => item.metric.includes("完成率")) || {}).value || "-";
+      document.getElementById("kpiOpenTasks").textContent = (mgmt.find((item) => item.metric.includes("未完成")) || {}).value || "";
+
+      document.getElementById("businessCards").innerHTML = ops.map((item) => `
+        <article class="business-card">
+          <h3>${item.block}<span class="badge ${badgeClass(item.status)}">${item.status}</span></h3>
+          <div class="metric"><span>渠道范围</span><b>${item.scope}</b></div>
+          <div class="metric"><span>当日销售</span><b>${fmt(item.sales)}万</b></div>
+          <div class="metric"><span>月累计</span><b>${fmt(item.month)}万</b></div>
+          <div class="metric"><span>毛利率</span><b>${pct(item.gross)}</b></div>
+          <div class="metric"><span>90天+库存</span><b>${fmt(item.aged, 0)}万</b></div>
+          <div class="bar"><i style="width:${Math.min(completion(item), 100)}%"></i></div>
+          <div class="metric"><span>关注点</span><b>${item.focus}</b></div>
+        </article>`).join("");
+
+      document.getElementById("operationRows").innerHTML = ops.map((item) => `
+        <tr>
+          <td><b>${item.block}</b></td>
+          <td>${item.scope}</td>
+          <td class="num">${fmt(item.sales)}</td>
+          <td class="num">${fmt(item.month)}</td>
+          <td class="num">${fmt(item.target)}</td>
+          <td class="num">${pct(completion(item))}</td>
+          <td class="num">${pct(item.gross)}</td>
+          <td class="num">${fmt(item.inventory, 0)}</td>
+          <td class="num">${fmt(item.aged, 0)}</td>
+          <td>${item.focus}</td>
+          <td>${item.next}</td>
+        </tr>`).join("");
+
+      document.getElementById("managementCards").innerHTML = mgmt.map((item) => `
+        <div class="kpi ${colorClass(item.status)}"><small>${item.metric}</small><strong>${item.value}</strong><span>${item.note || item.status}</span></div>`).join("");
+
+      renderRisk();
+    }
+
+    function renderRisk() {
+      const risks = state.risks || [];
+      const filtered = risks.filter((risk) => currentRisk === "all" || (currentRisk === "red" && risk.level === "红") || (currentRisk === "yellow" && risk.level === "黄") || (currentRisk === "boss" && risk.boss === "是"));
+      document.getElementById("riskRows").innerHTML = filtered.map((risk) => `
+        <tr>
+          <td data-label="等级"><span class="badge ${risk.level === "红" ? "danger" : "warn"}">${risk.level}</span></td>
+          <td data-label="事项"><b>${risk.item}</b></td>
+          <td data-label="影响">${risk.impact}</td>
+          <td data-label="责任端口">${risk.department}</td>
+          <td data-label="责任人">${risk.owner}</td>
+          <td data-label="截止时间">${risk.due}</td>
+          <td data-label="当前进度">${risk.progress}</td>
+          <td data-label="下一步">${risk.next}</td>
+          <td data-label="老板介入">${risk.boss}</td>
+          <td data-label="状态" class="status">${risk.status}</td>
+        </tr>`).join("");
+    }
+
+    function parseCsv(text) {
+      const lines = text.trim().split(/\r?\n/).filter(Boolean);
+      const headers = lines.shift().split(",").map((h) => h.trim());
+      return lines.map((line) => {
+        const values = line.split(",").map((v) => v.trim());
+        return Object.fromEntries(headers.map((h, i) => [h, values[i] || ""]));
+      });
+    }
+
+    function applyImportedData(data) {
+      if (Array.isArray(data)) {
+        const grouped = { operations: [], management: [], risks: [] };
+        data.forEach((row) => {
+          const sheet = row.sheet || row.type || row.类型 || "";
+          if (/经营|operation/i.test(sheet)) grouped.operations.push({
+            block: row.block || row.业务板块,
+            scope: row.scope || row.渠道范围,
+            sales: Number(row.sales || row.当日销售 || 0),
+            month: Number(row.month || row.月累计 || 0),
+            target: Number(row.target || row.月目标 || 0),
+            gross: Number(row.gross || row.毛利率 || 0),
+            inventory: Number(row.inventory || row.库存 || 0),
+            aged: Number(row.aged || row["90天库存"] || row["90天+库存"] || 0),
+            status: row.status || row.状态 || "正常",
+            focus: row.focus || row.关注点 || "",
+            next: row.next || row.下一步动作 || ""
+          });
+          if (/管理|management/i.test(sheet)) grouped.management.push({
+            metric: row.metric || row.指标,
+            value: row.value || row.数值,
+            status: row.status || row.状态,
+            note: row.note || row.说明
+          });
+          if (/风控|risk/i.test(sheet)) grouped.risks.push({
+            level: row.level || row.等级,
+            item: row.item || row.事项,
+            impact: row.impact || row.影响,
+            department: row.department || row.责任端口,
+            owner: row.owner || row.责任人,
+            due: row.due || row.截止时间,
+            progress: row.progress || row.当前进度,
+            next: row.next || row.下一步动作,
+            boss: row.boss || row.老板介入,
+            status: row.status || row.状态
+          });
+        });
+        state = { ...state, ...Object.fromEntries(Object.entries(grouped).filter(([, value]) => value.length)) };
+      } else {
+        state = { ...state, ...data };
+      }
+      localStorage.setItem("chuangelBriefingData", JSON.stringify(state));
+      document.getElementById("importStatus").textContent = "数据状态：已导入并刷新。";
+      render();
+    }
+
+    document.querySelectorAll(".periods button").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".periods button").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        currentPeriod = button.dataset.period;
+        render();
+      });
+    });
+
+    document.querySelectorAll(".risk-toolbar button").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".risk-toolbar button").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        currentRisk = button.dataset.risk;
+        renderRisk();
+      });
+    });
+
+    document.getElementById("uploadBtn").addEventListener("click", () => document.getElementById("fileInput").click());
+    document.getElementById("uploadBtn2").addEventListener("click", () => document.getElementById("fileInput").click());
+    document.getElementById("fileInput").addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      try {
+        const data = file.name.endsWith(".json") ? JSON.parse(text) : parseCsv(text);
+        applyImportedData(data);
+      } catch (error) {
+        document.getElementById("importStatus").textContent = "数据状态：文件解析失败，请检查字段。";
+      }
+    });
+
+    document.getElementById("dingtalkInput").addEventListener("change", (event) => localStorage.setItem("chuangelDingtalkEndpoint", event.target.value));
+    document.getElementById("feishuInput").addEventListener("change", (event) => localStorage.setItem("chuangelFeishuEndpoint", event.target.value));
+    document.getElementById("dingtalkInput").value = localStorage.getItem("chuangelDingtalkEndpoint") || "";
+    document.getElementById("feishuInput").value = localStorage.getItem("chuangelFeishuEndpoint") || "";
+
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const links = [...document.querySelectorAll(".nav a")];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          links.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
+        }
+      });
+    }, { rootMargin: "-20% 0px -65% 0px", threshold: 0 });
+    sections.forEach((section) => observer.observe(section));
+
+    render();
+  </script>
+</body>
+</html>

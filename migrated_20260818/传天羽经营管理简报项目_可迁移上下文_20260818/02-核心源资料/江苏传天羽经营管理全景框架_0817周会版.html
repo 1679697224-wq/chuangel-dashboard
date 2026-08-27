@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>江苏传天羽经营管理全景框架 · 0817周会版</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; }
+body { background:linear-gradient(180deg,#eef2f9,#e6ecf6); min-height:100vh; padding:28px 18px 80px; color:#1d1d1f; }
+.wrap { max-width:1200px; margin:0 auto; }
+.head { text-align:center; margin-bottom:24px; }
+.head h1 { font-size:23px; font-weight:800; color:#0a1a3d; letter-spacing:1px; }
+.head p { font-size:12.5px; color:#64748b; margin-top:8px; }
+.head .tagline { display:inline-block; margin-top:12px; padding:8px 20px; border-radius:24px; background:linear-gradient(135deg,#0a3d91,#0a84ff); color:#fff; font-size:12.5px; font-weight:700; letter-spacing:1px; box-shadow:0 6px 18px rgba(10,132,255,.3); }
+.legend { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin:16px 0 8px; font-size:11.5px; color:#64748b; }
+.legend span { display:inline-flex; align-items:center; gap:6px; }
+.legend i { width:12px; height:12px; border-radius:4px; display:inline-block; }
+
+.tree { position:relative; }
+.branch { margin-left:26px; position:relative; padding-left:20px; border-left:2px solid #c7d6ee; }
+.branch::before { content:""; position:absolute; left:-5px; top:16px; width:9px; height:9px; border-radius:50%; background:#0a84ff; border:2px solid #fff; box-shadow:0 0 0 2px #0a84ff; }
+.branch.l1 { margin-left:0; padding-left:0; border-left:none; }
+.branch.l1::before { display:none; }
+.node { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:12px 16px; margin:8px 0; box-shadow:0 3px 12px rgba(15,42,110,.06); cursor:pointer; transition:all .18s; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.node:hover { border-color:#0a84ff; box-shadow:0 6px 18px rgba(10,132,255,.18); transform:translateX(3px); }
+.node .tag { font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:1px; white-space:nowrap; }
+.node .name { font-size:14.5px; font-weight:700; color:#0f172a; }
+.node .desc { font-size:12px; color:#5b6b8c; line-height:1.6; flex-basis:100%; margin-top:2px; }
+.node .arrow { margin-left:auto; font-size:11px; color:#94a3b8; }
+.children { display:none; }
+.children.open { display:block; animation:fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+.root { background:linear-gradient(135deg,#0a1a3d,#0f2a5e 60%,#1a3f85); border:none; color:#fff; cursor:default; box-shadow:0 10px 30px rgba(10,42,110,.4); }
+.root .name { color:#fff; font-size:17px; }
+.root .desc { color:#b9cdf5; }
+.l1-node { border-left:4px solid #0a84ff; }
+.l2-node { border-left:4px solid #8b5cf6; background:#fbfaff; cursor:default; }
+.l2-node:hover { transform:none; box-shadow:0 3px 12px rgba(15,42,110,.06); }
+
+/* 分层配色 */
+.tg-blue { background:#e8f0fb; color:#0a3d91; }
+.tg-purple { background:#f0ebfd; color:#6d28d9; }
+.tg-amber { background:#fff3df; color:#b45309; }
+.tg-green { background:#e7f6ec; color:#15803d; }
+.tg-red { background:#fdecec; color:#dc2626; }
+.tg-gray { background:#eef1f6; color:#475569; }
+.tg-cyan { background:#e0f4f8; color:#0e7490; }
+
+.hint { text-align:center; font-size:11.5px; color:#94a3b8; margin-top:14px; }
+.foot { text-align:center; font-size:11px; color:#94a3b8; margin-top:34px; line-height:1.8; }
+.badge-new { display:inline-block; font-size:9.5px; background:#fee2e2; color:#dc2626; border-radius:10px; padding:1px 8px; margin-left:6px; font-weight:800; letter-spacing:.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>江苏传天羽 · 经营管理全景框架</h1>
+    <p>2026-08-17 周会（AI经营管理简报思维框架会议）· 结合第五版简报框架升级</p>
+    <span class="tagline">简报体系为核心 → AI智能体为支撑 → 数据透明上线 → 月度自动运转</span>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:#0a84ff"></i>经营数据（核心）</span>
+    <span><i style="background:#8b5cf6"></i>管理数据</span>
+    <span><i style="background:#f59e0b"></i>重点事项</span>
+    <span><i style="background:#ef4444"></i>风控</span>
+    <span><i style="background:#10b981"></i>AI智能体（本次新增）</span>
+    <span><i style="background:#94a3b8"></i>保障/纪律</span>
+  </div>
+
+  <div class="tree">
+    <!-- 根 -->
+    <div class="node root">
+      <span class="tag" style="background:rgba(255,255,255,.15); color:#cfe0ff;">全景框架</span>
+      <span class="name">江苏传天羽 · 经营管理全景（日盯运营 · 周抓变化 · 月看经营）</span>
+      <span class="desc">围绕经营结果开展工作：经营数据看板 → 管理数据 → 重点事项 → 风控；用AI智能体自动运转，数据全部透明上线</span>
+    </div>
+
+    <!-- ============ 核心层：经营数据 ============ -->
+    <div class="branch l1">
+      <div class="node l1-node" onclick="toggle(this)">
+        <span class="tag tg-blue">📊 核心层</span>
+        <span class="name">① 经营数据看板 · 公司经营结果</span>
+        <span class="arrow">▼ 点击展开</span>
+      </div>
+      <div class="children open">
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-blue">经营摘要</span><span class="name">老板一屏摘要</span><span class="arrow">▼ 展开</span></div><div class="children"><div class="node l2-node"><span class="tag tg-blue">一句话结论</span><span class="name">经营结论</span><span class="desc">销售/毛利/目标进度/最大贡献板块/最大拖累因素 · 亮点异常各≤3项</span></div>
+<div class="node l2-node"><span class="tag tg-amber">需决策</span><span class="name">需老板决策</span><span class="desc">事项/影响金额/方案A·B/责任人/最晚批复时间</span></div>
+<div class="node l2-node"><span class="tag tg-red">重大异常</span><span class="name">重大异常</span><span class="desc">红色风险/重大客诉舆情/平台处罚/资金数据异常；无则明示"无"</span></div></div></div>
+
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-blue">经营指标</span><span class="name">核心指标（日/周/月分层）</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-blue">收入质量</span><span class="name">实销收入 · 毛利额 · 毛利率 · 贡献毛利</span><span class="desc">含税口径统一；补贴/返利计入规则确认；贡献毛利=毛利-可归属变动费用</span></div>
+<div class="node l2-node"><span class="tag tg-blue">目标管理</span><span class="name">目标达成率 · 时间进度 · 月末滚动预测</span><span class="desc">实际/目标/去年/上周并列；偏差按金额和百分点解释</span></div>
+<div class="node l2-node"><span class="tag tg-blue">经营驱动</span><span class="name">客流×转化×客单（APR）/ UV×转化×客单（电商）</span><span class="desc">用可解释驱动替代单纯环比；价格/销量/结构影响</span></div>
+<div class="node l2-node"><span class="tag tg-green">四大板块</span><span class="name">APR门店 · Apple电商 · Shure电商 · 3PP/多渠道</span><span class="desc">销售/毛利率/目标达成/增量贡献；公司合计与板块勾稽一致</span></div></div></div>
+
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-blue">日报重点</span><span class="name">日报看异常（D+1 08:30呈报）</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-blue">门店/渠道</span><span class="name">APR门店TOP3·末位 · 两渠道电商异常</span><span class="desc">销售/完成率/毛利/客流/转化/客单/配件连带；点名店长给当日动作</span></div>
+<div class="node l2-node"><span class="tag tg-amber">库存资金</span><span class="name">库存健康 · 资金应收</span><span class="desc">90天+/180天+/周转/缺货；逾期应收/预计回款/账实差异</span></div>
+<div class="node l2-node"><span class="tag tg-green">管理摘要</span><span class="name">重点任务 · 组织异常 · 数据质量</span><span class="desc">只报影响经营的例外；关键数据标暂估/确认/缺失</span></div></div></div>
+
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-blue">周月重点</span><span class="name">周报看趋势 · 月报看全景</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-blue">周报</span><span class="name">收入利润趋势 · 增长驱动拆解 · 板块排名</span><span class="desc">周一10:00呈报；费用与营销效率/库存营运资金/客户服务/重点事项闭环/下周部署</span></div>
+<div class="node l2-node"><span class="tag tg-blue">月报</span><span class="name">完整损益 · 预算滚动预测 · 板块经营质量</span><span class="desc">次月5日前；现金流/库存质量/应收返利/集中度/组织效能/战略项目/内控合规/管理承诺</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ============ 管理数据 ============ -->
+    <div class="branch l1">
+      <div class="node l1-node" onclick="toggle(this)">
+        <span class="tag tg-purple">🗂️ ② 管理数据</span>
+        <span class="name">围绕业务流程：物 · 人 · 外部 · 合规</span>
+        <span class="arrow">▼ 点击展开</span>
+      </div>
+      <div class="children">
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-purple">物</span><span class="name">商品与流程</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-purple">采→销</span><span class="name">采购订单 → 商品规划 → 产品流转</span><span class="desc">从采购到销售、中间流转流程按业务节点分清楚</span></div>
+<div class="node l2-node"><span class="tag tg-purple">资金</span><span class="name">资金流转 · 结算管理</span><span class="desc">收/支两条线：合理支出管理 + 非正常支出风险管理</span></div>
+<div class="node l2-node"><span class="tag tg-purple">档案</span><span class="name">合同档案流转与归档</span><span class="desc">合同节点、审批、归档可追溯</span></div>
+<div class="node l2-node"><span class="tag tg-purple">门店</span><span class="name">拓店 · 升级装修 · 续约 · 新签</span><span class="desc">每年都会遇到需执行的事项；门店生命周期管理</span></div>
+<div class="node l2-node"><span class="tag tg-purple">库存返利</span><span class="name">库存管理 · 返利管理</span><span class="desc">日常运营细化：库存周转、量级管理、物料管理、返利跟进</span></div></div></div>
+
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-purple">人</span><span class="name">人员与组织</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-purple">编制</span><span class="name">人员规划 · 达标情况 · 缺编</span><span class="desc">门店员工→店长→总部，每个岗位目标明确</span></div>
+<div class="node l2-node"><span class="tag tg-purple">匹配</span><span class="name">人员能力与岗位匹配度</span><span class="desc">每个人的定位分析清楚，做团队建设与有效安排</span></div>
+<div class="node l2-node"><span class="tag tg-purple">人效</span><span class="name">业绩概况 · 状态 · 人效/人均毛利</span><span class="desc">优秀人员与一般人员差距巨大；人效口径一致</span></div>
+<div class="node l2-node"><span class="tag tg-purple">成长</span><span class="name">招聘选择 → 培训 → 技能升级 → 内部竞赛</span><span class="desc">新人/老人技能持续升级、自我学习</span></div></div></div>
+
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-cyan">外部</span><span class="name">供应商 · 客户 · 营商环境</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-cyan">上游</span><span class="name">供应商资源整合沟通</span><span class="desc">苹果/总代供应商线（分货、厂商资源）</span></div>
+<div class="node l2-node"><span class="tag tg-cyan">下游</span><span class="name">客户单位与业务关系</span><span class="desc">如上海等大客户；资源整合与沟通</span></div>
+<div class="node l2-node"><span class="tag tg-cyan">环境</span><span class="name">外围营商环境</span><span class="desc">市场/商圈/竞品环境跟踪</span></div></div></div>
+
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-gray">合规</span><span class="name">内部合规流程</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-gray">考勤制度</span><span class="name">考勤 · 制度执行</span><span class="desc">从最基础开始回溯人员情况</span></div>
+<div class="node l2-node"><span class="tag tg-gray">经营纪律</span><span class="name">负毛利/低价订单 · 越权审批 · 盘点差异</span><span class="desc">按制度阈值和授权清单判断，证据优先</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ============ 重点事项 ============ -->
+    <div class="branch l1">
+      <div class="node l1-node" onclick="toggle(this)">
+        <span class="tag tg-amber">🎯 ③ 重点事项</span>
+        <span class="name">单独列出 · 落实跟进 · 对应决策</span>
+        <span class="arrow">▼ 点击展开</span>
+      </div>
+      <div class="children">
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-amber">苹果线下</span><span class="name">苹果产品 · 线下三大重点</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-amber">开优质店</span><span class="name">开优质店铺（业务第一位）</span><span class="desc">一年1个=进步，一季1个=很好，一月1个=很牛；好店5-10年=未来几个亿生意=5个岗位10年工作机会；标准：单店年均3000万（达均值即优秀），月销100万=有钱挣；现有前4家仅略高于大盘均值</span></div>
+<div class="node l2-node"><span class="tag tg-amber">分货资源</span><span class="name">分货 · 厂商资源沟通</span><span class="desc">苹果+总代供应商线为核心；找店+找产品两条线；资源分配最重要</span></div>
+<div class="node l2-node"><span class="tag tg-amber">人员效率</span><span class="name">人员工作效率</span><span class="desc">优秀vs一般人员差距巨大（收入差30%+）；招聘选择→培训→技能升级→内部竞赛</span></div></div></div>
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-amber">3001设备</span><span class="name">3001设备产品线</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-amber">全链路</span><span class="name">从采购到销售 · 营销推广</span><span class="desc">周周推荐产品线；按产品/品牌/项目跟踪</span></div></div></div>
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-amber">项目闭环</span><span class="name">重点事项台账</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-amber">事项管理</span><span class="name">唯一ID · 原截止日不覆盖 · 关闭有验证证据</span><span class="desc">进度落后时间进度10pp关注、20pp或逾期预警；未完成滚入下周</span></div>
+<div class="node l2-node"><span class="tag tg-amber">批复闭环</span><span class="name">老板批复 → 执行 → 验证结果</span><span class="desc">批复必须关联事项ID；未确认或逾期自动升级</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ============ 风控 ============ -->
+    <div class="branch l1">
+      <div class="node l1-node" onclick="toggle(this)">
+        <span class="tag tg-red">🛡️ ④ 风控</span>
+        <span class="name">线上线下整体运转风控点</span>
+        <span class="arrow">▼ 点击展开</span>
+      </div>
+      <div class="children">
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-red">风控领域</span><span class="name">六大风控点</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-red">资金</span><span class="name">资金风控 · 异常退款 · 账实差异</span><span class="desc">单笔/当日累计超阈值即核查；冻结-核对-升级</span></div>
+<div class="node l2-node"><span class="tag tg-red">客户</span><span class="name">客户关系风控</span><span class="desc">重大投诉/舆情/平台处罚即时上报</span></div>
+<div class="node l2-node"><span class="tag tg-red">定价</span><span class="name">物品定价风控</span><span class="desc">负毛利订单/异常优惠/价格越权</span></div>
+<div class="node l2-node"><span class="tag tg-red">营销</span><span class="name">营销风控</span><span class="desc">投放ROAS/贡献毛利异常即停调</span></div>
+<div class="node l2-node"><span class="tag tg-red">收银结算</span><span class="name">收银结算风控</span><span class="desc">输赢管理/非单管理/结算管理</span></div>
+<div class="node l2-node"><span class="tag tg-red">合规</span><span class="name">合同/采购/付款越权</span><span class="desc">未经授权执行、重大合同风险、疑似舞弊</span></div></div></div>
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-red">分级处置</span><span class="name">红黄规则 · 升级路径</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-red">黄色关注</span><span class="name">落后进度5-10pp · 下降10-20% · 逾期1-30天</span><span class="desc">责任人提交差额/原因/追赶动作</span></div>
+<div class="node l2-node"><span class="tag tg-red">红色预警</span><span class="name">落后>10pp · 下滑>20% · 逾期>30/60天 · 处罚/舆情</span><span class="desc">即时上报、统一口径、明确处理人与时限；事件触发不受金额限制</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ============ AI智能体 ============ -->
+    <div class="branch l1">
+      <div class="node l1-node" onclick="toggle(this)">
+        <span class="tag tg-green">🤖 支撑层（本次会议新增）</span>
+        <span class="name">AI智能体体系 · 全员AI革命</span>
+        <span class="arrow">▼ 点击展开</span>
+      </div>
+      <div class="children">
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-green">每人≥3个智能体</span><span class="name">围绕工作的智能体</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-green">经营智能体</span><span class="name">经营管理智能体（公司大智能体）</span><span class="desc">管理各岗位智能体；数据细分用于重点事项沟通</span></div>
+<div class="node l2-node"><span class="tag tg-green">岗位智能体</span><span class="name">电商运营 · 财务做账 · 人事 · 营销</span><span class="desc">电商运营智能体/财务做账基本智能体/人事主体/营销智能体</span></div>
+<div class="node l2-node"><span class="tag tg-green">落地节奏</span><span class="name">一周搭建 → 二周使用 → 三周复盘</span><span class="desc">先确定搭什么→与黄思睿/沈东奇/王新梦沟通框架→平台统一管理</span></div>
+<div class="node l2-node"><span class="tag tg-red">淘汰红线</span><span class="name">8-9月为限 · 年底前不会者淘汰</span><span class="desc">AI是革命不是工具选项：不用AI就被AI革命掉；不会用=被时代淘汰</span></div></div></div>
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-green">自动化运转</span><span class="name">人为工作 + 服务器24小时自动</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-green">月度盘点</span><span class="name">月度账务盘点（示例）</span><span class="desc">盘电子账→定时盘实物→按标准上报→系统自动推送报告/要求</span></div>
+<div class="node l2-node"><span class="tag tg-green">数据上线</span><span class="name">公司数据全部透明上线</span><span class="desc">无见不得光/无基本账；按岗位权限分配"该给谁看"；提升整体运营效率</span></div>
+<div class="node l2-node"><span class="tag tg-green">工具选型</span><span class="name">Code为核心模板 + 小龙虾补充</span><span class="desc">Code逻辑推理强为核心，考虑VPN不便、小龙虾方便，两者互补</span></div></div></div>
+      </div>
+    </div>
+
+    <!-- ============ 纪律与保障 ============ -->
+    <div class="branch l1">
+      <div class="node l1-node" onclick="toggle(this)">
+        <span class="tag tg-gray">📋 纪律与保障</span>
+        <span class="name">日报周报红线 · 汇报逻辑 · 数据责任</span>
+        <span class="arrow">▼ 点击展开</span>
+      </div>
+      <div class="children">
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-red">红线纪律</span><span class="name">日报/周报/月报 = 公司规则</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-red">零容忍</span><span class="name">写不像样周报 = 态度/能力问题</span><span class="desc">老员工因周报问题被开除；新人容错1-2周后不合格不留</span></div>
+<div class="node l2-node"><span class="tag tg-red">要求</span><span class="name">有目标 · 有完成率 · 有复盘 · 有计划</span><span class="desc">禁止流水账；先写给自己再写给领导；年→季→月→周→日层层清晰</span></div>
+<div class="node l2-node"><span class="tag tg-gray">工具</span><span class="name">不要求漂亮PPT · AI几秒生成</span><span class="desc">核心是把工作梳理清楚；可与AI交流岗位报告怎么写</span></div></div></div>
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-gray">汇报逻辑</span><span class="name">一目了然 · 有主到次 · 分层级</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-gray">主次</span><span class="name">先讲什么、其次讲什么</span><span class="desc">主次分明、分层级分逻辑；工作分清楚，沟通效率才高</span></div>
+<div class="node l2-node"><span class="tag tg-gray">口径</span><span class="name">员工工作内容围绕公司重点工作线</span><span class="desc">收/支两条线理清楚；各岗位围绕重点工作开展</span></div></div></div>
+        <div class="branch"><div class="node l1-node" onclick="toggle(this)"><span class="tag tg-gray">数据责任</span><span class="name">数据包责任 · 复核 · 时效</span><span class="arrow">▼ 展开</span></div><div class="children">
+<div class="node l2-node"><span class="tag tg-gray">责任</span><span class="name">各板块数据责任人 → 财务/总经办复核</span><span class="desc">公司销售/APR/电商/3PP/财务/营销/客服/人事/事项 九大数据包</span></div>
+<div class="node l2-node"><span class="tag tg-gray">时效</span><span class="name">日报08:30 · 周报周一10:00 · 月报次月5日</span><span class="desc">关键数据不齐时带"暂估/待确认/缺失"标识按时呈报，禁止静默补数</span></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint">💡 点击各板块标题可展开/收起明细 · 本次会议新增内容已用 🤖/🎯 标注</div>
+  <div class="foot">
+    江苏传天羽经营管理全景框架 · 2026-08-17 周会版<br>
+    简报体系（第五版）+ AI智能体支撑层 · 老板关注点已收录，周报/汇报中持续引用
+  </div>
+</div>
+
+<script>
+function toggle(el){
+  const ch = el.nextElementSibling;
+  if(ch && ch.classList.contains('children')){
+    ch.classList.toggle('open');
+    const arrow = el.querySelector('.arrow');
+    if(arrow) arrow.textContent = ch.classList.contains('open') ? '▼ 收起' : '▶ 展开';
+  }
+}
+</script>
+</body>
+</html>

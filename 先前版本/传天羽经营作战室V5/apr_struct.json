@@ -1,0 +1,579 @@
+{
+ "month": "2026-8",
+ "host": {
+  "store": "整体",
+  "total_amount": 308.67,
+  "total_qty": 1202,
+  "host_amount": 288.68,
+  "host_qty": 436,
+  "iphone": {
+   "amount": 206.95,
+   "pct": 71.7,
+   "qty": 260
+  },
+  "ipad": {
+   "amount": 22.33,
+   "pct": 7.7,
+   "qty": 42
+  },
+  "watch": {
+   "amount": 24.15,
+   "pct": 8.4,
+   "qty": 94
+  },
+  "mac": {
+   "amount": 35.25,
+   "pct": 12.2,
+   "qty": 40
+  }
+ },
+ "acc": {
+  "store": "整体",
+  "acc_amount": 10.21,
+  "acc_qty": 519,
+  "phone": {
+   "amount": 5.39,
+   "pct": 52.8,
+   "qty": 396
+  },
+  "pad": {
+   "amount": 0.41,
+   "pct": 4.0,
+   "qty": 20
+  },
+  "watch": {
+   "amount": 0.14,
+   "pct": 1.3,
+   "qty": 10
+  },
+  "other": {
+   "amount": 3.2,
+   "pct": 31.3,
+   "qty": 62
+  }
+ },
+ "stores_host": [
+  {
+   "store": "宿州店",
+   "total_amount": 35.0,
+   "total_qty": 159,
+   "host_amount": 32.89,
+   "host_qty": 46,
+   "iphone": {
+    "amount": 27.87,
+    "pct": 84.7,
+    "qty": 34
+   },
+   "ipad": {
+    "amount": 1.38,
+    "pct": 4.2,
+    "qty": 2
+   },
+   "watch": {
+    "amount": 1.99,
+    "pct": 6.0,
+    "qty": 8
+   },
+   "mac": {
+    "amount": 1.65,
+    "pct": 5.0,
+    "qty": 2
+   }
+  },
+  {
+   "store": "镇江店",
+   "total_amount": 18.56,
+   "total_qty": 74,
+   "host_amount": 16.6,
+   "host_qty": 31,
+   "iphone": {
+    "amount": 12.3,
+    "pct": 74.1,
+    "qty": 17
+   },
+   "ipad": {
+    "amount": 1.89,
+    "pct": 11.4,
+    "qty": 4
+   },
+   "watch": {
+    "amount": 2.4,
+    "pct": 14.4,
+    "qty": 10
+   },
+   "mac": {
+    "amount": 0.02,
+    "pct": 0.1,
+    "qty": 0
+   }
+  },
+  {
+   "store": "徐州彭城店",
+   "total_amount": 101.29,
+   "total_qty": 328,
+   "host_amount": 94.92,
+   "host_qty": 142,
+   "iphone": {
+    "amount": 62.52,
+    "pct": 65.9,
+    "qty": 80
+   },
+   "ipad": {
+    "amount": 9.2,
+    "pct": 9.7,
+    "qty": 17
+   },
+   "watch": {
+    "amount": 7.69,
+    "pct": 8.1,
+    "qty": 28
+   },
+   "mac": {
+    "amount": 15.52,
+    "pct": 16.3,
+    "qty": 17
+   }
+  },
+  {
+   "store": "无锡店",
+   "total_amount": 47.51,
+   "total_qty": 195,
+   "host_amount": 44.64,
+   "host_qty": 67,
+   "iphone": {
+    "amount": 32.85,
+    "pct": 73.6,
+    "qty": 41
+   },
+   "ipad": {
+    "amount": 0.94,
+    "pct": 2.1,
+    "qty": 2
+   },
+   "watch": {
+    "amount": 3.85,
+    "pct": 8.6,
+    "qty": 16
+   },
+   "mac": {
+    "amount": 7.01,
+    "pct": 15.7,
+    "qty": 8
+   }
+  },
+  {
+   "store": "连云港店",
+   "total_amount": 43.26,
+   "total_qty": 174,
+   "host_amount": 40.22,
+   "host_qty": 56,
+   "iphone": {
+    "amount": 26.5,
+    "pct": 65.9,
+    "qty": 31
+   },
+   "ipad": {
+    "amount": 5.06,
+    "pct": 12.6,
+    "qty": 8
+   },
+   "watch": {
+    "amount": 2.17,
+    "pct": 5.4,
+    "qty": 9
+   },
+   "mac": {
+    "amount": 6.49,
+    "pct": 16.1,
+    "qty": 8
+   }
+  },
+  {
+   "store": "日照店",
+   "total_amount": 13.04,
+   "total_qty": 34,
+   "host_amount": 12.57,
+   "host_qty": 21,
+   "iphone": {
+    "amount": 8.15,
+    "pct": 64.8,
+    "qty": 10
+   },
+   "ipad": {
+    "amount": 0.43,
+    "pct": 3.4,
+    "qty": 1
+   },
+   "watch": {
+    "amount": 2.06,
+    "pct": 16.4,
+    "qty": 8
+   },
+   "mac": {
+    "amount": 1.92,
+    "pct": 15.3,
+    "qty": 2
+   }
+  },
+  {
+   "store": "徐州宝龙店",
+   "total_amount": 9.08,
+   "total_qty": 31,
+   "host_amount": 8.74,
+   "host_qty": 14,
+   "iphone": {
+    "amount": 6.46,
+    "pct": 73.9,
+    "qty": 9
+   },
+   "ipad": {
+    "amount": 0.43,
+    "pct": 4.9,
+    "qty": 1
+   },
+   "watch": {
+    "amount": 0.7,
+    "pct": 8.1,
+    "qty": 3
+   },
+   "mac": {
+    "amount": 1.15,
+    "pct": 13.2,
+    "qty": 1
+   }
+  },
+  {
+   "store": "运城店",
+   "total_amount": 21.99,
+   "total_qty": 90,
+   "host_amount": 20.76,
+   "host_qty": 30,
+   "iphone": {
+    "amount": 17.9,
+    "pct": 86.2,
+    "qty": 23
+   },
+   "ipad": {
+    "amount": 1.78,
+    "pct": 8.6,
+    "qty": 4
+   },
+   "watch": {
+    "amount": 1.08,
+    "pct": 5.2,
+    "qty": 3
+   },
+   "mac": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   }
+  },
+  {
+   "store": "苏家屯店",
+   "total_amount": 6.21,
+   "total_qty": 30,
+   "host_amount": 5.73,
+   "host_qty": 8,
+   "iphone": {
+    "amount": 5.1,
+    "pct": 89.0,
+    "qty": 6
+   },
+   "ipad": {
+    "amount": 0.38,
+    "pct": 6.6,
+    "qty": 1
+   },
+   "watch": {
+    "amount": 0.25,
+    "pct": 4.4,
+    "qty": 1
+   },
+   "mac": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   }
+  },
+  {
+   "store": "太原店",
+   "total_amount": 12.73,
+   "total_qty": 87,
+   "host_amount": 11.59,
+   "host_qty": 21,
+   "iphone": {
+    "amount": 7.32,
+    "pct": 63.1,
+    "qty": 9
+   },
+   "ipad": {
+    "amount": 0.84,
+    "pct": 7.2,
+    "qty": 2
+   },
+   "watch": {
+    "amount": 1.95,
+    "pct": 16.8,
+    "qty": 8
+   },
+   "mac": {
+    "amount": 1.48,
+    "pct": 12.8,
+    "qty": 2
+   }
+  }
+ ],
+ "stores_acc": [
+  {
+   "store": "宿州店",
+   "acc_amount": 0.94,
+   "acc_qty": 81,
+   "phone": {
+    "amount": 0.42,
+    "pct": 44.5,
+    "qty": 65
+   },
+   "pad": {
+    "amount": 0.08,
+    "pct": 8.5,
+    "qty": 4
+   },
+   "watch": {
+    "amount": 0.01,
+    "pct": 0.5,
+    "qty": 2
+   },
+   "other": {
+    "amount": 0.44,
+    "pct": 46.5,
+    "qty": 10
+   }
+  },
+  {
+   "store": "镇江店",
+   "acc_amount": 0.79,
+   "acc_qty": 30,
+   "phone": {
+    "amount": 0.58,
+    "pct": 73.6,
+    "qty": 27
+   },
+   "pad": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0.21,
+    "pct": 26.4,
+    "qty": 3
+   }
+  },
+  {
+   "store": "徐州彭城店",
+   "acc_amount": 3.62,
+   "acc_qty": 125,
+   "phone": {
+    "amount": 1.25,
+    "pct": 34.6,
+    "qty": 73
+   },
+   "pad": {
+    "amount": 0.07,
+    "pct": 2.0,
+    "qty": 5
+   },
+   "watch": {
+    "amount": 0.09,
+    "pct": 2.6,
+    "qty": 5
+   },
+   "other": {
+    "amount": 1.37,
+    "pct": 37.8,
+    "qty": 27
+   }
+  },
+  {
+   "store": "无锡店",
+   "acc_amount": 1.45,
+   "acc_qty": 92,
+   "phone": {
+    "amount": 1.03,
+    "pct": 71.0,
+    "qty": 82
+   },
+   "pad": {
+    "amount": 0.01,
+    "pct": 0.7,
+    "qty": 1
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0.38,
+    "pct": 26.0,
+    "qty": 7
+   }
+  },
+  {
+   "store": "连云港店",
+   "acc_amount": 1.8,
+   "acc_qty": 86,
+   "phone": {
+    "amount": 0.98,
+    "pct": 54.5,
+    "qty": 62
+   },
+   "pad": {
+    "amount": 0.2,
+    "pct": 11.3,
+    "qty": 6
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0.41,
+    "pct": 23.1,
+    "qty": 8
+   }
+  },
+  {
+   "store": "日照店",
+   "acc_amount": 0.04,
+   "acc_qty": 4,
+   "phone": {
+    "amount": 0.03,
+    "pct": 75.1,
+    "qty": 3
+   },
+   "pad": {
+    "amount": 0.01,
+    "pct": 24.9,
+    "qty": 1
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   }
+  },
+  {
+   "store": "徐州宝龙店",
+   "acc_amount": 0.23,
+   "acc_qty": 12,
+   "phone": {
+    "amount": 0.23,
+    "pct": 100,
+    "qty": 12
+   },
+   "pad": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   }
+  },
+  {
+   "store": "运城店",
+   "acc_amount": 0.4,
+   "acc_qty": 35,
+   "phone": {
+    "amount": 0.31,
+    "pct": 77.8,
+    "qty": 32
+   },
+   "pad": {
+    "amount": 0.01,
+    "pct": 3.7,
+    "qty": 1
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0.07,
+    "pct": 18.5,
+    "qty": 2
+   }
+  },
+  {
+   "store": "苏家屯店",
+   "acc_amount": 0.24,
+   "acc_qty": 11,
+   "phone": {
+    "amount": 0.19,
+    "pct": 79.1,
+    "qty": 10
+   },
+   "pad": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "watch": {
+    "amount": 0,
+    "pct": 0,
+    "qty": 0
+   },
+   "other": {
+    "amount": 0.05,
+    "pct": 20.9,
+    "qty": 1
+   }
+  },
+  {
+   "store": "太原店",
+   "acc_amount": 0.67,
+   "acc_qty": 42,
+   "phone": {
+    "amount": 0.34,
+    "pct": 50.0,
+    "qty": 29
+   },
+   "pad": {
+    "amount": 0.02,
+    "pct": 3.0,
+    "qty": 2
+   },
+   "watch": {
+    "amount": 0.04,
+    "pct": 5.9,
+    "qty": 3
+   },
+   "other": {
+    "amount": 0.27,
+    "pct": 39.6,
+    "qty": 4
+   }
+  }
+ ]
+}

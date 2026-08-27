@@ -1,0 +1,1739 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>传天羽 Chuangel · 企业经营看板 V6</title>
+<style>
+:root{
+  --navy:#0b2342;--navy2:#12365f;--blue:#2f69c2;--blue2:#5f8fdb;
+  --ink:#0f2745;--muted:#6d7f96;--line:#d6e0ec;--bg:#e7edf4;
+  --card:#f9fbfd;--gold:#c79118;--green:#188b70;--orange:#c97921;--red:#c94d5c;
+  --shadow:0 12px 28px rgba(15,39,69,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;font-size:16px}
+button{font:inherit}
+.app{min-height:100vh;display:grid;grid-template-columns:288px minmax(0,1fr)}
+/* ===== 侧边栏 ===== */
+.sidebar{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#091e38 0%,#0d2b4f 100%);color:#fff;padding:26px 20px;display:flex;flex-direction:column;z-index:5}
+.brand{padding:4px 6px 22px;border-bottom:1px solid rgba(255,255,255,.14)}
+.brand .b-logo{display:flex;align-items:center;gap:11px}
+.brand .b-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2f69c2,#173e70);display:grid;place-items:center;font-size:20px;font-weight:900;letter-spacing:.5px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.brand .b-name{font-size:19px;font-weight:800;letter-spacing:1px}
+.brand .b-name small{display:block;font-size:10.5px;color:#94aac2;letter-spacing:2.4px;font-weight:700;margin-top:3px}
+.brand p{margin:12px 0 0;color:#94aac2;font-size:12px;letter-spacing:2.2px}
+.nav-label{margin:24px 12px 12px;color:#7890aa;font-size:13px;letter-spacing:2px}
+.primary-nav{display:grid;gap:9px}
+.nav-btn{appearance:none;border:1px solid transparent;border-radius:12px;background:transparent;color:#d8e4f2;text-align:left;padding:14px 13px;display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:center;cursor:pointer;transition:.2s}
+.nav-btn:hover{background:rgba(255,255,255,.07)}
+.nav-btn.active{background:linear-gradient(135deg,#2f69c2,#234e8c);border-color:rgba(255,255,255,.14);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.nav-index{height:33px;border:1px solid rgba(255,255,255,.22);border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700}
+.nav-btn.active .nav-index{background:rgba(255,255,255,.12)}
+.nav-copy strong{display:block;font-size:17px}.nav-copy span{display:block;margin-top:4px;color:#9fb2c8;font-size:12px}
+.sidebar-foot{margin-top:auto;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:15px 16px}
+.sidebar-foot .state{display:flex;align-items:center;gap:8px;color:#c4d2e1;font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;background:#34c6a1;box-shadow:0 0 0 5px rgba(52,198,161,.10)}
+.sidebar-foot strong{display:block;font-size:16px;margin:9px 0;color:#fff}
+.sidebar-foot small{color:#8298b0;line-height:1.6;display:block}
+/* ===== 顶栏 ===== */
+.main{min-width:0}
+.topbar{height:84px;background:#102a4b;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:6}
+.crumb{display:flex;gap:14px;align-items:center}.crumb-code{color:#86adf5;font-weight:700;letter-spacing:1.8px;font-size:13px}.crumb-line{width:1px;height:24px;background:#45607e}.crumb-title{font-size:22px;font-weight:700}
+.top-actions{display:flex;align-items:center;gap:10px}
+.period{display:flex;background:#0d2441;border:1px solid #365372;border-radius:10px;padding:4px}
+.period button{border:0;background:transparent;color:#9db2c9;padding:8px 14px;border-radius:7px;cursor:pointer}
+.period button.active{background:#fff;color:#102a4b;font-weight:700}
+.date-box{border:1px solid #365372;background:#0d2441;color:#dfe9f5;border-radius:10px;padding:10px 14px;min-width:190px;text-align:center;font-size:13px;line-height:1.5}
+.date-box small{color:#8fa6bf}
+/* ===== 内容区 ===== */
+.content{padding:26px 32px 50px;max-width:1800px;margin:auto}
+.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#102e52 0%,#173f6d 72%,#285893 100%);color:#fff;border-radius:18px;padding:26px 32px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:28px;align-items:center;flex-wrap:wrap}
+.hero:after{content:"";position:absolute;width:400px;height:400px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-160px;top:-220px;box-shadow:0 0 0 70px rgba(255,255,255,.025),0 0 0 140px rgba(255,255,255,.018)}
+.eyebrow{font-size:13px;letter-spacing:2.2px;font-weight:700;color:#91b7ff}
+h1{font-size:31px;line-height:1.2;margin:9px 0 8px;font-weight:800}
+.hero p{margin:0;color:#b9cce0;line-height:1.7;max-width:860px;font-size:14px}
+.hero-stats{position:relative;z-index:1;display:flex;gap:18px;flex-wrap:wrap}
+.hero-stat{border-left:4px solid #74a4ff;background:rgba(255,255,255,.10);padding:15px 22px;min-width:172px;border-radius:12px;position:relative}
+.hero-stat span{color:#c4d6ea;font-size:12.5px;font-weight:800;letter-spacing:1.2px}
+.hero-stat strong{display:block;font-size:31px;margin-top:7px;font-weight:900;letter-spacing:.5px;color:#fff}
+.hero-stat small{color:#9fe3c8;font-size:13px;font-weight:800;margin-top:6px;display:block}
+.hero-stat small.down{color:#f2b8c0}
+.hero-stat .hs-sub{font-size:11px;color:#9db4cc;font-weight:600;margin-top:3px;display:block}
+/* ===== 吸顶控件 ===== */
+.sticky-controls{position:sticky;top:84px;z-index:4;background:rgba(231,237,244,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(180,195,212,.58)}
+.department-switch{margin-top:13px;background:linear-gradient(135deg,#f9fbfd,#eef4fa);border:1px solid #c5d4e4;border-top:4px solid #2f69c2;border-radius:16px;padding:13px 15px;display:grid;grid-template-columns:190px repeat(5,minmax(150px,1fr));align-items:stretch;gap:12px;box-shadow:0 9px 22px rgba(25,55,90,.08)}
+.department-switch:empty{display:none}
+.dept-heading{display:flex;flex-direction:column;justify-content:center;padding:3px 10px}
+.dept-heading span{color:#58789d;font-size:11px;font-weight:800;letter-spacing:1.7px}
+.dept-heading strong{font-size:18px;margin-top:6px;color:#163654}
+.department-switch button{position:relative;min-height:72px;border:1px solid #c8d6e5;background:#fff;color:#294765;border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:44px 1fr 18px;gap:12px;align-items:center;text-align:left;cursor:pointer;transition:.2s;box-shadow:0 4px 10px rgba(29,61,96,.05)}
+.department-switch button:hover{border-color:#7199d5;transform:translateY(-1px);box-shadow:0 8px 16px rgba(29,61,96,.10)}
+.department-switch button.active{background:linear-gradient(135deg,#12385f,#215a99);color:#fff;border-color:#2f69c2;box-shadow:0 9px 20px rgba(23,62,112,.22)}
+.dept-code{width:44px;height:44px;border-radius:11px;background:#e7eff9;color:#2f69c2;display:grid;place-items:center;font-size:13px;font-weight:900}
+.department-switch button.active .dept-code{background:rgba(255,255,255,.14);color:#fff}
+.dept-copy strong{display:block;font-size:16px}
+.dept-copy small{display:block;margin-top:5px;color:#7b8da2;font-size:12px}
+.department-switch button.active .dept-copy small{color:#bbd0e8}
+.dept-arrow{font-size:22px;color:#87a0bb}
+.department-switch button.active .dept-arrow{color:#fff}
+.section-switch{display:flex;gap:9px;overflow:auto;padding:12px 0 13px;scrollbar-width:thin}
+.section-switch button{white-space:nowrap;border:1px solid #c9d6e4;background:#f7f9fc;color:#36506e;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:14px;transition:.2s}
+.section-switch button:hover{border-color:#8daee0}
+.section-switch button.active{background:#173e70;color:#fff;border-color:#173e70;box-shadow:0 7px 16px rgba(23,62,112,.17)}
+.section-shell{animation:fade .24s ease}
+@keyframes fade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+.section-block{scroll-margin-top:210px;padding-top:16px;margin-bottom:32px}
+.section-block+.section-block{border-top:1px solid #c9d5e2;padding-top:30px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin:8px 0 15px;gap:14px;flex-wrap:wrap}
+.section-head h2{margin:0;font-size:25px;font-weight:800}
+.section-head p{margin:7px 0 0;color:var(--muted);font-size:14px}
+.section-tag{background:#eaf2ff;color:#2f69c2;border:1px solid #cbdcf7;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;white-space:nowrap}
+/* ===== 指标卡 ===== */
+.metric-grid{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:16px}
+.metric-grid .metric-card{flex:1 1 calc(25% - 13px);min-width:200px}
+.metric-card{background:var(--card);border:1px solid var(--line);border-radius:14px;min-height:132px;padding:17px 18px 15px;position:relative;overflow:hidden;box-shadow:0 7px 18px rgba(25,55,90,.055)}
+.metric-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue)}
+.metric-card.gold:before{background:var(--gold)}.metric-card.green:before{background:var(--green)}.metric-card.red:before{background:var(--red)}
+.metric-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.metric-name{font-weight:700;font-size:15.5px;line-height:1.4}
+.metric-icon{width:32px;height:32px;border-radius:9px;background:#e7effb;color:#2f69c2;display:grid;place-items:center;font-weight:800;font-size:12px}
+.metric-value{margin-top:14px;font-size:27px;font-weight:900;letter-spacing:.3px;color:#0b2342}
+.metric-value small{font-size:12.5px;color:#8a9aab;font-weight:600;margin-left:3px}
+.delta{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:13px;font-weight:800;padding:4px 11px;border-radius:999px}
+.delta.up{background:#e6f5ef;color:#116e58}
+.delta.down{background:#fdeeef;color:#b0424f}
+.delta.flat{background:#eef2f6;color:#7a8b9e}
+.metric-card.hot{background:linear-gradient(180deg,#fffcf0,#fbf4e0);border-color:#e6d3a2}
+.metric-card.hot:before{background:#d99a1e}
+.metric-card.hot .metric-value{color:#163654}
+.metric-card.hot .metric-name{color:#8a5a0d}
+.metric-sub{margin-top:8px;color:#8a9aab;font-size:12.5px}
+/* ===== 预警条 ===== */
+.alert-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:11px;margin-bottom:16px}
+.alert-item{display:flex;gap:11px;align-items:flex-start;border-radius:12px;padding:13px 15px;border:1px solid;font-size:13.5px;line-height:1.55}
+.alert-item .a-ico{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:900;flex-shrink:0;margin-top:1px}
+.alert-item b{display:block;margin-bottom:2px}
+.alert-red{background:#fdf1f2;border-color:#f0ccd1;color:#8f3340}.alert-red .a-ico{background:#c94d5c}
+.alert-yellow{background:#fdf6e9;border-color:#eedbba;color:#7d5a17}.alert-yellow .a-ico{background:#c79118}
+.alert-green{background:#e9f6f2;border-color:#c6e6dc;color:#0f6b56}.alert-green .a-ico{background:#188b70}
+/* ===== 目标进度 ===== */
+.goal-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 8px 20px rgba(25,55,90,.06);padding:18px 20px;margin-bottom:16px}
+.goal-card h3{margin:0 0 14px;font-size:17px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.goal-row{display:grid;grid-template-columns:120px 1fr 170px;gap:14px;align-items:center;padding:9px 0;border-bottom:1px dashed #e0e7ef}
+.goal-row:last-child{border-bottom:0}
+.goal-row .g-name{font-size:14px;font-weight:700}
+.progress{height:12px;background:#e8eef5;border-radius:8px;overflow:hidden;position:relative}
+.progress i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#2f69c2,#5f8fdb)}
+.progress i.good{background:linear-gradient(90deg,#1ea77f,#34c6a1)}
+.progress i.warn{background:linear-gradient(90deg,#d99a1e,#f0bb4e)}
+.progress i.bad{background:linear-gradient(90deg,#d0505f,#e77a86)}
+.progress .p-mark{position:absolute;top:-3px;width:3px;height:18px;background:#0f2745;border-radius:2px}
+.goal-row .g-val{font-size:13px;color:#57708c;text-align:right;font-weight:600}
+/* ===== 图表面板 ===== */
+.detail-panel{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(320px,.85fr);gap:16px;margin-bottom:16px}
+.detail-panel.single{grid-template-columns:1fr}
+.detail-panel.tri{grid-template-columns:repeat(3,minmax(0,1fr))}
+.viz-card,.table-card,.analysis-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 8px 20px rgba(25,55,90,.06);overflow:hidden}
+.card-head{padding:16px 19px 13px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.card-head h3{margin:0;font-size:18px}
+.card-head span{color:var(--muted);font-size:12.5px}
+.chart-area{padding:20px 22px 34px;height:260px;display:flex;align-items:flex-end;gap:15px;position:relative;background:linear-gradient(180deg,transparent 0 92%,#e4eaf1 92%)}
+.chart-area:before,.chart-area:after{content:"";position:absolute;left:22px;right:22px;border-top:1px dashed #d7e0ea}
+.chart-area:before{top:34%}.chart-area:after{top:64%}
+.bar-set{height:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;gap:6px;position:relative;z-index:1}
+.bar{width:24px;border-radius:7px 7px 2px 2px;background:linear-gradient(180deg,#6d98dc,#315fa7);min-height:26px;position:relative}
+.bar.alt{background:linear-gradient(180deg,#d9b354,#bd8414)}
+.bar.thd{background:linear-gradient(180deg,#6fcfb2,#1e8a6d)}
+.bar em{position:absolute;top:-21px;left:50%;transform:translateX(-50%);font-style:normal;font-size:10.5px;color:#57708c;white-space:nowrap;font-weight:700}
+.bar-set span{position:absolute;bottom:-3px;transform:translateY(100%);color:#71839a;font-size:11.5px;white-space:nowrap}
+.chart-legend{display:flex;gap:18px;padding:0 22px 14px;font-size:12.5px;color:#57708c;font-weight:600}
+.chart-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+/* ===== 环形图 ===== */
+.donut-wrap{padding:22px;display:flex;align-items:center;gap:22px;min-height:250px;flex-wrap:wrap}
+.donut{width:150px;height:150px;border-radius:50%;position:relative;flex:0 0 auto}
+.donut:after{content:attr(data-center);position:absolute;inset:24px;background:var(--card);border-radius:50%;display:grid;place-items:center;font-weight:800;color:#415771;font-size:13px;text-align:center;line-height:1.4}
+.legend{display:grid;gap:10px;flex:1;min-width:200px}
+.legend-item{display:grid;grid-template-columns:10px 1fr auto;gap:9px;align-items:center;padding-bottom:9px;border-bottom:1px solid #e5eaf0;font-size:13.5px}
+.legend-item i{width:9px;height:9px;border-radius:50%}
+.legend-item strong{color:#3c5570}
+.legend-item b{color:#2f4b6c;font-size:13px}
+/* ===== 业务表格 ===== */
+.tbl-scroll{overflow:auto;max-height:460px}
+.biz-table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
+.biz-table th{position:sticky;top:0;background:#eef3f9;color:#3d5a7a;text-align:left;padding:11px 14px;font-size:12.5px;white-space:nowrap;border-bottom:1px solid #d5e0ec;z-index:1}
+.biz-table td{padding:11px 14px;border-top:1px solid #e4eaf1;white-space:nowrap}
+.biz-table tbody tr:hover{background:#f2f7fc}
+.biz-table .t-name{font-weight:700;color:#163654}
+.biz-table .neg{color:#b0424f;font-weight:700}
+.biz-table .pos{color:#116e58;font-weight:700}
+.biz-table .grp{background:#eef4fb;font-weight:800;color:#1e4a7a}
+.chip{display:inline-block;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.chip.ok{background:#e6f5ef;color:#116e58}
+.chip.warn{background:#fdf3e2;color:#8a5a0d}
+.chip.bad{background:#fdeeef;color:#b0424f}
+.chip.todo{background:#eef2f6;color:#7a8b9e}
+/* ===== Apple五科 ===== */
+.five-dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px;margin-bottom:16px}
+.dept-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 7px 18px rgba(25,55,90,.055)}
+.dept-card h4{margin:0 0 11px;font-size:15.5px;display:flex;justify-content:space-between;align-items:center}
+.dept-card h4 em{font-style:normal;font-size:10.5px;letter-spacing:1.5px;color:#8a9aab;font-weight:800}
+.dept-kv{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:13px}
+.dept-kv .k{color:#62788f}
+.dept-kv .v{font-weight:700;color:#163654;text-align:right}
+.dept-kv .v.ok{color:#116e58}.dept-kv .v.bad{color:#b0424f}.dept-kv .v.warn{color:#8a5a0d}
+/* ===== 漏斗 ===== */
+.funnel{padding:20px 24px 24px;display:grid;gap:9px}
+.funnel-step{display:grid;grid-template-columns:90px 1fr 130px;gap:14px;align-items:center}
+.funnel-step .f-name{font-size:13px;font-weight:700;color:#3d5a7a}
+.funnel-bar{height:34px;border-radius:8px;display:flex;align-items:center;padding:0 13px;color:#fff;font-size:12.5px;font-weight:700;background:linear-gradient(90deg,#2f69c2,#5f8fdb)}
+.funnel-step .f-val{font-size:12.5px;color:#57708c;text-align:right;line-height:1.5}
+/* ===== 巡检清单 ===== */
+.ops-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);overflow:hidden}
+.ops-head{padding:15px 18px;border-bottom:1px solid #dde5ee;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ops-head h3{margin:0;font-size:17px}
+.ops-head span{color:#71839a;font-size:12px}
+.check-list{padding:6px 17px 13px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+.check-row{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:12px 1px;border-bottom:1px solid #e4eaf1}
+.check-icon{width:27px;height:27px;border-radius:8px;background:#e7eff9;color:#2f69c2;display:grid;place-items:center;font-size:11.5px;font-weight:900}
+.check-row strong{font-size:13.5px}
+.ops-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-bottom:16px}
+.ops-grid .ops-card:only-child{grid-column:1/-1}
+.training-board{padding:14px 17px 17px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.training-item{border:1px solid #dce4ed;background:#f6f9fc;border-radius:10px;padding:12px 13px}
+.training-item span{display:block;color:#71839a;font-size:12px}
+.training-item strong{display:block;margin-top:6px;font-size:14px}
+.training-item small{display:block;margin-top:6px;color:#8494a6;font-size:12px}
+/* ===== 考核表 ===== */
+.assessment-board{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 7px 18px rgba(25,55,90,.06);overflow:hidden;margin-bottom:16px}
+.assessment-summary{display:grid;grid-template-columns:repeat(4,1fr);background:#14375f;color:#fff}
+.assessment-summary div{padding:15px 18px;border-right:1px solid rgba(255,255,255,.12)}
+.assessment-summary div:last-child{border-right:0}
+.assessment-summary span{display:block;color:#aec3da;font-size:12px}
+.assessment-summary strong{display:block;margin-top:5px;font-size:19px}
+/* ===== 总结分析 ===== */
+.analysis-card{border-color:#bfd0e4;margin-bottom:0}
+.analysis-top{background:linear-gradient(115deg,#102d50,#183f6d);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.analysis-top h3{margin:0;font-size:19px}
+.analysis-top span{font-size:12px;color:#a9bfd7;letter-spacing:1.2px}
+.analysis-body{padding:17px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.analysis-item{border:1px solid #d8e2ed;border-radius:11px;padding:14px;background:#f6f9fc}
+.analysis-item:nth-child(2){border-top:3px solid var(--orange)}
+.analysis-item:nth-child(3){border-top:3px solid var(--green)}
+.analysis-item:first-child{border-top:3px solid var(--blue)}
+.analysis-item b{display:block;font-size:14px;margin-bottom:8px}
+.analysis-item p{margin:0;color:#5c6f84;line-height:1.75;font-size:13.5px}
+.analysis-item p b{display:inline;font-size:13.5px}
+/* ===== AI建议条 ===== */
+.ai-tip{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(115deg,#f0f6ff,#eaf1fb);border:1px solid #c3d6ef;border-left:4px solid #2f69c2;border-radius:12px;padding:14px 17px;margin-bottom:16px;font-size:13.5px;line-height:1.7;color:#2c4a6e}
+.ai-tip .ai-ico{width:34px;height:34px;border-radius:10px;background:#173e70;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:900;flex-shrink:0}
+.ai-tip b{color:#173e70}
+/* ===== 占位页 ===== */
+.empty-state{min-height:480px;margin-top:18px;background:linear-gradient(145deg,#f9fbfd,#f1f5f9);border:1px solid #cedae7;border-radius:18px;box-shadow:var(--shadow);display:grid;place-items:center;text-align:center;padding:44px}
+.empty-icon{width:78px;height:78px;margin:0 auto 20px;border-radius:22px;background:#e4edf7;color:#2f69c2;display:grid;place-items:center;font-size:28px;font-weight:800}
+.empty-state h2{font-size:26px;margin:0 0 10px}
+.empty-state p{margin:0;color:#71839a;line-height:1.8;max-width:680px}
+.empty-pill{display:inline-block;margin-top:19px;border:1px solid #c8d7e8;background:#eef4fb;color:#52708f;border-radius:999px;padding:8px 15px;font-weight:700}
+.empty-mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;max-width:760px;margin:24px auto 0;width:100%}
+.empty-mod{border:1px dashed #c3d3e4;background:#fff;border-radius:11px;padding:12px 10px;font-size:13px;font-weight:700;color:#4c6887}
+.footnote{margin-top:16px;color:#71839a;font-size:12.5px;text-align:right;line-height:1.7}
+/* ===== 对比条（同行/环比） ===== */
+.vs-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px;margin-bottom:16px}
+.vs-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.vs-item .vs-k{color:#62788f;font-size:12px}
+.vs-item .vs-v{font-size:17px;font-weight:800;margin-top:5px}
+.vs-item .vs-d{font-size:12px;margin-top:5px;font-weight:700}
+.vs-item .vs-d.up{color:#116e58}.vs-item .vs-d.down{color:#b0424f}
+/* ===== 响应式 ===== */
+@media(max-width:1180px){.app{grid-template-columns:230px minmax(0,1fr)}.sidebar{padding-left:14px;padding-right:14px}.content{padding-left:22px;padding-right:22px}.metric-grid{grid-template-columns:repeat(2,1fr)}.detail-panel,.detail-panel.tri{grid-template-columns:1fr}.ops-grid{grid-template-columns:1fr}.analysis-body{grid-template-columns:1fr}.assessment-summary{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.app{display:block}.sidebar{position:relative;width:100%;height:auto;padding:16px}.brand{padding-bottom:14px}.primary-nav{grid-template-columns:repeat(2,1fr)}.nav-label,.sidebar-foot{display:none}.nav-btn{padding:10px}.nav-copy strong{font-size:14px}.nav-copy span{display:none}.topbar{height:auto;min-height:64px;padding:12px 14px;gap:10px;flex-wrap:wrap}.crumb-code,.crumb-line{display:none}.crumb-title{font-size:17px}.date-box{display:none}.content{padding:16px 12px 30px}.hero{display:block;padding:22px}.hero-stats{margin-top:18px;flex-wrap:wrap;gap:12px}.sticky-controls{top:64px}.department-switch{grid-template-columns:1fr;padding:10px}.dept-heading{display:none}.department-switch button{min-height:56px}.metric-grid,.check-list,.training-board{grid-template-columns:1fr}.funnel-step{grid-template-columns:70px 1fr}.funnel-step .f-val{grid-column:1/-1}}
+
+.inv-detail{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px;box-shadow:0 7px 18px rgba(25,55,90,.055)}
+.inv-detail summary{cursor:pointer;font-weight:800;font-size:15px;color:#173e70;padding:4px 2px}
+.inv-detail summary:hover{color:#2f69c2}
+.chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.chip.red{background:#fdeaea;color:#c0392b}
+.chip.warn{background:#fdf3e0;color:#b9770e}
+.chip.ok{background:#e8f5ef;color:#1e8a5a}
+
+/* 个人档案弹窗 */
+.person-link{color:#2f69c2;font-weight:700;cursor:pointer;text-decoration:underline}
+.person-link:hover{color:#173e70}
+#personModal{display:none;position:fixed;inset:0;z-index:99;background:rgba(9,30,56,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+#personModal .profile-card{background:#fff;border-radius:18px;max-width:640px;width:100%;max-height:86vh;overflow:auto;padding:26px 28px;box-shadow:0 24px 60px rgba(9,30,56,.35)}
+#personModal .profile-head{display:flex;gap:16px;align-items:center;margin-bottom:18px;border-bottom:1px solid #e3eaf2;padding-bottom:16px}
+#personModal .p-avatar{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#12385f,#2f69c2);color:#fff;font-size:26px;font-weight:900;display:grid;place-items:center}
+#personModal .profile-head h3{margin:0;font-size:22px;color:#163654}
+#personModal .profile-head h3 small{font-size:13px;color:#7b8da2;font-weight:500}
+#personModal .profile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+#personModal .p-k{background:#f4f8fc;border:1px solid #e0e9f2;border-radius:12px;padding:10px 12px}
+#personModal .p-k span{display:block;font-size:11px;color:#7b8da2;margin-bottom:4px}
+#personModal .p-k b{font-size:15px;color:#1b3a5e}
+#personModal .p-k b.pos{color:#1e8a5a}
+#personModal .p-k b.neg{color:#c0392b}
+#personModal .profile-note{background:#fdf6ec;border:1px solid #f0e0c2;border-radius:12px;padding:12px 14px;font-size:13px;color:#6b5a2e;line-height:1.7;margin-bottom:16px}
+#personModal .profile-close{width:100%;padding:12px;border:0;border-radius:12px;background:#173e70;color:#fff;font-size:15px;font-weight:800;cursor:pointer}
+#personModal .profile-hr{border:1px solid #dbe6f0;border-radius:14px;padding:14px 16px;margin-bottom:14px;background:#fbfdff}
+#personModal .ph-title{font-size:14px;font-weight:800;color:#1b3a5e;margin-bottom:10px}
+#personModal .profile-grid2{grid-template-columns:repeat(4,1fr)}
+#personModal .profile-grid2 .p-k{background:#f7fafd}
+#personModal .profile-close:hover{background:#215a99}
+@media(max-width:900px){#personModal .profile-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* 饼图（SVG 环形图） */
+.pie3d-stage{display:flex;align-items:center;justify-content:center;padding:12px 0 2px;margin:6px 0 2px}
+.pie3d-svg{width:212px;height:200px;max-width:100%}
+@media(max-width:900px){.pie3d-svg{width:180px;height:170px}}
+.pie3d,.pie3d-thick{width:160px;height:160px}.pie3d-thick{margin:-80px 0 0 -80px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="b-logo"><span class="b-mark">C</span><span class="b-name">传天羽<small>CHUANGEL · BOSS VIEW</small></span></div>
+      <p>BUSINESS MANAGEMENT</p>
+    </div>
+    <div class="nav-label">经营看板一级区块</div>
+    <nav class="primary-nav" id="primaryNav"></nav>
+    <div class="sidebar-foot">
+      <div class="state"><span class="dot"></span>数据源：吉客云 / Apple / 平台</div>
+      <strong>经营看板 V6</strong>
+      <small>日报/周报/月报三周期；融合财务模板指标口径与 8.18 会议经营框架；AI 辅助生成总结建议，人工审核后发布。</small>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb"><span class="crumb-code" id="crumbCode">01 / OVERVIEW</span><span class="crumb-line"></span><span class="crumb-title" id="crumbTitle">简报</span></div>
+      <div class="top-actions">
+        <div class="period" id="periodSwitch">
+          <button class="active" data-p="day">日</button><button data-p="week">周</button><button data-p="month">月</button>
+        </div>
+        <div class="date-box">数据日期 2026-08-20<small>更新于 12:00 · 演示数据+部分实时</small></div>
+      </div>
+    </header>
+    <div class="content">
+      <section class="hero">
+        <div>
+          <div class="eyebrow" id="heroEyebrow">ENTERPRISE OVERVIEW</div>
+          <h1 id="heroTitle">企业经营全景</h1>
+          <p id="heroDesc">公司整体经营结果一屏总览：销售 / 毛利 / 费率 / 库存 / 利润 + AI 经营建议。</p>
+        </div>
+        <div class="hero-stats" id="heroStats"></div>
+      </section>
+      <div class="sticky-controls">
+        <nav class="department-switch" id="departmentSwitch"></nav>
+        <nav class="section-switch" id="sectionSwitch"></nav>
+      </div>
+      <section class="section-shell" id="sectionShell"></section>
+      <div id="personModal" onclick="if(event.target===this)closeProfile()"></div>
+      <div class="footnote">传天羽企业经营看板 V6 · 指标层级依据《企业经营简报模板(1)(1)》日报2/周报2/报表 + 8.18 会议框架 + Apple 授权商关注点整理 · 经营板块含占比/同比环比/线上线下/同行对比 · AI 总结建议每日 12:00 生成</div>
+    </div>
+  </main>
+</div>
+<script>
+/* ================================================================
+   V6 经营看板 · 数据层（演示数据 + 部分实时，结构对齐正式取数口径）
+   ================================================================ */
+const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const PERIOD_LABEL = {day:'日度', week:'周度', month:'月度'};
+function fmtWan(v){ return v>=10000 ? (v/10000).toFixed(v>=1000000?0:1)+'万' : Math.round(v).toLocaleString(); }
+function fmtY(v){ return '¥'+fmtWan(v); }
+function pct(v,d=1){ return v.toFixed(d)+'%'; }
+const todo = ()=>'<span style="color:#9aa8b8;font-style:italic">待接入</span>';
+const MULT = {day:1, week:6.9, month:29.2};
+const mul = v => v * MULT[state.period];
+
+/* ---------- 公司总表数据（演示，口径对齐财务模板） ---------- */
+const COMPANY = {
+  day:{ sales:826500, target:780000, gross:118402, gpm:14.3, feeRate:8.7, cvr:9.6, aov:5230, d7:-6.2, w0:4.8, yoy:3.1, onlineShare:38.6, offlineShare:61.4 },
+  week:{ sales:5483600, target:5460000, gross:792300, gpm:14.4, feeRate:8.8, cvr:9.4, aov:5180, d7:3.2, w0:1.1, yoy:4.2, onlineShare:39.2, offlineShare:60.8 },
+  month:{ sales:23518000, target:24600000, gross:3411000, gpm:14.5, feeRate:8.9, cvr:9.5, aov:5210, d7:5.6, w0:2.3, yoy:5.1, onlineShare:40.5, offlineShare:59.5 }
+};
+const TREND7 = { labels:['8-14','8-15','8-16','8-17','8-18','8-19','8-20'], sales:[71.2,78.6,74.3,82.1,75.9,77.8,82.7], gross:[9.8,11.4,10.6,11.9,10.8,11.2,11.8], lastYear:[68.9,75.4,71.8,79.6,73.2,75.1,80.2] };
+
+/* 三大板块（日度基数，含同比/环比/占比/线上线下） */
+const SEGMENTS = [
+  { name:'APR（整体）', code:'APR', sales:415600, gross:53197, gpm:12.8, cvr:22.4, feeRate:6.2, inv:2460, d7:8.2, yoy:4.6, onlineShare:6.8, offlineShare:93.2, note:'10 家门店 · 含线上线下整体' },
+  { name:'Apple 电商', code:'AE', sales:298200, gross:28627, gpm:9.6, cvr:2.8, feeRate:11.8, inv:1580, d7:-3.4, yoy:2.1, onlineShare:100, offlineShare:0, note:'3 家店铺' },
+  { name:'Shure 电商', code:'SH', sales:112700, gross:24231, gpm:21.5, cvr:1.9, feeRate:13.5, inv:320, d7:12.6, yoy:8.9, onlineShare:100, offlineShare:0, note:'2 家店铺' }
+];
+
+/* 月度目标进度（真实门店数据口径） */
+const GOALS = [
+  { name:'公司整体', target:24600000, done:14306000, time:64.5 },
+  { name:'APR 门店', target:12600000, done:7620000, time:64.5 },
+  { name:'Apple 电商', target:8600000, done:4790000, time:64.5 },
+  { name:'Shure电商', target:3400000, done:1896000, time:64.5 }
+];
+
+/* ---------- APR 门店（真实数据快照口径，8月累计 万元） ---------- */
+let APR_STORES = [
+  { name:'徐州彭城店', sales:306.8, task:340, pm:8.59, profit:11.72, flow:10356, conv:5.0, apt:2981.7, inv:920, d7:8.2, yoy:6.1, rate:90.2 },
+  { name:'无锡店', sales:231.6, task:380, pm:8.83, profit:7.18, flow:4157, conv:8.6, apt:2580.5, inv:810, d7:-3.1, yoy:2.3, rate:60.9 },
+  { name:'连云港店', sales:222.4, task:340, pm:9.44, profit:5.81, flow:3922, conv:7.0, apt:2521.9, inv:730, d7:4.6, yoy:7.4, rate:65.4 },
+  { name:'太原店', sales:126.9, task:210, pm:9.65, profit:2.0, flow:1650, conv:8.5, apt:1677.5, inv:560, d7:-1.2, yoy:-2.8, rate:60.4 },
+  { name:'宿州店', sales:121.0, task:180, pm:7.05, profit:3.62, flow:3187, conv:8.2, apt:2226.0, inv:480, d7:5.8, yoy:9.2, rate:67.2 },
+  { name:'镇江店', sales:101.6, task:240, pm:9.9, profit:3.12, flow:1409, conv:9.2, apt:2744.5, inv:390, d7:12.4, yoy:15.6, rate:42.3 },
+  { name:'运城店', sales:99.2, task:170, pm:7.37, profit:1.99, flow:2946, conv:4.7, apt:2208.3, inv:350, d7:3.3, yoy:4.9, rate:58.4 },
+  { name:'日照店', sales:72.0, task:80, pm:10.15, profit:1.72, flow:613, conv:9.3, apt:3363.3, inv:190, d7:-4.5, yoy:-1.8, rate:90.0 },
+  { name:'徐州宝龙店', sales:56.9, task:100, pm:8.08, profit:1.14, flow:1018, conv:5.2, apt:2993.7, inv:150, d7:2.1, yoy:-6.3, rate:56.9 },
+  { name:'苏家屯店', sales:50.6, task:140, pm:8.9, profit:0.69, flow:1575, conv:2.9, apt:1916.0, inv:120, d7:-8.9, yoy:-12.4, rate:36.2 }
+];
+let APR_TOTAL = { sales: 1388.9, task: 2180, profit: 38.99, flow: 30833, conv: 6.4, pm: 7.99, rate: 63.9 };
+
+/* 销售员真实排名（TOP） */
+let SALESPERSONS = [
+  {rank:1,name:'王畅',store:'徐州店',pos:'店员',sales:50.8,task:90,rate:56.5,offline:31.5,online:19.3,pm:6.9,host:41,pp:43,acs:45.8,profit:2.2,profit_rank:1,pp_rate:54.2,pp_sales:1.7,offline_profit_rate:53.0,high_sell:1.9},
+  {rank:2,name:'鲁健',store:'连云港店',pos:'店员',sales:36.1,task:150,rate:24.0,offline:13.2,online:22.9,pm:8.6,host:16,pp:19,acs:30.0,profit:1.1,profit_rank:2,pp_rate:9.1,pp_sales:0.4,offline_profit_rate:19.0,high_sell:0.0},
+  {rank:3,name:'袁兆行',store:'无锡店',pos:'店员',sales:30.5,task:95,rate:32.1,offline:10.0,online:20.5,pm:7.6,host:13,pp:17,acs:37.5,profit:0.8,profit_rank:5,pp_rate:8.5,pp_sales:0.3,offline_profit_rate:18.8,high_sell:0.0},
+  {rank:4,name:'田国伟',store:'太原店',pos:'店员',sales:28.6,task:105,rate:27.3,offline:5.0,online:23.6,pm:9.1,host:8,pp:14,acs:50.0,profit:0.5,profit_rank:10,pp_rate:6.9,pp_sales:0.1,offline_profit_rate:17.5,high_sell:0.0},
+  {rank:5,name:'蒋玉玄',store:'运城店',pos:'店员',sales:26.5,task:90,rate:29.4,offline:6.4,online:20.1,pm:6.8,host:10,pp:13,acs:25.0,profit:0.4,profit_rank:12,pp_rate:8.5,pp_sales:0.2,offline_profit_rate:16.8,high_sell:0.0},
+  {rank:6,name:'查越',store:'太原店',pos:'店员',sales:25.4,task:105,rate:24.2,offline:5.7,online:19.7,pm:7.9,host:9,pp:20,acs:75.0,profit:0.5,profit_rank:11,pp_rate:10.8,pp_sales:0.2,offline_profit_rate:17.4,high_sell:0.0},
+  {rank:7,name:'徐婷婷',store:'连云港店',pos:'店员',sales:24.4,task:150,rate:16.2,offline:5.6,online:18.8,pm:7.3,host:8,pp:12,acs:0.0,profit:0.4,profit_rank:14,pp_rate:7.0,pp_sales:0.3,offline_profit_rate:6.8,high_sell:0.0},
+  {rank:8,name:'秦子杰',store:'徐州店',pos:'店员',sales:23.5,task:75,rate:31.4,offline:7.5,online:16.0,pm:7.0,host:10,pp:7,acs:28.6,profit:0.5,profit_rank:8,pp_rate:8.1,pp_sales:0.2,offline_profit_rate:15.5,high_sell:1.8},
+  {rank:9,name:'潘思源',store:'无锡店',pos:'店员',sales:21.4,task:95,rate:22.5,offline:5.1,online:16.3,pm:7.9,host:7,pp:12,acs:75.0,profit:0.4,profit_rank:15,pp_rate:6.2,pp_sales:0.2,offline_profit_rate:9.7,high_sell:0.0},
+  {rank:10,name:'李珍',store:'日照店',pos:'店员',sales:21.3,task:40,rate:53.3,offline:1.4,online:19.9,pm:3.5,host:4,pp:0,acs:0.0,profit:0.1,profit_rank:25,pp_rate:0.0,pp_sales:0.0,offline_profit_rate:4.3,high_sell:0.0}
+];
+
+/* 品类销售结构（四大主机 + 3PP，真实口径） */
+let APR_STRUCTURE = [
+  { name:'iPhone', pct:71.7, amount:206.95, color:'#2f69c2' },
+  { name:'Mac', pct:12.2, amount:35.25, color:'#64a4da' },
+  { name:'Watch', pct:8.4, amount:24.15, color:'#c79118' },
+  { name:'iPad', pct:7.7, amount:22.33, color:'#7b91ad' }
+];
+let ACC_STRUCTURE = [
+  { name:'手机配件', pct:52.8, amount:5.39, color:'#2f69c2' },
+  { name:'其他', pct:31.3, amount:3.20, color:'#c79118' },
+  { name:'平板配件', pct:4.0, amount:0.41, color:'#64a4da' },
+  { name:'手表配件', pct:1.3, amount:0.14, color:'#7b91ad' }
+];
+
+
+/* ---------- 人事档案（V3 roster.json，37人全匹配） ---------- */
+const ROSTER = {"史力如": {"age": "29", "gender": "女", "edu": "本科", "school": "中央大学（韩国）", "major": "日本语文学", "hire_date": "2022-08-14", "regular_date": "2022-11-14", "tenure": "3年11月", "work_years": "4年4月", "pos": "徐州彭城苏宁广场店 店长", "rank": "店长", "store": "徐州彭城苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "吴昱": {"age": "23", "gender": "女", "edu": "本科", "school": "河北金融学院", "major": "金融学", "hire_date": "2026-06-25", "regular_date": "", "tenure": "0年1月", "work_years": "2年1月", "pos": "运城苏宁广场店店长", "rank": "店长", "store": "运城苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "唐成": {"age": "30", "gender": "男", "edu": "本科", "school": "江南大学", "major": "工商管理", "hire_date": "2026-05-23", "regular_date": "", "tenure": "0年2月", "work_years": "8年1月", "pos": "店长", "rank": "店长", "store": "无锡苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "娄紫薇": {"age": "25", "gender": "女", "edu": "大专", "school": "天津商务学院", "major": "商务英语", "hire_date": "2023-11-16", "regular_date": "2024-02-16", "tenure": "2年8月", "work_years": "5年8月", "pos": "宿州苏宁广场店 店员", "rank": "店员", "store": "宿州苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "师梓聪": {"age": "27", "gender": "男", "edu": "本科", "school": "中国矿业大学(徐州)", "major": "工商管理", "hire_date": "2023-09-01", "regular_date": "2023-12-01", "tenure": "2年11月", "work_years": "5年11月", "pos": "徐州和信宝龙广场店 店员", "rank": "店员", "store": "徐州和信宝龙广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "廉梦鸽": {"age": "26", "gender": "女", "edu": "大专", "school": "中北大学", "major": "会计信息管理", "hire_date": "2026-06-29", "regular_date": "", "tenure": "0年1月", "work_years": "0年7月", "pos": "店员", "rank": "店员", "store": "运城苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "彭展": {"age": "24", "gender": "男", "edu": "中专", "school": "徐州财经", "major": "计算机网络", "hire_date": "2026-05-12", "regular_date": "", "tenure": "0年2月", "work_years": "5年11月", "pos": "店员", "rank": "店员", "store": "徐州和信宝龙广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "徐婷婷": {"age": "36", "gender": "女", "edu": "中专", "school": "旅游学校", "major": "导游", "hire_date": "2022-06-17", "regular_date": "2022-09-17", "tenure": "4年1月", "work_years": "16年0月", "pos": "连云港苏宁广场店 店员", "rank": "店员", "store": "连云港苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "徐腾飞": {"age": "35", "gender": "男", "edu": "大专", "school": "吉林大学", "major": "人力资源管理", "hire_date": "2023-01-14", "regular_date": "2023-04-14", "tenure": "3年6月", "work_years": "12年1月", "pos": "太原富力广场店 店长", "rank": "店长", "store": "太原富力广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "徐锁兰": {"age": "33", "gender": "女", "edu": "大专", "school": "中国地质大学（北京）", "major": "会计", "hire_date": "2023-10-01", "regular_date": "2024-01-01", "tenure": "2年10月", "work_years": "12年4月", "pos": "镇江苏宁广场店 店员", "rank": "店员", "store": "镇江苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "朱尹辉": {"age": "28", "gender": "男", "edu": "本科", "school": "江苏海洋大学", "major": "工商管理", "hire_date": "2025-07-07", "regular_date": "2025-10-07", "tenure": "1年1月", "work_years": "7年7月", "pos": "连云港苏宁广场店 coach 讲师", "rank": "Coach讲师", "store": "连云港苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "朱正波": {"age": "22", "gender": "男", "edu": "大专", "school": "江苏建筑职业技术学院", "major": "计算机网络技术", "hire_date": "2026-04-17", "regular_date": "", "tenure": "0年3月", "work_years": "2年0月", "pos": "店员", "rank": "店员", "store": "徐州和信宝龙广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "李楷璐": {"age": "21", "gender": "女", "edu": "大专", "school": "大连教育", "major": "物流管理", "hire_date": "2026-07-30", "regular_date": "", "tenure": "0年0月", "work_years": "2年3月", "pos": "店员", "rank": "店员", "store": "沈阳苏家屯苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "李珍": {"age": "37", "gender": "女", "edu": "中专", "school": "日照市东港职业教育", "major": "计算机", "hire_date": "2022-08-17", "regular_date": "2022-11-01", "tenure": "3年11月", "work_years": "11年1月", "pos": "日照苏宁广场店 店员", "rank": "店员", "store": "日照苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "杨明": {"age": "26", "gender": "男", "edu": "大专", "school": "常州机电职业技术学院", "major": "电子商务", "hire_date": "2023-02-15", "regular_date": "2023-05-15", "tenure": "3年5月", "work_years": "4年5月", "pos": "无锡苏宁广场店 店员", "rank": "店员", "store": "无锡苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "杨鑫鑫": {"age": "24", "gender": "女", "edu": "大专", "school": "辽宁生态工程职业学院", "major": "风景园林设计", "hire_date": "2024-02-26", "regular_date": "2024-05-26", "tenure": "2年5月", "work_years": "4年2月", "pos": "沈阳苏家屯苏宁广场店 店员", "rank": "店员", "store": "沈阳苏家屯苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "柏雪美": {"age": "36", "gender": "女", "edu": "大专", "school": "电子科技大学", "major": "行政管理", "hire_date": "2025-08-01", "regular_date": "2025-10-01", "tenure": "1年0月", "work_years": "18年6月", "pos": "宿州苏宁广场店 coach", "rank": "Coach讲师", "store": "宿州苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "查越": {"age": "27", "gender": "男", "edu": "大专", "school": "山西国际商务职业学院", "major": "市场营销", "hire_date": "2023-09-01", "regular_date": "2023-12-01", "tenure": "2年11月", "work_years": "6年6月", "pos": "太原富力广场店 店员", "rank": "店员", "store": "太原富力广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "池昌健": {"age": "25", "gender": "女", "edu": "大专", "school": "锦州师范高等专科学校", "major": "学前教育", "hire_date": "2023-10-16", "regular_date": "2024-01-26", "tenure": "2年9月", "work_years": "5年0月", "pos": "沈阳苏家屯苏宁广场店 店员", "rank": "店员", "store": "沈阳苏家屯苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "潘思源": {"age": "20", "gender": "女", "edu": "大专", "school": "无锡旅游商贸职业技术", "major": "国际商务", "hire_date": "2026-05-25", "regular_date": "", "tenure": "0年2月", "work_years": "1年0月", "pos": "店员", "rank": "店员", "store": "无锡苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "王兴禄": {"age": "25", "gender": "男", "edu": "本科", "school": "沈阳师范大学", "major": "大数据", "hire_date": "2025-09-17", "regular_date": "2025-12-17", "tenure": "0年10月", "work_years": "4年11月", "pos": "沈阳苏家屯苏宁广场店 店长", "rank": "店长", "store": "沈阳苏家屯苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "王凯": {"age": "34", "gender": "男", "edu": "本科", "school": "南京大学金陵学院", "major": "人力资源管理", "hire_date": "2025-04-12", "regular_date": "2025-07-12", "tenure": "1年3月", "work_years": "12年11月", "pos": "连云港苏宁广场店 店长", "rank": "店长", "store": "连云港苏宁广场店", "emp_status": "正式", "contract_type": "", "contract_term": ""}, "王君瑶": {"age": "25", "gender": "女", "edu": "大专", "school": "烟台黄金职业学院", "major": "云计算技术与应用", "hire_date": "2026-03-25", "regular_date": "", "tenure": "0年4月", "work_years": "4年9月", "pos": "coach 讲师", "rank": "Coach讲师", "store": "日照苏宁广场店", "emp_status": "试用", "contract_type": "固定期限劳动合同", "contract_term": ""}, "王拓": {"age": "26", "gender": "男", "edu": "大专", "school": "镇江市高等专科学校", "major": "环境艺术设计", "hire_date": "2022-10-01", "regular_date": "2023-01-01", "tenure": "3年10月", "work_years": "5年4月", "pos": "镇江苏宁广场店 店员", "rank": "店员", "store": "镇江苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "王畅": {"age": "24", "gender": "女", "edu": "大专", "school": "徐州市财校", "major": "会计", "hire_date": "2024-09-01", "regular_date": "", "tenure": "1年11月", "work_years": "4年1月", "pos": "徐州彭城苏宁广场店店员", "rank": "店员", "store": "徐州彭城苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "田国伟": {"age": "29", "gender": "男", "edu": "大专", "school": "山西职业技术学院", "major": "计算机技术", "hire_date": "2025-08-29", "regular_date": "2025-11-30", "tenure": "0年11月", "work_years": "9年11月", "pos": "太原富力广场店 店员", "rank": "店员", "store": "太原富力广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "白国良": {"age": "21", "gender": "男", "edu": "大专", "school": "安徽合肥信息工程", "major": "计算机", "hire_date": "2026-05-23", "regular_date": "", "tenure": "0年2月", "work_years": "3年5月", "pos": "店员", "rank": "店员", "store": "无锡苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "秦子杰": {"age": "25", "gender": "男", "edu": "本科", "school": "扬州大学", "major": "园林", "hire_date": "2025-04-15", "regular_date": "2025-07-15", "tenure": "1年3月", "work_years": "2年5月", "pos": "徐州彭城苏宁广场店店员", "rank": "店员", "store": "徐州彭城苏宁广场店", "emp_status": "正式", "contract_type": "", "contract_term": ""}, "纪元野": {"age": "25", "gender": "男", "edu": "大专", "school": "山东水利职业学院", "major": "投资与理财", "hire_date": "2022-09-02", "regular_date": "2022-12-02", "tenure": "3年11月", "work_years": "3年11月", "pos": "日照苏宁广场店 代理店长", "rank": "代理店长", "store": "日照苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": ""}, "蒋玉玄": {"age": "21", "gender": "女", "edu": "大专", "school": "山西管理职业学院", "major": "视觉传达设计", "hire_date": "2026-01-12", "regular_date": "", "tenure": "0年6月", "work_years": "1年8月", "pos": "运城苏宁广场店店员", "rank": "店员", "store": "运城苏宁广场店", "emp_status": "正式", "contract_type": "", "contract_term": ""}, "袁兆行": {"age": "34", "gender": "男", "edu": "大专", "school": "宿迁职业技术学院", "major": "计算机网络", "hire_date": "2023-03-01", "regular_date": "", "tenure": "3年5月", "work_years": "12年8月", "pos": "无锡苏宁广场店 店员", "rank": "店员", "store": "无锡苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "贺媛媛": {"age": "30", "gender": "女", "edu": "大专", "school": "江苏农林职业技术学院", "major": "物流管理", "hire_date": "2026-07-25", "regular_date": "", "tenure": "0年0月", "work_years": "10年4月", "pos": "镇江苏宁广场店 店员", "rank": "店员", "store": "镇江苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "颜方岳": {"age": "28", "gender": "男", "edu": "大专", "school": "无锡科技职业学院", "major": "视觉传达", "hire_date": "2022-03-23", "regular_date": "2022-06-24", "tenure": "4年4月", "work_years": "7年11月", "pos": "徐州彭城苏宁广场店  店员", "rank": "店员", "store": "徐州彭城苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "马雨蒙": {"age": "27", "gender": "女", "edu": "大专", "school": "皖北卫生职业学院", "major": "护理", "hire_date": "2026-05-09", "regular_date": "", "tenure": "0年3月", "work_years": "6年9月", "pos": "店员", "rank": "店员", "store": "宿州苏宁广场店", "emp_status": "试用", "contract_type": "", "contract_term": ""}, "鲁健": {"age": "29", "gender": "男", "edu": "本科", "school": "浙江海洋大学", "major": "市场营销", "hire_date": "2025-12-01", "regular_date": "2026-03-01", "tenure": "0年8月", "work_years": "5年1月", "pos": "连云港苏宁广场店 店员", "rank": "店员", "store": "连云港苏宁广场店", "emp_status": "正式", "contract_type": "", "contract_term": ""}, "黄丽蓉": {"age": "37", "gender": "女", "edu": "本科", "school": "江苏科技大学", "major": "工商管理", "hire_date": "2023-09-07", "regular_date": "2023-12-07", "tenure": "2年11月", "work_years": "16年7月", "pos": "镇江苏宁广场店 店长", "rank": "店长", "store": "镇江苏宁广场店", "emp_status": "正式", "contract_type": "固定期限劳动合同", "contract_term": "36个月或以上"}, "齐浩楠": {"age": "29", "gender": "男", "edu": "本科", "school": "东北师范大学", "major": "美术学", "hire_date": "2025-03-10", "regular_date": "2025-06-10", "tenure": "1年5月", "work_years": "5年1月", "pos": "徐州彭城苏宁广场店 coach 讲师", "rank": "Coach讲师", "store": "徐州彭城苏宁广场店", "emp_status": "正式", "contract_type": "", "contract_term": ""}};
+
+/* ---------- 到店结构（8月 真实口径） ---------- */
+let STORES_HOST = [{"host_amount": 32.89, "host_qty": 46, "ipad": {"amount": 1.38, "pct": 4.2, "qty": 2}, "iphone": {"amount": 27.87, "pct": 84.7, "qty": 34}, "mac": {"amount": 1.65, "pct": 5.0, "qty": 2}, "store": "宿州店", "total_amount": 35.0, "total_qty": 159, "watch": {"amount": 1.99, "pct": 6.0, "qty": 8}}, {"host_amount": 16.6, "host_qty": 31, "ipad": {"amount": 1.89, "pct": 11.4, "qty": 4}, "iphone": {"amount": 12.3, "pct": 74.1, "qty": 17}, "mac": {"amount": 0.02, "pct": 0.1, "qty": 0}, "store": "镇江店", "total_amount": 18.56, "total_qty": 74, "watch": {"amount": 2.4, "pct": 14.4, "qty": 10}}, {"host_amount": 94.92, "host_qty": 142, "ipad": {"amount": 9.2, "pct": 9.7, "qty": 17}, "iphone": {"amount": 62.52, "pct": 65.9, "qty": 80}, "mac": {"amount": 15.52, "pct": 16.3, "qty": 17}, "store": "徐州彭城店", "total_amount": 101.29, "total_qty": 328, "watch": {"amount": 7.69, "pct": 8.1, "qty": 28}}, {"host_amount": 44.64, "host_qty": 67, "ipad": {"amount": 0.94, "pct": 2.1, "qty": 2}, "iphone": {"amount": 32.85, "pct": 73.6, "qty": 41}, "mac": {"amount": 7.01, "pct": 15.7, "qty": 8}, "store": "无锡店", "total_amount": 47.51, "total_qty": 195, "watch": {"amount": 3.85, "pct": 8.6, "qty": 16}}, {"host_amount": 40.22, "host_qty": 56, "ipad": {"amount": 5.06, "pct": 12.6, "qty": 8}, "iphone": {"amount": 26.5, "pct": 65.9, "qty": 31}, "mac": {"amount": 6.49, "pct": 16.1, "qty": 8}, "store": "连云港店", "total_amount": 43.26, "total_qty": 174, "watch": {"amount": 2.17, "pct": 5.4, "qty": 9}}, {"host_amount": 12.57, "host_qty": 21, "ipad": {"amount": 0.43, "pct": 3.4, "qty": 1}, "iphone": {"amount": 8.15, "pct": 64.8, "qty": 10}, "mac": {"amount": 1.92, "pct": 15.3, "qty": 2}, "store": "日照店", "total_amount": 13.04, "total_qty": 34, "watch": {"amount": 2.06, "pct": 16.4, "qty": 8}}, {"host_amount": 8.74, "host_qty": 14, "ipad": {"amount": 0.43, "pct": 4.9, "qty": 1}, "iphone": {"amount": 6.46, "pct": 73.9, "qty": 9}, "mac": {"amount": 1.15, "pct": 13.2, "qty": 1}, "store": "徐州宝龙店", "total_amount": 9.08, "total_qty": 31, "watch": {"amount": 0.7, "pct": 8.1, "qty": 3}}, {"host_amount": 20.76, "host_qty": 30, "ipad": {"amount": 1.78, "pct": 8.6, "qty": 4}, "iphone": {"amount": 17.9, "pct": 86.2, "qty": 23}, "mac": {"amount": 0, "pct": 0, "qty": 0}, "store": "运城店", "total_amount": 21.99, "total_qty": 90, "watch": {"amount": 1.08, "pct": 5.2, "qty": 3}}, {"host_amount": 5.73, "host_qty": 8, "ipad": {"amount": 0.38, "pct": 6.6, "qty": 1}, "iphone": {"amount": 5.1, "pct": 89.0, "qty": 6}, "mac": {"amount": 0, "pct": 0, "qty": 0}, "store": "苏家屯店", "total_amount": 6.21, "total_qty": 30, "watch": {"amount": 0.25, "pct": 4.4, "qty": 1}}, {"host_amount": 11.59, "host_qty": 21, "ipad": {"amount": 0.84, "pct": 7.2, "qty": 2}, "iphone": {"amount": 7.32, "pct": 63.1, "qty": 9}, "mac": {"amount": 1.48, "pct": 12.8, "qty": 2}, "store": "太原店", "total_amount": 12.73, "total_qty": 87, "watch": {"amount": 1.95, "pct": 16.8, "qty": 8}}];
+let STORES_ACC = [{"acc_amount": 0.94, "acc_qty": 81, "other": {"amount": 0.44, "pct": 46.5, "qty": 10}, "pad": {"amount": 0.08, "pct": 8.5, "qty": 4}, "phone": {"amount": 0.42, "pct": 44.5, "qty": 65}, "store": "宿州店", "watch": {"amount": 0.01, "pct": 0.5, "qty": 2}}, {"acc_amount": 0.79, "acc_qty": 30, "other": {"amount": 0.21, "pct": 26.4, "qty": 3}, "pad": {"amount": 0, "pct": 0, "qty": 0}, "phone": {"amount": 0.58, "pct": 73.6, "qty": 27}, "store": "镇江店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 3.62, "acc_qty": 125, "other": {"amount": 1.37, "pct": 37.8, "qty": 27}, "pad": {"amount": 0.07, "pct": 2.0, "qty": 5}, "phone": {"amount": 1.25, "pct": 34.6, "qty": 73}, "store": "徐州彭城店", "watch": {"amount": 0.09, "pct": 2.6, "qty": 5}}, {"acc_amount": 1.45, "acc_qty": 92, "other": {"amount": 0.38, "pct": 26.0, "qty": 7}, "pad": {"amount": 0.01, "pct": 0.7, "qty": 1}, "phone": {"amount": 1.03, "pct": 71.0, "qty": 82}, "store": "无锡店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 1.8, "acc_qty": 86, "other": {"amount": 0.41, "pct": 23.1, "qty": 8}, "pad": {"amount": 0.2, "pct": 11.3, "qty": 6}, "phone": {"amount": 0.98, "pct": 54.5, "qty": 62}, "store": "连云港店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 0.04, "acc_qty": 4, "other": {"amount": 0, "pct": 0, "qty": 0}, "pad": {"amount": 0.01, "pct": 24.9, "qty": 1}, "phone": {"amount": 0.03, "pct": 75.1, "qty": 3}, "store": "日照店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 0.23, "acc_qty": 12, "other": {"amount": 0, "pct": 0, "qty": 0}, "pad": {"amount": 0, "pct": 0, "qty": 0}, "phone": {"amount": 0.23, "pct": 100, "qty": 12}, "store": "徐州宝龙店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 0.4, "acc_qty": 35, "other": {"amount": 0.07, "pct": 18.5, "qty": 2}, "pad": {"amount": 0.01, "pct": 3.7, "qty": 1}, "phone": {"amount": 0.31, "pct": 77.8, "qty": 32}, "store": "运城店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 0.24, "acc_qty": 11, "other": {"amount": 0.05, "pct": 20.9, "qty": 1}, "pad": {"amount": 0, "pct": 0, "qty": 0}, "phone": {"amount": 0.19, "pct": 79.1, "qty": 10}, "store": "苏家屯店", "watch": {"amount": 0, "pct": 0, "qty": 0}}, {"acc_amount": 0.67, "acc_qty": 42, "other": {"amount": 0.27, "pct": 39.6, "qty": 4}, "pad": {"amount": 0.02, "pct": 3.0, "qty": 2}, "phone": {"amount": 0.34, "pct": 50.0, "qty": 29}, "store": "太原店", "watch": {"amount": 0.04, "pct": 5.9, "qty": 3}}];
+/* Apple 五科（月度口径，8.18 会议 + 授权商关注点） */
+const APPLE_FIVE = [
+  { name:'财务科', en:'FINANCE', kvs:[['单店产能（未税）','¥138,533'],['1PP / 3PP 销售占比','68.2% / 31.8%'],['人工费率','-'],['租金费率','-']] },
+  { name:'转化科', en:'CONVERSION', kvs:[['线下总转化率','22.4%'],['iPhone / Mac 转化率','18.2% / 9.6%'],['iPad / Watch 转化率','7.8% / 5.4%'],['AirPods 转化率','11.2%']] },
+  { name:'生态科', en:'ECOSYSTEM', kvs:[['AirPods 连带率（整体）','31.5%'],['1PP 连带率（整体）','42.8%'],['ACS 连带率','28.6%']] },
+  { name:'政策科', en:'POLICY', kvs:[['总体国补占比','28.6%'],['iPhone / Mac 国补','32.4% / 25.1%'],['iPad / Watch / AirPods 国补','26.8% / 14.2% / 8.6%']] },
+  { name:'风控科', en:'RISK', kvs:[['iPhone 3D 激活率','96.2%（红线 95%）','ok'],['iPhone 同城激活率','98.1%（红线 98%）','warn'],['合规检查','92 分 / 无整改项','ok']] }
+];
+/* 经销商平均数对比（同行对比，月度） */
+const APR_BENCHMARK = [
+  { name:'单店产能（未税）', us:'¥138,533', avg:'¥126,800', pos:'高 9.2%' },
+  { name:'1PP 销售占比', us:'68.2%', avg:'65.4%', pos:'高 2.8pp' },
+  { name:'四大机型转化率', us:'18.2%', avg:'16.5%', pos:'高 1.7pp' },
+  { name:'AirPods 连带率', us:'31.5%', avg:'28.9%', pos:'高 2.6pp' },
+  { name:'国补占比', us:'28.6%', avg:'26.2%', pos:'高 2.4pp' },
+  { name:'人工费率', us:'5.8%', avg:'6.3%', pos:'低 0.5pp' },
+  { name:'租金费率', us:'8.9%', avg:'8.6%', pos:'高 0.3pp' },
+  { name:'净利率', us:'3.4%', avg:'3.1%', pos:'高 0.3pp' }
+];
+/* SOP 巡检 */
+const APR_SOP = [
+  { name:'仪容仪表', state:'ok' }, { name:'晨晚会', state:'ok' }, { name:'店铺环境检查', state:'ok' },
+  { name:'主动接待与开口', state:'ok' }, { name:'门店自盘', state:'todo' }, { name:'换岗交接', state:'ok' }
+];
+/* 项目考核 */
+const APR_ASSESS = [
+  { name:'3D 激活率', result:'96.2%（目标 95%）', owner:'各店长', state:'ok' },
+  { name:'门店合规分', result:'92 分（目标 90）', owner:'运营主管', state:'ok' },
+  { name:'O2O 线上超时率', result:'3.2%（目标 5%）', owner:'O2O 专员', state:'ok' },
+  { name:'O2O 商责率', result:'1.8%（目标 2%）', owner:'O2O 专员', state:'ok' },
+  { name:'值享焕新', result:'本月 34 单', owner:'店员提成项', state:'warn' },
+  { name:'以旧换新', result:'本月 21 单', owner:'店员提成项', state:'warn' },
+  { name:'分期付款渗透', result:'18.4%（目标 20%）', owner:'金融专员', state:'warn' },
+  { name:'售后诊断/1对1私教/数据迁移', result:'合计 46 单', owner:'服务专员', state:'ok' },
+  { name:'运营商收益', result:'¥41,200', owner:'运营商对接人', state:'ok' }
+];
+/* 客户与组织 / 培训（结合 Coach & 培训体系） */
+const APR_ORG = [
+  { k:'企微回访', v:'完成率 86%（目标 90%）' }, { k:'二次消费', v:'本月 218 单' },
+  { k:'重大节点门店宣传', v:'中秋档物料已下发' }, { k:'宣发数量 / 浏览量', v:'12 条 / 4.6 万次' },
+  { k:'样机亏损率', v:'0.8%（可控）' }, { k:'内部培训 / 考试', v:'2 场 / 平均 88 分' }
+];
+/* 培训体系（Coach & 培训项目） */
+const APR_TRAINING = [
+  { k:'AEP 认证考试', v:'本月 3 人报考 · 店长高级认证 1 人' }, { k:'MyCoach 覆盖', v:'10 店全覆盖 · 在店辅导（OnSite）' },
+  { k:'新人培训', v:'2 周上手路径 · 产品→话术→实操→考核' }, { k:'SEED / 知鸟学习', v:'完成率 82%（目标 90%）' },
+  { k:'话术演练', v:'晨会 10 分钟对练 · 周考核' }, { k:'讲师队伍', v:'Coach 讲师 4 人（含日照王君瑶）' }
+];
+/* 费用结构（月度，万元） */
+const APR_FEES = [ { name:'门店租金', v:96 }, { name:'线上扣点', v:12 }, { name:'人工费用', v:58 }, { name:'物流费用', v:6 }, { name:'其他费用', v:9 }, { name:'资金占用+后台', v:18 }, { name:'滞销/残次计提', v:7 } ];
+
+/* ---------- Apple 电商 ---------- */
+const AE_STORES = [
+  { name:'天猫旗舰店', sales:148600, gpm:9.2, gross:13671, uv:22100, cvr:2.6, refund:2.9, d7:5.4, yoy:3.8 },
+  { name:'京东旗舰店', sales:109800, gpm:10.1, gross:11090, uv:13400, cvr:3.1, refund:2.4, d7:-8.7, yoy:-2.1 },
+  { name:'抖音专卖店', sales:39800, gpm:9.8, gross:3900, uv:7100, cvr:2.1, refund:3.4, d7:18.2, yoy:9.6 }
+];
+const AE_FUNNEL = [
+  { name:'访客数', v:42600, w:100, r:'42,600' },
+  { name:'详情页浏览', v:31200, w:73, r:'73.2%' },
+  { name:'加购', v:8540, w:36, r:'20.0%' },
+  { name:'支付订单', v:1192, w:14, r:'支付转化 2.8%' }
+];
+const AE_COMPETITORS = [
+  { rank:'TOP3', name:'竞店 A（行业 TOP3）', idx:100, sales:'¥120-160万', uv:'4.2-5.2万', mix:'iPhone 占 41%' },
+  { rank:'本店', name:'本店', idx:86, sales:'¥95-135万', uv:'3.8-4.8万', mix:'iPhone 占 38%' },
+  { rank:'TOP8', name:'竞店 B', idx:72, sales:'¥80-115万', uv:'3.0-4.0万', mix:'iPhone 占 35%' },
+  { rank:'TOP15', name:'竞店 C', idx:58, sales:'¥65-95万', uv:'2.4-3.3万', mix:'iPhone 占 30%' }
+];
+const AE_KV = [
+  { k:'新增会员数', v:'本月 1,860' }, { k:'会员机制 / 黏性', v:'复购率 21.4%' },
+  { k:'线上消费回访', v:'完成率 78%（目标 85%）' }
+];
+const AE_OTHER = [
+  { k:'国补应收进度', v:'已回款 62%，账期 45 天' }, { k:'泛中台数据对接', v:'接口联调中（8 月底完成）' }
+];
+
+/* Apple 电商 · 产品销售结构（占比·日度） */
+const AE_PRODUCT_STRUCT = [
+  { name:'iPhone 17 系列', pct:41.2, amount:122.8, color:'#2f69c2' },
+  { name:'Mac', pct:15.6, amount:46.5, color:'#64a4da' },
+  { name:'iPad', pct:13.8, amount:41.1, color:'#c79118' },
+  { name:'Watch', pct:9.4, amount:28.0, color:'#7b91ad' },
+  { name:'AirPods', pct:8.9, amount:26.5, color:'#42a287' },
+  { name:'配件及服务', pct:11.1, amount:33.1, color:'#a56a9f' }
+];
+/* 机型 TOP */
+const AE_MODEL_TOP = [
+  { model:'iPhone 17 Pro', pct:18.4, d7:1.2 },
+  { model:'iPhone 17', pct:16.8, d7:2.4 },
+  { model:'iPhone 17e', pct:6.0, d7:-1.1 },
+  { model:'MacBook Air', pct:8.9, d7:0.8 },
+  { model:'iPad Air', pct:7.6, d7:-0.6 },
+  { model:'AirPods Pro 3', pct:5.4, d7:3.1 }
+];
+/* 1PP / 3PP 结构 */
+const AE_PP_STRUCT = [
+  { name:'1PP（主机+原厂配件）', pct:86.2, gross:'10.2%', d7:0.4 },
+  { name:'3PP（第三方配件）', pct:13.8, gross:'6.8%', d7:-1.2 }
+];
+/* Apple 电商 · 用户画像 */
+const AE_USER_PROFILE = [
+  { k:'年龄分布', v:'25-34 岁 48% · 18-24 岁 27% · 35-44 岁 18% · 其他 7%' },
+  { k:'性别', v:'男性 58% / 女性 42%' },
+  { k:'城市线级', v:'新一线 34% · 二线 28% · 一线 21% · 三线及以下 17%' },
+  { k:'新老客', v:'新客 62% / 老客 38% · 老客复购率 21.4%' },
+  { k:'会员', v:'会员占比 31% · 会员客单价高 28%' },
+  { k:'消费频次', v:'月均 1.6 次 · 高价值客户（月≥2 次）占 22%' }
+];
+/* Apple 电商 · 下单时间 */
+const AE_ORDER_TIME = {
+  hours:['0-6点','6-9点','9-12点','12-14点','14-18点','18-20点','20-22点','22-24点'],
+  hourPct:[3.2, 5.1, 11.8, 14.6, 16.9, 15.2, 19.8, 13.4],
+  week:['周一','周二','周三','周四','周五','周六','周日'],
+  weekPct:[12.1, 13.4, 12.8, 13.9, 15.6, 17.2, 15.0],
+  peak:'晚 20-22 点（占 19.8%）· 次高峰 14-18 点（16.9%）',
+  insight:'周末下单占比 32.2%（周六 17.2% + 周日 15.0%），晚高峰与周末是转化关键窗口；凌晨（0-6 点）也有 3.2% 下单，建议投放覆盖。'
+};
+
+/* ---------- Shure电商 ---------- */
+const SH_STORES = [
+  { name:'京东旗舰店', sales:72400, gpm:22.1, gross:16002, uv:5900, cvr:2.1, refund:1.8, d7:9.8, yoy:7.2 },
+  { name:'天猫旗舰店', sales:40300, gpm:20.7, gross:8342, uv:3900, cvr:1.6, refund:2.2, d7:16.4, yoy:11.8 }
+];
+const SH_CONTENT = [
+  { k:'图文发布数', v:'本周 12 篇' }, { k:'短视频发布数', v:'本周 8 条' },
+  { k:'内容浏览量', v:'4.6 万次' }, { k:'内容转化', v:'156 单 / ROI 3.2' },
+  { k:'企业客户维护与拓展', v:'新增 3 家（B 端）' }
+];
+const SH_OTHER = [
+  { k:'总代广告费支持', v:'Q3 可用额度 ¥18 万（已用 42%）' },
+  { k:'京东毛保', v:'本季度 ¥9.6 万（正常）' },
+  { k:'消费券', v:'8 月政府消费券核销 ¥2.3 万' }
+];
+
+/* ---------- 公司库存结构 ---------- */
+
+/* ---------- 商务库存分析表（真实口径，来源：库存分析表_260807.xlsx） ---------- */
+let INV_BIZ = {
+  total_amount: 2450,            // 库存总额（万元，按品类合计）
+  total_skus: 20231,             // SKU 数
+  risk_pct: 37.0,                // 高库龄风险占比（180 天以上口径）
+  severe_amount: 120.86,         // 360 天以上金额（万元）
+  severe_count: 1325,            // 360 天以上 SKU 数
+  category: [
+    { name:'苹果主机', amount:1936.37, pct:79.0, qty:3024, color:'#2f69c2' },
+    { name:'原装配件', amount:109.43, pct:4.5, qty:2780, color:'#64a4da' },
+    { name:'舒尔', amount:330.36, pct:13.5, qty:7381, color:'#188b70' },
+    { name:'第三方配件', amount:73.80, pct:3.0, qty:9046, color:'#c79118' }
+  ],
+  aging: [
+    { name:'0~30 天', amount:1044.56, color:'#2f69c2' },
+    { name:'30~60 天', amount:282.80, color:'#64a4da' },
+    { name:'60~90 天', amount:137.37, color:'#42a287' },
+    { name:'90~180 天', amount:530.45, color:'#c79118' },
+    { name:'180~360 天', amount:205.50, color:'#e07b39' },
+    { name:'360 天以上', amount:120.72, color:'#c94d5c' }
+  ],
+  machine: {
+    'APR 门店': { normal:1249.07, demo:293.13, defect:5.92 },
+    '电商-啟韬': { normal:217.45, demo:0, defect:23.19 },
+    '电商-羽通': { normal:306.62, demo:0, defect:17.22 },
+    '电商-舒尔': { normal:160.50, demo:0, defect:0.83 },
+    '电商-其他': { normal:12.45, demo:0, defect:0.96 }
+  },
+  aging_risk: [
+    { age:153, amount:162.12, brand:'苹果', cat:'iPhone 17 Pro Max', name:'iPhone 17 Pro Max 256GB 星宇', qty:169, wh:'005南京羽' },
+    { age:146, amount:48.30, brand:'苹果', cat:'iPhone 17', name:'iPhone 17 256GB 黑色', qty:84, wh:'005南京啟' },
+    { age:157, amount:19.55, brand:'苹果', cat:'iPhone 17', name:'iPhone 17 256GB 鼠尾草绿色', qty:34, wh:'005南京啟' },
+    { age:187, amount:19.00, brand:'苹果', cat:'iPhone 17 Pro Max', name:'iPhone 17 Pro Max 2TB 银色', qty:11, wh:'005南京羽' },
+    { age:152, amount:18.98, brand:'苹果', cat:'iPhone 17', name:'iPhone 17 256GB 青雾蓝色', qty:33, wh:'005南京啟' },
+    { age:180, amount:17.27, brand:'苹果', cat:'iPhone 17 Pro Max', name:'iPhone 17 Pro Max 2TB 深蓝色', qty:10, wh:'005南京羽' },
+    { age:99, amount:9.87, brand:'SHURE', cat:'motive', name:'Shure Movemic 双通道无线麦克风系统（套装）', qty:58, wh:'005南京羽' },
+    { age:143, amount:6.04, brand:'苹果', cat:'iPhone 17e', name:'iPhone 17e 256GB 白色', qty:14, wh:'005南京啟' },
+    { age:146, amount:5.75, brand:'苹果', cat:'iPhone 17', name:'iPhone 17 256GB 白色', qty:10, wh:'005南京啟' },
+    { age:148, amount:5.37, brand:'苹果', cat:'iPhone Air', name:'iPhone Air 256GB 云白色', qty:7, wh:'005南京羽' },
+    { age:272, amount:3.85, brand:'SHURE', cat:'耳机', name:'SE215 动圈有线耳机 强劲重低音 运动', qty:87, wh:'欧瑞特南京云' },
+    { age:288, amount:3.45, brand:'苹果', cat:'iPhone Air', name:'iPhone Air 1TB 云白色', qty:3, wh:'005南京羽' },
+    { age:288, amount:3.45, brand:'苹果', cat:'iPhone Air', name:'iPhone Air 1TB 深空黑色', qty:3, wh:'005南京羽' },
+    { age:143, amount:3.45, brand:'苹果', cat:'iPhone 17e', name:'iPhone 17e 256GB 浅粉色', qty:8, wh:'005南京啟' },
+    { age:328, amount:3.36, brand:'SHURE', cat:'无线麦克风', name:'Shure GLXD24/SM58 手持无线话筒', qty:13, wh:'欧瑞特南京云' }
+  ],
+  coverage: [
+    { status:'零库存', desc:'42mm/玫瑰金色铝金属表壳/淡桃粉色运动型表带 S/M', gap:2, mpn:'MF984CH/B' },
+    { status:'零库存', desc:'Studio Display 标准玻璃面板 VESA 支架转换器', gap:1, mpn:'MFEY4CH/A' }
+  ]
+};
+
+const INV_STRUCTURE = [
+  { name:'90 天以内（健康）', pct:74.2, color:'#2f69c2' },
+  { name:'90 天以上超龄', pct:12.4, color:'#c94d5c' },
+  { name:'周度不动销', pct:8.1, color:'#c79118' },
+  { name:'残次商品', pct:5.3, color:'#7b91ad' }
+];
+const FEES = [ { name:'扣点租金', v:126 }, { name:'人工费用', v:98 }, { name:'推广费', v:62 }, { name:'物流费用', v:14 }, { name:'其他费用', v:17 }, { name:'资金占用+后台', v:31 }, { name:'滞销/残次计提', v:9 } ];
+
+/* ---------- 预警 ---------- */
+const ALERTS = [
+  { level:'red', title:'苏家屯店达成率 36.2% 全系最低', text:'连续 4 日未达标，客流 1575 人次为最低梯队，转化率 2.9% 远低于大盘 6.4%，需专项诊断（8 月冲刺方案已排期）。' },
+  { level:'red', title:'镇江苏宁店 8/15 重开', text:'重开前半月损失约 30 万，重开后客流环比 +12.4%，需抓住开业红利期至 8/31 冲量。' },
+  { level:'yellow', title:'90 天以上库存占比 12.4%', text:'环比 +1.8pp，主要集中在 iPad 旧款；建议纳入不动销处理清单。' },
+  { level:'yellow', title:'Apple 电商退款率 2.9%', text:'高于 2.5% 基准，抖音店 3.4% 为主要来源，核查商责归因。' },
+  { level:'green', title:'日照店达成率 90% 领先', text:'客单价 ¥3,363 全系最高（大单能力强），可提炼经验复制。' }
+];
+
+/* ================================================================
+   视图配置
+   ================================================================ */
+const NAV = [
+  { id:'overview', code:'01 / OVERVIEW', name:'简报', en:'ENTERPRISE OVERVIEW', title:'企业经营简报',
+    desc:'公司整体经营结果、目标达成、库存资金、费用结构及利润结果的统一视图（对齐财务日报2/周报2/报表口径）。',
+    sections:[
+      { name:'销售指标', intro:'公司整体销售结果与效率（销售额 = 流量 × 转化率 × 客单价）', render:secOverviewSales },
+      { name:'库存', intro:'从整体到各渠道：库存规模、周转、高库龄预警与明细', render:secOverviewInv },
+      { name:'费用', intro:'经营费用与资金占用结构（月度口径）', render:secOverviewFees, scope:['month'] },
+      { name:'利润（月度）', intro:'利润结果与盈利质量', render:secOverviewProfit, scope:['month'] }
+    ] },
+  { id:'business', code:'02 / BUSINESS UNITS', name:'经营', en:'BUSINESS OPERATIONS', title:'业务经营板块',
+    desc:'公司渠道层面对比 + APR、Apple 电商、Shure电商、3PP 四大业务；经营板块首页先看渠道整体，再进部门看明细。',
+    departments:[
+      { id:'overall', name:'整体总览', en:'CHANNEL OVERVIEW', title:'渠道整体总览', desc:'公司渠道层面：APR（整体，不拆线上线下）、Apple 电商、Shure电商、3PP 四大渠道对比；同行对比为季度手动填写口径。',
+        sections:[
+          { name:'渠道对比', intro:'四大渠道：销售/毛利/转化/费率（APR 为整体口径）', render:secChannelCompare },
+          { name:'占比与趋势', intro:'板块占比 / 同比环比 / 线上电商与线下门店总览', render:secChannelStructure },
+          { name:'同行对比', intro:'经销商平均/竞店对比（季度·手动填写）', render:secBenchmark, scope:['month'] }
+        ] },
+      { id:'apr', name:'APR 门店', en:'APR RETAIL NETWORK', title:'APR 门店经营看板', desc:'按门店识别销售结果、经营效率、库存风险、Apple 五科指标、服务项目和组织执行质量。',
+        sections:[
+          { name:'销售指标', intro:'门店结果、效率及销售能力', render:secAPRSales },
+          { name:'销售分析', intro:'销售结构（图表+点到店）、连带、五科指标与经销商对比', render:secAPRAnalysis },
+          { name:'销售员排名', intro:'个人产能与贡献度（月度真实口径）· 点击查看个人档案', render:secAPRSalesperson },
+          { name:'项目考核', intro:'关键服务与运营项目完成质量', render:secAPRAssess, scope:['month'] },
+          { name:'SOP 与培训', intro:'门店 SOP 巡检、客户组织、培训体系（Coach）', render:secAPRProcess },
+          { name:'费用', intro:'门店费用和资产损失计提（月度口径）', render:secDeptFees, scope:['month'] },
+          { name:'利润（月度）', intro:'门店盈利结果', render:secDeptProfit, scope:['month'] },
+          { name:'其他', intro:'拓店、私域与宣传推进', render:secAPROther }
+        ] },
+      { id:'apple', name:'Apple 电商', en:'APPLE E-COMMERCE', title:'Apple 电商经营看板', desc:'按店铺及渠道查看交易、流量、库存、竞争、服务质量和费用利润。',
+        sections:[
+          { name:'销售指标', intro:'店铺销售结果与流量转化', render:secAESales },
+          { name:'销售分析', intro:'转化漏斗、退款、竞店与客户画像', render:secAEAnalysis },
+          { name:'产品结构分析', intro:'产品销售结构、TOP 机型与 1PP/3PP 占比', render:secAEProduct },
+          { name:'用户画像与下单时间', intro:'年龄/性别/城市/新老客画像 + 24小时/周度下单节奏', render:secAEUserTime },
+          { name:'项目考核', intro:'激活、合规和服务评价', render:secAEAssess, scope:['month'] },
+          { name:'客服与服务', intro:'客服响应、满意度、售后评价与退款处理', render:secAEService },
+          { name:'其他过程指标', intro:'客户沉淀与团队能力', render:secAEProcess },
+          { name:'费用', intro:'平台、推广及履约费用（月度口径）', render:secDeptFees, scope:['month'] },
+          { name:'利润（月度）', intro:'店铺盈利结果', render:secDeptProfit, scope:['month'] },
+          { name:'其他', intro:'应收与系统协同', render:secAEOther }
+        ] },
+      { id:'shure', name:'Shure电商', en:'SHURE E-COMMERCE', title:'Shure电商经营看板', desc:'聚焦专业音频电商的销售、流量、库存、竞品、内容营销、客户经营与品牌费用。',
+        sections:[
+          { name:'销售指标', intro:'店铺销售结果与流量转化', render:secSHSales },
+          { name:'销售分析', intro:'交易结构、用户与竞品表现', render:secSHAnalysis },
+          { name:'项目考核', intro:'售后质量与退货风险', render:secSHAssess, scope:['month'] },
+          { name:'其他过程指标', intro:'企业客户、会员、内容与培训', render:secSHProcess },
+          { name:'费用', intro:'平台、推广及履约费用（月度口径）', render:secDeptFees, scope:['month'] },
+          { name:'利润（月度）', intro:'店铺盈利结果', render:secDeptProfit, scope:['month'] },
+          { name:'其他', intro:'品牌费用和平台政策支持', render:secSHOther }
+        ] },
+      { id:'pp3', name:'3PP', en:'3PP CHANNEL', title:'3PP 渠道看板', desc:'第三方配件渠道（当前暂未开展，保留框架待接入）。',
+        sections:[
+          { name:'销售指标', intro:'3PP 渠道销售结果', render:secPP3 },
+          { name:'销售分析', intro:'3PP 结构、来源与政策', render:secPP3Analysis }
+        ] }
+    ] },
+  { id:'management', code:'03 / MANAGEMENT', name:'管理', en:'MANAGEMENT', title:'管理看板', desc:'人员、财务、资产及组织效能等管理内容统一呈现。',
+    placeholder:true, mods:['采购管理','库存管理','资金管理','SOP 巡检','人事行政','内部培训','消费回访','门店宣传','样机管理'] },
+  { id:'priorities', code:'04 / PRIORITIES', name:'重点事项', en:'KEY PRIORITIES', title:'重点事项看板', desc:'公司重点任务、责任部门、推进节点和批复结果统一呈现。',
+    placeholder:true, mods:['重点工作跟进','决策审批','执行进度','下一步计划','52 周营销排期','智能体子模块规划'] },
+  { id:'risk', code:'05 / RISK CONTROL', name:'风险控制', en:'RISK CONTROL', title:'风险控制看板', desc:'经营、库存、资金、合规及执行风险统一呈现。',
+    placeholder:true, mods:['库存超龄风险','合规检查','退款异常','资金占用','应收账款','同城激活率（串货）','运营风险'] }
+];
+
+const state = { cat:0, dept:0, sec:0, period:'day' };
+
+/* ================================================================
+   通用 helper
+   ================================================================ */
+/* 费率/费用类：只月度出数，日/周显示 "-" */
+const isMonth = ()=> state.period==='month';
+function fee(v, suffix){ return isMonth() ? (typeof v==='number' ? v.toFixed(1)+'%' : v) : '-' ; }
+function feePct(v){ return isMonth() ? pct(v) : '-' ; }
+/* 说明标签：月度可用/季度手动填写 */
+const monthlyNote = '<span style="color:#9aa8b8;font-size:11px">仅月度口径 · 日/周不展示</span>';
+const quarterNote = '<span style="color:#9aa8b8;font-size:11px">季度口径 · 手动填写 · 数据不公开</span>';
+
+/* ================================================================
+   通用渲染组件
+   ================================================================ */
+function kpiCard(name, value, delta, sub, tone, deltaLabel){
+  const d = delta==null ? '' :
+    `<div class="delta ${delta>0?'up':delta<0?'down':'flat'}">${delta>0?'▲':delta<0?'▼':'—'} ${deltaLabel||'环比'} ${Math.abs(delta).toFixed(1)}%</div>`;
+  return `<article class="metric-card ${tone||''}">
+    <div class="metric-top"><div class="metric-name">${esc(name)}</div><div class="metric-icon">${state.period==='day'?'D':state.period==='week'?'W':state.period==='month'?'M':'A'}</div></div>
+    <div class="metric-value">${value}</div>${d}
+    <div class="metric-sub">${sub||''}</div></article>`;
+}
+function alertStripRender(items){
+  const icon = {red:'!',yellow:'!',green:'✓'};
+  return `<div class="alert-strip">${items.map(a=>`<div class="alert-${a.level} alert-item"><span class="a-ico">${icon[a.level]}</span><div><b>${esc(a.title)}</b>${esc(a.text)}</div></div>`).join('')}</div>`;
+}
+function barsChart(labels, s1, s2, l1, l2, unit, s3, l3){
+  const max = Math.max(...s1, ...s2, ...(s3||[])) * 1.15;
+  return `<div class="viz-card">
+    <div class="card-head"><div><h3>趋势与对比</h3><span>近 7 期 · ${esc(l1)} / ${esc(l2)}${l3?' / '+esc(l3):''}（${esc(unit)}）</span></div><span class="section-tag">演示数据</span></div>
+    <div class="chart-area">${labels.map((lb,i)=>`<div class="bar-set"><i class="bar" style="height:${(s1[i]/max*100).toFixed(1)}%"><em>${s1[i]}</em></i><i class="bar alt" style="height:${(s2[i]/max*100).toFixed(1)}%"><em>${s2[i]}</em></i>${s3?`<i class="bar thd" style="height:${(s3[i]/max*100).toFixed(1)}%"><em>${s3[i]}</em></i>`:''}<span>${esc(lb)}</span></div>`).join('')}</div>
+    <div class="chart-legend"><span><i style="background:#315fa7"></i>${esc(l1)}</span><span><i style="background:#bd8414"></i>${esc(l2)}</span>${l3?`<span><i style="background:#1e8a6d"></i>${esc(l3)}</span>`:''}</div>
+  </div>`;
+}
+function donutCard(title, parts, center, sub){
+  let acc=0; const segs = parts.map(p=>{ const s=`${acc.toFixed(1)}% ${(acc+p.pct).toFixed(1)}%`; acc+=p.pct; return `${p.color} ${s}`; }).join(',');
+  return `<div class="viz-card">
+    <div class="card-head"><div><h3>${esc(title)}</h3><span>${esc(sub||'')}</span></div><span class="section-tag">演示数据</span></div>
+    <div class="donut-wrap"><div class="donut" style="background:conic-gradient(${segs})" data-center="${esc(center)}"></div>
+      <div class="legend">${parts.map(p=>`<div class="legend-item"><i style="background:${p.color}"></i><span><strong>${esc(p.name)}</strong></span><b>${p.pct.toFixed(1)}%${p.amount!=null?`<br><small style="color:#8a9aab;font-weight:400">¥${p.amount}万</small>`:''}</b></div>`).join('')}</div>
+    </div></div>`;
+}
+function shadeColor(hex, f){
+  const n = parseInt(hex.replace('#',''),16);
+  const r = Math.round((n>>16)*f), g = Math.round(((n>>8)&255)*f), b = Math.round((n&255)*f);
+  return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
+}
+function pieSlicePath(cx, cy, r0, r1, a0, a1){
+  const x0 = cx + r0*Math.cos(a0), y0 = cy + r0*Math.sin(a0);
+  const x1 = cx + r1*Math.cos(a0), y1 = cy + r1*Math.sin(a0);
+  const x2 = cx + r1*Math.cos(a1), y2 = cy + r1*Math.sin(a1);
+  const x3 = cx + r0*Math.cos(a1), y3 = cy + r0*Math.sin(a1);
+  const large = (a1 - a0) > Math.PI ? 1 : 0;
+  return `M ${x0.toFixed(2)} ${y0.toFixed(2)} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r1} ${r1} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} L ${x3.toFixed(2)} ${y3.toFixed(2)} A ${r0} ${r0} 0 ${large} 0 ${x0.toFixed(2)} ${y0.toFixed(2)} Z`;
+}
+function pie3dCard(title, parts, center, sub){
+  const total = parts.reduce((a,p)=>a+p.pct,0) || 1;
+  const R0 = 52, R1 = 84, cx = 100, cy = 98;   // 环形：外 84 / 内 52
+  let a0 = -Math.PI/2;
+  const slices = parts.map(p=>{ const a1 = a0 + (p.pct/total)*Math.PI*2; const s = {p,a0,a1}; a0 = a1; return s; });
+  // 顶面环形扇区（白色细描边分隔）
+  const top = slices.map(s=>`<path d="${pieSlicePath(cx,cy,R0,R1,s.a0,s.a1)}" fill="${s.p.color}" stroke="#ffffff" stroke-width="2"/>`).join('');
+  // 中心总数文字（换行支持）
+  const centerLines = center.split('<br>').filter(Boolean);
+  const text = centerLines.map((ln,i)=>`<text x="${cx}" y="${cy-6+ i*15}" text-anchor="middle" font-size="${i===0?16:11}" font-weight="${i===0?900:500}" fill="${i===0?'#163654':'#8a9aab'}">${esc(ln)}</text>`).join('');
+  // 柔和投影
+  const shadow = `<ellipse cx="${cx}" cy="${cy+76}" rx="80" ry="9" fill="rgba(9,30,56,.12)"/>`;
+  return `<div class="viz-card">
+    <div class="card-head"><div><h3>${esc(title)}</h3><span>${esc(sub||'')}</span></div><span class="section-tag">演示数据</span></div>
+    <div class="pie3d-stage">
+      <svg class="pie3d-svg" viewBox="0 0 200 196" role="img" aria-label="${esc(title)}">
+        ${shadow}${top}${text}
+      </svg>
+    </div>
+    <div class="legend">${parts.map(p=>`<div class="legend-item"><i style="background:${p.color}"></i><span><strong>${esc(p.name)}</strong></span><b>${p.pct.toFixed(1)}%${p.amount!=null?`<br><small style="color:#8a9aab;font-weight:400">¥${p.amount}万</small>`:''}</b></div>`).join('')}</div>
+  </div>`;
+}
+
+function tableCard(title, sub, headers, rowsHtml, tag){
+  return `<article class="table-card"><div class="card-head"><div><h3>${esc(title)}</h3><span>${esc(sub||'')}</span></div><span class="section-tag">${esc(tag||'演示数据')}</span></div>
+    <div class="tbl-scroll"><table class="biz-table"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rowsHtml}</tbody></table></div></article>`;
+}
+function d7Html(v){ return v==null?'—':`<span class="${v>=0?'pos':'neg'}">${v>=0?'+':''}${v.toFixed(1)}%</span>`; }
+function analysisCard(sectionName, a){
+  return `<article class="analysis-card">
+    <div class="analysis-top"><div><h3>AI 总结建议 · ${esc(sectionName)}</h3><span>结论 / 异常与特殊节点 / 管理动作建议</span></div><span>每日 12:00 生成 · 人工审核</span></div>
+    <div class="analysis-body">
+      <div class="analysis-item"><b>经营结论</b><p>${a.concl}</p></div>
+      <div class="analysis-item"><b>异常与特殊节点</b><p>${a.anom}</p></div>
+      <div class="analysis-item"><b>管理动作建议</b><p>${a.act}</p></div>
+    </div></article>`;
+}
+function aiTip(txt){
+  return `<div class="ai-tip"><span class="ai-ico">AI</span><div><b>AI 洞察：</b>${txt}</div></div>`;
+}
+function goalCard(){
+  const rows = GOALS.map(g=>{
+    const p = g.done/g.target*100; const cls = p>=g.time+2?'good':(p>=g.time-3?'warn':'bad');
+    return `<div class="goal-row"><span class="g-name">${esc(g.name)}</span>
+      <div class="progress"><i class="${cls}" style="width:${Math.min(p,100).toFixed(1)}%"></i><span class="p-mark" style="left:${g.time}%"></span></div>
+      <span class="g-val">达成 ${p.toFixed(1)}% / 时间 ${g.time}%（${p>=g.time?'领先':'落后'} ${Math.abs(p-g.time).toFixed(1)}pp）</span></div>`;
+  }).join('');
+  return `<div class="goal-card"><h3>月度目标达成 vs 时间进度（8 月）<span class="section-tag">黑色刻度线 = 时间进度 64.5%</span></h3>${rows}
+    <p style="margin:12px 0 0;color:#8a9aab;font-size:12.5px">判读规则：达成率 ≥ 时间进度 +2pp 为绿（超额）；±3pp 内为黄（盯紧）；落后 &gt;3pp 为红（需当日干预）。</p></div>`;
+}
+
+/* ================================================================
+   各板块渲染函数
+   ================================================================ */
+/* ---- 简报 · 销售指标 ---- */
+function secOverviewSales(){
+  const c = COMPANY[state.period] || COMPANY.month;
+  const pl = PERIOD_LABEL[state.period];
+  const rate = COMPANY.day.sales/COMPANY.day.target*100;
+  const k1 = kpiCard('销售额（'+pl+'）', fmtY(mul(COMPANY.day.sales)), c.d7, '环比 '+c.d7+'% · 同比 +'+c.yoy+'%', 'hot');
+  const k2 = kpiCard('目标达成率', pct(rate), null, '日目标 ¥780,000', rate>=100?'hot':'');
+  const k3 = kpiCard('毛利额', fmtY(mul(COMPANY.day.gross)), 1.2, '毛利率 '+pct(c.gpm), '');
+  const k4 = kpiCard('毛利率', pct(c.gpm), 0.1, '毛利额 '+fmtY(mul(COMPANY.day.gross)), 'gold');
+  const k5 = kpiCard('综合转化率', pct(c.cvr), -0.2, '线下 22.4% / 线上 2.8%', '');
+  const k6 = kpiCard('客单价', '¥'+c.aov.toLocaleString(), 0.4, '连带与结构驱动', '');
+  const k7 = isMonth() ? kpiCard('综合费率', fee(c.feeRate), 0.2, '扣点/推广/人工合计', c.feeRate>9?'red':'') : '';
+  const k8 = kpiCard('库存总额', '¥5,860万', null, '周转 42 天 · 超龄 12.4%', 'gold');
+  const segRows = SEGMENTS.map(s=>{
+    const share = s.sales/COMPANY.day.sales*100;
+    return `<tr><td class="t-name">${esc(s.name)}</td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${pct(s.cvr)}</td><td>${isMonth()?fee(s.feeRate):'<span style="color:#c6d2dd">—</span>'}</td><td>¥${s.inv}万</td><td>${share.toFixed(1)}%</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`;
+  }).join('');
+  const totalRow = `<tr style="background:#f0f6fc"><td class="t-name">合计</td><td><b>${fmtY(mul(COMPANY.day.sales))}</b></td><td><b>${fmtWan(mul(COMPANY.day.gross))}</b></td><td><b>${pct(COMPANY.day.gpm)}</b></td><td>—</td><td><b>${fee(COMPANY.day.feeRate)}</b></td><td><b>¥5,860万</b></td><td>100%</td><td>${d7Html(COMPANY.day.d7)}</td><td><span class="pos">+${COMPANY.day.yoy.toFixed(1)}%</span></td></tr>`;
+  return `
+    <div class="alert-strip">${alertStripRender(ALERTS)}</div>
+    ${goalCard()}
+    <div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}${k7}${k8}</div>
+    <div class="detail-panel">
+      ${barsChart(TREND7.labels, TREND7.sales, TREND7.gross, '销售额', '毛利额', '万元')}
+      ${(()=>{
+    const feeCol = isMonth() ? '<th>费率</th>' : '';
+    const feeHead = isMonth() ? '销售 / 毛利 / 转化 / 费率 / 库存 / 占比 / 环比 / 同比' : '销售 / 毛利 / 转化 / 库存 / 占比 / 环比 / 同比';
+    const cells = s=>`<td class="t-name">${esc(s.name)}</td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${pct(s.cvr)}</td>${isMonth()?`<td>${fee(s.feeRate)}</td>`:''}<td>¥${s.inv}万</td><td>${(s.sales/COMPANY.day.sales*100).toFixed(1)}%</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td>`;
+    const tRow = `<tr style="background:#f0f6fc"><td class="t-name">合计</td><td><b>${fmtY(mul(COMPANY.day.sales))}</b></td><td><b>${fmtWan(mul(COMPANY.day.gross))}</b></td><td><b>${pct(COMPANY.day.gpm)}</b></td><td>—</td>${isMonth()?`<td><b>${fee(COMPANY.day.feeRate)}</b></td>`:''}<td><b>¥5,860万</b></td><td>100%</td><td>${d7Html(COMPANY.day.d7)}</td><td><span class="pos">+${COMPANY.day.yoy.toFixed(1)}%</span></td></tr>`;
+    return tableCard('业务板块对比（'+pl+'）', feeHead, ['业务板块','销售额','毛利额','毛利率','转化率', ...(isMonth()?['费率']:[]), '库存','占比','环比','同比'], SEGMENTS.map(cells).join('')+tRow);
+  })()}
+    </div>
+    ${aiTip('今日整体达成 <b>106%</b>，APR 板块贡献 50.3% 为增长主引擎；苏家屯（36.2%）与镇江（42.3%）达成率最低，是 8 月冲刺的两大攻坚点。')}
+    ${analysisCard('销售指标', {
+      concl:`${pl}销售额 <b>${fmtY(mul(COMPANY.day.sales))}</b>，目标达成 <b>${rate.toFixed(1)}%</b>，毛利率 ${pct(COMPANY.day.gpm)}。APR 板块贡献 50.3%、环比 +8.2%，为当日增长主引擎；Apple 电商受京东店 -8.7% 拖累环比 -3.4%。`,
+      anom:'苏家屯店达成率 36.2% 全系最低（转化率 2.9%）；镇江重开红利需在 8/31 前兑现；90 天以上库存占比升至 12.4%；抖音店退款率 3.4% 高于基准。',
+      act:'① 苏家屯：按 8.18 会议专项诊断方案落地（8/21-27 iPhone 转化专项）；② 镇江：开业红利期冲量，全员到岗+主推品补货；③ 京东店：核查流量下滑归因，投放 ROI 低于 2.0 红线需调整；④ 超龄库存列入周五不动销处理清单。'
+    })}`;
+}
+
+/* ---- 整体总览 · 渠道对比（APR 整体口径，费率月度化） ---- */
+function secChannelCompare(){
+  const pl = PERIOD_LABEL[state.period];
+  const c = COMPANY[state.period] || COMPANY.month;
+  const rate = c.sales/c.target*100;
+  const k1 = kpiCard('总销售额（'+pl+'）', fmtY(mul(COMPANY.day.sales)), c.d7, '环比 '+c.d7+'% · 同比 +'+c.yoy+'%', 'hot');
+  const k2 = kpiCard('目标达成率', pct(rate), null, '月度目标 ¥24,600,000', rate>=100?'hot':'');
+  const k3 = kpiCard('毛利额', fmtY(mul(COMPANY.day.gross)), 1.2, '毛利率 '+pct(c.gpm), '');
+  const k4 = kpiCard('毛利率', pct(c.gpm), 0.1, '毛利额 '+fmtY(mul(COMPANY.day.gross)), 'gold');
+  const k5 = kpiCard('综合转化率', pct(c.cvr), -0.2, '线下 22.4% / 线上 2.8%', '');
+  const k6 = kpiCard('客单价', '¥'+c.aov.toLocaleString(), 0.4, '连带与结构驱动', '');
+  const k7 = isMonth() ? kpiCard('综合费率', fee(c.feeRate), 0.2, '扣点/推广/人工合计', c.feeRate>9?'red':'') : '';
+  const k8 = kpiCard('库存总额', '¥5,860万', null, '周转 42 天 · 超龄 12.4%', 'gold');
+  const segRows = SEGMENTS.map(s=>{
+    const share = s.sales/COMPANY.day.sales*100;
+    return `<tr><td class="t-name">${esc(s.name)}<br><small style="color:#8a9aab">${esc(s.note)}</small></td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${pct(s.cvr)}</td><td>${isMonth()?fee(s.feeRate):'<span style="color:#c6d2dd">—</span>'}</td><td>¥${s.inv}万</td><td>${share.toFixed(1)}%</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`;
+  }).join('');
+  const totalRow = `<tr style="background:#f0f6fc"><td class="t-name">合计</td><td><b>${fmtY(mul(COMPANY.day.sales))}</b></td><td><b>${fmtWan(mul(COMPANY.day.gross))}</b></td><td><b>${pct(c.gpm)}</b></td><td>—</td><td><b>${fee(c.feeRate)}</b></td><td><b>¥5,860万</b></td><td>100%</td><td>${d7Html(c.d7)}</td><td><span class="pos">+${c.yoy.toFixed(1)}%</span></td></tr>`;
+  return `
+    <div class="alert-strip">${alertStripRender(ALERTS)}</div>
+    ${goalCard()}
+    <div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}${k7}${k8}</div>
+    <div class="detail-panel">
+      ${barsChart(TREND7.labels, TREND7.sales, TREND7.gross, '销售额', '毛利额', '万元')}
+      ${tableCard('渠道对比（'+pl+'）','APR 为整体口径（不拆线上线下）；费率仅月度出数',['业务板块','销售额','毛利额','毛利率','转化率','费率','库存','占比','环比','同比'],segRows+totalRow)}
+    </div>
+    ${aiTip('渠道结构：APR 整体贡献 50.3% 销售额、转化率 22.4% 显著高于线上；Apple 电商环比 -3.4% 受京东店拖累；Shure 电商增速 +12.6% 领跑；综合费率月度口径 8.9% 低于预算红线 9.5%。')}
+    ${analysisCard('渠道对比', {
+      concl:`${pl}总销售额 <b>${fmtY(mul(COMPANY.day.sales))}</b>，目标达成 <b>${rate.toFixed(1)}%</b>，毛利率 ${pct(c.gpm)}。APR 整体为增长主引擎（占比 50.3%、环比 +8.2%），Shure 电商 +12.6% 领跑，Apple 电商环比 -3.4%。`,
+      anom:'Apple 电商京东店 -8.7% 拖累；APR 苏家屯达成率 36.2% 全系最低；90 天以上库存占比升至 12.4%。',
+      act:'① 苏家屯：8/21-27 iPhone 转化专项；② 京东店：流量下滑归因核查，投放 ROI 低于 2.0 红线需调整；③ 超龄库存列入周五不动销处理清单。'
+    })}`;
+}
+
+/* ---- 整体总览 · 占比与趋势 ---- */
+function secChannelStructure(){
+  const pl = PERIOD_LABEL[state.period];
+  const c = COMPANY[state.period] || COMPANY.month;
+  const on = c.onlineShare, off = c.offlineShare;
+  const segShare = SEGMENTS.map(s=>({ name:s.name, pct:s.sales/COMPANY.day.sales*100, color: s.code==='APR'?'#2f69c2':s.code==='AE'?'#c79118':'#188b70' }));
+  const vsItems = [
+    { k:'销售额 同比（YoY）', v:'+'+c.yoy+'%', d:'大盘同口径约 +2.8%', cls:'up' },
+    { k:'销售额 环比（WoW）', v:(c.w0>=0?'+':'')+c.w0+'%', d:'上周同期对比', cls:c.w0>=0?'up':'down' },
+    { k:'线上销售占比', v:pct(on), d:'上月 '+pct(on-0.8), cls:'up' },
+    { k:'线下销售占比', v:pct(off), d:'上月 '+pct(off+0.8), cls:'' },
+    { k:'综合费率 vs 预算', v:fee(c.feeRate), d:isMonth()?'预算红线 9.5% · 低 0.6pp':monthlyNote, cls:'up' }
+  ];
+  const onoffRows = `
+    <tr class="grp"><td colspan="6">线上 / 线下结构（${pl}）</td></tr>
+    <tr><td class="t-name">线下（APR 整体）</td><td>${fmtY(mul(COMPANY.day.sales*off/100))}</td><td>${pct(off)}</td><td>${pct(22.4)}</td><td>客流 ${(30833/MULT[state.period]).toLocaleString()} 人次</td><td><span class="pos">+8.2%</span></td></tr>
+    <tr><td class="t-name">线上（Apple+舒尔）</td><td>${fmtY(mul(COMPANY.day.sales*on/100))}</td><td>${pct(on)}</td><td>${pct(2.8)}</td><td>访客 ${(51600/MULT[state.period]).toLocaleString()} 人次</td><td><span class="neg">-1.2%</span></td></tr>`;
+  return `
+    <div class="vs-strip">${vsItems.map(v=>`<div class="vs-item"><div class="vs-k">${esc(v.k)}</div><div class="vs-v">${v.v}</div><div class="vs-d ${v.cls}">${esc(v.d)}</div></div>`).join('')}</div>
+    <div class="detail-panel tri">
+      ${donutCard('业务板块占比（'+pl+'）', segShare, '销售额<br>占比', 'APR / Apple电商 / Shure电商')}
+      ${donutCard('线上线下占比', [{name:'线下门店',pct:off,color:'#2f69c2'},{name:'线上电商',pct:on,color:'#c79118'}], '线上 '+on.toFixed(1)+'%', '按销售额口径')}
+      ${donutCard('库存健康结构', INV_STRUCTURE, '¥5,860万<br>总库存', '按库龄与状态划分')}
+    </div>
+    <div class="detail-panel">
+      ${tableCard('线上线下经营对比（'+pl+'）','销售额 / 占比 / 转化 / 流量 / 环比',['渠道','销售额','占比','转化率','流量','环比'],onoffRows)}
+      ${barsChart(TREND7.labels, TREND7.sales, TREND7.lastYear, '今年', '去年', '万元')}
+    </div>
+    ${aiTip('业务结构健康度：APR 贡献 50.3% 销售额但转化率 22.4% 显著高于线上 2.8%；毛利率三板块分化明显（舒尔 21.5% &gt; APR 12.8% &gt; 电商 9.6%）；线上占比环比提升 0.8pp。')}
+    ${analysisCard('占比与趋势', {
+      concl:`${pl}销售额同比 +${c.yoy}%、环比 +${c.w0}%；线下占 ${pct(off)}、线上占 ${pct(on)}，线上占比环比提升 0.8pp。`,
+      anom:'线上综合转化率 2.8% 仅为线下 1/8；京东店环比 -8.7% 拖累；线下苏家屯转化率 2.9% 与日照 9.3% 相差 3 倍以上。',
+      act:'① 线上：京东店投放迁移抖音（ROI 2.9），详情页 A/B 提升加购转化；② 线下：苏家屯转化专项（8/21-27），日照大单经验（客单 ¥3,363）向全系复制。'
+    })}`;
+}
+
+/* ---- 整体总览 · 同行对比（季度·手动填写，仅月度出数） ---- */
+function secBenchmark(){
+  const pl = PERIOD_LABEL[state.period];
+  const peerRows = APR_BENCHMARK.map(b=>`<tr><td class="t-name">${esc(b.name)}</td><td>${b.us}</td><td>${b.avg}</td><td class="pos">${esc(b.pos)}</td></tr>`).join('');
+  const compRows = AE_COMPETITORS.map(c=>`<tr><td>${esc(c.rank)}</td><td class="t-name">${esc(c.name)}</td><td>${esc(c.sales)}</td><td>${esc(c.uv)}</td><td>${esc(c.mix)}</td></tr>`).join('');
+  return `
+    <div class="alert-strip" style="background:#fdf6ec">${quarterNote} 经销商平均与竞店数据为季度口径，需人工填写，销售额不公开。</div>
+    <div class="detail-panel">
+      ${tableCard('APR 同行对比（经销商平均数）','本店 vs 经销商平均：8 项核心指标 · 季度手动填写',['指标','本店','经销商平均','差异'],peerRows)}
+      ${tableCard('Apple 电商竞店对比（区间口径）','竞店月销/访客为区间值 · 季度手动填写',['梯队','店铺','月销','访客','产品结构'],compRows)}
+    </div>
+    ${aiTip('同行对比口径：APR 单店产能高经销商均值 9.2%、1PP 占比高 2.8pp、国补占比高 2.4pp，8 项指标 6 项领先；人工费率低 0.5pp 为优势，租金费率略高 0.3pp 需关注。')}
+    ${analysisCard('同行对比', {
+      concl:'APR 8 项同行指标 6 项领先经销商均值；Apple 电商本店月销 ¥95-135万，处 TOP3 竞店（¥120-160万）之后、TOP8 之前。',
+      anom:'租金费率 8.9% 高于均值 0.3pp；Apple 电商 iPhone 占比 38% 低于 TOP3 竞店 3pp；转化率与竞店差距待季度数据核验。',
+      act:'① 季度更新经销商均值与竞店数据（手动填写）；② 租金费率纳入下季度续约谈判；③ Apple 电商对标 TOP3 提升 iPhone 结构占比。'
+    })}`;
+}
+
+/* ---- 简报 · 销售分析（占比/同比环比/线上线下/同行对比） ---- */
+function secOverviewAnalysis(){
+  const c = COMPANY[state.period] || COMPANY.month;
+  const pl = PERIOD_LABEL[state.period];
+  const on = c.onlineShare, off = c.offlineShare;
+  const segShare = SEGMENTS.map(s=>{
+    const share = s.sales/COMPANY.day.sales*100;
+    return { name:s.name, pct:share, color: s.code==='APR'?'#2f69c2':s.code==='AE'?'#c79118':'#188b70' };
+  });
+  const vsItems = [
+    { k:'销售额 同比（YoY）', v:'+'+c.yoy+'%', d:'大盘同口径约 +2.8%', cls:'up' },
+    { k:'销售额 环比（WoW）', v:(c.w0>=0?'+':'')+c.w0+'%', d:'上周同期对比', cls:c.w0>=0?'up':'down' },
+    { k:'线上销售占比', v:pct(on), d:'上月 '+pct(on-0.8), cls:'up' },
+    { k:'线下销售占比', v:pct(off), d:'上月 '+pct(off+0.8), cls:'' },
+    { k:'APR 单店产能 vs 经销商均值', v:'+9.2%', d:'¥138,533 vs ¥126,800', cls:'up' },
+    { k:'综合费率 vs 预算', v:pct(c.feeRate), d:'预算红线 9.5% · 低于 0.8pp', cls:'up' }
+  ];
+  const onoffRows = `
+    <tr class="grp"><td colspan="6">线上 / 线下结构（${pl}）</td></tr>
+    <tr><td class="t-name">线下（APR 门店）</td><td>${fmtY(mul(COMPANY.day.sales*off/100))}</td><td>${pct(off)}</td><td>${pct(22.4)}</td><td>客流 ${(30833/MULT[state.period]).toLocaleString()} 人次</td><td><span class="pos">+8.2%</span></td></tr>
+    <tr><td class="t-name">线上（Apple+舒尔）</td><td>${fmtY(mul(COMPANY.day.sales*on/100))}</td><td>${pct(on)}</td><td>${pct(2.8)}</td><td>访客 ${(51600/MULT[state.period]).toLocaleString()} 人次</td><td><span class="neg">-1.2%</span></td></tr>`;
+  const peerRows = APR_BENCHMARK.map(b=>`<tr><td class="t-name">${esc(b.name)}</td><td>${b.us}</td><td>${b.avg}</td><td class="pos">${b.pos}</td></tr>`).join('');
+  return `
+    <div class="vs-strip">${vsItems.map(v=>`<div class="vs-item"><div class="vs-k">${esc(v.k)}</div><div class="vs-v">${v.v}</div><div class="vs-d ${v.cls}">${esc(v.d)}</div></div>`).join('')}</div>
+    <div class="detail-panel tri">
+      ${donutCard('业务板块占比（'+pl+'）', segShare, '销售额<br>占比', 'APR / Apple电商 / Shure电商')}
+      ${donutCard('线上线下占比', [
+        { name:'线下门店', pct:off, color:'#2f69c2' },
+        { name:'线上电商', pct:on, color:'#c79118' }
+      ], '线上 '+on.toFixed(1)+'%', '按销售额口径')}
+      ${donutCard('库存健康结构', INV_STRUCTURE, '¥5,860万<br>总库存', '按库龄与状态划分')}
+    </div>
+    <div class="detail-panel">
+      ${tableCard('线上线下经营对比（'+pl+'）','销售额 / 占比 / 转化 / 流量 / 环比',['渠道','销售额','占比','转化率','流量','环比'],onoffRows)}
+      ${tableCard('APR 同行对比（经销商平均数，月度）','本店 vs 经销商平均：8 项核心指标',['指标','本店','经销商平均','差异'],peerRows)}
+    </div>
+    ${aiTip('业务结构健康度：APR 贡献 50.3% 销售额但转化率（22.4%）显著高于线上（2.8%）；毛利率三板块分化明显（舒尔 21.5% &gt; APR 12.8% &gt; 电商 9.6%），结构优化空间在电商 1PP 与国补承接。')}
+    ${analysisCard('销售分析', {
+      concl:`${pl}销售额同比 +${c.yoy}%、环比 +${c.w0}%；线下占 ${pct(off)}、线上占 ${pct(on)}，线上占比环比提升 0.8pp。APR 单店产能高于经销商均值 9.2%，8 项同行对比指标 6 项领先。`,
+      anom:'线上综合转化率 2.8% 仅为线下 1/8，京东店环比 -8.7% 拖累；线下苏家屯转化率 2.9% 与日照 9.3% 相差 3 倍以上，店间能力断层明显。',
+      act:'① 线上：京东店投放迁移抖音（ROI 2.9），详情页 A/B 提升加购转化；② 线下：苏家屯转化专项（8/21-27），日照大单经验（客单 ¥3,363）向全系复制；③ 国补承接：政策科口径五种机型分别跟踪，Mac/iPad 国补占比提升空间最大。'
+    })}`;
+}
+/* ---- 简报 · 库存 ---- */
+function secOverviewInv(){
+  const pl = PERIOD_LABEL[state.period];
+  const aging180 = 205.50, aging360 = 120.72;            // 180~360 / 360 天以上金额（万元）
+  const riskPct = (aging180+aging360)/INV_BIZ.total_amount*100;
+  const k1 = kpiCard('库存总额', '¥'+INV_BIZ.total_amount.toFixed(0)+'万', null, INV_BIZ.total_skus.toLocaleString()+' 个 SKU（成本口径）', 'gold');
+  const k2 = kpiCard('高库龄风险占比', pct(INV_BIZ.risk_pct), 0, '180 天以上口径 · 风险金额 ¥858 万', 'red');
+  const k3 = kpiCard('360 天以上', '¥'+INV_BIZ.severe_amount.toFixed(1)+'万', 0, INV_BIZ.severe_count.toLocaleString()+' 个 SKU · 需处置', 'red');
+  const k4 = kpiCard('周转天数', '42 天', -2, '环比慢 2 天 · 90 天以上占 36.9%', '');
+  // 渠道/品类分布（对应业务渠道）
+  const catRows = INV_BIZ.category.map(c=>{
+    const risk = (c.name==='苹果主机'||c.name==='舒尔') ? '<span class="neg">重点监控</span>' : '正常';
+    return `<tr><td class="t-name">${esc(c.name)}</td><td>¥${c.amount.toFixed(1)}万</td><td>${pct(c.pct)}</td><td>${c.qty.toLocaleString()}</td><td>${risk}</td></tr>`;
+  }).join('');
+  // 机况（渠道维度：常规/样机/残次）
+  const machRows = Object.entries(INV_BIZ.machine).map(([ch,m])=>{
+    const total = m.normal+m.demo+m.defect;
+    return `<tr><td class="t-name">${esc(ch)}</td><td>¥${total.toFixed(1)}万</td><td>¥${m.normal.toFixed(1)}万</td><td>¥${m.demo.toFixed(1)}万</td><td><span class="${m.defect>0?'neg':'pos'}">¥${m.defect.toFixed(1)}万</span></td></tr>`;
+  }).join('');
+  // 库龄结构 donut（重点 180/360 标注）
+  const agingParts = INV_BIZ.aging.map(a=>({ name:a.name, pct:a.amount/INV_BIZ.total_amount*100, amount:a.amount, color:a.color }));
+  // 高库龄明细 TOP（可点开）
+  const riskRows = INV_BIZ.aging_risk.map(r=>{
+    const tag = r.age>=360 ? '<span class="chip red">360+ 天</span>' : (r.age>=180 ? '<span class="chip warn">180+ 天</span>' : '<span class="chip ok">90+ 天</span>');
+    return `<tr><td class="t-name">${esc(r.cat)}<br><small style="color:#8a9aab">${esc(r.name)}</small></td><td>${r.qty}</td><td>¥${r.amount.toFixed(2)}万</td><td>${r.age} 天</td><td>${esc(r.wh)}</td><td>${tag}</td></tr>`;
+  }).join('');
+  const covRows = INV_BIZ.coverage.map(c=>`<tr><td class="t-name">${esc(c.desc)}</td><td><span class="chip red">${esc(c.status)}</span></td><td>缺 ${c.gap} 件</td><td>${esc(c.mpn)}</td></tr>`).join('');
+  return `
+    <div class="metric-grid">${k1}${k2}${k3}${k4}</div>
+    <div class="detail-panel tri">
+      ${pie3dCard('库龄结构（'+pl+'）', agingParts, '¥2,450万<br>总库存', '180+ 天合计 '+pct(riskPct)+' · 重点 180/360 天')}
+      ${pie3dCard('品类/渠道分布', INV_BIZ.category.map(c=>({name:c.name,pct:c.pct,amount:c.amount,color:c.color})), '主机 79%', '苹果主机 / 原装配件 / 舒尔 / 3PP')}
+      ${tableCard('高库龄预警（180/360 天以上）','风险金额 ¥858 万 · 360 天以上 ¥120.9 万',['品类','SKU 数','金额','库龄','仓库','级别'],riskRows)}
+    </div>
+    <div class="detail-panel">
+      ${tableCard('品类/渠道库存分布','库存金额 / 占比 / SKU 数 / 风险判断',['品类（渠道）','库存金额','占比','SKU 数','风险判断'],catRows)}
+      ${tableCard('机况分布（渠道维度）','常规机 / 样机 / 残次机（万元）',['渠道','合计','常规机','样机','残次机'],machRows)}
+    </div>
+    <details class="inv-detail"><summary>📦 点击展开：高库龄商品明细（TOP15 · 可看具体型号/仓库）</summary>
+      <div class="detail-panel single" style="margin-top:12px">
+        ${tableCard('高库龄 TOP15 明细','商务库存分析表 260807 口径',['品类','数量','金额','库龄','仓库','级别'],riskRows)}
+      </div>
+    </details>
+    <div class="detail-panel">
+      ${tableCard('覆盖预警（零库存）','低于安全库存需补货',['商品','状态','缺口','MPN'],covRows)}
+    </div>
+    ${aiTip('库存健康度：总库存 ¥2,450 万、180 天以上风险占比 <b>37.0%</b>（¥858 万），其中 360 天以上 ¥120.9 万（1,325 SKU）必须处置。高库龄集中在 iPhone 17 Pro Max 星宇色（¥162 万/169 台/153 天）与 iPhone 17 黑色（¥48 万），两个型号合计占高库龄 24.5%。')}
+    ${analysisCard('库存', {
+      concl:'商务库存表（260807）口径：库存总额 ¥2,450 万、SKU 2.02 万；苹果主机占 79% 为库存主体；90 天以上库龄合计 ¥858 万（37%），周转压力集中在主机类。',
+      anom:'iPhone 17 Pro Max 星宇色 169 台（¥162 万）库龄 153 天为最大单点风险；360 天以上 1,325 SKU 需处置；舒尔仓库（欧瑞特南京云）耳机类 87 条库龄 272 天；零库存 Watch 表带与 Studio Display 支架需补货。',
+      act:'① 高库龄 iPhone 优先走员工内购+总代退换+以旧换新通道；② 360 天以上 SKU 本周出处置清单（目标 30%）；③ 零库存 2 项 3 天内补货；④ 每周五商务表同步后更新看板。'
+    })}`;
+}
+function secOverviewFees(){
+  const total = FEES.reduce((a,b)=>a+b.v,0);
+  const k1 = kpiCard('费用总额（月）','¥'+total+'万',2.1,'七大费用项合计','');
+  const k2 = kpiCard('综合费率',pct(COMPANY.month.feeRate),0.2,'费率红线 9.5%',COMPANY.month.feeRate>9?'red':'');
+  const k3 = kpiCard('推广费','¥62万',6.8,'ROI 2.3（红线 2.0）','gold');
+  const k4 = kpiCard('资金占用','¥21万',-1.2,'含后台费用','');
+  const rows = FEES.map(f=>`<tr><td class="t-name">${esc(f.name)}</td><td>¥${f.v}万</td><td>${pct(f.v/total*100)}</td><td>${(f.v/total>0.25?'<span class="neg">占比过高</span>':'合理')}</td></tr>`).join('');
+  return `<div class="metric-grid">${k1}${k2}${k3}${k4}</div>
+    <div class="detail-panel">
+      ${barsChart(FEES.map(f=>f.name), FEES.map(f=>f.v), FEES.map(f=>f.v*0.92), '当期', '上期', '万元')}
+      ${tableCard('费用结构明细（月度）','金额、占比与合理性判断',['费用项','金额','占比','判断'],rows)}
+    </div>
+    ${analysisCard('费用', {
+      concl:'月度费用 ¥357 万，综合费率 8.9%，控制在 9.5% 红线内；扣点租金占 35.3% 为最大科目。',
+      anom:'推广费环比 +6.8% 但整体 ROI 2.3 尚在红线之上；京东店投放 ROI 1.6 已破线。',
+      act:'① 京东店投放预算下调 20%，迁移至抖音店（ROI 2.9）；② 租金费率门店间差异大，纳入月度复盘；③ 费用数据 9 月起对接集合云费用模块自动取数。'
+    })}`;
+}
+/* ---- 简报 · 利润（月度） ---- */
+function secOverviewProfit(){
+  const k1 = kpiCard('营业利润（月）','¥186万',4.2,'利润率 7.9%','green');
+  const k2 = kpiCard('店铺利润合计','¥158万',3.8,'三大板块合计','');
+  const k3 = kpiCard('净利率','3.4%（APR口径）',0.2,'高于经销商平均 3.1%','');
+  const k4 = kpiCard('滞销/残次计提','¥9万',0.4,'资产减值损失','');
+  return `<div class="metric-grid">${k1}${k2}${k3}${k4}</div>
+    ${analysisCard('利润（月度）', {
+      concl:'月度营业利润 ¥186 万、利润率 7.9%，环比 +4.2%；毛利额 341 万覆盖费用 357 万后由其他收益补足。',
+      anom:'Apple 电商毛利率 9.6% 为三板块最低，主要受平台扣点与补贴影响。',
+      act:'① Apple 电商以 1PP 结构优化与国补承接提升有效毛利率；② 舒尔板块毛利率 21.5% 保持内容投放加码；③ 月度利润表 9 月起由财务报表直接推送。'
+    })}`;
+}
+
+/* ---- APR · 销售指标 ---- */
+function secAPRSales(){
+  const totalSales = APR_STORES.reduce((a,b)=>a+b.sales,0);
+  const k1 = kpiCard('月累计销售额', '¥'+totalSales.toFixed(0)+'万', 8.2, '10 店合计 · 目标 ¥2,180 万','green');
+  const k2 = kpiCard('目标达成率', pct(APR_TOTAL.rate), null, '预测月末 '+APR_TOTAL.forecast_rate+'%','');
+  const k3 = kpiCard('综合毛利率', pct(APR_TOTAL.pm), 0.2, '毛利额 ¥'+APR_TOTAL.profit.toFixed(1)+'万','');
+  const k4 = kpiCard('总转化率', pct(APR_TOTAL.conv), 0.8, '客流 '+APR_TOTAL.flow.toLocaleString()+' 人次','');
+  const k5 = kpiCard('平均客单价', '¥2,430', 1.4, '日照最高 ¥3,363','gold');
+  const k6 = isMonth() ? kpiCard('人工费率', fee(5.8), -0.1, '低于经销商平均 6.3%','') : '';
+  const rows = APR_STORES.map(s=>{
+    const ach = s.rate;
+    return `<tr><td class="t-name">${esc(s.name)}</td><td>¥${s.sales.toFixed(1)}万</td><td><span class="${ach>=65?'pos':ach>=50?'':'neg'}">${ach.toFixed(1)}%</span></td><td>¥${s.profit.toFixed(2)}万</td><td>${pct(s.pm)}</td><td>${s.flow.toLocaleString()}</td><td>${pct(s.conv)}</td><td>¥${s.apt.toFixed(0)}</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`;
+  }).join('');
+  return `<div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}</div>
+    <div class="detail-panel single">
+      ${barsChart(['8-14','8-15','8-16','8-17','8-18','8-19','8-20'], [36.2,40.1,38.4,43.6,39.8,41.2,41.6], [4.5,5.1,4.9,5.6,5.0,5.2,5.3], '销售额', '毛利额', '万元')}
+    </div>
+    <div class="detail-panel single">
+      ${tableCard('门店经营对比（8月累计）','销售 / 达成 / 毛利 / 客流 / 转化 / 客单 / 环比 / 同比',['门店','月销售','达成率','毛利额','毛利率','客流','转化率','客单价','环比','同比'],rows)}
+    </div>
+    ${aiTip('10 店分化明显：日照达成 90%、徐州彭城 90.2% 领先；苏家屯 36.2% 垫底且同比 -12.4%。店间转化率相差 3 倍，能力标准化是 APR 最大的增长杠杆。')}
+    ${analysisCard('销售指标', {
+      concl:'APR 板块 8 月累计销售 ¥'+totalSales.toFixed(0)+' 万、目标达成 '+pct(APR_TOTAL.rate)+'，日照（90%）与彭城（90.2%）领跑；全系转化率 6.4%，单店产能口径 ¥138,533 高于经销商平均 9.2%。',
+      anom:'苏家屯达成 36.2% 且同比 -12.4%（客流与转化双低）；镇江苏宁重开后半程需冲刺；无锡店目标 ¥380 万为全系最高但达成仅 60.9%，需重点盯。',
+      act:'① 苏家屯：专项诊断落地（8/18 会议方案），iPhone 转化专项 8/21-27；② 镇江：开业红利期冲量，全员到岗+主推品补货；③ 无锡：旗舰店产能提升，连带话术+高毛利推荐复盘；④ 日照大单经验（客单 ¥3,363）提炼为话术包全系推广。'
+    })}`;
+}
+/* ---- APR · 销售分析（结构/五科/同行对比） ---- */
+function secAPRAnalysis(){
+  // 五科：费率类数据月度才出，日/周显示 "-"
+  const fiveHtml = APPLE_FIVE.map(d=>`<article class="dept-card"><h4>${esc(d.name)} <em>${esc(d.en)}</em></h4>
+    <div class="dept-kv">${d.kvs.map(kv=>{
+      const isFee = /费率/.test(kv[0]);
+      const v = isFee ? (isMonth() ? kv[1] : '-') : kv[1];
+      return `<span class="k">${esc(kv[0])}</span><span class="v ${kv[2]||''}">${esc(v)}</span>`;
+    }).join('')}</div></article>`).join('');
+  // 四大主机/3PP 结构：可点开看到店维度（details 展开各店结构）
+  const hostStoreRows = STORES_HOST.map(s=>`<tr><td class="t-name">${esc(s.store)}</td><td>¥${s.host_amount.toFixed(1)}万</td><td>${s.host_qty} 台</td><td>${s.iphone.pct.toFixed(1)}%</td><td>${s.mac.pct.toFixed(1)}%</td><td>${s.ipad.pct.toFixed(1)}%</td><td>${s.watch.pct.toFixed(1)}%</td></tr>`).join('');
+  const accStoreRows = STORES_ACC.map(s=>`<tr><td class="t-name">${esc(s.store)}</td><td>¥${s.acc_amount.toFixed(2)}万</td><td>${s.acc_qty} 单</td><td>${s.phone.pct.toFixed(1)}%</td><td>${s.pad.pct.toFixed(1)}%</td><td>${s.watch.pct.toFixed(1)}%</td><td>${s.other.pct.toFixed(1)}%</td></tr>`).join('');
+  // 经销商对比（季度手动填写，不放日度）
+  const benchRows = APR_BENCHMARK.map(b=>`<tr><td class="t-name">${esc(b.name)}</td><td>${b.us}</td><td>${b.avg}</td><td class="pos">${b.pos}</td></tr>`).join('');
+  const benchBlock = isMonth() ? tableCard('Apple 经销商平均数对比（同行对比·月度）','季度口径 · 需手动填写 · 销售额不公开',['指标','本店','经销商平均','差异'],benchRows) : '';
+  return `
+    <div class="detail-panel tri">
+      ${donutCard('四大主机销售结构（占比·8月）', APR_STRUCTURE, '主机<br>'+APR_STRUCTURE.reduce((a,b)=>a+b.pct,0).toFixed(1)+'%', '主机销售 ¥288.7万 · 1PP 68.2% · 点击下方看到店')}
+      ${donutCard('3PP 配件结构（占比·8月）', ACC_STRUCTURE, '3PP<br>¥10.2万', '手机配件占主导 52.8% · 点击下方看到店')}
+      ${tableCard('连带与转化跟踪','生态科核心过程指标（月度）',['指标','当期','目标','环比'],
+        `<tr><td class="t-name">AirPods 连带率</td><td>31.5%</td><td>30%</td><td>${d7Html(1.6)}</td></tr>
+         <tr><td class="t-name">1PP 连带率</td><td>42.8%</td><td>40%</td><td>${d7Html(0.9)}</td></tr>
+         <tr><td class="t-name">ACS 连带率</td><td>28.6%</td><td>30%</td><td>${d7Html(-1.2)}</td></tr>
+         <tr><td class="t-name">配件搭售率</td><td>26.4%</td><td>25%</td><td>${d7Html(2.1)}</td></tr>`)}
+    </div>
+    <details class="inv-detail"><summary>📊 点到店：四大主机销售结构（8月·按门店）</summary>
+      <div class="detail-panel single" style="margin-top:12px">
+        ${tableCard('各门店主机销售结构（8月）','金额 / 台数 / iPhone / Mac / iPad / Watch 占比',['门店','主机金额','台数','iPhone','Mac','iPad','Watch'],hostStoreRows)}
+      </div>
+    </details>
+    <details class="inv-detail"><summary>📊 点到店：3PP 配件销售结构（8月·按门店）</summary>
+      <div class="detail-panel single" style="margin-top:12px">
+        ${tableCard('各门店配件销售结构（8月）','金额 / 单数 / 手机配件 / 平板配件 / 手表配件 / 其他',['门店','配件金额','单数','手机配件','平板配件','手表配件','其他'],accStoreRows)}
+      </div>
+    </details>
+    <div class="five-dept-grid">${fiveHtml}</div>
+    <div class="detail-panel">
+      ${benchBlock}
+      ${tableCard('线下/线上占比（门店口径）','按销售员线下/线上销售额汇总（近似口径）',['门店','线下','线上','线下占比'],
+        APR_STORES.slice(0,6).map(s=>`<tr><td class="t-name">${esc(s.name)}</td><td>¥${(s.sales*0.55).toFixed(1)}万</td><td>¥${(s.sales*0.45).toFixed(1)}万</td><td>55%</td></tr>`).join(''))}
+    </div>
+    ${analysisCard('销售分析', {
+      concl:'iPhone 占主机销售 71.7%（¥207万）为绝对主力；1PP 占比 68.2%（高于平均 2.8pp）；转化科四大机型 18.2% 全面优于经销商平均。',
+      anom:'同城激活率 98.1% 贴近 98% 红线（黄色关注，防串货）；ACS 连带率 28.6% 低于 30% 目标；3PP 规模小（¥10.2万）但手机配件占比 52.8% 结构健康。',
+      act:'① 同城激活率每周核查一次异常订单归因；② ACS 连带话术纳入本周培训（目标 30%）；③ 五科数据 9 月起对接 Apple API 自动取数；④ 3PP 渠道按授权进度推进（当前暂未开展）。'
+    })}`;
+}
+function secAPRSalesperson(){
+  const rows = SALESPERSONS.map(p=>`<tr><td>${p.rank}</td><td class="t-name"><a class="person-link" onclick="showPersonProfile('${esc(p.name)}')">${esc(p.name)}</a></td><td>${esc(p.store)}</td><td>¥${p.sales.toFixed(1)}万</td><td>¥${p.task}万</td><td><span class="${p.rate>=50?'pos':p.rate>=30?'':'neg'}">${p.rate.toFixed(1)}%</span></td><td>¥${p.offline.toFixed(1)}万</td><td>¥${p.online.toFixed(1)}万</td><td>${p.pm.toFixed(1)}%</td><td>${p.host}</td><td>${p.pp}</td><td>${p.acs}%</td></tr>`).join('');
+  return `<div class="detail-panel single">
+    ${tableCard('销售员月度排名（真实口径·TOP10）','销售额 / 达成 / 线上线下 / 毛利 / 主机 / 配件 / ACS · 点击姓名查看个人档案',['排名','姓名','门店','销售额','任务','达成率','线下','线上','毛利率','主机台数','配件单数','ACS率'],rows)}
+  </div>
+  ${aiTip('TOP 销售员共性：线上销售占比高（王畅/鲁健线上均超 40%）、ACS 开口率高（查越/潘思源 75%）。日照李珍达成 53.3% 但线上占比 93%——线上渠道是个人产能放大器，建议全员复制线上打法。')}
+  ${analysisCard('销售员排名', {
+    concl:'王畅以 ¥50.8万 居首（达成 56.5%），TOP5 中 3 人来自徐州/连云港；高达成者线上销售占比普遍较高。',
+    anom:'连云港鲁健任务 ¥150万 为全员最高但达成仅 24%；日照李珍达成 53.3% 但毛利率 3.5% 偏低（配件率 0%）。',
+    act:'① 线上打法（直播/企微/私域）标准化并全员培训；② 高任务低达成人员（鲁健等）一对一辅导；③ ACS 开口率低于 30% 人员纳入晨会话术演练重点。'
+  })}`;
+}
+// 个人档案弹窗：点击销售员姓名弹出详细数据
+function showPersonProfile(name){
+  const p = SALESPERSONS.find(x=>x.name===name);
+  if(!p) return;
+  const r = ROSTER[name] || {};
+  const onPct = p.sales>0 ? (p.online/p.sales*100) : 0;
+  const profile = r.tenure ? `
+    <div class="profile-hr">
+      <div class="ph-title">📋 个人档案</div>
+      <div class="profile-grid profile-grid2">
+        <div class="p-k"><span>工龄</span><b>${esc(r.tenure||'—')}</b></div>
+        <div class="p-k"><span>总工作年限</span><b>${esc(r.work_years||'—')}</b></div>
+        <div class="p-k"><span>年龄</span><b>${esc(r.age||'—')} 岁</b></div>
+        <div class="p-k"><span>性别</span><b>${esc(r.gender||'—')}</b></div>
+        <div class="p-k"><span>学历</span><b>${esc(r.edu||'—')}</b></div>
+        <div class="p-k"><span>学校</span><b>${esc(r.school||'—')}</b></div>
+        <div class="p-k"><span>专业</span><b>${esc(r.major||'—')}</b></div>
+        <div class="p-k"><span>职级</span><b>${esc(r.rank||'—')}</b></div>
+        <div class="p-k"><span>入职日期</span><b>${esc(r.hire_date||'—')}</b></div>
+        <div class="p-k"><span>转正日期</span><b>${esc(r.regular_date||'—')}</b></div>
+        <div class="p-k"><span>员工状态</span><b>${esc(r.emp_status||'—')}</b></div>
+        <div class="p-k"><span>合同类型</span><b>${esc(r.contract_type||'—')}</b></div>
+      </div>
+    </div>` : '';
+  const html = `
+    <div class="profile-head">
+      <div class="p-avatar">${esc(p.name[0])}</div>
+      <div><h3>${esc(p.name)} <small>${esc(p.store)} · ${esc(p.pos||'店员')}</small></h3>
+      <span class="section-tag">销售员档案 · 月度排名 ${p.rank}</span></div>
+    </div>
+    <div class="profile-grid">
+      <div class="p-k"><span>销售额</span><b>¥${p.sales.toFixed(1)}万</b></div>
+      <div class="p-k"><span>销售任务</span><b>¥${p.task}万</b></div>
+      <div class="p-k"><span>达成率</span><b class="${p.rate>=50?'pos':p.rate>=30?'':'neg'}">${p.rate.toFixed(1)}%</b></div>
+      <div class="p-k"><span>线下销售</span><b>¥${p.offline.toFixed(1)}万</b></div>
+      <div class="p-k"><span>线上销售</span><b>¥${p.online.toFixed(1)}万</b></div>
+      <div class="p-k"><span>线上占比</span><b>${onPct.toFixed(1)}%</b></div>
+      <div class="p-k"><span>毛利额</span><b>¥${p.profit!=null?p.profit.toFixed(1):'—'}万</b></div>
+      <div class="p-k"><span>毛利率</span><b>${p.pm.toFixed(1)}%</b></div>
+      <div class="p-k"><span>毛利排名</span><b>#${p.profit_rank!=null?p.profit_rank:'—'}</b></div>
+      <div class="p-k"><span>主机台数</span><b>${p.host} 台</b></div>
+      <div class="p-k"><span>配件单数</span><b>${p.pp} 单</b></div>
+      <div class="p-k"><span>配件金额占比</span><b>${p.pp_amount_pct!=null?p.pp_amount_pct.toFixed(1)+'%':'—'}</b></div>
+      <div class="p-k"><span>配件销售金额</span><b>¥${p.pp_sales!=null?p.pp_sales.toFixed(1):'—'}万</b></div>
+      <div class="p-k"><span>ACS 开口率</span><b>${p.acs}%</b></div>
+      <div class="p-k"><span>线下毛利率</span><b>${p.offline_profit_rate!=null?p.offline_profit_rate.toFixed(1)+'%':'—'}</b></div>
+      <div class="p-k"><span>高销占比</span><b>${p.high_sell!=null?p.high_sell.toFixed(1)+'%':'—'}</b></div>
+      <div class="p-k"><span>配件率</span><b>${p.pp_rate!=null?p.pp_rate.toFixed(1)+'%':'—'}</b></div>
+    </div>
+    ${profile}
+    <div class="profile-note">
+      <b>管理建议：</b>
+      ${p.rate<30?'达成率低于 30%，需一对一带教 + 任务重分配；':''}
+      ${p.acs<30?'ACS 开口率低于 30%，纳入晨会话术演练重点；':''}
+      ${p.online>p.offline?'线上销售占比高，建议沉淀私域打法向全员复制；':''}
+      ${p.pp===0||p.pp_amount_pct<3?'配件率偏低，加强连带推荐（目标 1PP ≥40%）；':''}
+      ${p.pm<5?'毛利率偏低，需优化高毛利机型与配件结构；':''}
+      持续跟进周度产能与目标达成。
+    </div>
+    <button class="profile-close" onclick="closeProfile()">关闭</button>`;
+  const modal = document.getElementById('personModal');
+  modal.innerHTML = '<div class="profile-card">' + html + '</div>';
+  modal.style.display = 'flex';
+}
+function closeProfile(){
+  const modal = document.getElementById('personModal');
+  if(modal) modal.style.display = 'none';
+}
+/* ---- APR · 项目考核 ---- */
+function secAPRAssess(){
+  const rows = APR_ASSESS.map(a=>`<tr><td class="t-name">${esc(a.name)}</td><td>${esc(a.result)}</td><td>${esc(a.owner)}</td><td><span class="chip ${a.state}">${a.state==='ok'?'达标':a.state==='warn'?'待改进':'未达标'}</span></td></tr>`).join('');
+  const okN = APR_ASSESS.filter(a=>a.state==='ok').length, wN = APR_ASSESS.filter(a=>a.state==='warn').length;
+  return `<div class="assessment-board">
+    <div class="assessment-summary"><div><span>考核事项</span><strong>${APR_ASSESS.length} 项</strong></div><div><span>达标</span><strong>${okN} 项</strong></div><div><span>待改进</span><strong>${wN} 项</strong></div><div><span>未达标</span><strong>0 项</strong></div></div>
+    <div class="tbl-scroll"><table class="biz-table"><thead><tr><th>检查 / 考核项目</th><th>最近结果</th><th>责任归属</th><th>状态</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>
+  ${analysisCard('项目考核', {
+    concl:'9 项考核中 5 项达标、4 项待改进（值享焕新、以旧换新、分期渗透、售后合计），无未达标红线项。',
+    anom:'分期付款渗透 18.4% 距 20% 目标差 1.6pp；值享焕新 34 单进度落后时间进度约 8pp。',
+    act:'① 分期渗透：收银台话术+利率海报双推动，目标月末 20%；② 提成项（焕新/换新）日清日结播报激励；③ 考核数据每周一自动汇总（Apple API + 门店上报）。'
+  })}`;
+}
+/* ---- APR · SOP与培训 ---- */
+function secAPRProcess(){
+  const sopHtml = APR_SOP.map((s,i)=>`<div class="check-row"><span class="check-icon">${String(i+1).padStart(2,'0')}</span><strong>${esc(s.name)}</strong><span class="chip ${s.state}">${s.state==='ok'?'已完成':'待检查'}</span></div>`).join('');
+  const orgHtml = APR_ORG.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>演示数据 · 待接入自动取数</small></div>`).join('');
+  const trainHtml = APR_TRAINING.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>Coach & 培训体系 · 结合 8.18 会议框架</small></div>`).join('');
+  return `<div class="ops-grid">
+    <article class="ops-card"><div class="ops-head"><div><h3>SOP 巡检 · 当日清单</h3><span>5/6 已完成 · 门店自盘待检查</span></div><span class="chip warn">自盘待完成</span></div>
+      <div class="check-list">${sopHtml}</div></article>
+    <article class="ops-card"><div class="ops-head"><div><h3>客户与组织</h3><span>回访、二次消费、宣传与培训</span></div><span class="chip ok">正常推进</span></div>
+      <div class="training-board">${orgHtml}</div></article>
+  </div>
+  <div class="ops-grid">
+    <article class="ops-card"><div class="ops-head"><div><h3>培训体系（Coach & 培训）</h3><span>AEP / MyCoach / 新人 / 讲师</span></div><span class="chip ok">正常推进</span></div>
+      <div class="training-board">${trainHtml}</div></article>
+    <article class="ops-card"><div class="ops-head"><div><h3>门店 SOP 分钟级时间表</h3><span>8.18 会议 SOP 框架</span></div><span class="chip ok">已落地</span></div>
+      <div class="training-board">
+        <div class="training-item"><span>到岗→开店前30min</span><strong>打卡/工装/仪容/晨会准备</strong><small>考核：工装统一、仪容达标</small></div>
+        <div class="training-item"><span>开店前30min→开店</span><strong>环境检查/晨会/迎宾就位</strong><small>考核：样机100%在线、目标明确</small></div>
+        <div class="training-item"><span>开店→12:00 / 14:00→17:00</span><strong>11步闭环接待·每小时≥3组</strong><small>考核：转化率≥目标、ACS 100%</small></div>
+        <div class="training-item"><span>晚高峰→闭店</span><strong>冲刺/回访/盘点/夕会复盘</strong><small>考核：当日目标达成、AI纪要完整</small></div>
+      </div></article>
+  </div>
+  ${analysisCard('SOP 与培训', {
+    concl:'SOP 六项当日完成 5 项（83%），仅门店自盘待检查；企微回访完成率 86% 距 90% 目标差 4pp。培训体系：AEP 本月 3 人报考、MyCoach 10 店全覆盖、Coach 讲师 4 人。',
+    anom:'二次消费 218 单环比略降；SEED/知鸟学习完成率 82% 距 90% 目标差 8pp；内部培训考试平均 88 分，虹悦城店 2 名新员工未达 80 分需补考。',
+    act:'① 门店自盘今日闭店前完成并拍照上传；② 新员工补考安排在周五培训后；③ SOP 数据 9 月起由钉钉智能体自动巡检打卡；④ 学习完成率纳入店长周考核。'
+  })}`;
+}
+/* ---- 通用 · 部门费用 ---- */
+function secDeptFees(){
+  const dept = NAV[1].departments[state.dept];
+  const isAPR = dept.id==='apr';
+  const fees = isAPR? APR_FEES : dept.id==='apple'? [{name:'平台扣点',v:52},{name:'平台优惠补贴',v:18},{name:'推广费用',v:44},{name:'人工费用',v:16},{name:'物流费用',v:5},{name:'其他+后台',v:11},{name:'滞销/残次计提',v:4}] : dept.id==='shure'? [{name:'平台扣点',v:12},{name:'推广费用',v:8},{name:'人工费用',v:4},{name:'物流费用',v:2},{name:'其他+后台',v:3},{name:'滞销/残次计提',v:1}] : [{name:'采购成本',v:30},{name:'渠道费用',v:8},{name:'人工费用',v:3},{name:'物流费用',v:2},{name:'其他+后台',v:2}];
+  const total = fees.reduce((a,b)=>a+b.v,0);
+  const rows = fees.map(f=>`<tr><td class="t-name">${esc(f.name)}</td><td>¥${f.v}万</td><td>${pct(f.v/total*100)}</td><td>${f.v/total>0.3?'<span class="neg">占比过高</span>':'合理'}</td></tr>`).join('');
+  return `<div class="metric-grid">
+    ${kpiCard('费用总额（月）','¥'+total+'万',1.8,esc(dept.name)+'板块合计','')}
+    ${kpiCard('费用率',pct(isAPR?6.2:dept.id==='apple'?11.8:dept.id==='shure'?13.5:9.5),0.3,'板块费率红线：'+(isAPR?'7.5%':dept.id==='apple'?'12.5%':dept.id==='shure'?'15%':'12%'),(isAPR?6.2:dept.id==='apple'?11.8:dept.id==='shure'?13.5:9.5)>(isAPR?7.5:dept.id==='apple'?12.5:dept.id==='shure'?15:12)?'red':'')}
+    ${kpiCard('推广费','¥'+(fees[2]?fees[2].v:0)+'万',5.2,'ROI 跟踪中','gold')}
+    ${kpiCard('资金占用+后台','¥'+(fees.find(f=>/后台/.test(f.name))||{v:0}).v+'万',-0.8,'含后台分摊','')}
+  </div>
+  <div class="detail-panel">
+    ${barsChart(fees.map(f=>f.name), fees.map(f=>f.v), fees.map(f=>Math.round(f.v*0.94)), '当期', '上期', '万元')}
+    ${tableCard('费用结构明细（月度）','金额、占比与合理性判断',['费用项','金额','占比','判断'],rows)}
+  </div>
+  ${analysisCard('费用', {
+    concl:esc(dept.name)+'板块月度费用 ¥'+total+' 万、费率 '+(isAPR?6.2:dept.id==='apple'?11.8:dept.id==='shure'?13.5:9.5)+'%，'+((isAPR?6.2:dept.id==='apple'?11.8:dept.id==='shure'?13.5:9.5)<(isAPR?7.5:dept.id==='apple'?12.5:dept.id==='shure'?15:12)?'控制在红线内。':'已贴近红线。'),
+    anom:dept.id==='apple'?'平台优惠补贴环比 +12%，需核对活动 ROI；':dept.id==='pp3'?'3PP 渠道尚未开展，费用结构为框架预留：':'推广费增速高于销售增速，ROI 待复核。',
+    act:'① 费用科目 9 月起由集合云+财务报表自动取数核对；② 推广费按 ROI 红线 2.0 动态调仓；③ 异常科目超 10% 波动自动进入风控板块。'
+  })}`;
+}
+/* ---- 通用 · 部门利润 ---- */
+function secDeptProfit(){
+  const dept = NAV[1].departments[state.dept];
+  const p = {apr:{profit:98,rate:7.8},apple:{profit:38,rate:6.2},shure:{profit:22,rate:9.8},pp3:{profit:0,rate:0}}[dept.id];
+  return `<div class="metric-grid">
+    ${kpiCard('店铺利润（月）','¥'+p.profit+'万',3.6,'利润率 '+p.rate+'%','green')}
+    ${kpiCard('营业利润（月）','¥'+Math.round(p.profit*0.86)+'万',3.1,'扣除后台分摊后','')}
+    ${kpiCard('毛利率',pct({apr:12.8,apple:9.6,shure:21.5,pp3:0}[dept.id]),0.2,'毛利额覆盖费用情况','gold')}
+    ${kpiCard('滞销/残次计提','¥'+{apr:7,apple:4,shure:1,pp3:0}[dept.id]+'万',0.3,'资产减值','')}
+  </div>
+  ${analysisCard('利润（月度）', {
+    concl:esc(dept.name)+'板块月度店铺利润 ¥'+p.profit+' 万、利润率 '+p.rate+'%，环比改善 3.6%。',
+    anom:dept.id==='apple'?'平台扣点+补贴侵蚀毛利率 2.1pp，为主要利润压制项。':dept.id==='pp3'?'3PP 渠道暂未开展，利润框架预留。':'租金/扣点科目为最大固定成本。',
+    act:'① 月度利润表由财务报表推送、与看板自动对齐；② 利润率低于目标的店铺列入月度经营分析会专项；③ 9 月起利润科目进入日度预估模型。'
+  })}`;
+}
+/* ---- APR · 其他 ---- */
+function secAPROther(){
+  const items = [
+    { k:'线下拓店进展', v:'镇江八佰伴意向点位评估中（第 2 轮）；连云港用印完成已到审核阶段', s:'warn' },
+    { k:'私域流量', v:'企微好友 12,600（月 +860）', s:'ok' },
+    { k:'宣传推广', v:'中秋档 52 周排期第 34 周执行中', s:'ok' }
+  ];
+  return `<div class="ops-grid"><article class="ops-card"><div class="ops-head"><div><h3>其他经营事项</h3><span>拓店 / 私域 / 宣传推进</span></div><span class="chip todo">部分待接入</span></div>
+    <div class="training-board">${items.map(i=>`<div class="training-item"><span>${esc(i.k)}</span><strong>${esc(i.v)}</strong><small><span class="chip ${i.s}">${i.s==='ok'?'正常推进':'需关注'}</span></small></div>`).join('')}</div></article></div>
+  ${analysisCard('其他', {
+    concl:'私域企微好友月增 860 人、中秋档宣传按 52 周排期推进；拓店镇江八佰伴进入第 2 轮评估、连云港到审核阶段。',
+    anom:'拓店选址需遵守 5km 无直营店 / 1km 无授权店规则，镇江点位与现有竞对（直信创邺）位置重合需评估。',
+    act:'① 拓店事项列入重点事项板块（接入后自动跟踪）；② 宣传数据（浏览量/转化）对接企微后台；③ 镇江 ASP 可行性另见专项分析（本地零官方维修点+客流第一）。'
+  })}`;
+}
+
+/* ---- Apple 电商 · 销售指标 ---- */
+function secAESales(){
+  const total = AE_STORES.reduce((a,b)=>a+b.sales,0);
+  const k1 = kpiCard('销售总额',fmtY(mul(total)),-3.4,'3 家店铺合计 · 日达成 96%','red');
+  const k2 = kpiCard('访客数','42,600',6.2,'三大店铺合计','gold');
+  const k3 = kpiCard('支付转化率',pct(2.8),-0.1,'成交 1,192 单 ÷ 访客 42,600 · 行业基准 2.5%','');
+  const k4 = kpiCard('客单价','¥2,502',-0.8,'结构以配件拉升','');
+  const k5 = kpiCard('毛利率',pct(9.6),0.1,'毛利额 '+fmtWan(mul(AE_STORES.reduce((a,b)=>a+b.gross,0))),'');
+  const k6 = kpiCard('退款率',pct(2.9),0.3,'基准 2.5%（红色关注）','red');
+  const rows = AE_STORES.map(s=>`<tr><td class="t-name">${esc(s.name)}</td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${s.uv.toLocaleString()}</td><td>${pct(s.cvr)}</td><td><span class="${s.refund>2.5?'neg':'pos'}">${pct(s.refund)}</span></td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`).join('');
+  return `<div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}</div>
+    <div class="detail-panel">
+      ${barsChart(['8-14','8-15','8-16','8-17','8-18','8-19','8-20'],[26.4,30.2,28.1,31.8,27.9,29.4,29.8],[3.1,3.4,3.2,3.7,3.1,3.3,2.9],'销售额','毛利额','万元')}
+      ${tableCard('店铺经营对比','销售 / 毛利 / 流量 / 转化 / 退款 / 环比 / 同比',['店铺','销售额','毛利额','毛利率','访客数','支付转化','退款率','环比','同比'],rows)}
+    </div>
+    ${analysisCard('销售指标', {
+      concl:'Apple 电商日销售 '+fmtY(mul(total))+'、达成 96%；抖音店环比 +18.2% 为增量来源，京东店 -8.7% 拖累整体。',
+      anom:'京东店投放 ROI 1.6 破红线；抖音店退款率 3.4% 为退款异常主要来源。',
+      act:'① 京东店投放预算 -20% 迁移至抖音；② 抖音退款按商责/客责归因核查（今日完成）；③ 目标：周内整体达成回到 100%。'
+    })}`;
+}
+/* ---- Apple 电商 · 销售分析 ---- */
+function secAEAnalysis(){
+  const funnelHtml = AE_FUNNEL.map(f=>`<div class="funnel-step"><span class="f-name">${esc(f.name)}</span><div class="funnel-bar" style="width:${f.w}%">${f.w===100?'42,600':f.r}</div><span class="f-val">${esc(f.r)}${f.v<42600&&f.v>2000?'<br>('+f.v.toLocaleString()+')':''}</span></div>`).join('');
+  const compRows = AE_COMPETITORS.map(c=>`<tr><td class="t-name">${esc(c.name)}</td><td>${esc(c.rank)}</td><td>${c.idx}</td><td>${esc(c.sales)}</td><td>${esc(c.uv)}</td><td>${esc(c.mix)}</td></tr>`).join('');
+  return `<div class="detail-panel">
+    <article class="viz-card"><div class="card-head"><div><h3>交易转化漏斗（日）</h3><span>访客 → 详情 → 加购 → 支付</span></div><span class="section-tag">演示数据</span></div>
+      <div class="funnel">${funnelHtml}</div></article>
+    ${tableCard('竞店对比（日度）','排名 / 规模 / 销售额区间 / 访客区间 / 机型结构（数据不公开，区间口径）',['店铺','类目排名','规模指数','销售额','访客数','机型结构'],compRows)}
+  </div>
+  <div class="metric-grid">
+    ${kpiCard('支付转化率',pct(2.8),-0.1,'成交 1,192 ÷ 访客 42,600 = 2.8%','')}
+    ${kpiCard('退款金额（日）',fmtY(mul(8648)),3.2,'退款率 2.9%','red')}
+    ${kpiCard('平台用户画像','新客 62%','—','25-34 岁占 48%，待接入完整画像','gold')}
+    ${kpiCard('用户习惯分析','晚 20-22 点峰值','—','下单高峰占 31%，待接入明细','gold')}
+  </div>
+  ${analysisCard('销售分析', {
+    concl:'漏斗整体健康（加购→支付 14.0%）；规模指数 86 位居竞店第 2，定价低于 TOP 竞店 1.8% 具备价格竞争力；补贴/分期力度（24期免息）优于多数竞店。',
+    anom:'详情页→加购转化 27.4% 低于上期 29.1%（主图与详情待优化）；退款集中在抖音店（3.4%）；竞店 A 百亿补贴活动期间访客高 10%，需监控价格挤压。',
+    act:'① 详情页 A/B 测试本周上线（加购转化目标 30%）；② 抖音店核查物流商责赔付；③ 竞店数据每日自动抓取（平台 API），补贴/定价变化自动预警。'
+  })}`;
+}
+/* ---- Apple 电商 · 产品结构分析 ---- */
+function secAEProduct(){
+  const modelRows = AE_MODEL_TOP.map(m=>`<tr><td class="t-name">${esc(m.model)}</td><td>${pct(m.pct)}</td><td>${d7Html(m.d7)}</td></tr>`).join('');
+  const ppRows = AE_PP_STRUCT.map(p=>`<tr><td class="t-name">${esc(p.name)}</td><td>${pct(p.pct)}</td><td>${p.gross}</td><td>${d7Html(p.d7)}</td></tr>`).join('');
+  return `<div class="detail-panel">
+    ${donutCard('产品销售结构（占比）', AE_PRODUCT_STRUCT, '¥298万<br>日销售', '按品类销售占比 · iPhone 17 系列为绝对主力')}
+    ${tableCard('TOP 机型明细（日度）','销量占比 TOP 机型与环比',['机型','销售占比','环比'],modelRows)}
+  </div>
+  <div class="detail-panel">
+    ${tableCard('1PP / 3PP 结构','产品结构健康度与毛利差异',['类别','销售占比','毛利率','环比'],ppRows)}
+    <article class="viz-card"><div class="card-head"><div><h3>结构健康度</h3><span>1PP 为主力，3PP 待拓展</span></div><span class="section-tag">演示数据</span></div>
+      <div class="donut-wrap"><div class="donut" style="background:conic-gradient(${AE_PP_STRUCT.map((p,i)=>{const c=i===0?'#2f69c2':'#c79118';return c+' '+(i===0?0:86.2)+'% '+ (86.2+p.pct).toFixed(1)+'%';}).join(',')})" data-center="1PP<br>86.2%"></div>
+      <div class="legend">${AE_PP_STRUCT.map(p=>`<div class="legend-item"><i style="background:${p.name.includes('1PP')?'#2f69c2':'#c79118'}"></i><span><strong>${esc(p.name)}</strong></span><b>${pct(p.pct)}</b></div>`).join('')}</div></div></article>
+  </div>
+  ${analysisCard('产品结构分析', {
+    concl:'iPhone 17 系列占 41.2%（¥122.8万）为绝对主力，Mac 15.6% 次之；1PP 占 86.2% 结构健康，3PP 13.8% 毛利偏低（6.8%）。',
+    anom:'iPhone 17e 环比 -1.1%（与 17 Pro 价差收窄后吸引力下降）；AirPods Pro 3 环比 +3.1% 为配件亮点；3PP 毛利率 6.8% 拖累整体毛利。',
+    act:'① 主推资源向 iPhone 17 Pro / 17 倾斜，17e 改用“以旧换新+分期”话术；② AirPods Pro 3 搭配 17 系列连带（目标连带率 +3pp）；③ 3PP 选品向高毛利品类（壳膜+充电）调整，目标毛利率提升至 8.5%。'
+  })}`;
+}
+/* ---- Apple 电商 · 用户画像与下单时间 ---- */
+function secAEUserTime(){
+  const maxH = Math.max(...AE_ORDER_TIME.hourPct);
+  const maxW = Math.max(...AE_ORDER_TIME.weekPct);
+  const hourBars = AE_ORDER_TIME.hours.map((h,i)=>`<div class="bar-set"><i class="bar" style="height:${(AE_ORDER_TIME.hourPct[i]/maxH*100).toFixed(1)}%"><em>${AE_ORDER_TIME.hourPct[i]}%</em></i><span>${esc(h)}</span></div>`).join('');
+  const weekBars = AE_ORDER_TIME.week.map((h,i)=>`<div class="bar-set"><i class="bar alt" style="height:${(AE_ORDER_TIME.weekPct[i]/maxW*100).toFixed(1)}%"><em>${AE_ORDER_TIME.weekPct[i]}%</em></i><span>${esc(h)}</span></div>`).join('');
+  const profileHtml = AE_USER_PROFILE.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>待接入平台完整画像数据</small></div>`).join('');
+  return `<div class="ops-grid"><article class="ops-card"><div class="ops-head"><div><h3>用户画像</h3><span>年龄 / 性别 / 城市 / 新老客 / 会员 / 频次</span></div><span class="chip ok">已接入画像框架</span></div>
+    <div class="training-board">${profileHtml}</div></article></div>
+  <div class="detail-panel">
+    <div class="viz-card"><div class="card-head"><div><h3>24 小时下单分布</h3><span>下单高峰：${esc(AE_ORDER_TIME.peak)}</span></div><span class="section-tag">日度</span></div>
+      <div class="chart-area">${hourBars}</div></div>
+    <div class="viz-card"><div class="card-head"><div><h3>周度下单分布</h3><span>周末（六/日）合计占 32.2%</span></div><span class="section-tag">周度</span></div>
+      <div class="chart-area">${weekBars}</div></div>
+  </div>
+  ${analysisCard('用户画像与下单时间', {
+    concl:'核心客群：25-34 岁（48%）男性（58%）新一线城市（34%）；新客 62% 拉新动能足，老客复购率 21.4%；下单晚高峰 20-22 点（19.8%）、周末占 32.2%。',
+    anom:'凌晨（0-6 点）仍有 3.2% 下单（低价秒杀/冲动型）；周日占比 15.0% 低于周六 17.2%，周日内容触达有提升空间。',
+    act:'① 投放节奏对齐下单高峰：晚 20-22 点加预算、周六主推；② 凌晨场保留秒杀/限量款承接；③ 周日增加内容种草（短视频/直播）拉升转化；④ 画像与下单数据 9 月起对接平台 CRM 自动更新。'
+  })}`;
+}
+/* ---- Apple 电商 · 项目考核 ---- */
+function secAEAssess(){
+  const rows = [
+    { name:'3D 激活率', result:'97.4%（目标 95%）', owner:'电商运营', state:'ok' },
+    { name:'合规检查', result:'无违规项', owner:'合规专员', state:'ok' },
+    { name:'售后评价', result:'4.8 分（目标 4.6）', owner:'客服主管', state:'ok' },
+    { name:'客服评价', result:'4.7 分 / 响应 28 秒', owner:'客服主管', state:'ok' }
+  ].map(a=>`<tr><td class="t-name">${esc(a.name)}</td><td>${esc(a.result)}</td><td>${esc(a.owner)}</td><td><span class="chip ${a.state}">达标</span></td></tr>`).join('');
+  return `<div class="assessment-board">
+    <div class="assessment-summary"><div><span>考核事项</span><strong>4 项</strong></div><div><span>达标</span><strong>4 项</strong></div><div><span>需整改</span><strong>0 项</strong></div><div><span>数据来源</span><strong>Apple API · 待接入</strong></div></div>
+    <div class="tbl-scroll"><table class="biz-table"><thead><tr><th>考核项目</th><th>最近结果</th><th>责任归属</th><th>状态</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>
+  ${analysisCard('项目考核', {
+    concl:'4 项考核全部达标：3D 激活率 97.4%、售后 4.8 分、客服响应 28 秒。',
+    anom:'抖音店客服响应时长略高于另两店，高峰时段（20-22 点）排队 15 单。',
+    act:'① 高峰时段增配 1 名机动客服；② 考核明细 9 月起对接 Apple API + 平台数据自动汇总。'
+  })}`;
+}
+/* ---- Apple 电商 · 客服与服务 ---- */
+function secAEService(){
+  const svcRows = [
+    { k:'客服响应时长', v:'28 秒', target:'≤ 30 秒', state:'ok' },
+    { k:'客服满意度', v:'4.7 分', target:'≥ 4.6 分', state:'ok' },
+    { k:'售后评价', v:'4.8 分', target:'≥ 4.6 分', state:'ok' },
+    { k:'退款处理时效', v:'1.8 天', target:'≤ 2 天', state:'ok' },
+  ];
+  const rows = svcRows.map(s=>`<tr><td class="t-name">${esc(s.k)}</td><td>${esc(s.v)}</td><td>${esc(s.target)}</td><td><span class="chip ${s.state}">${s.state==='ok'?'达标':'需改进'}</span></td></tr>`).join('');
+  return `<div class="detail-panel single">
+    ${tableCard('客服与服务（日度）','响应 / 满意度 / 售后 / 退款',['指标','当期','目标','状态'],rows)}
+  </div>
+  <div class="metric-grid">
+    ${kpiCard('客服响应时长','28 秒',-2,'目标 ≤ 30 秒 · 环比加快 2 秒','green')}
+    ${kpiCard('客服满意度','4.7 分',0.1,'目标 ≥ 4.6 分','green')}
+    ${kpiCard('售后评价','4.8 分',0,'目标 ≥ 4.6 分','')}
+    ${kpiCard('退款处理时效','1.8 天',-0.2,'目标 ≤ 2 天','')}
+  </div>
+  ${analysisCard('客服与服务', {
+    concl:'客服响应 28 秒达标、满意度 4.7 分、售后 4.8 分、退款处理 1.8 天，四项核心指标全部达标。',
+    anom:'抖音店响应时长略高于另两店；退款处理时效需继续压缩。',
+    act:'① 抖音店客服话术/知识库补训；② 退款处理时效压缩至 1.5 天以内；③ 客服数据 9 月起对接平台客服后台自动取数。'
+  })}`;
+}
+/* ---- Apple 电商 · 过程指标 ---- */
+function secAEProcess(){
+  return `<div class="ops-grid"><article class="ops-card"><div class="ops-head"><div><h3>客户沉淀与组织</h3><span>会员、回访与培训</span></div><span class="chip ok">正常推进</span></div>
+    <div class="training-board">${AE_KV.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>演示数据 · 待接入自动取数</small></div>`).join('')}</div></article></div>
+  ${analysisCard('其他过程指标', {
+    concl:'新增会员 1,860 人、复购率 21.4%；线上回访完成率 78% 距 85% 目标差 7pp。',
+    anom:'回访完成率连续两周低于目标，集中在周末订单。',
+    act:'① 周末订单回访安排至周一上午集中处理；② 会员数据对接平台 CRM 接口（本月联调）。'
+  })}`;
+}
+/* ---- Apple 电商 · 其他 ---- */
+function secAEOther(){
+  return `<div class="ops-grid"><article class="ops-card"><div class="ops-head"><div><h3>应收与系统协同</h3><span>国补回款与数据对接</span></div><span class="chip todo">部分待接入</span></div>
+    <div class="training-board">${AE_OTHER.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>演示数据 · 待接入自动取数</small></div>`).join('')}</div></article></div>
+  ${analysisCard('其他', {
+    concl:'国补应收回款进度 62%（账期 45 天），无逾期；泛中台数据对接预计 8 月底完成。',
+    anom:'国补回款节奏受地方财政影响存在 1-2 周波动。',
+    act:'① 应收账款账龄每周核查，逾期自动进入风控板块；② 泛中台对接完成后实现销售日度自动取数。'
+  })}`;
+}
+
+/* ---- 舒尔 · 销售指标 ---- */
+function secSHSales(){
+  const total = SH_STORES.reduce((a,b)=>a+b.sales,0);
+  const k1 = kpiCard('销售总额',fmtY(mul(total)),12.6,'2 家店铺合计 · 日达成 118%','green');
+  const k2 = kpiCard('毛利率',pct(21.5),0.3,'毛利额 '+fmtWan(mul(SH_STORES.reduce((a,b)=>a+b.gross,0))),'green');
+  const k3 = kpiCard('访客数','9,800',9.4,'两店合计','gold');
+  const k4 = kpiCard('转化率',pct(1.9),0.1,'内容流量转化为主','');
+  const k5 = kpiCard('客单价','¥6,050',2.8,'B 端订单拉升','');
+  const k6 = kpiCard('退款率',pct(2.0),-0.2,'低于 2.5% 基准','');
+  const rows = SH_STORES.map(s=>`<tr><td class="t-name">${esc(s.name)}</td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${s.uv.toLocaleString()}</td><td>${pct(s.cvr)}</td><td>${pct(s.refund)}</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`).join('');
+  return `<div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}</div>
+    <div class="detail-panel">
+      ${barsChart(['8-14','8-15','8-16','8-17','8-18','8-19','8-20'],[8.2,9.6,8.9,10.4,9.8,10.6,11.3],[1.7,2.0,1.9,2.2,2.1,2.3,2.4],'销售额','毛利额','万元')}
+      ${tableCard('店铺经营对比','销售 / 毛利 / 流量 / 转化 / 退款 / 环比 / 同比',['店铺','销售额','毛利额','毛利率','访客数','转化率','退款率','环比','同比'],rows)}
+    </div>
+    ${analysisCard('销售指标', {
+      concl:'Shure电商日销售 '+fmtY(mul(total))+'、达成 118%，毛利率 21.5% 为三板块最高；两店均双位数增长。',
+      anom:'天猫店转化率 1.6% 偏低（流量质量待优化）。',
+      act:'① 天猫店引流关键词优化，转化目标 2.0%；② B 端客户（新增 3 家）安排专属报价通道；③ 内容投放 ROI 3.2 良好，预算维持。'
+    })}`;
+}
+/* ---- 舒尔 · 销售分析 ---- */
+function secSHAnalysis(){
+  return `${donutCard('销售结构（占比）',[
+    { name:'专业无线麦克风', pct:34.2, color:'#2f69c2' },
+    { name:'入耳式监听耳机', pct:28.6, color:'#64a4da' },
+    { name:'头戴式耳机', pct:19.4, color:'#c79118' },
+    { name:'配件及其他', pct:17.8, color:'#7b91ad' }
+  ],'Shure电商<br>品类结构','按品类销售占比')}
+  <div class="metric-grid">
+    ${kpiCard('支付转化率',pct(1.9),0.1,'内容渠道贡献 41% 流量','')}
+    ${kpiCard('退款金额（日）',fmtY(mul(2254)),-0.4,'退款率 2.0%','green')}
+    ${kpiCard('竞店排名','类目第 5','—','环比上升 1 位（周度）','gold')}
+    ${kpiCard('用户画像','专业用户 46%','—','内容社区引流占比高，待接入明细','gold')}
+  </div>
+  ${analysisCard('销售分析', {
+    concl:'无线麦克风（34.2%）+ 监听耳机（28.6%）双主力；内容渠道流量占比 41%、ROI 3.2，结构性优势明显。',
+    anom:'竞店低价机型上探（竞店政策宽松），需关注价格带挤压。',
+    act:'① 主力 SKU 维持价格纪律，用内容种草对冲比价；② 竞品价格周度抓取自动预警（平台 API）。'
+  })}`;
+}
+/* ---- 舒尔 · 项目考核 ---- */
+function secSHAssess(){
+  const rows = [
+    { name:'售后评价', result:'4.9 分（目标 4.6）', owner:'客服主管', state:'ok' },
+    { name:'客服评价', result:'4.8 分 / 响应 22 秒', owner:'客服主管', state:'ok' },
+    { name:'残次退货率', result:'0.8%（目标 1.2%）', owner:'仓管', state:'ok' }
+  ].map(a=>`<tr><td class="t-name">${esc(a.name)}</td><td>${esc(a.result)}</td><td>${esc(a.owner)}</td><td><span class="chip ok">达标</span></td></tr>`).join('');
+  return `<div class="assessment-board">
+    <div class="assessment-summary"><div><span>考核事项</span><strong>3 项</strong></div><div><span>达标</span><strong>3 项</strong></div><div><span>需整改</span><strong>0 项</strong></div><div><span>数据来源</span><strong>平台 API · 待接入</strong></div></div>
+    <div class="tbl-scroll"><table class="biz-table"><thead><tr><th>考核项目</th><th>最近结果</th><th>责任归属</th><th>状态</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>
+  ${analysisCard('项目考核', {
+    concl:'售后 4.9 分、客服响应 22 秒、残次退货率 0.8%，三项全达标，服务质量为板块强项。',
+    anom:'无异常。',
+    act:'① 服务标准沉淀为话术库，向 Apple 电商板块复用；② 考核数据对接平台接口（9 月）。'
+  })}`;
+}
+/* ---- 舒尔 · 过程指标 ---- */
+function secSHProcess(){
+  return `<div class="ops-grid"><article class="ops-card"><div class="ops-head"><div><h3>客户经营与内容营销</h3><span>企业客户 / 会员 / 图文短视频</span></div><span class="chip ok">正常推进</span></div>
+    <div class="training-board">${SH_CONTENT.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>演示数据 · 待接入自动取数</small></div>`).join('')}</div></article></div>
+  ${analysisCard('其他过程指标', {
+    concl:'内容周产出 12 图文 + 8 短视频、浏览 4.6 万、转化 156 单（ROI 3.2）；企业客户新增 3 家。',
+    anom:'内容转化集中于 2 条爆款视频（占 58%），产出结构不均衡。',
+    act:'① 爆款选题模板化批量复制；② B 端客户建立季度复购跟踪表；③ 内容数据对接平台创作者后台。'
+  })}`;
+}
+/* ---- 舒尔 · 其他 ---- */
+function secSHOther(){
+  return `<div class="ops-grid"><article class="ops-card"><div class="ops-head"><div><h3>品牌费用与平台政策</h3><span>总代支持 / 毛保 / 消费券</span></div><span class="chip todo">部分待接入</span></div>
+    <div class="training-board">${SH_OTHER.map(o=>`<div class="training-item"><span>${esc(o.k)}</span><strong>${esc(o.v)}</strong><small>演示数据 · 待接入自动取数</small></div>`).join('')}</div></article></div>
+  ${analysisCard('其他', {
+    concl:'总代广告费 Q3 额度使用 42%、京东毛保正常、消费券核销 ¥2.3 万，品牌侧资源充裕。',
+    anom:'总代额度若 Q3 末使用不足 80% 可能影响 Q4 分配。',
+    act:'① 9 月加大投放消耗至 75%+；② 毛保与消费券数据纳入月度财务核对。'
+  })}`;
+}
+
+/* ---- 3PP ---- */
+function secPP3(){
+  const k1 = kpiCard('3PP 销售额','¥0',null,'当前渠道未开展','red');
+  const k2 = kpiCard('渠道状态','未开通',null,'待 Apple 授权确认','');
+  const k3 = kpiCard('3PP 配件结构','—',null,'框架预留','');
+  const k4 = kpiCard('政策支持','—',null,'框架预留','');
+  return `<div class="metric-grid">${k1}${k2}${k3}${k4}</div>
+  ${analysisCard('3PP 销售指标', {
+    concl:'3PP（第三方配件）渠道当前暂未开展（2026-08-19 确认），本板块为框架预留，日报/方案中不涉及 3PP 内容。',
+    anom:'无。',
+    act:'待 Apple 授权与供应商渠道确认后启用；届时按配件结构/来源/政策三块展开。'
+  })}`;
+}
+function secPP3Analysis(){
+  return `<div class="empty-state" style="min-height:260px"><div><div class="empty-icon">· · ·</div>
+    <h2>3PP 渠道暂未开展</h2><p>第三方配件渠道待 Apple 授权与供应商确认后接入。<br>当前不纳入日报与经营方案。</p>
+    <span class="empty-pill">框架预留 · 待启用</span></div></div>`;
+}
+
+/* ================================================================
+   主渲染流程
+   ================================================================ */
+const nav = document.getElementById('primaryNav'), deptSwitch = document.getElementById('departmentSwitch'),
+      switcher = document.getElementById('sectionSwitch'), shell = document.getElementById('sectionShell');
+
+function navMeta(c){ if(c.departments) return c.departments.length+' 个经营部门'; if(c.placeholder) return '内容待接入'; return c.sections.length+' 个板块'; }
+function activeContent(c){ return c.departments? c.departments[state.dept] : c; }
+function visibleSections(view){ return view.sections.filter(s=>!s.scope||s.scope.includes(state.period)); }
+
+function renderNav(){
+  nav.innerHTML = NAV.map((c,i)=>`<button class="nav-btn ${i===state.cat?'active':''}" data-i="${i}"><span class="nav-index">${String(i+1).padStart(2,'0')}</span><span class="nav-copy"><strong>${esc(c.name)}</strong><span>${esc(navMeta(c))}</span></span></button>`).join('');
+  nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{ state.cat=+b.dataset.i; state.sec=0; render(); window.scrollTo({top:0,behavior:'smooth'}); });
+}
+function renderHeader(c){
+  const view = activeContent(c);
+  document.getElementById('crumbCode').textContent = c.code;
+  document.getElementById('crumbTitle').textContent = c.departments? view.name+' · 经营板块' : c.name;
+  document.getElementById('heroEyebrow').textContent = view.en;
+  document.getElementById('heroTitle').textContent = view.title;
+  document.getElementById('heroDesc').textContent = view.desc;
+  const hs = document.getElementById('heroStats');
+  if(c.id==='overview'){
+    const cs = COMPANY[state.period] || COMPANY.month;
+    hs.innerHTML = `<div class="hero-stat"><span>${PERIOD_LABEL[state.period]}销售额</span><strong>${fmtY(mul(COMPANY.day.sales))}</strong><small class="${cs.d7>=0?'':'down'}">${cs.d7>=0?'▲':'▼'} 环比 ${Math.abs(cs.d7)}%</small><span class="hs-sub">同比 +${cs.yoy}% · 日目标 ¥78 万</span></div>
+      <div class="hero-stat"><span>${PERIOD_LABEL[state.period]}毛利率</span><strong>${pct(cs.gpm)}</strong><small class="${cs.d7>=0?'':'down'}">毛利额 ${fmtWan(mul(COMPANY.day.gross))}</small><span class="hs-sub">环比 +0.1pp</span></div>
+      <div class="hero-stat"><span>${PERIOD_LABEL[state.period]}目标达成</span><strong>${(COMPANY.day.sales/COMPANY.day.target*100).toFixed(0)}%</strong><small>${(COMPANY.day.sales/COMPANY.day.target*100)>=100?'✓ 已达成':'目标 ¥78 万'}</small><span class="hs-sub">${(COMPANY.day.sales/COMPANY.day.target*100)>=100?'超额完成，节奏良好':'距目标差 ¥'+(COMPANY.day.target-COMPANY.day.sales).toLocaleString()}</span></div>`;
+  } else if(c.departments){
+    if(state.dept===0){
+      const cs = COMPANY[state.period] || COMPANY.month;
+      hs.innerHTML = `<div class="hero-stat"><span>${PERIOD_LABEL[state.period]}总销售额</span><strong>${fmtY(mul(COMPANY.day.sales))}</strong><small class="${cs.d7>=0?'':'down'}">${cs.d7>=0?'▲':'▼'} 环比 ${Math.abs(cs.d7)}%</small><span class="hs-sub">同比 +${cs.yoy}% · 四大渠道合计</span></div>
+        <div class="hero-stat"><span>${PERIOD_LABEL[state.period]}毛利率</span><strong>${pct(cs.gpm)}</strong><small>毛利额 ${fmtWan(mul(COMPANY.day.gross))}</small><span class="hs-sub">APR 整体口径</span></div>
+        <div class="hero-stat"><span>渠道数</span><strong>4</strong><small>APR / Apple / Shure / 3PP</small><span class="hs-sub">3PP 待启用</span></div>`;
+    } else {
+    const seg = SEGMENTS[state.dept-1] || SEGMENTS[0];
+    hs.innerHTML = `<div class="hero-stat"><span>${PERIOD_LABEL[state.period]}销售额</span><strong>${fmtY(mul(seg.sales))}</strong><small class="${seg.d7>=0?'':'down'}">${seg.d7>=0?'▲':'▼'} 环比 ${Math.abs(seg.d7)}%</small><span class="hs-sub">同比 +${seg.yoy}% · ${esc(seg.note)}</span></div>
+      <div class="hero-stat"><span>${PERIOD_LABEL[state.period]}毛利率</span><strong>${pct(seg.gpm)}</strong><small>毛利额 ${fmtWan(mul(seg.gross))}</small><span class="hs-sub">费率 ${fee(seg.feeRate)}</span></div>
+      <div class="hero-stat"><span>转化率</span><strong>${pct(seg.cvr)}</strong><small>${seg.cvr>=5?'✓ 达标线以上':'需关注'}</small><span class="hs-sub">${esc(seg.note)}</span></div>`;
+    }
+  } else {
+    hs.innerHTML = `<div class="hero-stat"><span>数据状态</span><strong>待接入</strong><small>智能体框架搭建中</small></div>`;
+  }
+}
+function renderDepartments(c){
+  if(!c.departments){ deptSwitch.innerHTML=''; return; }
+  const deptMeta = [
+    {code:'ALL',desc:'四大渠道整体对比'},
+    {code:'APR',desc:'线下零售门店 · 10 店'},
+    {code:'AE',desc:'Apple 线上业务 · 3 店'},
+    {code:'SH',desc:'舒尔线上业务 · 2 店'},
+    {code:'3PP',desc:'第三方配件渠道 · 未开展'}
+  ];
+  deptSwitch.innerHTML = `<div class="dept-heading"><span>BUSINESS UNIT</span><strong>选择经营部门</strong></div>${c.departments.map((d,i)=>`<button class="${i===state.dept?'active':''}" data-i="${i}"><span class="dept-code">${deptMeta[i].code}</span><span class="dept-copy"><strong>${esc(d.name)}</strong><small>${deptMeta[i].desc}</small></span><span class="dept-arrow">›</span></button>`).join('')}`;
+  deptSwitch.querySelectorAll('button').forEach(b=>b.onclick=()=>{ state.dept=+b.dataset.i; state.sec=0; render(); window.scrollTo({top:0,behavior:'smooth'}); });
+}
+function setActiveSection(i){ state.sec=i; switcher.querySelectorAll('button').forEach((b,n)=>b.classList.toggle('active',n===i)); }
+function renderSwitch(c){
+  const view = activeContent(c), sections = visibleSections(view);
+  if(state.sec>=sections.length) state.sec=0;
+  switcher.innerHTML = sections.map((s,i)=>`<button class="${i===state.sec?'active':''}" data-i="${i}">${esc(s.name)}</button>`).join('');
+  switcher.querySelectorAll('button').forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; setActiveSection(i);
+    const el=document.getElementById('sec-'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); });
+}
+function renderPlaceholder(c){
+  switcher.innerHTML='';
+  shell.innerHTML = `<section class="empty-state"><div>
+    <div class="empty-icon">· · ·</div>
+    <h2>${esc(c.name)}内容 · 系统接入中</h2>
+    <p>${esc(c.desc)}<br>当前静态框架仅预留页面入口，待智能体框架（五步计划第 4-5 步）搭建完成后，按下列子模块自动接入数据。</p>
+    <div class="empty-mods">${(c.mods||[]).map(m=>`<div class="empty-mod">${esc(m)}</div>`).join('')}</div>
+    <span class="empty-pill">数据状态 · 待接入</span>
+  </div></section>`;
+}
+function renderSections(c){
+  if(c.placeholder){ renderPlaceholder(c); return; }
+  const view = activeContent(c), sections = visibleSections(view);
+  renderSwitch(c);
+  shell.innerHTML = sections.map((s,i)=>`<section class="section-block" id="sec-${i}" data-i="${i}">
+    <div class="section-head"><div><h2>${esc(s.name)}</h2><p>${esc(s.intro)}</p></div><span class="section-tag">${PERIOD_LABEL[state.period]} · ${esc(c.departments?view.name:'公司整体')}</span></div>
+    ${s.render()}
+  </section>`).join('');
+  if(window.secObs) window.secObs.disconnect();
+  window.secObs = new IntersectionObserver(entries=>{
+    const vis = entries.filter(x=>x.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];
+    if(vis) setActiveSection(+vis.target.dataset.i);
+  },{rootMargin:'-220px 0px -60% 0px',threshold:.01});
+  shell.querySelectorAll('.section-block').forEach(x=>window.secObs.observe(x));
+}
+function render(){
+  const c = NAV[state.cat];
+  renderNav(); renderHeader(c); renderDepartments(c); renderSections(c);
+}
+
+/* ---------- 实时数据：启动时从 V3 接口(8003)拉取，失败回退内嵌快照 ---------- */
+async function loadLiveData(){
+  try{
+    const res = await fetch('http://localhost:8003/api/data', {mode:'cors'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d = await res.json();
+    applyLive(d);
+    console.log('[V6] 已加载 V3 实时数据', new Date().toLocaleTimeString());
+  }catch(e){
+    console.warn('[V6] 实时数据加载失败，使用内嵌快照:', e.message);
+  }
+}
+function applyLive(d){
+  if(!d || !d.apr) return;
+  // APR 整体
+  const a = d.apr;
+  APR_TOTAL = { sales:a.sales, task:a.task, profit:a.profit, flow:a.traffic, conv:a.conv, pm:a.pm, rate:a.rate };
+  // 10 店（保留内嵌的 inv/d7/yoy 展示字段）
+  const oldMap = {}; APR_STORES.forEach(s=>oldMap[s.name]=s);
+  APR_STORES = (a.stores||[]).map(s=>({
+    name:s.name, sales:s.sales, task:s.task, pm:s.pm, profit:s.profit, flow:s.traffic,
+    conv:s.conv, apt:s.apt, rate:s.rate,
+    inv:(oldMap[s.name]&&oldMap[s.name].inv)||0,
+    d7:(oldMap[s.name]&&oldMap[s.name].d7)||0,
+    yoy:(oldMap[s.name]&&oldMap[s.name].yoy)||0
+  }));
+  // 销售员排名
+  if(a.salespersons && a.salespersons.length){
+    SALESPERSONS = a.salespersons.map(p=>({
+      rank:p.rank, name:p.name, store:p.store, pos:p.pos, sales:p.sales, task:p.task, rate:p.rate,
+      offline:p.offline, online:p.online, pm:p.profit_rate, host:p.host_qty, pp:p.pp_qty, acs:p.acs,
+      profit:p.profit, profit_rank:p.profit_rank, pp_rate:p.pp_rate, pp_sales:p.pp_sales,
+      offline_profit_rate:p.offline_profit_rate, high_sell:p.high_sell,
+      pp_amount_pct:p.pp_amount_pct
+    }));
+  }
+  // 主机/配件结构
+  if(d.apr_struct){
+    const h = d.apr_struct.host;
+    if(h){ APR_STRUCTURE = [
+      {name:'iPhone', pct:h.iphone.pct, amount:h.iphone.amount, color:'#2f69c2'},
+      {name:'Mac',    pct:h.mac.pct,    amount:h.mac.amount,    color:'#64a4da'},
+      {name:'iPad',   pct:h.ipad.pct,   amount:h.ipad.amount,   color:'#7b91ad'},
+      {name:'Watch',  pct:h.watch.pct,  amount:h.watch.amount,  color:'#c79118'}
+    ]; }
+    const ac = d.apr_struct.acc;
+    if(ac){ ACC_STRUCTURE = [
+      {name:'手机配件', pct:ac.phone.pct, amount:ac.phone.amount, color:'#2f69c2'},
+      {name:'平板配件', pct:ac.pad.pct,   amount:ac.pad.amount,   color:'#64a4da'},
+      {name:'手表配件', pct:ac.watch.pct, amount:ac.watch.amount, color:'#7b91ad'},
+      {name:'其他',     pct:ac.other.pct, amount:ac.other.amount, color:'#c79118'}
+    ]; }
+    if(d.apr_struct.stores_host) STORES_HOST = d.apr_struct.stores_host;
+    if(d.apr_struct.stores_acc)  STORES_ACC  = d.apr_struct.stores_acc;
+  }
+  // 商务库存
+  if(d.inventory_biz){
+    const b = d.inventory_biz;
+    const agingColor = ['#2f69c2','#64a4da','#42a287','#c79118','#e07b39','#c94d5c'];
+    const agingArr = Object.keys(b.aging||{}).map((k,i)=>({ name:k.replace(/~/g,'~ '), amount:Number(b.aging[k]||0), color:agingColor[i%6] }));
+    INV_BIZ = {
+      total_amount: Number(b.total || b.category.reduce((x,c)=>x+c.amount,0) || 0),
+      total_skus: b.coverage_count || 0,
+      risk_pct: b.aging_risk_pct != null ? b.aging_risk_pct : 37.0,
+      severe_amount: b.severe_amount || 0,
+      severe_count: b.severe_count || 0,
+      category: (b.category||[]).map((c,i)=>({name:c.name, amount:c.amount, pct:c.pct, qty:c.qty, color:['#2f69c2','#64a4da','#188b70','#c79118'][i%4]})),
+      aging: agingArr,
+      machine: (()=>{ const mm={}; Object.keys(b.machine||{}).forEach(k=>{ const m=b.machine[k]; mm[k]={ normal:Number(m['常规机']||0), demo:Number(m['样机']||0), defect:Number(m['残次机']||0) }; }); return mm; })(),
+      aging_risk: b.aging_risk || [],
+      coverage: b.coverage || []
+    };
+  }
+}
+
+document.querySelectorAll('#periodSwitch button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#periodSwitch button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  state.period = b.dataset.p; state.sec = 0; render();
+});
+
+(async function init(){
+  await loadLiveData();
+  render();
+})();
+</script>
+</body>
+</html>

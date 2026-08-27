@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d1c2b">
+  <title>传天羽·经营作战室</title>
+  <link rel="stylesheet" href="/static/command-center.css">
+</head>
+<body>
+<div class="shell">
+  <header class="command-bar">
+    <div class="brand">
+      <div class="brand-mark">CTY</div>
+      <div class="brand-copy"><strong>经营作战室</strong><small>EXECUTIVE COMMAND</small></div>
+    </div>
+    <nav class="global-nav" aria-label="主导航">
+      <button class="active" data-view="home">今日简报</button>
+      <button data-view="business">经营作战</button>
+      <button data-view="management">管理效能</button>
+      <button data-view="tasks">重点事项</button>
+      <button data-view="risk">风险雷达</button>
+    </nav>
+    <div class="command-meta">
+      <div class="data-status"><i></i><span id="dataStatus">数据连接中</span></div>
+      <div class="date-stamp" id="dateStamp">--</div>
+    </div>
+  </header>
+
+  <div class="context-bar">
+    <div class="context-title">
+      <span class="context-index" id="contextIndex">01 / BRIEF</span>
+      <div><h1 id="contextTitle">今日经营简报</h1><p id="contextSub">先看结论，再看异常，最后定动作</p></div>
+    </div>
+    <div class="period-control">
+      <div class="period-tabs">
+        <button class="active" data-mode="day">日</button>
+        <button data-mode="week">周</button>
+        <button data-mode="month">月</button>
+        <button data-mode="custom">自定义</button>
+      </div>
+      <div class="date-fields">
+        <input id="dateStart" type="date" aria-label="开始日期">
+        <span id="dateSep" hidden>至</span>
+        <input id="dateEnd" type="date" aria-label="结束日期" hidden>
+      </div>
+    </div>
+  </div>
+
+  <main class="workspace">
+    <section class="view active" id="view-home">
+      <div class="brief-grid">
+        <article class="headline-panel">
+          <div class="headline-top">
+            <div><div class="kicker">TODAY'S OPERATING PULSE</div><h1 class="display">今日生意<br>怎么样？</h1></div>
+            <div class="headline-note" id="heroNote">正在读取数据…</div>
+          </div>
+          <div class="hero-number"><small id="heroLabel">当期销售额</small><strong id="heroAmount">--<em>万元</em></strong></div>
+          <div class="hero-deltas">
+            <div class="hero-delta" id="deltaYesterday"><span>环比上期</span><b>--</b></div>
+            <div class="hero-delta" id="deltaLastWeek"><span>较上周同期</span><b>--</b></div>
+            <div class="hero-delta"><span>当期订单</span><b id="heroOrders">--</b></div>
+          </div>
+          <div class="hero-bottom">
+            <div class="hero-summary" id="heroSummary">正在生成经营摘要…</div>
+            <svg class="sparkline" viewBox="0 0 230 68" preserveAspectRatio="none" id="heroSpark" aria-label="销售趋势"></svg>
+          </div>
+        </article>
+
+        <aside class="decision-panel">
+          <div class="panel-label"><h2>老板今日要看</h2><span id="decisionCount">0 项</span></div>
+          <div class="decision-list" id="homeDecisions"></div>
+        </aside>
+      </div>
+
+      <div class="signal-strip" id="signalStrip"></div>
+
+      <div class="section-head"><div><div class="kicker">BUSINESS COMPOSITION</div><h2>收入来自哪里</h2><p>不只看总额，同时看渠道质量与异常变化</p></div><span class="note" id="rangeNote">--</span></div>
+      <div class="operating-grid">
+        <article class="paper-panel">
+          <div class="panel-head"><div><h3>渠道贡献结构</h3><p>销售额 / 占比 / 变化</p></div><button onclick="switchView('business')">查看经营全景</button></div>
+          <div class="channel-list" id="homeChannels"></div>
+        </article>
+        <article class="paper-panel">
+          <div class="panel-head"><div><h3>异常观察席</h3><p>按经营影响排序</p></div><button onclick="switchView('risk')">进入风险雷达</button></div>
+          <div class="watch-list" id="homeWatch"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-business">
+      <div class="page-intro">
+        <div class="intro-copy"><div class="kicker">OPERATING ROOM</div><h1 class="display">经营结果、结构与趋势<br>在同一个工作区对照</h1><p class="lead">将 APR 门店、Apple 电商、Shure 电商与库存结构放在同一条经营链上，用结果找差距，用结构找原因。</p></div>
+        <div class="intro-stat"><span>预测月末达成</span><strong id="bizForecast">--</strong></div>
+      </div>
+      <div class="metric-ledger" id="businessLedger"></div>
+
+      <div class="section-head"><div><h2>销售节奏</h2><p>每日销售额与当期渠道结构</p></div></div>
+      <div class="two-col">
+        <article class="paper-panel"><div class="panel-head"><div><h3>日销售趋势</h3><p>万元</p></div></div><div class="trend-wrap"><svg class="trend-chart" id="salesTrend" viewBox="0 0 760 220" preserveAspectRatio="none"></svg></div></article>
+        <article class="paper-panel"><div class="panel-head"><div><h3>渠道拆解</h3><p>当期占比</p></div></div><div class="breakdown" id="channelBreakdown"></div></article>
+      </div>
+
+      <div class="section-head"><div><div class="kicker">APR NETWORK</div><h2>APR 门店经营质量</h2><p>完成率、毛利率、转化率和月末预测联动判断</p></div><button class="ghost-btn" onclick="askAI('APR门店当前最需要优先处理哪些问题？')">AI 诊断 APR</button></div>
+      <div class="table-shell"><table class="data-table" id="storeTable"></table></div>
+
+      <div class="section-head"><div><div class="kicker">TEAM PRODUCTIVITY</div><h2>销售人员产出</h2><p>从销售额、毛利和连带结构识别绩效差距</p></div></div>
+      <div class="table-shell"><table class="data-table" id="salespersonTable"></table></div>
+
+      <div class="section-head"><div><div class="kicker">E-COMMERCE</div><h2>电商与品牌结果</h2><p>Apple 与 Shure 输出对照</p></div></div>
+      <div class="equal-col">
+        <article class="paper-panel pad" id="ecommPanel"></article>
+        <article class="insight-block"><div class="kicker">AI OPERATING NOTE</div><h3>经营分析</h3><p>基于当期经营数据，把异常转化为明确动作。</p><div class="insight-list" id="businessInsights"></div><button class="primary-btn" onclick="askAI('请基于当前数据输出经营分析和本周优先动作')">生成深度分析</button></article>
+      </div>
+
+      <div class="section-head"><div><div class="kicker">INVENTORY CAPITAL</div><h2>库存资金结构</h2><p>库存金额、分类、库龄与覆盖风险</p></div><button class="ghost-btn" onclick="switchView('risk')">查看库存风险</button></div>
+      <div class="equal-col">
+        <article class="paper-panel"><div class="panel-head"><div><h3>品类金额</h3><p>万元</p></div></div><div class="distribution" id="categoryDistribution"></div></article>
+        <article class="paper-panel"><div class="panel-head"><div><h3>库龄分布</h3><p>资金占用</p></div></div><div class="distribution" id="agingDistribution"></div></article>
+      </div>
+    </section>
+
+    <section class="view" id="view-management">
+      <div class="page-intro">
+        <div class="intro-copy"><div class="kicker">MANAGEMENT EFFECTIVENESS</div><h1 class="display">管理不是汇报了什么<br>而是哪些事正在被解决</h1><p class="lead">将人、财、物与执行任务放进同一张管理账本，聚焦责任、节点和闭环。</p></div>
+        <div class="intro-stat"><span>当前重点事项</span><strong id="mgmtTaskCount">--</strong></div>
+      </div>
+      <div class="metric-ledger" id="managementLedger"></div>
+
+      <div class="section-head"><div><h2>管理关注面</h2><p>人员、资产、盘点与执行</p></div></div>
+      <div class="risk-board" id="managementTiles"></div>
+
+      <div class="section-head"><div><h2>门店管理诊断</h2><p>低转化、低完成与低毛利率的交叉观察</p></div><button class="ghost-btn" onclick="askAI('请分析当前门店管理效能差距和管理动作')">AI 管理建议</button></div>
+      <div class="table-shell"><table class="data-table" id="managementTable"></table></div>
+
+      <div class="section-head"><div><h2>盘点与资金安全</h2><p>固定频率、明确责任、结果回填</p></div></div>
+      <div class="equal-col">
+        <article class="paper-panel"><div class="panel-head"><div><h3>固定盘点机制</h3><p>日 / 周 / 月</p></div></div><div class="breakdown" id="auditList"></div></article>
+        <article class="insight-block"><div class="kicker">MANAGEMENT ANALYSIS</div><h3>AI 管理分析</h3><p>与经营分析分开，专门识别责任、进度、流程与组织风险。</p><div class="insight-list" id="managementInsights"></div><button class="primary-btn" onclick="askAI('请从管理者视角分析当前执行问题、责任闭环和管理优先级')">生成管理建议</button></article>
+      </div>
+    </section>
+
+    <section class="view" id="view-tasks">
+      <div class="page-intro">
+        <div class="intro-copy"><div class="kicker">PRIORITY CONTROL</div><h1 class="display">重点事项只看四件事<br>责任人、截止日、进度、结果</h1><p class="lead">事项由负责人更新，老板可直接批复与重新指派，所有变化留在同一个作战台上。</p></div>
+        <button class="primary-btn" onclick="openTaskDrawer('new')">新增重点事项</button>
+      </div>
+      <div class="metric-ledger" id="taskLedger"></div>
+      <div class="section-head"><div><h2>推进中的事</h2><p>按紧急度与截止日排列</p></div></div>
+      <div class="task-board" id="taskBoard"></div>
+    </section>
+
+    <section class="view" id="view-risk">
+      <div class="page-intro">
+        <div class="intro-copy"><div class="kicker">RISK RADAR</div><h1 class="display">风险不停留在提醒<br>直接落到责任和处置</h1><p class="lead">用销售、库存、资金、平台与合规五条风险链进行交叉排查，优先处理已影响经营结果的异常。</p></div>
+        <div class="intro-stat"><span>高风险项</span><strong id="riskCount">--</strong></div>
+      </div>
+      <div class="risk-board" id="riskTiles"></div>
+
+      <div class="section-head"><div><h2>风险处置清单</h2><p>当前状态、负责人与处置动作</p></div><button class="ghost-btn" onclick="askAI('请按影响程度排序当前风险并给出处置顺序')">AI 风险排序</button></div>
+      <div class="table-shell"><table class="data-table" id="riskTable"></table></div>
+
+      <div class="section-head"><div><h2>高库龄商品</h2><p>90 天以上的资金占用项</p></div></div>
+      <div class="table-shell"><table class="data-table" id="agingRiskTable"></table></div>
+
+      <div class="section-head"><div><h2>库存覆盖缺口</h2><p>低于最低覆盖要求的货品</p></div></div>
+      <div class="table-shell"><table class="data-table" id="coverageTable"></table></div>
+    </section>
+  </main>
+</div>
+
+<div class="ai-dock"><span>需要进一步判断？</span><button onclick="openAI()">AI 经营分析</button></div>
+
+<div class="drawer-mask" id="drawerMask" onclick="if(event.target===this)closeDrawer()">
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head"><div><h2 id="drawerTitle">详情</h2><p id="drawerSub">信息与处理</p></div><button class="close-btn" onclick="closeDrawer()">×</button></div>
+    <div id="drawerBody"></div>
+  </aside>
+</div>
+
+<script>
+'use strict';
+let D = null;
+let STATE = {view:'home', mode:'day', start:'', end:''};
+let ITEMS = JSON.parse(localStorage.getItem('cty-command-tasks') || 'null') || [
+  {id:1,name:'太原 / 日照 / 宝龙 / 苏家屯达成率纠偏',owner:'黄思瑞',start:'2026-08-01',due:'2026-08-31',progress:30,status:'进行中',note:'已安排周内到店诊断',priority:'高'},
+  {id:2,name:'库存高库龄（90天+）专项处理',owner:'杨雪凝',start:'2026-08-11',due:'2026-08-31',progress:10,status:'进行中',note:'梳理360天+清单中',priority:'高'},
+  {id:3,name:'电商平台流量与费用数据接入',owner:'电商负责人',start:'2026-08-11',due:'2026-08-18',progress:0,status:'待启动',note:'需求清单已发出',priority:'中'},
+  {id:4,name:'国补应收与回款账期专项台账',owner:'财务',start:'2026-08-11',due:'2026-08-20',progress:0,status:'待批复',note:'等待财务确认口径',priority:'高'}
+];
+
+const CONTEXT = {
+  home:['01 / BRIEF','今日经营简报','先看结论，再看异常，最后定动作'],
+  business:['02 / OPERATING','经营作战','结果、结构、趋势和差距的一体化观察'],
+  management:['03 / MANAGEMENT','管理效能','看责任、节点、执行和闭环'],
+  tasks:['04 / PRIORITIES','重点事项','从汇报事项转向管理进度与结果'],
+  risk:['05 / RISK','风险雷达','提前看见风险，并将处置落到责任人']
+};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = v => String(v ?? '').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const fmt = (v,d=1) => Number(v||0).toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d});
+const signed = v => v==null ? '—' : `${v>0?'+':''}${fmt(v,1)}%`;
+const clsChange = v => v==null?'':(v<0?'neg':'pos');
+const iso = d => d.toISOString().slice(0,10);
+const parseDate = s => new Date(`${s}T00:00:00`);
+
+async function boot(){
+  try{
+    const r = await fetch('/api/data',{cache:'no-store'});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    D = await r.json();
+    STATE.start = D.today; STATE.end = D.today;
+    $('#dateStart').value=D.today; $('#dateEnd').value=D.today;
+    $('#dateStamp').textContent = D.today.replaceAll('-','.');
+    $('#dataStatus').textContent='数据已同步';
+    wire(); renderAll();
+  }catch(e){
+    $('#dataStatus').textContent='数据连接失败';
+    document.querySelector('.workspace').innerHTML=`<div class="empty">数据暂时无法读取，请保持启动窗口打开后刷新。<br>${esc(e.message)}</div>`;
+  }
+}
+
+function wire(){
+  $$('.global-nav button').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+  $$('.period-tabs button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+  $('#dateStart').addEventListener('change',()=>{STATE.start=$('#dateStart').value;if(STATE.mode==='day')STATE.end=STATE.start;renderAll()});
+  $('#dateEnd').addEventListener('change',()=>{STATE.end=$('#dateEnd').value;renderAll()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+}
+
+function switchView(view){
+  STATE.view=view;
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${view}`));
+  $$('.global-nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  const c=CONTEXT[view]; $('#contextIndex').textContent=c[0]; $('#contextTitle').textContent=c[1]; $('#contextSub').textContent=c[2];
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setMode(mode){
+  STATE.mode=mode;
+  $$('.period-tabs button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+  const today=parseDate(D.today); let start=new Date(today),end=new Date(today);
+  if(mode==='week') start.setDate(today.getDate()-6);
+  if(mode==='month') start=new Date(today.getFullYear(),today.getMonth(),1);
+  if(mode!=='custom'){STATE.start=iso(start);STATE.end=iso(end);$('#dateStart').value=STATE.start;$('#dateEnd').value=STATE.end}
+  const multi=mode!=='day'; $('#dateSep').hidden=!multi;$('#dateEnd').hidden=!multi;
+  renderAll();
+}
+
+function rangeSeries(){return D.series.filter(x=>x.date>=STATE.start&&x.date<=STATE.end)}
+function aggregate(){
+  const rows=rangeSeries();
+  const amount=rows.reduce((s,x)=>s+Number(x.amount_wan||0),0);
+  const orders=rows.reduce((s,x)=>s+Number(x.orders||0),0);
+  const channels={};
+  rows.forEach(r=>Object.entries(r.channel||{}).forEach(([name,v])=>{channels[name]??={amount:0,orders:0};channels[name].amount+=Number(v.amount_wan||0);channels[name].orders+=Number(v.orders||0)}));
+  return {rows,amount,orders,channels};
+}
+function comparisonFor(a){
+  if(STATE.mode==='day'&&STATE.start===D.today)return {prev:D.chg_vs_yest,last:D.chg_vs_lastwk};
+  if(a.rows.length<2)return {prev:null,last:null};
+  const last=a.rows[a.rows.length-1].amount_wan, before=a.rows[a.rows.length-2].amount_wan;
+  return {prev:before?((last-before)/before*100):null,last:null};
+}
+
+function renderAll(){
+  if(!D)return;
+  const a=aggregate(),cmp=comparisonFor(a);
+  $('#rangeNote').textContent=STATE.start===STATE.end?STATE.start:`${STATE.start} — ${STATE.end}`;
+  renderHome(a,cmp);renderBusiness(a);renderManagement();renderTasks();renderRisk();
+}
+
+function setDelta(el,v){
+  const node=$(el);node.classList.remove('negative','positive');if(v<0)node.classList.add('negative');if(v>0)node.classList.add('positive');node.querySelector('b').textContent=signed(v);
+}
+
+function renderHome(a,cmp){
+  const amount=a.amount||D.today_total.amount_wan,orders=a.orders||D.today_total.orders;
+  $('#heroAmount').innerHTML=`${fmt(amount,1)}<em>万元</em>`;$('#heroOrders').textContent=`${fmt(orders,0)} 单`;
+  $('#heroLabel').textContent=STATE.mode==='day'?'当日销售额':'当期累计销售额';
+  setDelta('#deltaYesterday',cmp.prev);setDelta('#deltaLastWeek',cmp.last);
+  const weak=D.apr.stores.filter(s=>s.forecast_rate<90).length;
+  $('#heroNote').textContent=`${D.today_fetch_note}，生成于 ${D.generated_at}`;
+  $('#heroSummary').innerHTML=cmp.prev<0?`<b>销售节奏明显下降。</b> APR 预测月末达成 ${fmt(D.apr.forecast_rate,1)}%，${weak} 家门店预测低于 90%，需先抓门店与渠道差距。`:`<b>销售节奏稳定。</b> 继续关注毛利质量、库存资金占用与店间差距。`;
+  renderSpark('#heroSpark',D.series.map(x=>x.amount_wan));
+  const signals=[
+    ['APR月累',D.apr.sales,'万',`完成率 ${fmt(D.apr.rate)}%`,'focus'],
+    ['月末预测',D.apr.forecast_rate,'%',`目标 ${fmt(D.apr.task,0)} 万`,D.apr.forecast_rate<100?'alert':'good'],
+    ['综合毛利率',D.apr.pm,'%',D.pm_note,''],
+    ['库存资金',D.inventory_biz.total.amount,'万',`90天+ 占 ${fmt(D.inventory_biz.aging_risk_pct)}%`,D.inventory_biz.aging_risk_pct>25?'alert':''],
+    ['转化率',D.apr.conv,'%',`客流 ${fmt(D.apr.traffic,0)} 人`,'good']
+  ];
+  $('#signalStrip').innerHTML=signals.map(s=>`<div class="signal ${s[4]}"><small>${esc(s[0])}</small><strong>${fmt(s[1],s[2]==='万'&&s[1]>100?1:1)}<em>${s[2]}</em></strong><p title="${esc(s[3])}">${esc(s[3].length>31?s[3].slice(0,31)+'…':s[3])}</p></div>`).join('');
+  renderChannelList('#homeChannels',getChannels(a));
+  renderDecisions();renderWatch();
+}
+
+function renderSpark(sel,vals){
+  const w=230,h=68,p=4,min=Math.min(...vals),max=Math.max(...vals),range=max-min||1;
+  const pts=vals.map((v,i)=>`${p+i*(w-2*p)/(vals.length-1)},${h-p-(v-min)*(h-2*p)/range}`).join(' ');
+  const area=`${p},${h} ${pts} ${w-p},${h}`;
+  $(sel).innerHTML=`<defs><linearGradient id="sparkGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8f36b" stop-opacity=".2"/><stop offset="1" stop-color="#c8f36b" stop-opacity="0"/></linearGradient></defs><line class="grid" x1="0" y1="67" x2="230" y2="67"/><polygon class="area" points="${area}"/><polyline class="line" points="${pts}"/>`;
+}
+
+function getChannels(a){
+  if(STATE.mode==='day'&&STATE.start===D.today)return D.channels.map(x=>({...x,amount:x.amount_wan,change:x.yest_chg}));
+  const total=a.amount||1;return Object.entries(a.channels).map(([name,v])=>({name,amount:v.amount,orders:v.orders,pct:v.amount/total*100,change:null})).sort((x,y)=>y.amount-x.amount);
+}
+function renderChannelList(sel,rows){
+  const max=Math.max(...rows.map(x=>Math.max(0,x.amount)),1);
+  $(sel).innerHTML=rows.map(x=>`<div class="channel-row"><span class="name">${esc(x.name)}</span><div class="channel-bar"><i style="width:${Math.max(0,x.amount)/max*100}%"></i></div><span class="amount">${fmt(x.amount)} 万</span><span class="change ${clsChange(x.change)}">${signed(x.change)}</span></div>`).join('')||'<div class="empty">当期无数据</div>';
+}
+
+function renderDecisions(){
+  const rows=[...ITEMS].sort((a,b)=>(a.priority==='高'?-1:1)-(b.priority==='高'?-1:1)||a.due.localeCompare(b.due)).slice(0,4);
+  $('#decisionCount').textContent=`${ITEMS.filter(x=>x.progress<100).length} 项`;
+  $('#homeDecisions').innerHTML=rows.map(x=>`<div class="decision-item"><div class="decision-meta"><span>${esc(x.owner)} · ${esc(x.status)}</span><span>${esc(x.due)}</span></div><h3>${esc(x.name)}</h3><p>${esc(x.note)}</p><button class="inline-action" onclick="openTaskDrawer('approve',${x.id})">查看并批复 →</button></div>`).join('');
+}
+function renderWatch(){
+  const low=[...D.apr.stores].sort((a,b)=>a.forecast_rate-b.forecast_rate).slice(0,2).map(s=>({title:`${s.name}预测仅 ${fmt(s.forecast_rate)}%`,sub:`当前完成 ${fmt(s.rate)}% · 转化 ${fmt(s.conv)}%`,value:'门店',high:true}));
+  const rows=[...low,{title:`90天+库存 ${fmt(D.inventory_biz.aging_risk_amount)} 万`,sub:`占总库存 ${fmt(D.inventory_biz.aging_risk_pct)}%`,value:'库存',high:true},{title:`Shure当日销售 ${fmt(D.ecomm.shure.amount_wan)} 万`,sub:`${fmt(D.ecomm.shure.orders,0)} 单，需核查负值口径`,value:'电商',high:true}];
+  $('#homeWatch').innerHTML=rows.map((x,i)=>`<div class="watch-item"><span class="watch-index ${x.high?'red':''}">${String(i+1).padStart(2,'0')}</span><div><b>${esc(x.title)}</b><span>${esc(x.sub)}</span></div><div class="watch-value">${esc(x.value)}</div></div>`).join('');
+}
+
+function renderBusiness(a){
+  const apr=D.apr,ib=D.inventory_biz;
+  $('#bizForecast').textContent=`${fmt(apr.forecast_rate)}%`;
+  const ledger=[['APR月累',`${fmt(apr.sales)} 万`,`较时间进度 ${fmt(apr.gap)}pp`],['月度毛利',`${fmt(apr.profit)} 万`,`毛利率 ${fmt(apr.pm)}%`],['当期客单',`${a.orders?fmt(a.amount*10000/a.orders,0):0} 元`,`${fmt(a.orders,0)} 单`],['库存资金',`${fmt(ib.total.amount)} 万`,`${fmt(ib.total.qty,0)} 件`]];
+  $('#businessLedger').innerHTML=ledger.map(x=>`<div class="ledger-item"><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join('');
+  renderTrend();renderBreakdown(a);renderStoreTable();renderSalespeople();renderEcomm();renderDistribution();renderBusinessInsights();
+}
+function renderTrend(){
+  const rows=D.series,w=760,h=220,p={l:42,r:18,t:18,b:29},vals=rows.map(x=>x.amount_wan),max=Math.max(...vals)*1.1,min=0;
+  const xy=vals.map((v,i)=>({x:p.l+i*(w-p.l-p.r)/(vals.length-1),y:h-p.b-(v-min)*(h-p.t-p.b)/(max-min)}));
+  const pts=xy.map(q=>`${q.x},${q.y}`).join(' '),area=`${p.l},${h-p.b} ${pts} ${w-p.r},${h-p.b}`;
+  let grid='';for(let i=0;i<4;i++){const y=p.t+i*(h-p.t-p.b)/3;grid+=`<line class="grid" x1="${p.l}" y1="${y}" x2="${w-p.r}" y2="${y}"/><text class="axis" x="2" y="${y+3}">${fmt(max*(3-i)/3,0)}</text>`}
+  const labels=rows.map((r,i)=>`<text class="axis" text-anchor="middle" x="${xy[i].x}" y="${h-8}">${r.date.slice(5)}</text>`).join('');
+  $('#salesTrend').innerHTML=`<defs><linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c67f2" stop-opacity=".18"/><stop offset="1" stop-color="#4c67f2" stop-opacity="0"/></linearGradient></defs>${grid}<polygon class="area" points="${area}"/><polyline class="line" points="${pts}"/>${xy.map(q=>`<circle class="point" cx="${q.x}" cy="${q.y}" r="3"/>`).join('')}${labels}`;
+}
+function renderBreakdown(a){
+  const rows=getChannels(a);$('#channelBreakdown').innerHTML=rows.map(x=>`<div class="breakdown-row"><div><b>${esc(x.name)}</b><small>${fmt(x.orders||0,0)} 单 · 占比 ${fmt(x.pct||0)}%</small></div><strong>${fmt(x.amount)} 万</strong></div>`).join('');
+}
+function renderStoreTable(){
+  const rows=[...D.apr.stores].sort((a,b)=>b.sales-a.sales);
+  $('#storeTable').innerHTML=`<thead><tr><th>排名</th><th>门店</th><th class="num">销售额/万</th><th class="num">完成率</th><th class="num">毛利率</th><th class="num">客流</th><th class="num">转化率</th><th class="num">ACS</th><th class="num">预测达成</th></tr></thead><tbody>${rows.map((s,i)=>`<tr><td><span class="rank ${i<3?'top':''}">${i+1}</span></td><td class="main">${esc(s.name)}</td><td class="num">${fmt(s.sales)}</td><td class="num ${s.rate<D.apr.time_progress?'danger':'success'}">${fmt(s.rate)}%</td><td class="num">${fmt(s.pm)}%</td><td class="num">${fmt(s.traffic,0)}</td><td class="num">${fmt(s.conv)}%</td><td class="num">${fmt(s.acs)}%</td><td class="num ${s.forecast_rate<90?'danger':s.forecast_rate>=100?'success':''}">${fmt(s.forecast_rate)}%</td></tr>`).join('')}</tbody>`;
+}
+function renderSalespeople(){
+  const rows=[...D.apr.salespersons].sort((a,b)=>b.sales-a.sales);
+  $('#salespersonTable').innerHTML=`<thead><tr><th>排名</th><th>员工</th><th>门店</th><th class="num">销售额/万</th><th class="num">完成率</th><th class="num">毛利/万</th><th class="num">3PP达成</th><th class="num">ACS</th><th class="num">主机数</th><th class="num">配件数</th></tr></thead><tbody>${rows.map((s,i)=>`<tr><td><span class="rank ${i<3?'top':''}">${i+1}</span></td><td class="main">${esc(s.name)}</td><td>${esc(s.store)}</td><td class="num">${fmt(s.sales)}</td><td class="num ${s.rate<30?'danger':'success'}">${fmt(s.rate)}%</td><td class="num">${fmt(s.profit)}</td><td class="num">${fmt(s.pp_rate)}%</td><td class="num">${fmt(s.acs)}%</td><td class="num">${fmt(s.host_qty,0)}</td><td class="num">${fmt(s.pp_qty,0)}</td></tr>`).join('')}</tbody>`;
+}
+function renderEcomm(){
+  const apple=D.ecomm.apple,shure=D.ecomm.shure,days=D.ecomm_platform.days||{};
+  const shopTotals={};Object.values(days).forEach(day=>Object.entries(day).forEach(([n,v])=>{shopTotals[n]??={amount:0,orders:0};shopTotals[n].amount+=v.amount/10000;shopTotals[n].orders+=v.orders}));
+  $('#ecommPanel').innerHTML=`<div class="kicker">PLATFORM OUTPUT</div><h3 style="margin:0;font-size:15px">当日电商结果</h3><div class="metric-ledger" style="margin-top:18px"><div class="ledger-item"><small>Apple 电商</small><strong>${fmt(apple.amount_wan)} 万</strong><p>${fmt(apple.orders,0)} 单</p></div><div class="ledger-item"><small>Shure 电商</small><strong class="${shure.amount_wan<0?'danger':''}">${fmt(shure.amount_wan)} 万</strong><p>${fmt(shure.orders,0)} 单</p></div></div><div class="breakdown" style="padding:12px 0 0">${Object.entries(shopTotals).sort((a,b)=>b[1].amount-a[1].amount).map(([n,v])=>`<div class="breakdown-row"><div><b>${esc(n)}</b><small>7日 ${fmt(v.orders,0)} 单</small></div><strong>${fmt(v.amount)} 万</strong></div>`).join('')}</div>`;
+}
+function renderDistribution(){
+  const cat=D.inventory_biz.category,age=Object.entries(D.inventory_biz.aging),maxC=Math.max(...cat.map(x=>x.amount)),maxA=Math.max(...age.map(x=>x[1]));
+  $('#categoryDistribution').innerHTML=cat.map(x=>`<div class="dist-row"><span class="dist-name">${esc(x.name)}</span><div class="dist-track"><i style="width:${x.amount/maxC*100}%">${fmt(x.pct)}%</i></div><span class="dist-value">${fmt(x.amount)}</span></div>`).join('');
+  $('#agingDistribution').innerHTML=age.map(([n,v])=>`<div class="dist-row"><span class="dist-name">${esc(n)}</span><div class="dist-track"><i style="width:${v/maxA*100}%;background:${n.includes('90')||n.includes('180')||n.includes('360')?'#d14f52':'#0d1c2b'}"></i></div><span class="dist-value">${fmt(v)}</span></div>`).join('');
+}
+function renderBusinessInsights(){
+  const low=[...D.apr.stores].sort((a,b)=>a.forecast_rate-b.forecast_rate)[0];
+  const items=[`APR预测月末达成 ${fmt(D.apr.forecast_rate)}%，距目标尚有 ${fmt(100-D.apr.forecast_rate)}pp 差距。`,`${low.name}预测达成 ${fmt(low.forecast_rate)}%，建议作为首个经营诊断样本。`,`90天+库存占 ${fmt(D.inventory_biz.aging_risk_pct)}%，已经影响资金效率，需专项清理。`];
+  $('#businessInsights').innerHTML=items.map((x,i)=>`<div class="insight-line"><b>${i+1}</b><span>${esc(x)}</span></div>`).join('');
+}
+
+function renderManagement(){
+  const rosterCount=Object.keys(D.roster||{}).length,open=ITEMS.filter(x=>x.progress<100).length,high=ITEMS.filter(x=>x.priority==='高'&&x.progress<100).length;
+  $('#mgmtTaskCount').textContent=`${open} 项`;
+  const ledger=[['人员档案',`${rosterCount} 人`,'已接入花名册'],['执行中事项',`${open} 项`,`${high} 项高优先级`],['月度盘点','5 类','覆盖库存与资金'],['库存覆盖缺口',`${D.inventory_biz.coverage_count} 项`,'需商务闭环']];
+  $('#managementLedger').innerHTML=ledger.map(x=>`<div class="ledger-item"><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join('');
+  const tiles=[['人员与能力','编制、出勤、培训认证与人员变动，需与绩效结果联动观察。','综合办','每周',false],['资金与账目','国补应收、平台账期、漏单错单和现场收银是当前核心资金安全点。','财务','每日',true],['库存与资产',`90天+占比 ${fmt(D.inventory_biz.aging_risk_pct)}%，360天+金额 ${fmt(D.inventory_biz.severe_amount)} 万。`,'商务','每周',true],['执行与闭环',`当前 ${open} 项任务未完成，所有问题需回到责任人、时限和结果。`,'综合办','每日',false]];
+  $('#managementTiles').innerHTML=tiles.map(x=>`<article class="risk-tile ${x[4]?'high':''}"><h3>${x[0]}</h3><p>${x[1]}</p><footer><span>${x[2]}</span><span>${x[3]}</span></footer></article>`).join('');
+  renderManagementTable();renderAudit();
+  const lines=['达成率差距大的门店需结合客流与转化拆分责任动作。','库存风险已从商品问题变为资金效率问题，需纳入周会。','国补应收数据尚未接入，管理端存在重要数据盲区。'];
+  $('#managementInsights').innerHTML=lines.map((x,i)=>`<div class="insight-line"><b>${i+1}</b><span>${x}</span></div>`).join('');
+}
+function renderManagementTable(){
+  const rows=[...D.apr.stores].sort((a,b)=>a.forecast_rate-b.forecast_rate);
+  $('#managementTable').innerHTML=`<thead><tr><th>门店</th><th class="num">完成率</th><th class="num">时间差</th><th class="num">转化率</th><th class="num">毛利率</th><th>管理判断</th><th>优先动作</th></tr></thead><tbody>${rows.map(s=>{const gap=s.rate-D.apr.time_progress;const issue=s.conv<6?'转化偏低':s.forecast_rate<90?'销售节奏偏低':s.pm<3?'毛利质量偏低':'基本稳定';const act=s.conv<6?'复盘接待与成交漏斗':s.forecast_rate<90?'拆解日目标与人员产出':s.pm<3?'检查低毛利订单':'继续跟踪';return `<tr><td class="main">${esc(s.name)}</td><td class="num ${s.rate<D.apr.time_progress?'danger':'success'}">${fmt(s.rate)}%</td><td class="num ${gap<0?'danger':'success'}">${gap>0?'+':''}${fmt(gap)}pp</td><td class="num">${fmt(s.conv)}%</td><td class="num">${fmt(s.pm)}%</td><td><span class="status ${issue==='基本稳定'?'green':'red'}">${issue}</span></td><td>${act}</td></tr>`}).join('')}</tbody>`;
+}
+function renderAudit(){
+  const rows=[['每日销售对账','漏单、错单、未入账','财务 / 门店'],['现场收银核对','现金、线上线下资金','财务'],['每周废单排查','异常订单与风险原因','财务 / 电商'],['月度库存盘点','账实差异、样机与资产','商务'],['月度结果复盘','差异回填与整改闭环','综合办']];
+  $('#auditList').innerHTML=rows.map(x=>`<div class="breakdown-row"><div><b>${x[0]}</b><small>${x[1]}</small></div><strong>${x[2]}</strong></div>`).join('');
+}
+
+function saveTasks(){localStorage.setItem('cty-command-tasks',JSON.stringify(ITEMS))}
+function renderTasks(){
+  const open=ITEMS.filter(x=>x.progress<100).length,done=ITEMS.filter(x=>x.progress>=100).length,high=ITEMS.filter(x=>x.priority==='高'&&x.progress<100).length,avg=ITEMS.length?ITEMS.reduce((s,x)=>s+x.progress,0)/ITEMS.length:0;
+  $('#taskLedger').innerHTML=[['未完成',`${open} 项`,'需继续跟进'],['高优先级',`${high} 项`,'优先处理'],['平均进度',`${fmt(avg,0)}%`,'全部事项'],['已完成',`${done} 项`,'本周累计']].map(x=>`<div class="ledger-item"><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join('');
+  const rows=[...ITEMS].sort((a,b)=>(a.progress>=100)-(b.progress>=100)||(a.priority==='高'?-1:1)-(b.priority==='高'?-1:1)||a.due.localeCompare(b.due));
+  $('#taskBoard').innerHTML=rows.map(x=>`<article class="task-card"><div><span class="status ${x.priority==='高'?'red':'blue'}">${esc(x.priority)}优先</span><h3 style="margin-top:9px">${esc(x.name)}</h3><p>${esc(x.note)}</p></div><div class="owner"><b>${esc(x.owner)}</b><small>截止 ${esc(x.due)}</small></div><div class="progress"><div class="progress-track"><i style="width:${Math.min(x.progress,100)}%"></i></div><span>${x.progress}% · ${esc(x.status)}</span></div><div class="task-actions"><button onclick="openTaskDrawer('edit',${x.id})">更新 / 批复</button></div></article>`).join('');
+  renderDecisions();
+}
+
+function renderRisk(){
+  const ib=D.inventory_biz,low=D.apr.stores.filter(x=>x.forecast_rate<90),riskRows=[
+    {level:'高',type:'销售',name:'门店月末达成风险',state:`${low.length} 家门店预测低于90%`,owner:'黄思瑞',action:'逐店拆解日目标和转化差距'},
+    {level:'高',type:'库存',name:'90天+高库龄占用',state:`${fmt(ib.aging_risk_amount)}万 / ${fmt(ib.aging_risk_pct)}%`,owner:'杨雪凝',action:'优先处理360天+清单'},
+    {level:'高',type:'资金',name:'国补应收回款',state:'数据尚未接入',owner:'财务',action:'建立独立账期与回款台账'},
+    {level:'中',type:'平台',name:'Shure销售金额为负',state:`${fmt(D.ecomm.shure.amount_wan)} 万`,owner:'舒尔电商',action:'核对退货与销售口径'},
+    {level:'中',type:'库存',name:'最低覆盖缺口',state:`${ib.coverage_count} 项`,owner:'商务',action:'门店间调剂或补货'}
+  ];
+  $('#riskCount').textContent=`${riskRows.filter(x=>x.level==='高').length} 项`;
+  $('#riskTiles').innerHTML=riskRows.slice(0,4).map(x=>`<article class="risk-tile ${x.level==='高'?'high':''}"><span class="status ${x.level==='高'?'red':'blue'}">${x.level}风险 · ${x.type}</span><h3 style="margin-top:12px">${x.name}</h3><p>${x.state}<br>${x.action}</p><footer><span>${x.owner}</span><span>处置中</span></footer></article>`).join('');
+  $('#riskTable').innerHTML=`<thead><tr><th>等级</th><th>类型</th><th>风险事项</th><th>当前状态</th><th>责任人</th><th>处置动作</th></tr></thead><tbody>${riskRows.map(x=>`<tr><td><span class="status ${x.level==='高'?'red':'blue'}">${x.level}</span></td><td>${x.type}</td><td class="main">${x.name}</td><td class="${x.level==='高'?'danger':''}">${x.state}</td><td>${x.owner}</td><td>${x.action}</td></tr>`).join('')}</tbody>`;
+  const aging=ib.aging_risk||[];$('#agingRiskTable').innerHTML=`<thead><tr><th>仓位</th><th>商品</th><th>品牌</th><th>分类</th><th class="num">库龄/天</th><th class="num">数量</th><th class="num">金额/万</th></tr></thead><tbody>${aging.slice(0,20).map(x=>`<tr><td>${esc(x.wh)}</td><td class="main">${esc(x.name)}</td><td>${esc(x.brand)}</td><td>${esc(x.cat)}</td><td class="num danger">${fmt(x.age,0)}</td><td class="num">${fmt(x.qty,0)}</td><td class="num">${fmt(x.amount)}</td></tr>`).join('')}</tbody>`;
+  const cov=ib.coverage||[];$('#coverageTable').innerHTML=`<thead><tr><th>货品编码</th><th>货品名称</th><th class="num">最低数</th><th class="num">当前数</th><th class="num">缺口</th><th>状态</th></tr></thead><tbody>${cov.map(x=>`<tr><td class="main">${esc(x.mpn)}</td><td>${esc(x.desc)}</td><td class="num">${fmt(x.min_qty,0)}</td><td class="num danger">${fmt(x.cur_qty,0)}</td><td class="num danger">${fmt(x.gap,0)}</td><td><span class="status red">${esc(x.status)}</span></td></tr>`).join('')||'<tr><td colspan="6" class="empty">当前无覆盖缺口</td></tr>'}</tbody>`;
+}
+
+function openDrawer(title,sub,body){$('#drawerTitle').textContent=title;$('#drawerSub').textContent=sub;$('#drawerBody').innerHTML=body;$('#drawerMask').classList.add('open')}
+function closeDrawer(){$('#drawerMask').classList.remove('open')}
+function openAI(prefill=''){
+  openDrawer('AI 经营分析','先给结论，再给数据与动作',`<div class="form-row"><label>想分析什么</label><textarea id="aiQuestion" placeholder="例：本周应该优先解决哪三个问题？">${esc(prefill)}</textarea></div><div class="drawer-actions"><button class="ghost-btn" onclick="closeDrawer()">取消</button><button class="primary-btn" id="aiSubmit" onclick="submitAI()">开始分析</button></div><div id="aiResponse"></div>`);
+}
+function askAI(q){openAI(q);setTimeout(submitAI,80)}
+async function submitAI(){
+  const q=$('#aiQuestion')?.value.trim();if(!q)return;
+  const btn=$('#aiSubmit');btn.disabled=true;btn.textContent='正在分析…';$('#aiResponse').innerHTML='<div class="drawer-response">正在结合看板数据生成建议…</div>';
+  try{const r=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q})});const x=await r.json();if(!r.ok)throw new Error(x.error||'分析失败');$('#aiResponse').innerHTML=`<div class="drawer-response">${esc(x.answer)}</div>`}catch(e){$('#aiResponse').innerHTML=`<div class="drawer-response">${esc(e.message)}<br><br>如本机未启动 Ollama，其他看板数据仍可正常使用。</div>`}finally{btn.disabled=false;btn.textContent='重新分析'}
+}
+
+function openTaskDrawer(mode,id){
+  const it=ITEMS.find(x=>x.id===id);const isNew=mode==='new';
+  openDrawer(isNew?'新增重点事项':mode==='approve'?'老板批复':'更新事项',isNew?'建立责任、时限与结果':'保留最新进展与管理要求',`
+    <div class="form-row"><label>事项名称</label><input id="taskName" value="${esc(it?.name||'')}"></div>
+    <div class="equal-col"><div class="form-row"><label>责任人</label><input id="taskOwner" value="${esc(it?.owner||'')}"></div><div class="form-row"><label>截止日期</label><input id="taskDue" type="date" value="${esc(it?.due||D.today)}"></div></div>
+    <div class="equal-col"><div class="form-row"><label>优先级</label><select id="taskPriority"><option ${it?.priority==='高'?'selected':''}>高</option><option ${it?.priority==='中'?'selected':''}>中</option><option ${it?.priority==='低'?'selected':''}>低</option></select></div><div class="form-row"><label>完成进度 %</label><input id="taskProgress" type="number" min="0" max="100" value="${it?.progress||0}"></div></div>
+    <div class="form-row"><label>${mode==='approve'?'批复要求':'最新进展 / 结果'}</label><textarea id="taskNote">${esc(it?.note||'')}</textarea></div>
+    <div class="drawer-actions"><button class="ghost-btn" onclick="closeDrawer()">取消</button><button class="primary-btn" onclick="saveTask('${mode}',${id||0})">${mode==='approve'?'确认批复':'保存事项'}</button></div>`);
+}
+function saveTask(mode,id){
+  const name=$('#taskName').value.trim(),owner=$('#taskOwner').value.trim(),due=$('#taskDue').value,progress=Math.max(0,Math.min(100,Number($('#taskProgress').value)||0)),note=$('#taskNote').value.trim(),priority=$('#taskPriority').value;
+  if(!name||!owner){alert('请填写事项名称和责任人');return}
+  if(mode==='new'){ITEMS.push({id:Date.now(),name,owner,start:D.today,due,progress,status:progress>=100?'已完成':progress>0?'进行中':'待启动',note,priority})}else{const x=ITEMS.find(x=>x.id===id);Object.assign(x,{name,owner,due,progress,note:mode==='approve'?`老板批复：${note}`:note,priority,status:progress>=100?'已完成':mode==='approve'?'已批复':progress>0?'进行中':'待启动'})}
+  saveTasks();closeDrawer();renderTasks();renderManagement();
+}
+
+boot();
+</script>
+</body>
+</html>

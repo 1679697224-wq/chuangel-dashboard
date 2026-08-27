@@ -1,0 +1,6 @@
+{
+ "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Indpbm5lciIsIm5hbWUiOiJCdWlsZGluZyBhIGRhdGEgcGxhdGZvcm0gdGhhdCBjb25uZWN0cyBicmljay1hbmQtbW9ydGFyIGJ1c2luZXNzZXMiLCJhY3QiOiJ3aW5uZXJhcGkiLCJuYmYiOjE3ODc3OTc4MTUsImV4cCI6MTc4NzgwNTAxNSwiaXNzIjoid2lubmVyIiwiYXVkIjoid2luY29uZmlnIn0.nToercEnMy7dcGMKQ-nOUVswWXYYjRHMKjrCszkY4z8",
+ "userId": "BA7F84FF-8C97-48DB-95B2-A6554228EA80",
+ "userName": "天羽冠智",
+ "savedAt": "2026-08-27T02:38:25.559Z"
+}

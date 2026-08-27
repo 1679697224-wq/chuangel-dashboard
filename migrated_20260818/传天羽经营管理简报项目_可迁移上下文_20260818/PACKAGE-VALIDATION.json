@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-08-17T16:17:44.538Z",
+  "required_files": 16,
+  "missing_files": [],
+  "html_baseline": {
+    "level_1_sections": 6,
+    "level_2_modules": 18,
+    "level_3_items": 54,
+    "deletion_allowed": false
+  },
+  "current_deliverables": [
+    "01-最终成果/江苏传天羽经营管理全景简报框架_最终第四版.xlsx",
+    "01-最终成果/江苏传天羽经营管理全景框架图_最终第四版.png"
+  ]
+}

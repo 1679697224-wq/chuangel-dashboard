@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>传天羽经营管理简报｜老板端效果预览</title>
+  <style>
+    :root{
+      --navy:#102a4c;--blue:#2466bf;--blue2:#e9f2ff;--ink:#172b4d;--muted:#6f7f96;
+      --line:#dfe7f2;--bg:#f4f7fb;--card:#fff;--green:#0f9f6e;--red:#d84f4f;
+      --orange:#d9822b;--shadow:0 10px 30px rgba(16,42,76,.07);--radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    button{font:inherit}
+    .topbar{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;
+      justify-content:space-between;padding:0 34px;position:relative;z-index:20}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#2d72cf,#123b70);
+      color:#fff;display:grid;place-items:center;font-weight:800}
+    .brand strong{font-size:20px}.brand small{display:block;color:#8a98aa;letter-spacing:1.2px;margin-top:3px}
+    .date-chip{padding:11px 16px;border-radius:14px;background:#f4f7fb;color:#64748b;font-weight:700}
+    .shell{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:calc(100vh - 74px)}
+    aside{background:#122f55;color:#fff;padding:28px 18px;position:relative;min-height:calc(100vh - 74px)}
+    .aside-title{padding:0 12px 22px;border-bottom:1px solid rgba(255,255,255,.13)}
+    .aside-title b{display:block;font-size:17px}.aside-title span{display:block;font-size:11px;color:#9db5d3;margin-top:5px;letter-spacing:1.5px}
+    nav{display:grid;gap:9px;margin-top:20px}
+    nav button{border:0;background:transparent;color:#b8c8dc;text-align:left;padding:13px 14px;border-radius:12px;
+      cursor:pointer;display:flex;gap:12px;align-items:center;font-weight:700}
+    nav button span{font-size:11px;border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:4px 6px}
+    nav button:hover,nav button.active{background:#fff;color:#17477d}
+    .aside-note{position:absolute;bottom:24px;left:18px;right:18px;padding:14px;border-radius:12px;
+      background:rgba(255,255,255,.08);color:#aebfd4;font-size:12px;line-height:1.7}
+    main{padding:28px 34px 60px;max-width:1680px;width:100%;min-width:0;margin:0 auto}
+    .page{display:none}.page.active{display:block}
+    .hero{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px}
+    .eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:2px}
+    h1{font-size:30px;margin:7px 0 6px} .hero p{margin:0;color:var(--muted)}
+    .periods{display:flex;gap:8px}.periods span{padding:8px 13px;background:#fff;border:1px solid var(--line);border-radius:10px;color:#66758b;font-size:13px}
+    .periods .on{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:18px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:18px}
+    .kpi,.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .kpi{padding:20px;position:relative;overflow:hidden}
+    .kpi:after{content:"";position:absolute;width:74px;height:74px;border-radius:50%;background:var(--blue2);right:-20px;top:-18px}
+    .kpi small{color:var(--muted);font-weight:700}.kpi strong{font-size:28px;display:block;margin:10px 0 6px}
+    .delta{font-size:12px;font-weight:700}.up{color:var(--green)}.down{color:var(--red)}.flat{color:#69798f}
+    .panel{padding:22px;margin-bottom:18px;overflow-x:auto}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+    .panel-head h2{margin:0;font-size:19px}.panel-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .tag{font-size:12px;padding:7px 10px;border-radius:9px;background:#eef4fc;color:#34649f}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th{text-align:left;color:#66758b;background:#f7f9fc;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}
+    td{padding:13px 12px;border-bottom:1px solid #edf1f6;vertical-align:middle}
+    tr:last-child td{border-bottom:0}.num{text-align:right;font-variant-numeric:tabular-nums}.strong{font-weight:800;color:#163a67}
+    .progress{height:7px;background:#e8eef6;border-radius:9px;overflow:hidden;min-width:85px}.progress i{display:block;height:100%;background:linear-gradient(90deg,#2d73d2,#55a3f1);border-radius:9px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+    .tabs button{border:1px solid var(--line);background:#fff;color:#65758b;border-radius:9px;padding:9px 14px;cursor:pointer}
+    .tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .detail{display:none}.detail.active{display:block}
+    .ai-box{background:linear-gradient(135deg,#122f55,#235f9f);color:#fff;border-radius:18px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+    .ai-box .ai-title{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+    .ai-dot{width:29px;height:29px;border-radius:9px;background:#58b4ff;display:grid;place-items:center;color:#0c3159;font-size:12px}
+    .ai-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:12px;margin-top:15px}
+    .ai-item{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:15px;line-height:1.7;font-size:13px}
+    .ai-item b{display:block;color:#9bd1ff;margin-bottom:5px}
+    .module-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:18px}
+    .module-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px}
+    .module-card h3{margin:0 0 14px;font-size:16px}.metric-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #e6ebf2}
+    .metric-line:last-child{border-bottom:0}.metric-line span{color:#68778d;font-size:13px}.metric-line b{font-size:14px}
+    .platforms{display:flex;gap:10px}.platform{padding:8px 12px;border-radius:10px;font-weight:700;font-size:12px}
+    .xhs{background:#fff0f2;color:#cc3045}.douyin{background:#eef2ff;color:#4b52a5}.wx{background:#edfaf1;color:#229457}
+    a.demo-link{color:#2167bd;text-decoration:none;font-weight:700}.link-chip{padding:6px 9px;border-radius:8px;background:#eef5ff}
+    .status{padding:6px 9px;border-radius:9px;font-size:12px;font-weight:700;display:inline-block}.doing{background:#eaf3ff;color:#2466bf}.done{background:#eaf8f3;color:#0f8b62}.delay{background:#fff0f0;color:#d44d4d}
+    .risk-high{border-left:4px solid var(--red)}.risk-mid{border-left:4px solid var(--orange)}.risk-low{border-left:4px solid var(--green)}
+    .risk-list{display:grid;gap:12px}.risk{padding:17px 18px;background:#fff;border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:110px 1fr 180px 110px;gap:16px;align-items:center}
+    .risk b{font-size:14px}.risk p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
+    .priority{font-weight:800}.p-high{color:var(--red)}.p-mid{color:var(--orange)}
+    .note{font-size:12px;color:var(--muted);margin-top:12px}
+    @media(max-width:1500px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}table{font-size:12px}th,td{padding:10px 8px}.module-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:1100px){.shell{grid-template-columns:86px 1fr}.aside-title b,.aside-title span,nav button b,.aside-note{display:none}nav button{justify-content:center}.grid4{grid-template-columns:repeat(2,1fr)}.module-cards,.ai-grid{grid-template-columns:1fr}.risk{grid-template-columns:80px 1fr}.risk>:nth-child(n+3){grid-column:2}}
+    @media(max-width:720px){.topbar{padding:0 14px}.shell{display:block}aside{position:sticky;top:74px;height:auto;z-index:15;padding:8px;background:#122f55}.aside-title,.aside-note{display:none}nav{grid-template-columns:repeat(5,1fr);margin:0;gap:4px}nav button{padding:9px 3px;display:block;text-align:center}nav button span{display:none}nav button b{display:block;font-size:11px}main{padding:20px 12px}.hero{display:block}.periods{margin-top:14px}.grid4,.grid3{grid-template-columns:1fr 1fr}.panel{padding:15px;overflow:auto}table{min-width:760px}.module-cards{grid-template-columns:1fr}.ai-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="logo">CB</div><div><strong>传天羽经营管理简报</strong><small>BUSINESS BRIEFING · BOSS VIEW</small></div></div>
+    <div class="date-chip">2026年8月8日 · 演示数据</div>
+  </header>
+  <div class="shell">
+    <aside>
+      <div class="aside-title"><b>老板端快捷导航</b><span>QUICK VIEW</span></div>
+      <nav>
+        <button class="active" data-page="operation"><span>01</span><b>经营端</b></button>
+        <button data-page="management"><span>02</span><b>管理端</b></button>
+        <button data-page="content"><span>03</span><b>内容传播</b></button>
+        <button data-page="tasks"><span>04</span><b>重点事项</b></button>
+        <button data-page="risk"><span>05</span><b>风控预警</b></button>
+      </nav>
+      <div class="aside-note">本页为独立效果预览<br>所有数字均为演示数据<br>点击左侧栏目即可切换</div>
+    </aside>
+    <main>
+      <section id="operation" class="page active">
+        <div class="hero"><div><div class="eyebrow">01 · OPERATION</div><h1>经营端</h1><p>核心结果、板块对比、趋势与端口明细一屏掌握</p></div><div class="periods"><span class="on">单日</span><span>周度</span><span>月度</span><span>自定义</span></div></div>
+        <div class="grid4">
+          <div class="kpi"><small>当日销售额</small><strong>¥ 158.6万</strong><span class="delta up">较昨日 +8.4%</span></div>
+          <div class="kpi"><small>当日毛利额</small><strong>¥ 17.9万</strong><span class="delta up">毛利率 11.3%</span></div>
+          <div class="kpi"><small>订单量</small><strong>247单</strong><span class="delta up">较昨日 +19单</span></div>
+          <div class="kpi"><small>库存总额</small><strong>¥ 2,846万</strong><span class="delta down">超龄库存 126万</span></div>
+        </div>
+        <div class="ai-box"><div class="ai-title"><span class="ai-dot">AI</span>经营分析建议</div><div class="ai-grid">
+          <div class="ai-item"><b>经营亮点</b>APR门店销售较昨日提升12.6%，徐州、无锡贡献主要增量；舒尔月度进度领先其他板块。</div>
+          <div class="ai-item"><b>异常判断</b>舒尔当日销售下滑3.4%；3PP超龄库存占比偏高，可能影响本月资金周转。</div>
+          <div class="ai-item"><b>建议动作</b>明日优先复盘舒尔流量下降原因；对3PP超龄SKU建立门店调剂与专项促销清单。</div>
+        </div></div>
+        <div class="panel">
+          <div class="panel-head"><div><h2>经营板块核心对比</h2><p>老板重点数据、环比变化及月度目标进度</p></div><span class="tag">截至 18:00</span></div>
+          <table><thead><tr><th>经营板块</th><th class="num">当日销售额</th><th class="num">较昨日</th><th class="num">本月累计</th><th class="num">月度目标</th><th>完成进度</th><th class="num">毛利率</th></tr></thead>
+          <tbody>
+            <tr><td class="strong">APR 门店</td><td class="num">¥ 92.4万</td><td class="num up">+12.6%</td><td class="num">¥ 721万</td><td class="num">¥ 3,100万</td><td><div class="progress"><i style="width:23.3%"></i></div></td><td class="num">10.8%</td></tr>
+            <tr><td class="strong">Apple 电商</td><td class="num">¥ 38.7万</td><td class="num up">+5.2%</td><td class="num">¥ 326万</td><td class="num">¥ 1,280万</td><td><div class="progress"><i style="width:25.5%"></i></div></td><td class="num">8.7%</td></tr>
+            <tr><td class="strong">舒尔电商</td><td class="num">¥ 16.8万</td><td class="num down">-3.4%</td><td class="num">¥ 139万</td><td class="num">¥ 520万</td><td><div class="progress"><i style="width:26.7%"></i></div></td><td class="num">18.6%</td></tr>
+            <tr><td class="strong">3PP 销售/分销</td><td class="num">¥ 10.7万</td><td class="num up">+7.1%</td><td class="num">¥ 88万</td><td class="num">¥ 390万</td><td><div class="progress"><i style="width:22.6%"></i></div></td><td class="num">21.4%</td></tr>
+          </tbody></table>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h2>各经营端口明细</h2><p>按原经营简报数据维度展开，不只看汇总柱状图</p></div></div>
+          <div class="tabs" data-tabs="op"><button class="active" data-detail="apr">APR门店</button><button data-detail="apple">Apple电商</button><button data-detail="shure">舒尔电商</button><button data-detail="ppp">3PP销售/分销</button></div>
+          <div id="apr" class="detail active"><table><thead><tr><th>门店</th><th class="num">销售额</th><th class="num">毛利额</th><th class="num">毛利率</th><th class="num">客流</th><th class="num">成交单</th><th class="num">转化率</th><th class="num">ACS建单率</th></tr></thead><tbody>
+            <tr><td>徐州彭城苏宁广场店</td><td class="num">18.7万</td><td class="num">2.1万</td><td class="num">11.2%</td><td class="num">426</td><td class="num">31</td><td class="num">7.3%</td><td class="num">24.6%</td></tr>
+            <tr><td>无锡苏宁广场店</td><td class="num">15.9万</td><td class="num">1.8万</td><td class="num">11.5%</td><td class="num">362</td><td class="num">28</td><td class="num">7.7%</td><td class="num">22.1%</td></tr>
+            <tr><td>连云港苏宁广场店</td><td class="num">13.6万</td><td class="num">1.4万</td><td class="num">10.4%</td><td class="num">318</td><td class="num">24</td><td class="num">7.5%</td><td class="num">20.8%</td></tr>
+          </tbody></table></div>
+          <div id="apple" class="detail"><table><thead><tr><th>渠道</th><th class="num">销售额</th><th class="num">订单数</th><th class="num">客单价</th><th class="num">退款额</th><th class="num">平台费用</th><th class="num">异常订单</th></tr></thead><tbody>
+            <tr><td>京东到家</td><td class="num">15.2万</td><td class="num">46</td><td class="num">3,304</td><td class="num">0.8万</td><td class="num">0.31万</td><td class="num">2</td></tr><tr><td>天猫闪购</td><td class="num">12.8万</td><td class="num">39</td><td class="num">3,282</td><td class="num">0.4万</td><td class="num">0.26万</td><td class="num">1</td></tr><tr><td>抖音小时达</td><td class="num">10.7万</td><td class="num">31</td><td class="num">3,452</td><td class="num">0.3万</td><td class="num">0.19万</td><td class="num">0</td></tr>
+          </tbody></table></div>
+          <div id="shure" class="detail"><table><thead><tr><th>平台</th><th class="num">销售额</th><th class="num">订单量</th><th class="num">访客数</th><th class="num">转化率</th><th class="num">推广费用</th><th class="num">ROI</th></tr></thead><tbody>
+            <tr><td>京东舒尔旗舰店</td><td class="num">9.6万</td><td class="num">72</td><td class="num">4,280</td><td class="num">1.68%</td><td class="num">0.86万</td><td class="num">11.2</td></tr><tr><td>天猫舒尔旗舰店</td><td class="num">7.2万</td><td class="num">51</td><td class="num">3,460</td><td class="num">1.47%</td><td class="num">0.71万</td><td class="num">10.1</td></tr>
+          </tbody></table></div>
+          <div id="ppp" class="detail"><table><thead><tr><th>业务</th><th class="num">销售额</th><th class="num">毛利额</th><th class="num">库存金额</th><th class="num">超龄库存</th><th class="num">返利待收</th></tr></thead><tbody>
+            <tr><td>门店3PP销售</td><td class="num">6.8万</td><td class="num">1.5万</td><td class="num">428万</td><td class="num">39万</td><td class="num">8.6万</td></tr><tr><td>渠道分销</td><td class="num">3.9万</td><td class="num">0.8万</td><td class="num">216万</td><td class="num">22万</td><td class="num">5.1万</td></tr>
+          </tbody></table></div>
+        </div>
+      </section>
+
+      <section id="management" class="page">
+        <div class="hero"><div><div class="eyebrow">02 · MANAGEMENT</div><h1>管理端</h1><p>商务采销、财务、人事等管理结果独立呈现</p></div><div class="periods"><span class="on">单日</span><span>周度</span><span>月度</span><span>自定义</span></div></div>
+        <div class="grid4">
+          <div class="kpi"><small>当日回款</small><strong>¥ 126.4万</strong><span class="delta up">达成计划 106%</span></div>
+          <div class="kpi"><small>应收余额</small><strong>¥ 386万</strong><span class="delta down">逾期 42万</span></div>
+          <div class="kpi"><small>在岗人数</small><strong>137人</strong><span class="delta flat">缺编 8人</span></div>
+          <div class="kpi"><small>管理事项闭环率</small><strong>87.5%</strong><span class="delta up">较上周 +4.2%</span></div>
+        </div>
+        <div class="module-cards">
+          <div class="module-card"><h3>商务与采销</h3><div class="metric-line"><span>采购订单金额</span><b>¥ 218万</b></div><div class="metric-line"><span>到货完成率</span><b>92.6%</b></div><div class="metric-line"><span>返利待确认</span><b class="p-mid">¥ 31万</b></div><div class="metric-line"><span>低水位SKU</span><b class="p-high">18个</b></div></div>
+          <div class="module-card"><h3>财务管理</h3><div class="metric-line"><span>当日资金余额</span><b>¥ 1,265万</b></div><div class="metric-line"><span>当日支出</span><b>¥ 98万</b></div><div class="metric-line"><span>逾期应收</span><b class="p-high">¥ 42万</b></div><div class="metric-line"><span>待开发票</span><b>27张</b></div></div>
+          <div class="module-card"><h3>综合办与人事</h3><div class="metric-line"><span>编制/在岗</span><b>145 / 137</b></div><div class="metric-line"><span>本月入职/离职</span><b>6 / 3</b></div><div class="metric-line"><span>招聘中岗位</span><b>8个</b></div><div class="metric-line"><span>考勤异常</span><b class="p-mid">5人次</b></div></div>
+        </div>
+        <div class="ai-box"><div class="ai-title"><span class="ai-dot">AI</span>管理分析建议</div><div class="ai-grid">
+          <div class="ai-item"><b>管理亮点</b>当日回款超计划6%，事项闭环率较上周提升；整体人员流失处于可控水平。</div>
+          <div class="ai-item"><b>管理风险</b>逾期应收超控制线12万元；APR门店缺编5人，对新品期排班形成压力。</div>
+          <div class="ai-item"><b>建议动作</b>财务对逾期渠道逐笔明确回款日；综合办本周优先补齐无锡、镇江核心岗位。</div>
+        </div></div>
+        <div class="panel"><div class="panel-head"><div><h2>管理端口明细</h2><p>按职责端口切换查看具体数据</p></div></div>
+          <div class="tabs" data-tabs="mg"><button class="active" data-detail="commerce">商务采销</button><button data-detail="finance">财务</button><button data-detail="hr">综合办/人事</button></div>
+          <div id="commerce" class="detail active"><table><thead><tr><th>事项</th><th>供应商/渠道</th><th class="num">金额</th><th>当前进度</th><th>异常说明</th><th>责任人</th></tr></thead><tbody>
+            <tr><td>iPhone库存补货</td><td>Apple渠道</td><td class="num">168万</td><td><span class="status doing">运输中</span></td><td>4个SKU水位低于3台</td><td>王文学</td></tr><tr><td>3PP返利确认</td><td>重点供应商</td><td class="num">31万</td><td><span class="status doing">核对中</span></td><td>2家账期材料待补</td><td>王文学</td></tr>
+          </tbody></table></div>
+          <div id="finance" class="detail"><table><thead><tr><th>资金项目</th><th class="num">当日金额</th><th class="num">本月累计</th><th class="num">计划值</th><th>状态</th><th>说明</th></tr></thead><tbody>
+            <tr><td>渠道回款</td><td class="num">126.4万</td><td class="num">782万</td><td class="num">740万</td><td><span class="status done">正常</span></td><td>完成进度领先</td></tr><tr><td>逾期应收</td><td class="num">—</td><td class="num">42万</td><td class="num">≤30万</td><td><span class="status delay">预警</span></td><td>需推动两家渠道回款</td></tr>
+          </tbody></table></div>
+          <div id="hr" class="detail"><table><thead><tr><th>部门</th><th class="num">编制</th><th class="num">在岗</th><th class="num">缺编</th><th class="num">招聘中</th><th class="num">考勤异常</th><th>重点事项</th></tr></thead><tbody>
+            <tr><td>APR门店</td><td class="num">104</td><td class="num">99</td><td class="num">5</td><td class="num">5</td><td class="num">3</td><td>无锡、镇江补员</td></tr><tr><td>电商及职能</td><td class="num">41</td><td class="num">38</td><td class="num">3</td><td class="num">3</td><td class="num">2</td><td>招聘运营及财务岗位</td></tr>
+          </tbody></table></div>
+        </div>
+      </section>
+
+      <section id="content" class="page">
+        <div class="hero"><div><div class="eyebrow">03 · CONTENT</div><h1>内容传播</h1><p>发布、播放、互动趋势与门店传播明细</p></div><div class="periods"><span class="on">单日</span><span>周度</span><span>月度</span><span>自定义</span></div></div>
+        <div class="grid4">
+          <div class="kpi"><small>当日发布数</small><strong>26篇</strong><span class="delta up">较昨日 +6篇</span></div>
+          <div class="kpi"><small>播放/浏览量</small><strong>48,630</strong><span class="delta up">环比 +18.7%</span></div>
+          <div class="kpi"><small>互动量</small><strong>2,184</strong><span class="delta up">互动率 4.49%</span></div>
+          <div class="kpi"><small>完成发布门店</small><strong>9 / 10</strong><span class="delta down">1家门店待发布</span></div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><h2>平台与内容结构</h2><p>直接看到各平台发布与流量贡献</p></div><div class="platforms"><span class="platform xhs">小红书</span><span class="platform douyin">抖音</span><span class="platform wx">视频号</span></div></div>
+          <table><thead><tr><th>平台</th><th class="num">发布数</th><th class="num">播放/浏览</th><th class="num">点赞</th><th class="num">收藏</th><th class="num">评论</th><th class="num">分享</th><th class="num">互动率</th></tr></thead><tbody>
+            <tr><td>小红书</td><td class="num">11</td><td class="num">18,420</td><td class="num">826</td><td class="num">318</td><td class="num">126</td><td class="num">92</td><td class="num">7.39%</td></tr><tr><td>抖音</td><td class="num">9</td><td class="num">24,650</td><td class="num">526</td><td class="num">74</td><td class="num">96</td><td class="num">108</td><td class="num">3.26%</td></tr><tr><td>视频号</td><td class="num">6</td><td class="num">5,560</td><td class="num">68</td><td class="num">18</td><td class="num">21</td><td class="num">15</td><td class="num">2.19%</td></tr>
+          </tbody></table>
+        </div>
+        <div class="panel"><div class="panel-head"><div><h2>门店传播发布明细</h2><p>按附件字段展示，发布链接可直接点击跳转</p></div><span class="tag">共 26 条</span></div>
+          <table><thead><tr><th>门店</th><th>平台</th><th>内容类型</th><th>标题</th><th class="num">播放/浏览</th><th class="num">互动量</th><th>发布时间</th><th>发布链接</th></tr></thead><tbody>
+            <tr><td>徐州彭城店</td><td>小红书</td><td>产品测评</td><td>AirPods 4 真实体验</td><td class="num">6,820</td><td class="num">486</td><td>08-08 10:25</td><td><a class="demo-link link-chip" href="https://www.xiaohongshu.com" target="_blank">查看内容 ↗</a></td></tr>
+            <tr><td>无锡苏宁店</td><td>抖音</td><td>门店活动</td><td>暑期购机福利指南</td><td class="num">9,460</td><td class="num">318</td><td>08-08 12:10</td><td><a class="demo-link link-chip" href="https://www.douyin.com" target="_blank">查看内容 ↗</a></td></tr>
+            <tr><td>连云港苏宁店</td><td>视频号</td><td>服务体验</td><td>Setup设置服务演示</td><td class="num">2,180</td><td class="num">76</td><td>08-08 14:30</td><td><a class="demo-link link-chip" href="https://channels.weixin.qq.com" target="_blank">查看内容 ↗</a></td></tr>
+            <tr><td>镇江苏宁店</td><td>小红书</td><td>开业传播</td><td>重装升级后的APR门店</td><td class="num">4,950</td><td class="num">362</td><td>08-08 16:05</td><td><a class="demo-link link-chip" href="https://www.xiaohongshu.com" target="_blank">查看内容 ↗</a></td></tr>
+          </tbody></table>
+        </div>
+      </section>
+
+      <section id="tasks" class="page">
+        <div class="hero"><div><div class="eyebrow">04 · KEY ITEMS</div><h1>重点事项</h1><p>责任人、截止时间、当日进展与状态闭环</p></div><div class="periods"><span class="on">全部事项</span><span>仅看逾期</span></div></div>
+        <div class="grid3">
+          <div class="kpi"><small>重点事项总数</small><strong>12项</strong><span class="delta flat">本周新增 3项</span></div>
+          <div class="kpi"><small>按期推进</small><strong>9项</strong><span class="delta up">占比 75%</span></div>
+          <div class="kpi"><small>延期/有风险</small><strong>3项</strong><span class="delta down">需管理层关注</span></div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><h2>重点事项进度清单</h2><p>由各端口自行维护，老板端集中查看</p></div><span class="tag">今日已更新 10/12</span></div>
+          <table><thead><tr><th>优先级</th><th>重点事项</th><th>责任端口</th><th>责任人</th><th>截止日期</th><th>今日进展</th><th>状态</th></tr></thead><tbody>
+            <tr><td class="priority p-high">高</td><td class="strong">线上库存覆盖整改</td><td>APR门店</td><td>黄思瑞</td><td>08-10</td><td>完成10店自检，3店正在调剂</td><td><span class="status doing">进行中</span></td></tr>
+            <tr><td class="priority p-high">高</td><td class="strong">Apple线上异常订单排查</td><td>Apple电商</td><td>邵文昌</td><td>08-08</td><td>已核实平台补贴，剩余6单待确认</td><td><span class="status doing">进行中</span></td></tr>
+            <tr><td class="priority p-mid">中</td><td class="strong">舒尔年度营销方案推进</td><td>舒尔电商</td><td>任毅</td><td>08-15</td><td>品牌方预算沟通材料已提交</td><td><span class="status done">按期</span></td></tr>
+            <tr><td class="priority p-high">高</td><td class="strong">3PP超龄库存处理</td><td>3PP销售</td><td>王文学</td><td>08-10</td><td>调剂方案待门店确认</td><td><span class="status delay">有风险</span></td></tr>
+            <tr><td class="priority p-mid">中</td><td class="strong">新人30天成长考核</td><td>综合办/人事</td><td>李妍岩</td><td>08-12</td><td>无锡1人、运城1人待补填</td><td><span class="status doing">进行中</span></td></tr>
+          </tbody></table>
+        </div>
+      </section>
+
+      <section id="risk" class="page">
+        <div class="hero"><div><div class="eyebrow">05 · RISK CONTROL</div><h1>风控预警</h1><p>按风险等级、影响和当前措施集中呈现</p></div><div class="periods"><span class="on">未关闭</span><span>全部风险</span></div></div>
+        <div class="grid3">
+          <div class="kpi"><small>红色风险</small><strong style="color:#d84f4f">2项</strong><span class="delta down">需立即处理</span></div>
+          <div class="kpi"><small>黄色风险</small><strong style="color:#d9822b">3项</strong><span class="delta flat">持续跟进</span></div>
+          <div class="kpi"><small>本周已关闭</small><strong style="color:#0f9f6e">4项</strong><span class="delta up">关闭率 44.4%</span></div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><h2>风险事项清单</h2><p>风险来自各责任端口上报，不覆盖原有风控逻辑</p></div><span class="tag">最后更新 17:40</span></div>
+          <div class="risk-list">
+            <div class="risk risk-high"><div><span class="status delay">红色风险</span></div><div><b>O2O异常订单可能影响激活率</b><p>部分大额优惠订单未确认真实销售属性，若激活率不足可能触发平台限制。</p></div><div><b>当前措施</b><p>逐单核对订单来源及激活状态，今晚形成清单。</p></div><div><b>责任人</b><p>邵文昌</p></div></div>
+            <div class="risk risk-high"><div><span class="status delay">红色风险</span></div><div><b>逾期应收超过控制线</b><p>当前逾期应收42万元，较内部控制线高12万元。</p></div><div><b>当前措施</b><p>锁定两家重点渠道，明确分批回款日期。</p></div><div><b>责任人</b><p>束铃铃</p></div></div>
+            <div class="risk risk-mid"><div><span class="status doing">黄色风险</span></div><div><b>线上库存覆盖不足</b><p>3家门店存在重点SKU库存低于2台，可能无法被线上平台抓取。</p></div><div><b>当前措施</b><p>优先跨店调剂，无法调剂部分提交采购补货。</p></div><div><b>责任人</b><p>黄思瑞</p></div></div>
+            <div class="risk risk-mid"><div><span class="status doing">黄色风险</span></div><div><b>新品期门店人员缺编</b><p>无锡、镇江门店核心岗位合计缺编3人。</p></div><div><b>当前措施</b><p>本周安排集中面试，并准备跨店支援排班。</p></div><div><b>责任人</b><p>李妍岩</p></div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    var navButtons=document.querySelectorAll("nav button");
+    navButtons.forEach(function(btn){btn.addEventListener("click",function(){
+      navButtons.forEach(function(x){x.classList.remove("active")});
+      document.querySelectorAll(".page").forEach(function(x){x.classList.remove("active")});
+      btn.classList.add("active");document.getElementById(btn.dataset.page).classList.add("active");window.scrollTo(0,0);
+    })});
+    document.querySelectorAll(".tabs").forEach(function(group){group.querySelectorAll("button").forEach(function(btn){
+      btn.addEventListener("click",function(){group.querySelectorAll("button").forEach(function(x){x.classList.remove("active")});
+        var panel=group.parentElement;panel.querySelectorAll(".detail").forEach(function(x){x.classList.remove("active")});
+        btn.classList.add("active");document.getElementById(btn.dataset.detail).classList.add("active");
+      })
+    })});
+  </script>
+</body>
+</html>

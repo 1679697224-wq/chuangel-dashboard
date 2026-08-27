@@ -1,0 +1,44 @@
+{
+ "boss": {
+  "name": "老板",
+  "role": "boss",
+  "salt": "74d9a6b44969a93c",
+  "hash": "d38cbc414a5181711c72a3c88adcb767d49175a6e97e7caf9341c1ba5a0855bb",
+  "created": "2026-08-26"
+ },
+ "finance": {
+  "name": "财务",
+  "role": "finance",
+  "salt": "169fe8b70dc52df1",
+  "hash": "4c3d87407fd47a1d06a090afc1b24fee3ccc50b5a4ffb9d55a1efcb70a37f27c",
+  "created": "2026-08-26"
+ },
+ "hr": {
+  "name": "人事",
+  "role": "hr",
+  "salt": "3010f17109ac4325",
+  "hash": "776c8124dfe14cfdcae914047911d2c114fe291584da7b78a5f073a2487a5c22",
+  "created": "2026-08-26"
+ },
+ "apr": {
+  "name": "APR负责人",
+  "role": "apr",
+  "salt": "cb6ba93517b6b27b",
+  "hash": "5e9e86a3b51467c1646fb2aee7011fdc21117d63f209dcf7941eb9e6df530cf8",
+  "created": "2026-08-26"
+ },
+ "apple": {
+  "name": "苹果电商负责人",
+  "role": "apple",
+  "salt": "fe2fe9c369b72d5a",
+  "hash": "952cc1e6e2856869db6727bac62d05f46879909ff9bf2c5a01a059e756dad8dd",
+  "created": "2026-08-26"
+ },
+ "shure": {
+  "name": "舒尔负责人",
+  "role": "shure",
+  "salt": "cb6bf31f4bbae184",
+  "hash": "06492fd93822e0ea890fc529dcef9df87fbd6a43e2651a727549212a8e098d19",
+  "created": "2026-08-26"
+ }
+}
