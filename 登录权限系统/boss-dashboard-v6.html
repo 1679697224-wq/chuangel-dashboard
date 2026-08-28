@@ -840,7 +840,7 @@ function secOverviewSales(){
   const k8 = kpiCard('库存总额', '¥'+INV_BIZ.total_amount.toFixed(0)+'万', null, '90 天以上超龄 '+INV_BIZ.risk_pct.toFixed(1)+'%', 'gold');
   const segRows = SEGMENTS.map(s=>{
     const share = s.sales/COMPANY.day.sales*100;
-    return `<tr><td class="t-name">${esc(s.name)}</td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${pct(s.cvr)}</td><td>${isMonth()?fee(s.feeRate):'<span style="color:#c6d2dd">—</span>'}</td><td>¥${s.inv}万</td><td>${share.toFixed(1)}%</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`;
+    return `<tr><td class="t-name">${esc(s.name)}</td><td>${fmtY(mul(s.sales))}</td><td>${fmtWan(mul(s.gross))}</td><td>${pct(s.gpm)}</td><td>${pct(s.cvr)}</td><td>${isMonth()?fee(s.feeRate):'<span style="color:#c6d2dd">—</span>'}</td><td>¥${s.inv}万</td><td>${share.toFixed(1)}%</td><td>${d7Html(s.d7)}</td><td>${s.yoy!=null?`<span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span>`:'未接入'}</td></tr>`;
   }).join('');
   const totalRow = `<tr style="background:#f0f6fc"><td class="t-name">合计</td><td><b>${fmtY(mul(COMPANY.day.sales))}</b></td><td><b>${fmtWan(mul(COMPANY.day.gross))}</b></td><td><b>${pct(COMPANY.day.gpm)}</b></td><td>—</td><td><b>${fee(COMPANY.day.feeRate)}</b></td><td><b>¥${INV_BIZ.total_amount.toFixed(0)}万</b></td><td>100%</td><td>${d7Html(COMPANY.day.d7)}</td><td><span class="pos">+${COMPANY.day.yoy.toFixed(1)}%</span></td></tr>`;
   return `
@@ -1079,7 +1079,7 @@ function secAPRSales(){
   const k6 = isMonth() ? kpiCard('人工费率', fee(null), null, '财务费率数据待接入','') : '';
   const rows = APR_STORES.map(s=>{
     const ach = s.rate;
-    return `<tr><td class="t-name">${esc(s.name)}</td><td>¥${s.sales.toFixed(1)}万</td><td><span class="${ach>=65?'pos':ach>=50?'':'neg'}">${ach.toFixed(1)}%</span></td><td>¥${s.profit.toFixed(2)}万</td><td>${pct(s.pm)}</td><td>${s.flow!=null?s.flow.toLocaleString():'待接入'}</td><td>${pct(s.conv)}</td><td>¥${s.apt.toFixed(0)}</td><td>${d7Html(s.d7)}</td><td><span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span></td></tr>`;
+    return `<tr><td class="t-name">${esc(s.name)}</td><td>¥${s.sales.toFixed(1)}万</td><td><span class="${ach>=65?'pos':ach>=50?'':'neg'}">${ach.toFixed(1)}%</span></td><td>¥${s.profit.toFixed(2)}万</td><td>${pct(s.pm)}</td><td>${s.flow!=null?s.flow.toLocaleString():'待接入'}</td><td>${pct(s.conv)}</td><td>¥${s.apt.toFixed(0)}</td><td>${d7Html(s.d7)}</td><td>${s.yoy!=null?`<span class="${s.yoy>=0?'pos':'neg'}">${s.yoy>=0?'+':''}${s.yoy.toFixed(1)}%</span>`:'未接入'}</td></tr>`;
   }).join('');
   return `<div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}</div>
     <div class="detail-panel single">
@@ -1289,8 +1289,8 @@ function secDeptFees(){
 }
 /* ---- 通用 · 部门利润 ---- */
 function secDeptProfit(){
-  const dept = NAV[1].departments[state.dept];
-  const p = {apr:{profit:98,rate:7.8},apple:{profit:38,rate:6.2},shure:{profit:22,rate:9.8},pp3:{profit:0,rate:0}}[dept.id];
+  const dept = NAV[1].departments[state.dept] || NAV[1].departments[1];
+  const p = {apr:{profit:98,rate:7.8},apple:{profit:38,rate:6.2},shure:{profit:22,rate:9.8},pp3:{profit:0,rate:0}}[dept.id] || {profit:0, rate:0};
   return `<div class="metric-grid">
     ${kpiCard('店铺利润（月）','¥'+p.profit+'万',3.6,'利润率 '+p.rate+'%','green')}
     ${kpiCard('营业利润（月）','¥'+Math.round(p.profit*0.86)+'万',3.1,'扣除后台分摊后','')}
