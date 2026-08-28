@@ -78,7 +78,7 @@ var CONFIGS = {
     title: 'Shure 电商 · 流量/转化上传',
     hint: '天猫：uv/转化率；京东：销售额(万)/uv/转化率（也可用下方 Excel 导入日报）',
     kind: 'shure',
-    rows: [{k:'天猫旗舰店'},{k:'京东旗舰店'}],
+    rows: [{k:'天猫旗舰店', cols:['uv','cvr']},{k:'京东旗舰店'}],
     excel: true
   },
   finance: {
@@ -104,7 +104,7 @@ function build(cfg){
       grp.textContent = r.k;
       body.appendChild(grp);
       var f1 = document.createElement('div'); f1.className = 'row';
-      var cols = cfg.kind === 'apr' ? ['flow','conv','task'] : (cfg.kind === 'apple' ? ['uv','cvr','refund'] : ['uv','cvr','sales']);
+      var cols = r.cols || (cfg.kind === 'apr' ? ['flow','conv','task'] : (cfg.kind === 'apple' ? ['uv','cvr','refund'] : ['uv','cvr','sales']));
       cols.forEach(function(col){
         var lab = {flow:'客流', conv:'转化率%', task:'目标万', uv:'访客数', cvr:'转化率%', refund:'退款率%', sales:'销售额(万)'}[col];
         var w = document.createElement('label');
@@ -146,7 +146,7 @@ function collect(kind){
   else data.stores = {};
   (cfg.rows || []).forEach(function(r){
     var obj = {};
-    var cols = kind === 'apr' ? ['flow','conv','task'] : (kind === 'apple' ? ['uv','cvr','refund'] : ['uv','cvr','sales']);
+    var cols = r.cols || (kind === 'apr' ? ['flow','conv','task'] : (kind === 'apple' ? ['uv','cvr','refund'] : ['uv','cvr','sales']));
     cols.forEach(function(col){
       var v = document.getElementById('f_' + encodeURIComponent(r.k) + '_' + col).value.trim();
       if(v !== '') obj[col] = parseFloat(v);

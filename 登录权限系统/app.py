@@ -128,21 +128,33 @@ def handle_upload_excel(role, filename, data):
     rows = parse_xlsx(data)
     if not rows: raise ValueError('无法解析 Excel（空文件）')
     if '天猫' in filename or '反馈表' in filename:
-        aug = {'sales': 0.0, 'uv': 0, 'orders': 0}
+        day = {}
         for r in rows[2:]:
             for dc, sc, oc, uc in ((1, 2, 4, 11), (0, 1, 3, 10)):
                 if len(r) <= max(dc, sc, oc, uc):
                     continue
                 d = excel_serial(r[dc])
-                if not d.startswith('2026-08'):
+                if not (d.startswith('2026-08') and d[8:10] <= '27'):
                     continue
                 def f(i):
                     try: return float(r[i])
                     except Exception: return 0.0
-                aug['sales'] += f(sc); aug['orders'] += f(oc); aug['uv'] += int(f(uc))
+                day[d] = (f(sc), f(oc), int(f(uc)))
                 break
-        set_upload('shure', {'stores': {'天猫旗舰店': {'uv': aug['uv'], 'sales': round(aug['sales'], 2), 'orders': aug['orders']}}, 'last_upload': datetime.now().isoformat(timespec='seconds')})
-        return '天猫舒尔：8月销售 %.2f 万 / uv %d / 单 %d' % (aug['sales']/10000, aug['uv'], aug['orders'])
+        if not day:
+            raise ValueError('未找到 8/1-27 数据（模板格式有变？）')
+        sales = sum(v[0] for v in day.values())
+        orders = sum(v[1] for v in day.values())
+        uv = sum(v[2] for v in day.values())
+        cur = get_upload('shure')
+        stores = dict(cur.get('stores') or {})
+        st = {'uv': uv, 'orders': orders}
+        if uv: st['cvr'] = round(orders / uv * 100, 2)
+        stores['天猫旗舰店'] = st
+        cur['stores'] = stores
+        cur['last_upload'] = datetime.now().isoformat(timespec='seconds')
+        set_upload('shure', cur)
+        return '天猫舒尔：8/1-27 平台口径销售 %.2f 万 / uv %d / 单 %d（看板销售以吉客云为准）' % (sales/10000, uv, orders)
     if '京东' in filename:
         for r in rows[3:]:
             hit = [i for i, x in enumerate(r) if x == '汇总']
@@ -150,8 +162,13 @@ def handle_upload_excel(role, filename, data):
                 v = r[hit[0]+1:]
                 if len(v) <= 9: raise ValueError('京东日报汇总行字段不足')
                 vals = {'sales': float(v[0]), 'conv': float(v[1])*100, 'orders': float(v[2]), 'aov': float(v[3]), 'pv': float(v[8]), 'uv': float(v[9])}
-                set_upload('shure', {'stores': {'京东旗舰店': {'uv': int(vals['uv']), 'sales': round(vals['sales'], 2), 'conv': round(vals['conv'], 2), 'aov': round(vals['aov'], 2)}}, 'last_upload': datetime.now().isoformat(timespec='seconds')})
-                return '京东舒尔：8月销售 %.2f 万 / uv %d' % (vals['sales']/10000, vals['uv'])
+                cur = get_upload('shure')
+                stores = dict(cur.get('stores') or {})
+                stores['京东旗舰店'] = {'uv': int(vals['uv']), 'sales': round(vals['sales'], 2), 'conv': round(vals['conv'], 2), 'aov': round(vals['aov'], 2), 'orders': int(vals['orders'])}
+                cur['stores'] = stores
+                cur['last_upload'] = datetime.now().isoformat(timespec='seconds')
+                set_upload('shure', cur)
+                return '京东舒尔：8月销售 %.2f 万 / uv %d / 单 %d' % (vals['sales']/10000, vals['uv'], vals['orders'])
     raise ValueError('未识别模板：文件名需含“天猫/反馈表”或“京东”')
 
 class Handler(BaseHTTPRequestHandler):
@@ -199,8 +216,11 @@ class Handler(BaseHTTPRequestHandler):
             html = html.replace('__ROLE__', json.dumps({'username': sess['u'], 'role': sess['r'], 'name': USERS[sess['u']]['name'], 'meta': ROLE_META[sess['r']]}, ensure_ascii=False))
             self._send(200, html)
         elif p == '/board':
-            dash = open(os.path.join(BASE, 'boss-dashboard-v6.html'), encoding='utf-8').read()
             role = (q.get('role') or ['boss'])[0]
+            if not sess or sess['r'] != role:
+                self._redirect('/'); return
+            fname = 'shure-dashboard-v6.html' if role == 'shure' else 'boss-dashboard-v6.html'
+            dash = open(os.path.join(BASE, fname), encoding='utf-8').read()
             dash = dash.replace('loadLiveData();', 'loadLiveData(); window.__ROLE__=' + json.dumps(role, ensure_ascii=False) + '; filterByRole(window.__ROLE__);')
             self._send(200, dash)
         elif p == '/api/me':
@@ -258,7 +278,13 @@ class Handler(BaseHTTPRequestHandler):
                 body = json.loads(self._read_body().decode('utf-8'))
                 data = body.get('data', {})
                 cur = get_upload(role)
-                for k, v in data.items(): cur[k] = v
+                def deep_merge(a, b):
+                    for k, v in b.items():
+                        if isinstance(v, dict) and isinstance(a.get(k), dict):
+                            deep_merge(a[k], v)
+                        else:
+                            a[k] = v
+                deep_merge(cur, data)
                 cur['last_upload'] = datetime.now().isoformat(timespec='seconds')
                 cur['uploader'] = sess['u']
                 set_upload(role, cur)
