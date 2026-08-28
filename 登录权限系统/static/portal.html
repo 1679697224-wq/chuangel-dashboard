@@ -96,7 +96,7 @@ function build(cfg){
   el.innerHTML = '<h3>' + cfg.title + '</h3><div class="hint">' + cfg.hint + '</div>';
   var body = document.createElement('div');
   if(cfg.json){
-    body.innerHTML = '<textarea id="jsonArea" style="width:100%;height:120px;border:1px solid #d6e0ec;border-radius:8px;padding:8px;font-size:12px" placeholder='{"fees":{"扣点租金":126,...},"profit":{...}}'></textarea>';
+    body.innerHTML = '<textarea id="jsonArea" style="width:100%;height:120px;border:1px solid #d6e0ec;border-radius:8px;padding:8px;font-size:12px" placeholder="粘贴 JSON 数据"></textarea>';
   } else if(cfg.rows){
     cfg.rows.forEach(function(r){
       var grp = document.createElement('div');
