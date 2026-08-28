@@ -135,7 +135,7 @@ h1{font-size:31px;line-height:1.2;margin:9px 0 8px;font-weight:800}
 /* ===== 图表面板 ===== */
 .detail-panel{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(320px,.85fr);gap:16px;margin-bottom:16px}
 .detail-panel.single{grid-template-columns:1fr}
-.detail-panel.tri{grid-template-columns:repeat(3,minmax(0,1fr))}
+.detail-panel.tri{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .viz-card,.table-card,.analysis-card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 8px 20px rgba(25,55,90,.06);overflow:hidden}
 .card-head{padding:16px 19px 13px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
 .card-head h3{margin:0;font-size:18px}
@@ -153,8 +153,8 @@ h1{font-size:31px;line-height:1.2;margin:9px 0 8px;font-weight:800}
 .chart-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 /* ===== 环形图 ===== */
 .donut-wrap{padding:22px;display:flex;align-items:center;gap:22px;min-height:250px;flex-wrap:wrap}
-.donut{width:150px;height:150px;border-radius:50%;position:relative;flex:0 0 auto}
-.donut:after{content:attr(data-center);position:absolute;inset:30px;background:var(--card);border-radius:50%;display:grid;place-items:center;font-weight:800;color:#415771;font-size:13px;text-align:center;line-height:1.4}
+.donut{width:200px;height:200px;border-radius:50%;position:relative;flex:0 0 auto}
+.donut:after{content:attr(data-center);position:absolute;inset:38px;background:var(--card);border-radius:50%;display:grid;place-items:center;font-weight:800;color:#415771;font-size:14px;text-align:center;line-height:1.4}
 .legend{display:grid;gap:10px;flex:1;min-width:200px}
 .legend-item{display:grid;grid-template-columns:10px 1fr auto;gap:9px;align-items:center;padding-bottom:9px;border-bottom:1px solid #e5eaf0;font-size:13.5px}
 .legend-item i{width:9px;height:9px;border-radius:50%}
@@ -283,8 +283,8 @@ h1{font-size:31px;line-height:1.2;margin:9px 0 8px;font-weight:800}
 @media(max-width:900px){#personModal .profile-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* 饼图（SVG 环形图） */
-.pie3d-stage{display:flex;align-items:center;justify-content:center;padding:12px 0 2px;margin:6px 0 2px}
-.pie3d-svg{width:212px;height:200px;max-width:100%}
+.pie3d-stage{display:flex;align-items:center;justify-content:center;padding:10px 0 2px;margin:4px 0 2px}
+.pie3d-svg{width:290px;height:274px;max-width:100%}
 @media(max-width:900px){.pie3d-svg{width:180px;height:170px}}
 .pie3d,.pie3d-thick{width:160px;height:160px}.pie3d-thick{margin:-80px 0 0 -80px}}
 </style>
@@ -311,7 +311,7 @@ h1{font-size:31px;line-height:1.2;margin:9px 0 8px;font-weight:800}
         <div class="period" id="periodSwitch">
           <button data-p="day">日</button><button data-p="week">周</button><button class="active" data-p="month">月</button>
         </div>
-        <div class="date-box">数据日期 2026-08-26<small>更新于 24:00 · 真实数据（8/1-26）· 流量/费率待接入</small></div>
+        <div class="date-box">数据日期 2026-08-27<small>更新于 24:00 · 吉客云 API 口径（8/1-27）</small></div>
       </div>
     </header>
     <div class="content">
@@ -335,7 +335,7 @@ h1{font-size:31px;line-height:1.2;margin:9px 0 8px;font-weight:800}
 </div>
 <script>
 /* ================================================================
-   V6 经营看板 · 数据层（真实数据 8/1-26 · 吉客云 + 商务库存分析表 + 平台日报）
+   V6 经营看板 · 数据层（真实数据 8/1-27 · 吉客云 API：销售实付/库存现存量 + 平台日报：舒尔/客流）
    ================================================================ */
 const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 const PERIOD_LABEL = {day:'日度', week:'周度', month:'月度'};
@@ -348,19 +348,19 @@ const mul = v => v * MULT[state.period];
 
 /* ---------- 公司总表数据（演示，口径对齐财务模板） ---------- */
 const COMPANY = {
-  day:{ sales:1092138, target:2347055, gross:47603, gpm:4.36, feeRate:null, cvr:null, aov:4395, d7:null, w0:null, yoy:45.8, onlineShare:56.3, offlineShare:43.7 },
-  week:{ sales:7535752, target:16195890, gross:328461, gpm:4.36, feeRate:null, cvr:null, aov:4395, d7:null, w0:null, yoy:45.8, onlineShare:56.3, offlineShare:43.7 },
-  month:{ sales:31890428, target:68534000, gross:1390009, gpm:4.36, feeRate:null, cvr:null, aov:4395, d7:null, w0:null, yoy:45.8, onlineShare:56.3, offlineShare:43.7 }
+  day:{ sales:1032000, target:2347055, gross:49270, gpm:4.77, feeRate:null, cvr:null, aov:4461, d7:null, w0:null, yoy:47.6, onlineShare:55.2, offlineShare:44.8 },
+  week:{ sales:7120800, target:16195890, gross:339963, gpm:4.77, feeRate:null, cvr:null, aov:4461, d7:null, w0:null, yoy:47.6, onlineShare:55.2, offlineShare:44.8 },
+  month:{ sales:30134400, target:68534000, gross:1438699, gpm:4.77, feeRate:null, cvr:null, aov:4461, d7:null, w0:null, yoy:47.6, onlineShare:55.2, offlineShare:44.8 }
 };
-const TREND7 = { labels:['8-20','8-21','8-22','8-23','8-24','8-25','8-26'], sales:[77.8,69.2,69.4,89.5,126.6,105.9,48.7], gross:[4.76,3.71,2.73,2.4,4.15,37.54,20.69], lastYear:[47.4,35.0,46.3,62.3,55.1,71.3,56.6] };
+const TREND7 = { labels:['8-21','8-22','8-23','8-24','8-25','8-26','8-27'], sales:[14.33,68.37,86.26,131.6,74.29,69.92,90.95], gross:[0.68,3.24,4.09,6.24,3.52,3.31,4.31], lastYear:[34.98,46.34,62.29,55.12,71.34,56.59,0.0] };
 
 /* 三大板块（日度基数，含同比/环比/占比/线上线下） */
 const BUSINESS_ROWS = [
-  { name:'APR（整体）', code:'APR', sales:688842, gross:21345, gpm:3.10, cvr:6.33, feeRate:null, inv:1442.6, d7:null, yoy:72.8, note:'10 家门店 · 含线上线下' },
-  { name:'京东羽通（Apple 电商）', code:'AE', sales:145332, gross:14418, gpm:9.92, cvr:null, feeRate:null, inv:264.0, d7:null, yoy:89.2, note:'苹果电商 · 京东' },
-  { name:'苏宁啟韬（Apple 电商）', code:'AE', sales:220880, gross:5478, gpm:2.48, cvr:null, feeRate:null, inv:103.5, d7:null, yoy:89.2, note:'苹果电商 · 苏宁' },
-  { name:'天猫舒尔', code:'SH', sales:24709, gross:7489, gpm:30.31, cvr:0.88, feeRate:null, inv:137.3, d7:null, yoy:15.5, note:'吉客云自动' },
-  { name:'京东舒尔（平台日报）', code:'SH', sales:25592, gross:0, gpm:null, cvr:3.12, feeRate:null, inv:92.2, d7:null, yoy:null, note:'平台日报 · 手工' }
+  { name:'APR（整体）', code:'APR', sales:635037, gross:0, gpm:3.57, cvr:5.70, feeRate:null, inv:987, d7:null, yoy:120.2, note:'10 家门店 · 含线上线下' },
+  { name:'京东羽通（Apple 电商）', code:'AE', sales:12541, gross:0, gpm:5.07, cvr:null, feeRate:null, inv:232, d7:null, yoy:89.2, note:'苹果电商 · 京东' },
+  { name:'苏宁啟韬（Apple 电商）', code:'AE', sales:22039, gross:0, gpm:2.48, cvr:null, feeRate:null, inv:86, d7:null, yoy:89.2, note:'苹果电商 · 苏宁' },
+  { name:'天猫舒尔', code:'SH', sales:20754, gross:0, gpm:30.31, cvr:0.90, feeRate:null, inv:135, d7:null, yoy:15.5, note:'吉客云 API 实付' },
+  { name:'京东舒尔（平台日报）', code:'SH', sales:26417, gross:0, gpm:null, cvr:3.11, feeRate:null, inv:92, d7:null, yoy:null, note:'平台日报 · 手工' }
 ];
 function bizRowsHtml(){
   const rows = BUSINESS_ROWS;
@@ -375,55 +375,47 @@ function bizRowsHtml(){
   return totalRow + body + totalRow;
 }
 const SEGMENTS = [
-  { name:'APR（整体）', code:'APR', sales:688842, gross:21345, gpm:3.10, cvr:6.33, feeRate:null, inv:1442.6, d7:null, yoy:72.8, onlineShare:30.7, offlineShare:69.3, note:'10 家门店 · 含线上线下整体' },
-  { name:'Apple 电商', code:'AE', sales:367479, gross:18294, gpm:4.98, cvr:null, feeRate:null, inv:367.5, d7:null, yoy:89.2, onlineShare:100, offlineShare:0, note:'啟韬(苏宁)+羽通(京东)·其余 3.7 万未细分',
-    stores:[
-      { name:'苏宁旗舰店（啟韬）', sales:220880, gross:5478, gpm:2.48, cvr:null, feeRate:null, inv:103.5, d7:null, yoy:null, src:'吉客云自动' },
-      { name:'京东旗舰店（羽通）', sales:145332, gross:14418, gpm:9.92, cvr:null, feeRate:null, inv:264.0, d7:null, yoy:null, src:'吉客云自动' }
-    ] },
-  { name:'Shure 电商', code:'SH', sales:24708, gross:7489, gpm:30.31, cvr:null, feeRate:null, inv:229.5, d7:null, yoy:15.5, onlineShare:100, offlineShare:0, note:'天猫72.15(吉客云)+京东74.73(日报)另计',
-    stores:[
-      { name:'天猫旗舰店', sales:24709, gross:7489, gpm:30.31, cvr:null, feeRate:null, inv:137.3, d7:null, yoy:15.5, src:'吉客云自动' },
-      { name:'京东旗舰店（另计）', sales:24726, gross:0, gpm:null, cvr:3.15, feeRate:null, inv:92.2, d7:null, yoy:null, src:'平台日报·手工' }
-    ] },
-  { name:'分销/其他', code:'OTH', sales:11108, gross:475, gpm:4.27, cvr:null, feeRate:null, inv:0, d7:null, yoy:-88.9, onlineShare:0, offlineShare:100, note:'分销 + 天羽乐购' }
+  { name:'APR（整体）', code:'APR', sales:635037, gross:49271, gpm:3.57, cvr:5.70, feeRate:null, inv:987, d7:null, yoy:120.2, onlineShare:27.2, offlineShare:72.8, note:'10 家门店 · 含线上线下整体' },
+  { name:'Apple 电商', code:'AE', sales:360810, gross:0, gpm:5.07, cvr:null, feeRate:null, inv:318, d7:null, yoy:89.2, onlineShare:100, offlineShare:0, note:'啟韬(苏宁)+羽通(京东) 实付口径' },
+  { name:'Shure 电商', code:'SH', sales:20754, gross:0, gpm:30.31, cvr:null, feeRate:null, inv:135, d7:null, yoy:15.5, onlineShare:100, offlineShare:0, note:'天猫(API实付)+京东(日报)另计' },
+  { name:'分销/其他', code:'OTH', sales:15401, gross:0, gpm:0, cvr:null, feeRate:null, inv:0, d7:null, yoy:null, onlineShare:0, offlineShare:100, note:'分销+天羽乐购+3PP' }
 ];
 
 /* 月度目标进度（真实门店数据口径） */
 const GOALS = [
-  { name:'公司整体', target:68534000, done:31890428, time:83.9 },
-  { name:'APR 门店', target:21800000, done:20114197, time:83.9 },
-  { name:'Apple 电商', target:40416000, done:10730377, time:83.9 },
-  { name:'Shure电商', target:4300000, done:721479, time:83.9 }
+  { name:'公司整体', target:68534000, done:30134400, time:87.1 },
+  { name:'APR 门店', target:21800000, done:18543100, time:87.1 },
+  { name:'Apple 电商', target:40416000, done:10535600, time:87.1 },
+  { name:'Shure电商', target:4300000, done:1377388, time:87.1 }
 ];
 
 /* ---------- APR 门店（真实数据快照口径，8月累计 万元） ---------- */
 let APR_STORES = [
-  { name:'徐州彭城店', sales:436.12, task:340, pm:3.46, profit:15.08, flow:20804, conv:4.58, apt:4576, inv:140.6, d7:null, yoy:112.7, rate:128.3, off:315.58, on:120.54 },
-  { name:'无锡店', sales:333.39, task:380, pm:3.03, profit:10.09, flow:12303, conv:6.22, apt:4358, inv:121.8, d7:null, yoy:67.8, rate:87.7, off:234.83, on:98.56 },
-  { name:'连云港店', sales:310.07, task:340, pm:3.27, profit:10.14, flow:8913, conv:8.12, apt:4283, inv:155.3, d7:null, yoy:113.7, rate:91.2, off:203.89, on:106.18 },
-  { name:'太原店', sales:174.34, task:210, pm:2.24, profit:3.90, flow:3584, conv:11.44, apt:4252, inv:83.5, d7:null, yoy:79.1, rate:83.0, off:96.14, on:78.21 },
-  { name:'宿州店', sales:175.69, task:180, pm:3.29, profit:5.78, flow:6455, conv:6.60, apt:4124, inv:97.3, d7:null, yoy:32.1, rate:97.6, off:130.17, on:45.52 },
-  { name:'镇江店', sales:150.74, task:240, pm:4.42, profit:6.66, flow:8248, conv:4.84, apt:3778, inv:78.7, d7:null, yoy:23.6, rate:62.8, off:109.37, on:41.37 },
-  { name:'运城店', sales:155.45, task:170, pm:3.14, profit:4.89, flow:6528, conv:6.10, apt:3906, inv:95.9, d7:null, yoy:157.9, rate:91.4, off:108.30, on:47.16 },
-  { name:'日照店', sales:118.02, task:80, pm:1.37, profit:1.62, flow:2545, conv:10.37, apt:4471, inv:79.1, d7:null, yoy:86.2, rate:147.5, off:84.67, on:33.35 },
-  { name:'徐州宝龙店', sales:73.43, task:100, pm:2.82, profit:2.07, flow:2024, conv:9.68, apt:3746, inv:77.2, d7:null, yoy:17.4, rate:73.4, off:48.37, on:25.06 },
-  { name:'苏家屯店', sales:84.17, task:140, pm:2.49, profit:2.10, flow:3510, conv:5.95, apt:4027, inv:92.7, d7:null, yoy:-5.1, rate:60.1, off:62.16, on:22.00 }
+  { name:'徐州彭城店', sales:394.49, task:340, pm:3.54, profit:13.96, flow:21321, conv:4.11, apt:4576, inv:0, d7:null, yoy:120.2, rate:116.0, off:291.37, on:103.12 },
+  { name:'无锡店', sales:300.99, task:380, pm:3.28, profit:9.87, flow:12685, conv:5.53, apt:4358, inv:0, d7:null, yoy:74.8, rate:79.2, off:226.52, on:74.47 },
+  { name:'连云港店', sales:299.59, task:340, pm:3.29, profit:9.86, flow:9285, conv:7.52, apt:4283, inv:0, d7:null, yoy:132.6, rate:88.1, off:206.31, on:93.28 },
+  { name:'太原店', sales:156.93, task:210, pm:2.32, profit:3.64, flow:3709, conv:9.87, apt:4252, inv:0, d7:null, yoy:86.1, rate:74.7, off:92.71, on:64.21 },
+  { name:'宿州店', sales:156.40, task:180, pm:3.21, profit:5.02, flow:6701, conv:5.73, apt:4124, inv:0, d7:null, yoy:46.0, rate:86.9, off:124.50, on:31.91 },
+  { name:'镇江店', sales:133.85, task:240, pm:4.50, profit:6.02, flow:8617, conv:4.34, apt:3778, inv:0, d7:null, yoy:29.3, rate:55.8, off:104.88, on:28.97 },
+  { name:'运城店', sales:157.95, task:170, pm:2.95, profit:4.66, flow:6666, conv:5.70, apt:3906, inv:0, d7:null, yoy:185.8, rate:92.9, off:115.77, on:42.18 },
+  { name:'日照店', sales:115.24, task:80, pm:1.34, profit:1.54, flow:2610, conv:9.73, apt:4471, inv:0, d7:null, yoy:103.3, rate:144.1, off:85.50, on:29.74 },
+  { name:'徐州宝龙店', sales:68.72, task:100, pm:2.91, profit:2.00, flow:2118, conv:8.55, apt:3746, inv:0, d7:null, yoy:25.3, rate:68.7, off:45.26, on:23.46 },
+  { name:'苏家屯店', sales:70.14, task:140, pm:2.44, profit:1.71, flow:3652, conv:5.23, apt:4027, inv:0, d7:null, yoy:7.4, rate:50.1, off:57.97, on:12.17 },
 ];
-let APR_TOTAL = { sales: 2011.4, task: 2180, profit: 62.33, flow: 74914, conv: 6.33, pm: 3.10, rate: 92.3, forecast_rate: null };
+let APR_TOTAL = { sales: 1854.31, task: 2180, profit: 66.21, flow: 77364, conv: 5.70, pm: 3.57, rate: 85.1, forecast_rate: null };
 
 /* 销售员真实排名（TOP） */
 let SALESPERSONS = [
-  {rank:1,name:'王畅',store:'徐州彭城店',pos:'店员',sales:161.98,task:90,rate:180.0,offline:118.46,online:43.52,pm:3.91,host:280,pp:210,acs:null,profit:6.33,profit_rank:1,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:2,name:'朱正波',store:'徐州宝龙店',pos:'店员',sales:80.66,task:75,rate:107.6,offline:62.88,online:17.79,pm:5.16,host:144,pp:107,acs:null,profit:4.16,profit_rank:2,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:3,name:'鲁健',store:'连云港店',pos:'店员',sales:131.78,task:150,rate:87.9,offline:90.05,online:41.73,pm:3.09,host:222,pp:180,acs:null,profit:4.07,profit_rank:3,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:4,name:'徐婷婷',store:'连云港店',pos:'店员',sales:122.57,task:150,rate:81.7,offline:74.79,online:47.77,pm:3.21,host:202,pp:147,acs:null,profit:3.93,profit_rank:4,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:5,name:'袁兆行',store:'无锡店',pos:'店员',sales:109.51,task:95,rate:115.3,offline:79.73,online:29.78,pm:2.90,host:175,pp:118,acs:null,profit:3.17,profit_rank:5,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:6,name:'蒋玉玄',store:'运城店',pos:'店员',sales:83.55,task:90,rate:92.8,offline:57.36,online:26.20,pm:3.42,host:148,pp:91,acs:null,profit:2.86,profit_rank:6,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:7,name:'白国良',store:'无锡店',pos:'店员',sales:81.60,task:95,rate:85.9,offline:52.78,online:28.82,pm:3.49,host:144,pp:113,acs:null,profit:2.85,profit_rank:7,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:8,name:'杨明',store:'无锡店',pos:'店员',sales:86.84,task:95,rate:91.4,offline:64.91,online:21.93,pm:2.87,host:156,pp:109,acs:null,profit:2.49,profit_rank:8,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:9,name:'田国伟',store:'太原店',pos:'店员',sales:84.44,task:105,rate:80.4,offline:43.76,online:40.68,pm:2.45,host:134,pp:92,acs:null,profit:2.07,profit_rank:9,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
-  {rank:10,name:'查越',store:'太原店',pos:'店员',sales:89.90,task:105,rate:85.6,offline:52.37,online:37.53,pm:2.05,host:144,pp:100,acs:null,profit:1.84,profit_rank:10,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null}
+  {rank:1,name:'王畅',store:'徐州彭城店',pos:'店员',sales:147.77,task:90,rate:164.2,offline:108.60,online:39.17,pm:3.91,host:280,pp:210,acs:null,profit:6.33,profit_rank:1,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:2,name:'鲁健',store:'连云港店',pos:'店员',sales:130.97,task:150,rate:87.3,offline:90.14,online:40.82,pm:3.09,host:222,pp:180,acs:null,profit:4.07,profit_rank:2,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:3,name:'徐婷婷',store:'连云港店',pos:'店员',sales:107.46,task:150,rate:71.6,offline:69.14,online:38.32,pm:3.21,host:202,pp:147,acs:null,profit:3.93,profit_rank:3,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:4,name:'袁兆行',store:'无锡店',pos:'店员',sales:105.53,task:95,rate:111.1,offline:77.48,online:28.05,pm:2.90,host:175,pp:118,acs:null,profit:3.17,profit_rank:4,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:5,name:'蒋玉玄',store:'运城店',pos:'店员',sales:84.06,task:90,rate:93.4,offline:61.69,online:22.37,pm:3.42,host:148,pp:91,acs:null,profit:2.86,profit_rank:5,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:6,name:'杨明',store:'无锡店',pos:'店员',sales:80.23,task:95,rate:84.5,offline:64.39,online:15.84,pm:2.87,host:156,pp:109,acs:null,profit:2.49,profit_rank:6,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:7,name:'查越',store:'太原店',pos:'店员',sales:79.31,task:105,rate:75.5,offline:49.68,online:29.63,pm:2.05,host:144,pp:100,acs:null,profit:1.84,profit_rank:7,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:8,name:'田国伟',store:'太原店',pos:'店员',sales:77.62,task:105,rate:73.9,offline:43.03,online:34.58,pm:2.45,host:134,pp:92,acs:null,profit:2.07,profit_rank:8,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:9,name:'朱正波',store:'徐州宝龙店',pos:'店员',sales:76.26,task:75,rate:101.7,offline:59.44,online:16.82,pm:5.16,host:144,pp:107,acs:null,profit:4.16,profit_rank:9,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null},
+  {rank:10,name:'廉梦鸽',store:'运城店',pos:'店员',sales:73.89,task:null,rate:null,offline:54.08,online:19.80,pm:null,host:null,pp:null,acs:null,profit:null,profit_rank:null,pp_rate:null,pp_sales:null,offline_profit_rate:null,high_sell:null,pp_amount_pct:null}
 ];
 
 /* 品类销售结构（四大主机 + 3PP，真实口径） */
@@ -501,8 +493,8 @@ const APR_FEES = [ { name:'门店租金', v:96 }, { name:'线上扣点', v:12 },
 
 /* ---------- Apple 电商 ---------- */
 const AE_STORES = [
-  { name:'苏宁旗舰店（啟韬）', sales:220880, gpm:2.48, gross:5478, uv:null, cvr:null, refund:null, d7:null, yoy:null, task:901.47, rate:71.6, src:'吉客云自动' },
-  { name:'京东旗舰店（羽通）', sales:145332, gpm:9.92, gross:14418, uv:null, cvr:null, refund:null, d7:null, yoy:null, task:3140.13, rate:13.5, src:'吉客云自动' }
+  { name:'苏宁旗舰店（啟韬）', sales:22039, gpm:2.48, gross:0, uv:null, cvr:null, refund:null, d7:null, yoy:null, task:901.47, rate:71.4, src:'吉客云 API' },
+  { name:'京东旗舰店（羽通）', sales:12541, gpm:9.92, gross:0, uv:null, cvr:null, refund:null, d7:null, yoy:null, task:3140.13, rate:11.7, src:'吉客云 API' }
 ];
 const AE_FUNNEL = [
   { name:'访客数', v:0, w:100, r:'待接入' },
@@ -568,8 +560,8 @@ const AE_ORDER_TIME = {
 
 /* ---------- Shure电商 ---------- */
 const SH_STORES = [
-  { name:'天猫旗舰店', sales:24709, gpm:30.31, gross:7489, uv:90841, cvr:0.88, refund:null, d7:null, yoy:15.5, task:220, rate:32.8, src:'吉客云自动' },
-  { name:'京东旗舰店', sales:25592, gpm:null, gross:0, uv:25117, cvr:3.12, refund:null, d7:null, yoy:null, task:210, rate:35.6, orders:783, aov:954, src:'平台日报·手工' }
+  { name:'天猫旗舰店', sales:20754, gpm:30.31, gross:0, uv:92331, cvr:0.90, refund:null, d7:null, yoy:15.5, task:220, rate:27.5, src:'吉客云 API' },
+  { name:'京东旗舰店', sales:26417, gpm:null, gross:0, uv:26074, cvr:3.11, refund:null, d7:null, yoy:null, task:210, rate:36.7, orders:812, aov:950, src:'平台日报·手工' }
 ];
 const SH_CONTENT = [
   { k:'图文发布数', v:'本周 12 篇' }, { k:'短视频发布数', v:'本周 8 条' },
@@ -586,8 +578,8 @@ const SH_OTHER = [
 
 /* ---------- 商务库存分析表（真实口径，来源：库存分析表_260826.xlsx） ---------- */
 let INV_BIZ = {
-  total_amount: 2108.85,           // 库存总额（万元，总览口径含在途 · 商务表260826）
-  total_skus: 6243,                // 库存明细行数
+  total_amount: 1925.77,           // 库存总额（万元，吉客云 API 现存量 8/28）
+  total_skus: 74286,               // 现存量 SKU 行数
   risk_pct: 38.1,                  // 90 天以上风险占比（总览渠道库龄口径）
   severe_amount: 123.98,           // 360 天以上金额（万元）
   severe_count: 904,               // 360 天以上 SKU 数
@@ -645,11 +637,11 @@ const FEES = [];   // 费用数据待财务 8 月利润表接入
 
 /* ---------- 预警 ---------- */
 const ALERTS = [
-  { level:'red', title:'Apple 电商达成 26.5% 为主要缺口', text:'8/1-26 实际 1,073 万 vs 目标 4,042 万（财务表），发货在途 567 万、待审核 69 万，需与运营核对目标口径与发货时效。' },
-  { level:'red', title:'苏家屯店达成 60.1% 全系最低', text:'84.17 万/140 万，同比 -5.1% 为唯一负增长门店，需专项诊断（8 月冲刺方案已排期）。' },
-  { level:'yellow', title:'90 天以上库存占比 38.1%（706 万）', text:'集中在电商-羽通（79.3%）与舒尔（45.6%）；360 天以上 904 SKU/124 万需处置。' },
-  { level:'yellow', title:'待审核订单 75 万', text:'主要来自 Apple 电商（69 万），需关注审核时效与退款风险。' },
-  { level:'green', title:'日照店达成 147.5% 领先', text:'118.02 万/80 万，客单价 ¥4,471 全系第二，可提炼大单经验复制。' }
+  { level:'red', title:'Apple 电商达成 26.1% 为主要缺口', text:'8/1-27 实际 1,053.6 万（吉客云 API 实付）vs 目标 4,042 万（财务表），在途/待审核以运营系统为准，需与运营核对目标口径与发货时效。' },
+  { level:'red', title:'苏家屯店达成 50.1% 全系最低', text:'70.14 万/140 万，同比 +7.4%，需专项诊断冲量（8 月冲刺方案已排期）。' },
+  { level:'yellow', title:'90 天以上库存占比 38.1%（约 734 万）', text:'库龄为商务表口径（API 现存量 1,925.8 万）；集中在电商-羽通（79.3%）与舒尔（45.6%）；360 天以上 904 SKU/124 万需处置。' },
+  { level:'yellow', title:'在途/待审核订单以运营系统为准', text:'主要来自 Apple 电商，需关注审核时效与退款风险。' },
+  { level:'green', title:'日照店达成 144.1% 领先', text:'115.24 万/80 万，客单价 ¥4,471 全系第二，可提炼大单经验复制。' }
 ];
 
 /* ================================================================
@@ -827,7 +819,7 @@ function goalCard(){
       <div class="progress"><i class="${cls}" style="width:${Math.min(p,100).toFixed(1)}%"></i><span class="p-mark" style="left:${g.time}%"></span></div>
       <span class="g-val">达成 ${p.toFixed(1)}% / 时间 ${g.time}%（${p>=g.time?'领先':'落后'} ${Math.abs(p-g.time).toFixed(1)}pp）</span></div>`;
   }).join('');
-  return `<div class="goal-card"><h3>月度目标达成 vs 时间进度（8 月）<span class="section-tag">黑色刻度线 = 时间进度 83.9%（8/1-26）</span></h3>${rows}
+  return `<div class="goal-card"><h3>月度目标达成 vs 时间进度（8 月）<span class="section-tag">黑色刻度线 = 时间进度 87.1%（8/1-27）</span></h3>${rows}
     <p style="margin:12px 0 0;color:#8a9aab;font-size:12.5px">判读规则：达成率 ≥ 时间进度 +2pp 为绿（超额）；±3pp 内为黄（盯紧）；落后 &gt;3pp 为红（需当日干预）。</p></div>`;
 }
 
@@ -862,10 +854,10 @@ function secOverviewSales(){
     return tableCard('业务板块对比（'+pl+'）', feeHead, ['业务板块','销售额','毛利额','毛利率','转化率', ...(isMonth()?['费率']:[]), '库存','占比','环比','同比'], bizRowsHtml());
   })()}
     </div>
-    ${aiTip('8/1-26 已支付销售额 <b>¥3,189 万</b>（分摊后口径），同比 +45.8%；APR 板块贡献 63.1% 为增长主引擎；Apple 电商分店：啟韬 71.6% / 羽通 13.5%，目标口径需运营确认；京东舒尔 74.73 万（平台日报）另计，含入后公司约 3,264 万。')}
+    ${aiTip('8/1-27 销售额 <b>¥3,013 万</b>（吉客云 API 实付口径），同比 +47.6%；APR 贡献 61.5%；京东舒尔 77.14 万（日报）另计。')}
     ${analysisCard('销售指标', {
-      concl:`8/1-26 已支付销售额 <b>${fmtY(mul(COMPANY.day.sales))}</b>（分摊后、含在途），目标达成 <b>${rate.toFixed(1)}%</b>，毛利率 ${pct(COMPANY.day.gpm)}。APR 板块贡献 63.1%、同比 +72.8%，为增长主引擎；Apple 电商在途订单占比高（567 万）。`,
-      anom:'Apple 电商达成 26.5%（目标 4,042 万/财务表，需运营确认口径）；苏家屯店达成 60.1% 全系最低；90 天以上库存占比 38.1%（706 万）；待审核订单 75 万。',
+      concl:`8/1-27 已支付销售额 <b>${fmtY(mul(COMPANY.day.sales))}</b>（吉客云 API 实付），目标达成 <b>${rate.toFixed(1)}%</b>，毛利率 ${pct(COMPANY.day.gpm)}（后台明细账口径）。APR 板块贡献 61.5%、同比 +120.2%，为增长主引擎；Apple 电商达成 26.1% 为主要缺口。`,
+      anom:'Apple 电商达成 26.1%（1,053.6 万/目标 4,042 万，财务表口径，需运营确认）；苏家屯店达成 50.1% 全系最低；90 天以上库存占比 38.1%（约 734 万，库龄商务表口径）；在途/待审核以运营系统为准。',
       act:'① 与运营核对 Apple 电商目标与国补/在途口径；② 苏家屯店专项诊断（转化专项）；③ 90 天以上库存纳入处置清单；④ 明早接入电商流量/转化与线下客流接口。'
     })}`;
 }
@@ -892,9 +884,9 @@ function secChannelCompare(){
       ${barsChart(TREND7.labels, TREND7.sales, TREND7.gross, '销售额', '毛利额', '万元')}
       ${tableCard('渠道对比（'+pl+'）','分店口径：APR整体+苹果2店+舒尔2店；含京东舒尔(平台日报)',['业务板块','销售额','毛利额','毛利率','转化率','费率','库存','占比','环比','同比'],segRows)}
     </div>
-    ${aiTip('渠道结构：APR 整体贡献 63.1% 销售额、同比 +72.8% 显著领先；Apple 电商 +89.2%（低基数）；Shure 天猫 +15.5%。费率/转化待接入。')}
+    ${aiTip('渠道结构：APR 整体贡献 61.5% 销售额、同比 +120.2% 显著领先；Apple 电商 +89.2%（低基数）；Shure 天猫 +15.5%。费率/转化待接入。')}
     ${analysisCard('渠道对比', {
-      concl:`${pl}总销售额 <b>${fmtY(mul(COMPANY.day.sales))}</b>，目标达成 <b>${rate.toFixed(1)}%</b>，毛利率 ${pct(c.gpm)}。APR 整体为增长主引擎（占比 63.1%、同比 +72.8%）。`,
+      concl:`${pl}总销售额 <b>${fmtY(mul(COMPANY.day.sales))}</b>，目标达成 <b>${rate.toFixed(1)}%</b>，毛利率 ${pct(c.gpm)}。APR 整体为增长主引擎（占比 61.5%、同比 +120.2%）。`,
       anom:'Apple 电商达成 26.5% 为主要缺口；苏家屯达成 60.1% 全系最低；90 天以上库存 38.1%。',
       act:'① Apple 电商在途发货与目标口径核查；② 苏家屯转化专项；③ 90 天以上库存处置清单。'
     })}`;
@@ -907,11 +899,10 @@ function secChannelStructure(){
   const on = c.onlineShare, off = c.offlineShare;
   const segShare = SEGMENTS.map(s=>({ name:s.name, pct:s.sales/COMPANY.day.sales*100, color: s.code==='APR'?'#2f69c2':s.code==='AE'?'#c79118':s.code==='SH'?'#188b70':'#9aa8b8' }));
   const vsItems = [
-    { k:'销售额 同比（YoY）', v:'+'+c.yoy+'%', d:'吉客云 API 实付口径（8/1-26）', cls:'up' },
+    { k:'销售额 同比（YoY）', v:'+'+c.yoy+'%', d:'吉客云 API 实付口径（8/1-27）', cls:'up' },
     { k:'销售额 环比（WoW）', v:c.w0!=null?(c.w0>=0?'+':'')+c.w0+'%':'待接入', d:'上周同期对比', cls:c.w0!=null?(c.w0>=0?'up':'down'):'' },
     { k:'线上销售占比', v:pct(on), d:'线下 '+pct(off), cls:'up' },
     { k:'线下销售占比', v:pct(off), d:'线上 '+pct(on), cls:'' },
-    { k:'综合费率 vs 预算', v:fee(c.feeRate), d:isMonth()?'财务费率数据待接入':monthlyNote, cls:'' }
   ];
   const onoffRows = `
     <tr class="grp"><td colspan="6">线上 / 线下结构（${pl}）</td></tr>
@@ -928,10 +919,10 @@ function secChannelStructure(){
       ${tableCard('线上线下经营对比（'+pl+'）','销售额 / 占比 / 转化 / 流量 / 环比',['渠道','销售额','占比','转化率','流量','环比'],onoffRows)}
       ${barsChart(TREND7.labels, TREND7.sales, TREND7.lastYear, '今年', '去年', '万元')}
     </div>
-    ${aiTip('业务结构：APR 贡献 63.1% 销售额（线下 43.7%/线上 56.3%）；毛利率分化：Shure 30.31% &gt; Apple 电商 4.98% &gt; APR 3.10%；转化/费率待接入。')}
+    ${aiTip('业务结构：APR 贡献 61.5% 销售额（线下 44.8%/线上 55.2%）；毛利率分化：Shure 30.31% &gt; Apple 电商 5.07% &gt; APR 3.57%；转化/费率待接入。')}
     ${analysisCard('占比与趋势', {
       concl:`${pl}销售额同比 +${c.yoy}%、环比待接入；线下占 ${pct(off)}、线上占 ${pct(on)}。`,
-      anom:'线上综合转化率待接入（明早平台导出）；APR 进店客流 74,914 人次/转化 6.33%（镇江仅15天重开）；苏家屯同比 -5.1% 为唯一负增长门店。',
+      anom:'线上综合转化率待接入（明早平台导出）；APR 进店客流 77,364 人次/转化 5.70%（镇江仅15天重开）；苏家屯达成 50.1% 全系最低（同比 +7.4%）。',
       act:'① 电商流量/转化明早接入；② 线下客流接口接入后补门店转化；③ 苏家屯负增长专项诊断。'
     })}`;
 }
@@ -965,7 +956,7 @@ function secOverviewAnalysis(){
     return { name:s.name, pct:share, color: s.code==='APR'?'#2f69c2':s.code==='AE'?'#c79118':s.code==='SH'?'#188b70':'#9aa8b8' };
   });
   const vsItems = [
-    { k:'销售额 同比（YoY）', v:'+'+c.yoy+'%', d:'吉客云 API 实付口径（8/1-26）', cls:'up' },
+    { k:'销售额 同比（YoY）', v:'+'+c.yoy+'%', d:'吉客云 API 实付口径（8/1-27）', cls:'up' },
     { k:'销售额 环比（WoW）', v:c.w0!=null?(c.w0>=0?'+':'')+c.w0+'%':'待接入', d:'上周同期对比', cls:c.w0!=null?(c.w0>=0?'up':'down'):'' },
     { k:'线上销售占比', v:pct(on), d:'线下 '+pct(off), cls:'up' },
     { k:'线下销售占比', v:pct(off), d:'线上 '+pct(on), cls:'' },
@@ -991,10 +982,10 @@ function secOverviewAnalysis(){
       ${tableCard('线上线下经营对比（'+pl+'）','销售额 / 占比 / 转化 / 流量 / 环比',['渠道','销售额','占比','转化率','流量','环比'],onoffRows)}
       ${tableCard('APR 同行对比（经销商平均数，月度）','本店 vs 经销商平均：8 项核心指标',['指标','本店','经销商平均','差异'],peerRows)}
     </div>
-    ${aiTip('业务结构：APR 贡献 63.1% 销售额（线下 43.7%/线上 56.3%）；毛利率分化：Shure 30.31% &gt; Apple 电商 4.98% &gt; APR 3.10%；转化/费率待接入。')}
+    ${aiTip('业务结构：APR 贡献 61.5% 销售额（线下 44.8%/线上 55.2%）；毛利率分化：Shure 30.31% &gt; Apple 电商 5.07% &gt; APR 3.57%；转化/费率待接入。')}
     ${analysisCard('销售分析', {
-      concl:`${pl}销售额同比 +${c.yoy}%、环比待接入；线下占 ${pct(off)}、线上占 ${pct(on)}。APR 毛利率 3.10%（线下 4.12%/线上 O2O 0.80%）。`,
-      anom:'线上综合转化率待接入（明早平台导出）；APR 进店客流 74,914 人次/转化 6.33%（镇江仅15天重开）；苏家屯同比 -5.1% 为唯一负增长门店。',
+      concl:`${pl}销售额同比 +${c.yoy}%、环比待接入；线下占 ${pct(off)}、线上占 ${pct(on)}。APR 毛利率 3.57%（线下 4.12%/线上 O2O 0.80%）。`,
+      anom:'线上综合转化率待接入（明早平台导出）；APR 进店客流 77,364 人次/转化 5.70%（镇江仅15天重开）；苏家屯达成 50.1% 全系最低（同比 +7.4%）。',
       act:'① 电商流量/转化明早接入；② 线下客流接口接入后补门店转化；③ 苏家屯负增长专项诊断。'
     })}`;
 }
@@ -1097,10 +1088,10 @@ function secAPRSales(){
     <div class="detail-panel single">
       ${tableCard('门店经营对比（'+PERIOD_LABEL[state.period]+'）','销售 / 达成 / 毛利 / 客流 / 转化 / 客单 / 环比 / 同比',['门店','月销售','达成率','毛利额','毛利率','客流','转化率','客单价','环比','同比'],rows)}
     </div>
-    ${aiTip('10 店分化明显：日照达成 147.5%、彭城 128.3% 领先；苏家屯 60.1% 垫底且同比 -5.1%。进店客流合计 74,914 人次/转化 6.33%，太原 11.4% 最高、彭城 4.6% 偏低，转化提升空间大。')}
+    ${aiTip('10 店分化明显：日照达成 144.1%、彭城 116.0% 领先；苏家屯 50.1% 垫底（同比 +7.4%）。进店客流合计 77,364 人次/转化 5.70%，太原 9.87% 最高、彭城 4.11% 偏低，转化提升空间大。')}
     ${analysisCard('销售指标', {
-      concl:'APR 板块 8/1-26 累计销售 ¥'+totalSales.toFixed(1)+' 万、目标达成 '+pct(APR_TOTAL.rate)+'；进店客流 74,914 人次、转化率 '+pct(APR_TOTAL.conv)+'；日照（147.5%）与彭城（128.3%）达成领先。',
-      anom:'苏家屯达成 60.1% 且同比 -5.1% 为唯一负增长；镇江 62.8%、宝龙 73.4% 偏低；无锡店目标 ¥380 万为全系最高，达成 87.7%。',
+      concl:'APR 板块 8/1-27 累计销售 ¥'+totalSales.toFixed(1)+' 万（吉客云 API 实付）、目标达成 '+pct(APR_TOTAL.rate)+'；进店客流 77,364 人次、转化率 '+pct(APR_TOTAL.conv)+'；日照（144.1%）与彭城（116.0%）达成领先。',
+      anom:'苏家屯达成 50.1% 且为全系最低（同比 +7.4%）；镇江 55.8%、宝龙 68.7% 偏低；无锡店目标 ¥380 万为全系最高，达成 79.2%。',
       act:'① 苏家屯专项诊断（8/18 会议方案落地）；② 镇江开业红利期冲量至 8/31；③ 无锡旗舰店产能提升复盘；④ 日照大单经验（客单 ¥4,471）向全系复制。'
     })}`;
 }
@@ -1146,20 +1137,20 @@ function secAPRAnalysis(){
         APR_STORES.slice(0,6).map(s=>`<tr><td class="t-name">${esc(s.name)}</td><td>¥${s.off.toFixed(1)}万</td><td>¥${s.on.toFixed(1)}万</td><td>${(s.off/(s.off+s.on)*100).toFixed(1)}%</td></tr>`).join(''))}
     </div>
     ${analysisCard('销售分析', {
-      concl:'iPhone 占 APR 主机销售 77.7%（¥1,562.8 万）为绝对主力；主机合计 95.6%（iPhone+Mac+iPad+Watch）；APR 整体毛利率 3.10%（分摊后-成本直接毛利）。',
-      anom:'APR 毛利率 3.10% 处于低位：线下 4.12% / 线上 O2O 仅 0.80%；3PP/配件结构数据待补全。',
+      concl:'iPhone 占 APR 主机销售 77.7%（¥1,562.8 万）为绝对主力；主机合计 95.6%（iPhone+Mac+iPad+Watch）；APR 整体毛利率 3.57%（分摊后-成本直接毛利）。',
+      anom:'APR 毛利率 3.57% 处于低位：线下 4.12% / 线上 O2O 仅 0.80%；3PP/配件结构数据待补全。',
       act:'① 优化线上 O2O 毛利率（扣点与补贴结构）；② 3PP 配件销售按授权进度推进；③ 品类结构每日随明细账自动更新。'
     })}`;
 }
 function secAPRSalesperson(){
-  const rows = SALESPERSONS.map(p=>`<tr><td>${p.rank}</td><td class="t-name"><a class="person-link" onclick="showPersonProfile('${esc(p.name)}')">${esc(p.name)}</a></td><td>${esc(p.store)}</td><td>¥${p.sales.toFixed(1)}万</td><td>¥${p.task}万</td><td><span class="${p.rate>=50?'pos':p.rate>=30?'':'neg'}">${p.rate.toFixed(1)}%</span></td><td>¥${p.offline.toFixed(1)}万</td><td>¥${p.online.toFixed(1)}万</td><td>${p.pm.toFixed(1)}%</td><td>${p.host}</td><td>${p.pp}</td><td>${p.acs!=null?p.acs+'%':'待接入'}</td></tr>`).join('');
+  const rows = SALESPERSONS.map(p=>`<tr><td>${p.rank}</td><td class="t-name"><a class="person-link" onclick="showPersonProfile('${esc(p.name)}')">${esc(p.name)}</a></td><td>${esc(p.store)}</td><td>¥${p.sales.toFixed(1)}万</td><td>${p.task!=null?'¥'+p.task+'万':'待接入'}</td><td>${p.rate!=null?`<span class="${p.rate>=50?'pos':p.rate>=30?'':'neg'}">${p.rate.toFixed(1)}%</span>`:'待接入'}</td><td>¥${p.offline.toFixed(1)}万</td><td>¥${p.online.toFixed(1)}万</td><td>${p.pm!=null?p.pm.toFixed(1)+'%':'待接入'}</td><td>${p.host!=null?p.host:'待接入'}</td><td>${p.pp!=null?p.pp:'待接入'}</td><td>${p.acs!=null?p.acs+'%':'待接入'}</td></tr>`).join('');
   return `<div class="detail-panel single">
     ${tableCard('销售员月度排名（真实口径·TOP10）','销售额 / 达成 / 线上线下 / 毛利 / 主机 / 配件 / ACS · 点击姓名查看个人档案',['排名','姓名','门店','销售额','任务','达成率','线下','线上','毛利率','主机台数','配件单数','ACS率'],rows)}
   </div>
-  ${aiTip('TOP 销售员：王畅 ¥162 万/达成 180% 居首；鲁健 ¥132 万、徐婷婷 ¥123 万紧随；高达成者多为线上占比高+主机台数多。')}
+  ${aiTip('TOP 销售员（吉客云 API 实付 8/1-27）：王畅 ¥147.8 万/达成 164.2% 居首；鲁健 ¥131 万、徐婷婷 ¥107.5 万紧随；线上占比田国伟 44.5% 最高、查越 37.4% 次之。')}
   ${analysisCard('销售员排名', {
-    concl:'王畅以 ¥162 万居首（达成 180%）；朱正波 ¥80.7 万/达成 107.6%；TOP5 中连云港/无锡各占 2 席。',
-    anom:'查越达成 85.6% 但毛利率 2.05% 偏低；田国伟达成 80.4% 低于 90 万+ 任务；ACS/配件金额等个人维度待接入。',
+    concl:'王畅以 ¥147.8 万居首（达成 164.2%）；袁兆行 ¥105.5 万/达成 111.1% 次之；TOP5 中连云港/无锡各占 2 席。',
+    anom:'廉梦鸽（运城）新进前十、任务/毛利等维度待接入；查越达成 75.5% 且毛利率 2.05% 偏低；田国伟达成 73.9% 低于任务；ACS/配件金额等个人维度待接入。',
     act:'① 线上打法（企微/私域）标准化全员培训；② 高任务低达成人员（田国伟等）一对一辅导；③ 明早补个人客流/转化维度。'
   })}`;
 }
@@ -1195,16 +1186,16 @@ function showPersonProfile(name){
     </div>
     <div class="profile-grid">
       <div class="p-k"><span>销售额</span><b>¥${p.sales.toFixed(1)}万</b></div>
-      <div class="p-k"><span>销售任务</span><b>¥${p.task}万</b></div>
-      <div class="p-k"><span>达成率</span><b class="${p.rate>=50?'pos':p.rate>=30?'':'neg'}">${p.rate.toFixed(1)}%</b></div>
+      <div class="p-k"><span>销售任务</span><b>${p.task!=null?'¥'+p.task+'万':'待接入'}</b></div>
+      <div class="p-k"><span>达成率</span><b>${p.rate!=null?p.rate.toFixed(1)+'%':'待接入'}</b></div>
       <div class="p-k"><span>线下销售</span><b>¥${p.offline.toFixed(1)}万</b></div>
       <div class="p-k"><span>线上销售</span><b>¥${p.online.toFixed(1)}万</b></div>
       <div class="p-k"><span>线上占比</span><b>${onPct.toFixed(1)}%</b></div>
       <div class="p-k"><span>毛利额</span><b>¥${p.profit!=null?p.profit.toFixed(1):'—'}万</b></div>
-      <div class="p-k"><span>毛利率</span><b>${p.pm.toFixed(1)}%</b></div>
+      <div class="p-k"><span>毛利率</span><b>${p.pm!=null?p.pm.toFixed(1)+'%':'待接入'}</b></div>
       <div class="p-k"><span>毛利排名</span><b>#${p.profit_rank!=null?p.profit_rank:'—'}</b></div>
-      <div class="p-k"><span>主机台数</span><b>${p.host} 台</b></div>
-      <div class="p-k"><span>配件单数</span><b>${p.pp} 单</b></div>
+      <div class="p-k"><span>主机台数</span><b>${p.host!=null?p.host+' 台':'待接入'}</b></div>
+      <div class="p-k"><span>配件单数</span><b>${p.pp!=null?p.pp+' 单':'待接入'}</b></div>
       <div class="p-k"><span>配件金额占比</span><b>${p.pp_amount_pct!=null?p.pp_amount_pct.toFixed(1)+'%':'—'}</b></div>
       <div class="p-k"><span>配件销售金额</span><b>¥${p.pp_sales!=null?p.pp_sales.toFixed(1):'—'}万</b></div>
       <div class="p-k"><span>ACS 开口率</span><b>${p.acs!=null?p.acs+'%':'待接入'}</b></div>
@@ -1331,11 +1322,11 @@ function secAPROther(){
 /* ---- Apple 电商 · 销售指标 ---- */
 function secAESales(){
   const total = AE_STORES.reduce((a,b)=>a+b.sales,0);
-  const k1 = kpiCard('销售总额',fmtY(mul(total)),null,'2 家店铺合计（啟韬+羽通）· 分摊后口径（含在途）','red');
+  const k1 = kpiCard('销售总额',fmtY(mul(total)),null,'2 家店铺合计（啟韬+羽通）· 吉客云 API 实付','red');
   const k2 = kpiCard('访客数','待接入',null,'明早平台导出后接入','gold');
   const k3 = kpiCard('支付转化率','待接入',null,'明早平台导出后接入','');
-  const k4 = kpiCard('客单价','¥6,923',null,'分摊后金额/订单数','');
-  const k5 = kpiCard('毛利率',pct(4.98),null,'毛利额 '+fmtWan(mul(AE_STORES.reduce((a,b)=>a+b.gross,0))),'');
+  const k4 = kpiCard('客单价','¥7,226',null,'吉客云 API 实付/订单数','');
+  const k5 = kpiCard('毛利率',pct(5.07),null,'后台明细账口径','');
   const k6 = kpiCard('退款率','待接入',null,'平台数据待接入','red');
   const rows = AE_STORES.map(s=>`<tr><td class="t-name">${esc(s.name)}<br><small style="color:#8a9aab">${esc(s.src)}</small></td><td>${fmtY(mul(s.sales))}</td><td>¥${s.task}万</td><td><span class="${s.rate>=65?'pos':s.rate>=50?'':'neg'}">${s.rate.toFixed(1)}%</span></td><td>${pct(s.gpm)}</td><td>${s.uv!=null?s.uv.toLocaleString():'待接入'}</td><td>${pct(s.cvr)}</td></tr>`).join('');
   return `<div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}</div>
@@ -1344,8 +1335,8 @@ function secAESales(){
       ${tableCard('店铺经营对比（啟韬 / 羽通）','目标为财务 8 月表（待运营确认）· 流量明早接入',['店铺','销售额','目标','达成率','毛利率','访客数','转化率'],rows)}
     </div>
     ${analysisCard('销售指标', {
-      concl:'Apple 电商 8/1-26 销售 '+fmtY(mul(total))+'（分摊后、含在途），毛利率 4.98%；分店：苏宁啟韬 645 万/达成 71.6%、京东羽通 424 万/达成 13.5%。',
-      anom:'京东羽通目标 3,140 万 vs 实际 424 万，达成仅 13.5%，需重点核查口径（国补/在途/京东自营是否另计）；在途 567 万/待审核 69 万。',
+      concl:'Apple 电商 8/1-27 销售 '+fmtY(mul(total))+'（吉客云 API 实付），毛利率 5.07%（明细账口径）；分店：苏宁啟韬 643.5 万/达成 71.4%、京东羽通 366.2 万/达成 11.7%。',
+      anom:'京东羽通目标 3,140 万 vs 实际 366.2 万，达成仅 11.7%，需重点核查口径（国补/在途/京东自营是否另计）；在途/待审核以运营系统为准。',
       act:'① 与运营确认羽通/啟韬目标口径；② 在途发货时效核查；③ 明早接入两店流量/转化。'
     })}`;
 }
@@ -1366,7 +1357,7 @@ function secAEAnalysis(){
   </div>
   ${analysisCard('销售分析', {
     concl:'Apple 电商流量/转化数据待接入（明早平台导出）；当前仅有销售/毛利真实数据。',
-    anom:'在途 567 万/待审核 69 万为最大运营风险；京东羽通毛利率 9.92% 为正、苏宁啟韬 2.48% 偏低。',
+    anom:'在途/待审核订单以运营系统为准（最大运营风险）；京东羽通毛利率 9.92% 为正、苏宁啟韬 2.48% 偏低。',
     act:'① 明早接入天猫/京东流量、转化、退款与用户画像；② 核查在途发货时效；③ 与运营确认 8 月目标口径。'
   })}`;
 }
@@ -1477,22 +1468,22 @@ function secAEOther(){
 /* ---- 舒尔 · 销售指标 ---- */
 function secSHSales(){
   const total = SH_STORES.reduce((a,b)=>a+b.sales,0);
-  const k1 = kpiCard('销售总额',fmtY(mul(total)),null,'天猫72.15万(吉客云)+京东74.73万(日报)','green');
+  const k1 = kpiCard('销售总额',fmtY(mul(total)),null,'天猫60.6万(吉客云)+京东77.14万(日报)','green');
   const k2 = kpiCard('毛利率',pct(30.31),null,'天猫口径 · 京东毛利未计入','green');
-  const k3 = kpiCard('访客数','25,117（京东）',null,'天猫 90,841（日报8/1-26）','gold');
-  const k4 = kpiCard('转化率','3.12%（京东）',null,'天猫 0.88%（日报8/1-26）','');
-  const k5 = kpiCard('客单价','¥954',null,'京东 8/1-26 · 天猫 ¥756','');
+  const k3 = kpiCard('访客数','26,074（京东）',null,'天猫 92,331（日报8/1-27）','gold');
+  const k4 = kpiCard('转化率','3.11%（京东）',null,'天猫 0.90%（日报8/1-27）','');
+  const k5 = kpiCard('客单价','¥950',null,'京东 8/1-28 · 天猫 ¥701（吉客云实付）','');
   const k6 = kpiCard('退款率','待接入',null,'平台数据待接入','');
   const rows = SH_STORES.map(s=>`<tr><td class="t-name">${esc(s.name)}<br><small style="color:#8a9aab">${esc(s.src)}</small></td><td>${fmtY(mul(s.sales))}</td><td>¥${s.task}万</td><td><span class="${s.rate>=65?'pos':s.rate>=50?'':'neg'}">${s.rate.toFixed(1)}%</span></td><td>${pct(s.gpm)}</td><td>${s.uv!=null?s.uv.toLocaleString():'待接入'}</td><td>${pct(s.cvr)}</td></tr>`).join('');
   return `<div class="metric-grid">${k1}${k2}${k3}${k4}${k5}${k6}</div>
     <div class="detail-panel">
       ${barsChart(['8-20','8-21','8-22','8-23','8-24','8-25','8-26'],[3.22,2.94,2.27,2.46,3.29,2.84,3.32],[1.53,1.45,0.95,0.55,1.2,1.36,3.31],'销售额','毛利额','万元')}
-      ${tableCard('店铺经营对比（天猫 / 京东）','目标为财务 8 月表 · 天猫销售以吉客云为准(日报111.74万) · 流量为平台日报8/1-26',['店铺','销售额','目标','达成率','毛利率','访客数','转化率'],rows)}
+      ${tableCard('店铺经营对比（天猫 / 京东）','目标为财务 8 月表 · 天猫销售以吉客云为准(日报114.64万) · 流量为平台日报8/1-27',['店铺','销售额','目标','达成率','毛利率','访客数','转化率'],rows)}
     </div>
     ${analysisCard('销售指标', {
-      concl:'Shure 电商：天猫 72.15 万/达成 32.8%（目标 220 万）·吉客云；京东 74.73 万/达成 35.6%（目标 210 万）·日报 8/1-26。',
-      anom:'天猫日报 8/1-26 完整（uv 90,841/转化 0.88%，销售 111.74 万为平台口径，与吉客云 72.15 万差 39.6 万，以吉客云为准）；京东毛利率无数据（未计入公司合计）；京东舒尔若含入，公司销售约 3,264 万。',
-      act:'① 向运营补要天猫 8/17-26 流量；② 京东按日报持续手工更新；③ 两店转化对标优化（天猫 0.72% vs 京东 3.12%）。'
+      concl:'Shure 电商：天猫 60.6 万/达成 27.5%（目标 220 万）·吉客云；京东 77.14 万/达成 36.7%（目标 210 万）·日报 8/1-28。',
+      anom:'天猫日报 8/1-27 完整（uv 92,331/转化 0.90%，销售 114.64 万为平台口径，与吉客云 60.6 万差 54 万，以吉客云为准）；京东毛利率无数据（未计入公司合计）；京东舒尔 77.14 万为日报口径另计（未含入公司 3,013 万）。',
+      act:'① 京东舒尔持续按日报手工更新；② 两店转化对标优化（天猫 0.90% vs 京东 3.11%）；③ 京东毛利待后台接入。'
     })}`;
 }
 /* ---- 舒尔 · 销售分析 ---- */
@@ -1610,9 +1601,9 @@ function renderHeader(c){
     // Shure：hero 总销售 = 天猫 + 京东 两店合计（京东为平台日报口径）
     const isSH = seg && seg.code==='SH';
     const heroSales = isSH ? SH_STORES.reduce((a,b)=>a+b.sales,0) : seg.sales;
-    const heroNote = isSH ? '天猫72.15(吉客云)+京东74.73(日报) · 两店合计' : esc(seg.note);
-    const heroConv = isSH ? 1.37 : seg.cvr;
-    const heroConvSub = isSH ? '京东3.12% / 天猫0.88%（平台日报）' : esc(seg.note);
+    const heroNote = isSH ? '天猫60.6(吉客云)+京东77.14(日报) · 两店合计' : esc(seg.note);
+    const heroConv = isSH ? 1.39 : seg.cvr;
+    const heroConvSub = isSH ? '京东3.11% / 天猫0.90%（平台日报）' : esc(seg.note);
     hs.innerHTML = `<div class="hero-stat"><span>${PERIOD_LABEL[state.period]}销售额</span><strong>${fmtY(mul(heroSales))}</strong><small class="${seg.d7>=0?'':'down'}">${seg.d7>=0?'▲':'▼'} 环比 ${Math.abs(seg.d7||0)}%</small><span class="hs-sub">同比 +${seg.yoy}% · ${heroNote}</span></div>
       <div class="hero-stat"><span>${PERIOD_LABEL[state.period]}毛利率</span><strong>${pct(seg.gpm)}</strong><small>毛利额 ${fmtWan(mul(seg.gross))}</small><span class="hs-sub">费率 ${fee(seg.feeRate)}</span></div>
       <div class="hero-stat"><span>转化率</span><strong>${pct(heroConv)}</strong><small>${(heroConv||0)>=5?'✓ 达标线以上':'需关注'}</small><span class="hs-sub">${heroConvSub}</span></div>`;

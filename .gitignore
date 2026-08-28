@@ -5,7 +5,7 @@ ocr_ss2.swift
 dsh_keys/id_ed25519_cty*
 登录权限系统/secret.key
 # 大数据/可再生文件
-吉客云数据/inventory_raw.json
+吉客云数据/inventory_raw*.json
 吉客云数据/sales_raw_*.json
 吉客云数据/sales_lines_*.json
 吉客云数据/fill_data.json
