@@ -9,3 +9,22 @@ dsh_keys/id_ed25519_cty*
 吉客云数据/sales_raw_*.json
 吉客云数据/sales_lines_*.json
 吉客云数据/fill_data.json
+
+# 采销驾驶舱：本地配置、运行数据、缓存与测试产物
+.env
+.env.*
+!.env.example
+caixiao/runtime/
+caixiao/**/__pycache__/
+caixiao/**/*.pyc
+caixiao/.coverage
+caixiao/htmlcov/
+caixiao/test-results/
+
+# 常见密钥、证书与本地凭据
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore

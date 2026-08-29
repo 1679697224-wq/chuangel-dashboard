@@ -1,0 +1,540 @@
+"""采销经营驾驶舱 HTTP 服务（Python 标准库，无外部依赖）。"""
+
+import argparse
+from http import cookies
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import json
+import mimetypes
+from pathlib import Path
+import re
+import time
+from typing import Any, Dict, Optional, Tuple
+from urllib.parse import parse_qs, unquote, urlparse
+
+from .adapters.jikexyun import JikexyunAdapter
+from .adapters.snapshot import SnapshotAdapter
+from .auth import issue_token, verify_password, verify_token
+from .config import ROOT_DIR, Settings
+from .database import Database
+from .pipeline import recompute_five_time_views
+from .services.metrics import MetricsService
+from .services.review import ReviewService
+
+
+FRONTEND_DIR = ROOT_DIR / "caixiao" / "frontend"
+COOKIE_NAME = "caixiao_session"
+MAX_REQUEST_BYTES = 2 * 1024 * 1024
+
+
+class DashboardApplication:
+    def __init__(self, settings: Settings):
+        self.settings = settings
+        self.database = Database(settings.db_path)
+        self.database.bootstrap_admin(
+            settings.bootstrap_user, settings.bootstrap_password
+        )
+        self.review = ReviewService(self.database)
+        self.metrics = MetricsService(self.review)
+        self.jky = JikexyunAdapter(settings.jky)
+        self.snapshot = SnapshotAdapter(settings.sandbox_snapshot_dir)
+        self.login_failures: Dict[str, Tuple[int, float]] = {}
+
+    def close(self) -> None:
+        self.database.close()
+
+    def login_allowed(self, address: str) -> bool:
+        attempts, blocked_until = self.login_failures.get(address, (0, 0.0))
+        if blocked_until and time.time() < blocked_until:
+            return False
+        if blocked_until:
+            self.login_failures.pop(address, None)
+        return attempts < 5
+
+    def login_failed(self, address: str) -> None:
+        attempts, _ = self.login_failures.get(address, (0, 0.0))
+        attempts += 1
+        blocked_until = time.time() + 300 if attempts >= 5 else 0.0
+        self.login_failures[address] = (attempts, blocked_until)
+
+    def login_succeeded(self, address: str) -> None:
+        self.login_failures.pop(address, None)
+
+
+class DashboardServer(ThreadingHTTPServer):
+    def __init__(self, address: Tuple[str, int], application: DashboardApplication):
+        super().__init__(address, DashboardRequestHandler)
+        self.application = application
+
+
+class DashboardRequestHandler(BaseHTTPRequestHandler):
+    server_version = "CaixiaoDashboard/0.1"
+
+    @property
+    def application(self) -> DashboardApplication:
+        return self.server.application  # type: ignore[attr-defined]
+
+    def log_message(self, fmt: str, *args: Any) -> None:
+        # 日志不记录 Authorization、Cookie、请求体或外部凭据。
+        print("{} - [{}] {}".format(self.client_address[0], self.log_date_time_string(), fmt % args))
+
+    def _security_headers(self) -> None:
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
+        self.send_header(
+            "Content-Security-Policy",
+            "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'",
+        )
+        self.send_header("Cache-Control", "no-store")
+        origin = self.headers.get("Origin", "")
+        if origin and origin in self.application.settings.allowed_origins:
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Vary", "Origin")
+            self.send_header("Access-Control-Allow-Credentials", "true")
+
+    def _send_json(
+        self,
+        status: int,
+        payload: Dict[str, Any],
+        extra_headers: Optional[Dict[str, str]] = None,
+    ) -> None:
+        encoded = json.dumps(payload, ensure_ascii=False, default=str).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(encoded)))
+        self._security_headers()
+        for key, value in (extra_headers or {}).items():
+            self.send_header(key, value)
+        self.end_headers()
+        self.wfile.write(encoded)
+
+    def _send_file(self, path: Path) -> None:
+        if not path.is_file() or FRONTEND_DIR not in path.resolve().parents:
+            self._send_json(404, {"error": "NOT_FOUND", "message": "资源不存在"})
+            return
+        content = path.read_bytes()
+        mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        self.send_response(200)
+        self.send_header("Content-Type", mime + ("; charset=utf-8" if mime.startswith("text/") else ""))
+        self.send_header("Content-Length", str(len(content)))
+        self._security_headers()
+        self.end_headers()
+        self.wfile.write(content)
+
+    def _read_json(self) -> Optional[Dict[str, Any]]:
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError:
+            return None
+        if length <= 0 or length > MAX_REQUEST_BYTES:
+            return None
+        try:
+            payload = json.loads(self.rfile.read(length).decode("utf-8"))
+            return payload if isinstance(payload, dict) else None
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            return None
+
+    def _bearer_token(self) -> str:
+        authorization = self.headers.get("Authorization", "")
+        if authorization.startswith("Bearer "):
+            return authorization[7:].strip()
+        raw_cookie = self.headers.get("Cookie", "")
+        if raw_cookie:
+            jar = cookies.SimpleCookie()
+            try:
+                jar.load(raw_cookie)
+                if COOKIE_NAME in jar:
+                    return jar[COOKIE_NAME].value
+            except cookies.CookieError:
+                pass
+        return ""
+
+    def _identity(self) -> Optional[Dict[str, Any]]:
+        token = self._bearer_token()
+        if not token:
+            return None
+        payload = verify_token(token, self.application.settings.token_secret)
+        if not payload:
+            return None
+        if not self.application.database.session_active(
+            payload["sid"], payload["sub"], int(time.time())
+        ):
+            return None
+        user = self.application.database.get_user(payload["sub"])
+        if not user:
+            return None
+        user["session_id"] = payload["sid"]
+        return user
+
+    def _require(self, scope: str) -> Optional[Dict[str, Any]]:
+        identity = self._identity()
+        if not identity:
+            self._send_json(401, {"error": "UNAUTHORIZED", "message": "请先登录"})
+            return None
+        if scope not in identity["scopes"]:
+            self._send_json(403, {"error": "FORBIDDEN", "message": "当前账号无此权限"})
+            return None
+        return identity
+
+    def do_OPTIONS(self) -> None:
+        origin = self.headers.get("Origin", "")
+        if origin not in self.application.settings.allowed_origins:
+            self._send_json(403, {"error": "ORIGIN_NOT_ALLOWED"})
+            return
+        self.send_response(204)
+        self._security_headers()
+        self.send_header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Authorization,Content-Type")
+        self.end_headers()
+
+    def do_GET(self) -> None:
+        parsed = urlparse(self.path)
+        path = parsed.path.rstrip("/") or "/"
+        query = parse_qs(parsed.query)
+        if path == "/":
+            self.send_response(302)
+            self.send_header("Location", "/cx/")
+            self._security_headers()
+            self.end_headers()
+            return
+        if path.startswith("/cx/assets/"):
+            relative = unquote(path[len("/cx/") :])
+            self._send_file(FRONTEND_DIR / relative)
+            return
+        if path == "/cx" or path.startswith("/cx/"):
+            self._send_file(FRONTEND_DIR / "index.html")
+            return
+        if path == "/api/v1/health":
+            self._send_json(
+                200,
+                {
+                    "status": "ok",
+                    "service": "caixiao-dashboard",
+                    "version": "0.1.0",
+                    "real_system_connected": False,
+                },
+            )
+            return
+        if path == "/api/v1/auth/me":
+            identity = self._require("dashboard:view")
+            if identity:
+                self._send_json(
+                    200,
+                    {
+                        "username": identity["username"],
+                        "role": identity["role"],
+                        "scopes": identity["scopes"],
+                        "data_scope": identity["data_scope"],
+                    },
+                )
+            return
+        if not path.startswith("/api/v1/"):
+            self._send_json(404, {"error": "NOT_FOUND", "message": "接口不存在"})
+            return
+        if path.startswith("/api/v1/review/"):
+            identity = self._require("review:view")
+        elif path.startswith("/api/v1/sandbox/"):
+            identity = self._require("sandbox:view")
+        else:
+            identity = self._require("dashboard:view")
+        if not identity:
+            return
+        self._route_get(path, query, identity)
+
+    def _route_get(
+        self, path: str, query: Dict[str, Any], identity: Dict[str, Any]
+    ) -> None:
+        database = self.application.database
+        review = self.application.review
+        if path == "/api/v1/dim/boards":
+            self._send_json(
+                200,
+                {
+                    "data": [
+                        {"code": "operations", "name": "采销作战首页", "path": "/cx/"},
+                        {"code": "sku360", "name": "SKU 360", "path": "/cx/sku"},
+                        {
+                            "code": "inventory_purchase",
+                            "name": "库存&采购全链路",
+                            "path": "/cx/inventory-purchase",
+                        },
+                        {"code": "apple_policy", "name": "Apple政策经营", "path": "/cx/apple-policy"},
+                    ],
+                    "source": "产品任务包",
+                    "updated_at": None,
+                    "conflict": False,
+                },
+            )
+        elif path == "/api/v1/dim/channels":
+            self._send_json(200, {"data": review.formal_dimensions("channel_mapping"), "gate": "PUBLISHED_ONLY"})
+        elif path == "/api/v1/dim/warehouses":
+            self._send_json(200, {"data": review.formal_dimensions("warehouse_mapping"), "gate": "PUBLISHED_ONLY"})
+        elif path == "/api/v1/dim/skus":
+            self._send_json(200, {"data": review.formal_dimensions("sku_mapping"), "gate": "PUBLISHED_ONLY"})
+        elif path == "/api/v1/sales/summary":
+            self._send_json(200, self.application.metrics.sales_summary())
+        elif path == "/api/v1/sales/daily":
+            payload = self.application.metrics.sales_summary()
+            payload["rows"] = []
+            payload["date_range"] = {"start": query.get("start", [None])[0], "end": query.get("end", [None])[0]}
+            self._send_json(200, payload)
+        elif re.match(r"^/api/v1/sales/sku/[^/]+$", path):
+            sku = unquote(path.rsplit("/", 1)[-1])
+            payload = self.application.metrics.sales_summary()
+            payload["sku"] = sku
+            payload["eligible_sku_count"] = len(review.formal_dimensions("sku_mapping"))
+            self._send_json(200, payload)
+        elif path == "/api/v1/inventory/summary":
+            self._send_json(200, self.application.metrics.inventory_summary())
+        elif path == "/api/v1/inventory/aging":
+            payload = self.application.metrics.inventory_summary()
+            payload["rows"] = []
+            payload["aging_buckets"] = "待业务确认"
+            self._send_json(200, payload)
+        elif path == "/api/v1/purchase/summary":
+            self._send_json(200, self.application.metrics.purchase_summary())
+        elif path == "/api/v1/policy/summary":
+            self._send_json(200, self.application.metrics.policy_summary())
+        elif path == "/api/v1/anomaly/list":
+            self._send_json(200, {"data": [], "message": "待接入", "generated_business_data": False})
+        elif path == "/api/v1/action/list":
+            self._send_json(
+                200,
+                {
+                    "data": [],
+                    "message": "待接入",
+                    "allowed_action_types": [
+                        "补货", "暂停采购", "调拨", "分销", "价格清理", "活动",
+                        "搭售", "赠送", "退货", "报废", "继续观察",
+                    ],
+                    "approval_required": True,
+                    "generated_business_data": False,
+                },
+            )
+        elif path == "/api/v1/metrics/dict":
+            self._send_json(200, {"data": self.application.metrics.dictionary()})
+        elif path == "/api/v1/review/items":
+            entity_type = query.get("entity_type", [""])[0]
+            status = query.get("status", [""])[0]
+            self._send_json(200, {"data": database.list_review_items(entity_type, status)})
+        elif path == "/api/v1/review/versions":
+            self._send_json(200, {"data": database.list_versions()})
+        elif path == "/api/v1/review/api-cards":
+            self._send_json(200, {"data": self.application.jky.review_cards()})
+        elif path == "/api/v1/review/audit-log":
+            self._send_json(200, {"data": database.audit_log()})
+        elif path == "/api/v1/sandbox/compare":
+            self._send_json(
+                200,
+                {
+                    "mode": "sandbox",
+                    "label": "快照验证",
+                    "snapshot": self.application.snapshot.inspect(),
+                    "formal": {
+                        "message": "待接入",
+                        "values_exposed": False,
+                        "gate": review.is_formal_eligible(
+                            (
+                                "sales_caliber",
+                                "inventory_caliber",
+                                "warehouse_mapping",
+                                "channel_mapping",
+                                "sku_mapping",
+                            )
+                        ),
+                    },
+                    "isolation": "Sandbox 数据不得进入正式 KPI",
+                },
+            )
+        else:
+            self._send_json(404, {"error": "NOT_FOUND", "message": "接口不存在"})
+
+    def do_POST(self) -> None:
+        path = urlparse(self.path).path.rstrip("/")
+        if path == "/api/v1/auth/login":
+            self._login()
+            return
+        if path == "/api/v1/auth/logout":
+            identity = self._require("dashboard:view")
+            if identity:
+                self.application.database.revoke_session(identity["session_id"])
+                self._send_json(
+                    200,
+                    {"status": "logged_out"},
+                    {"Set-Cookie": COOKIE_NAME + "=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0"},
+                )
+            return
+        if path == "/api/v1/review/discover":
+            identity = self._require("review:confirm")
+            if identity:
+                self._discover(identity)
+            return
+        if path == "/api/v1/review/confirm":
+            identity = self._require("review:confirm")
+            if identity:
+                self._confirm(identity)
+            return
+        if path == "/api/v1/review/publish":
+            identity = self._require("review:publish")
+            if identity:
+                self._publish(identity)
+            return
+        if path == "/api/v1/sandbox/recompute-times":
+            identity = self._require("sandbox:view")
+            if identity:
+                self._recompute_times()
+            return
+        self._send_json(404, {"error": "NOT_FOUND", "message": "接口不存在"})
+
+    def _login(self) -> None:
+        address = self.client_address[0]
+        if not self.application.login_allowed(address):
+            self._send_json(429, {"error": "TOO_MANY_ATTEMPTS", "message": "请稍后再试"})
+            return
+        body = self._read_json()
+        if not body:
+            self._send_json(400, {"error": "INVALID_JSON"})
+            return
+        username = str(body.get("username", ""))
+        password = str(body.get("password", ""))
+        user = self.application.database.get_user(username)
+        if not user or not verify_password(password, user["password_hash"]):
+            self.application.login_failed(address)
+            self._send_json(401, {"error": "INVALID_CREDENTIALS", "message": "账号或密码错误"})
+            return
+        self.application.login_succeeded(address)
+        token, payload = issue_token(
+            username,
+            self.application.settings.token_secret,
+            self.application.settings.session_ttl_seconds,
+        )
+        self.application.database.save_session(payload["sid"], username, payload["exp"])
+        cookie_value = "{}={}; Path=/; HttpOnly; SameSite=Strict; Max-Age={}".format(
+            COOKIE_NAME, token, self.application.settings.session_ttl_seconds
+        )
+        self._send_json(
+            200,
+            {"status": "authenticated", "username": username, "expires_at": payload["exp"]},
+            {"Set-Cookie": cookie_value},
+        )
+
+    def _discover(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        if not body:
+            self._send_json(400, {"error": "INVALID_JSON"})
+            return
+        required = ("entity_type", "source_system", "source_key", "raw_value")
+        if any(not body.get(field) for field in required):
+            self._send_json(422, {"error": "MISSING_FIELD", "required": list(required)})
+            return
+        if body["entity_type"] not in {
+            "sales_caliber",
+            "inventory_caliber",
+            "warehouse_mapping",
+            "channel_mapping",
+            "sku_mapping",
+        }:
+            self._send_json(422, {"error": "INVALID_ENTITY_TYPE"})
+            return
+        if not isinstance(body["raw_value"], dict) or not isinstance(body.get("suggestion", {}), dict):
+            self._send_json(422, {"error": "INVALID_VALUE"})
+            return
+        item_id = self.application.database.upsert_review_item(
+            body["entity_type"],
+            str(body["source_system"]),
+            str(body["source_key"]),
+            body["raw_value"],
+            body.get("suggestion", {}),
+            body.get("confidence"),
+        )
+        self.application.database.audit(
+            identity["username"],
+            "review.discover",
+            "review_item",
+            str(item_id),
+            {"entity_type": body["entity_type"], "source_system": body["source_system"]},
+        )
+        self._send_json(201, {"id": item_id, "status": "UNCONFIRMED", "formal_kpi_enabled": False})
+
+    def _confirm(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        if not body:
+            self._send_json(400, {"error": "INVALID_JSON"})
+            return
+        if bool(body.get("publish", False)) and "review:publish" not in identity["scopes"]:
+            self._send_json(403, {"error": "FORBIDDEN", "message": "当前账号无版本发布权限"})
+            return
+        try:
+            result = self.application.review.confirm(
+                str(body.get("version_type", "")),
+                str(body.get("version_name", "")),
+                body.get("item_ids", []),
+                identity["username"],
+                bool(body.get("publish", False)),
+            )
+        except (ValueError, TypeError) as exc:
+            self._send_json(422, {"error": "REVIEW_VALIDATION", "message": str(exc)})
+            return
+        self._send_json(201, result)
+
+    def _publish(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        if not body:
+            self._send_json(400, {"error": "INVALID_JSON"})
+            return
+        try:
+            result = self.application.review.publish(int(body.get("version_id", 0)), identity["username"])
+        except (ValueError, TypeError) as exc:
+            self._send_json(422, {"error": "PUBLISH_VALIDATION", "message": str(exc)})
+            return
+        self._send_json(200, result)
+
+    def _recompute_times(self) -> None:
+        body = self._read_json()
+        if not body or not isinstance(body.get("records"), list):
+            self._send_json(400, {"error": "INVALID_JSON", "message": "records 必须是数组"})
+            return
+        if len(body["records"]) > 5000:
+            self._send_json(413, {"error": "TOO_MANY_RECORDS"})
+            return
+        amount_field = str(body.get("amount_field", "amount"))
+        self._send_json(
+            200,
+            {
+                "mode": "sandbox",
+                "label": "五时间口径复算",
+                "views": recompute_five_time_views(body["records"], amount_field),
+                "formal_kpi_enabled": False,
+            },
+        )
+
+
+def create_server(settings: Settings) -> DashboardServer:
+    settings.validate_for_server()
+    application = DashboardApplication(settings)
+    return DashboardServer((settings.host, settings.port), application)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="采销经营驾驶舱")
+    parser.add_argument("--check", action="store_true", help="仅检查配置和数据库初始化")
+    args = parser.parse_args()
+    settings = Settings.from_env()
+    server = create_server(settings)
+    if args.check:
+        server.server_close()
+        server.application.close()
+        print("配置检查通过")
+        return
+    print("采销经营驾驶舱已启动：http://{}:{}/cx/".format(settings.host, settings.port))
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        server.server_close()
+        server.application.close()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>采销经营驾驶舱</title>
+  <link rel="stylesheet" href="/cx/assets/app.css">
+</head>
+<body>
+  <div id="loginView" class="login-view" hidden>
+    <form id="loginForm" class="login-card">
+      <div class="brand-mark">传天羽</div>
+      <h1>采销经营驾驶舱</h1>
+      <p>使用本地初始化的复核账号登录</p>
+      <label>账号<input id="username" name="username" autocomplete="username" required></label>
+      <label>密码<input id="password" name="password" type="password" autocomplete="current-password" required></label>
+      <button class="primary full" type="submit">安全登录</button>
+      <div id="loginError" class="form-error" role="alert"></div>
+    </form>
+  </div>
+
+  <div id="app" class="app-shell" hidden>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark small">传天羽</span>
+        <div><strong>采销经营驾驶舱</strong><small>CAIXIAO CONTROL TOWER</small></div>
+      </div>
+      <nav id="mainNav" aria-label="主导航">
+        <a href="/cx/" data-route="home"><span>总</span>采销作战首页</a>
+        <a href="/cx/sku" data-route="sku"><span>品</span>SKU 360</a>
+        <a href="/cx/inventory-purchase" data-route="inventory"><span>链</span>库存&采购全链路</a>
+        <a href="/cx/apple-policy" data-route="policy"><span>政</span>Apple政策经营</a>
+        <div class="nav-divider">人工复核</div>
+        <a href="/cx/review-mapping" data-route="review-mapping"><span>映</span>映射与口径复核</a>
+        <a href="/cx/review-api" data-route="review-api"><span>接</span>吉客云 API 复核</a>
+        <a href="/cx/sandbox" data-route="sandbox"><span>沙</span>Sandbox</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span id="userName">—</span>
+        <button id="logoutButton" class="ghost" type="button">退出</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menuButton" class="menu-button" type="button" aria-label="展开导航">☰</button>
+        <div><div id="pageEyebrow" class="eyebrow">经营控制台</div><h1 id="pageTitle">采销作战首页</h1></div>
+        <div class="topbar-actions">
+          <span class="status-pill pending">正式数据：待接入</span>
+          <span id="clock" class="clock">—</span>
+        </div>
+      </header>
+      <section class="data-notice">
+        <strong>数据门禁已启用</strong>
+        <span>未确认数据仅可进入复核中心和 Sandbox，不进入正式经营 KPI。</span>
+      </section>
+      <div id="page" class="page" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <template id="pendingMetric">
+    <article class="metric-card">
+      <div class="metric-label"></div>
+      <div class="metric-value pending-value">待接入</div>
+      <div class="metric-meta"></div>
+    </article>
+  </template>
+  <script src="/cx/assets/app.js" defer></script>
+</body>
+</html>
