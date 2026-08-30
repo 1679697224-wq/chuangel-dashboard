@@ -5,6 +5,7 @@ from functools import wraps
 from pathlib import Path
 import sqlite3
 import threading
+from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, List, Optional
 
 from .auth import hash_password
@@ -49,11 +50,72 @@ CREATE TABLE IF NOT EXISTS governance_versions (
   version_name TEXT NOT NULL UNIQUE,
   status TEXT NOT NULL DEFAULT 'DRAFT',
   payload_json TEXT NOT NULL,
+  before_json TEXT NOT NULL DEFAULT '[]',
+  after_json TEXT NOT NULL DEFAULT '[]',
+  reason TEXT NOT NULL DEFAULT '',
+  affected_metrics_json TEXT NOT NULL DEFAULT '[]',
   created_by TEXT NOT NULL,
   confirmed_by TEXT,
+  confirmed_at TEXT,
   published_by TEXT,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   published_at TEXT
+);
+CREATE TABLE IF NOT EXISTS sales_facts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source_system TEXT NOT NULL,
+  source_record_id TEXT NOT NULL,
+  trade_no TEXT NOT NULL,
+  line_id TEXT NOT NULL,
+  create_time TEXT,
+  pay_time TEXT,
+  audit_time TEXT,
+  consign_time TEXT,
+  complete_time TEXT,
+  modified_time TEXT,
+  trade_status TEXT NOT NULL,
+  quantity REAL NOT NULL,
+  payment REAL NOT NULL,
+  warehouse_raw_name TEXT NOT NULL,
+  channel_raw_name TEXT NOT NULL,
+  store_raw_name TEXT NOT NULL DEFAULT '',
+  goods_no TEXT NOT NULL,
+  sku_raw TEXT NOT NULL,
+  source_api TEXT NOT NULL,
+  raw_json_reference TEXT NOT NULL,
+  extracted_at TEXT NOT NULL,
+  synced_at TEXT NOT NULL,
+  sync_job_id TEXT NOT NULL,
+  UNIQUE(source_system, trade_no, line_id)
+);
+CREATE INDEX IF NOT EXISTS idx_sales_facts_pay_time ON sales_facts(pay_time);
+CREATE INDEX IF NOT EXISTS idx_sales_facts_modified_time ON sales_facts(modified_time);
+CREATE INDEX IF NOT EXISTS idx_sales_facts_status ON sales_facts(trade_status);
+CREATE TABLE IF NOT EXISTS inventory_facts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source_system TEXT NOT NULL,
+  source_record_id TEXT NOT NULL,
+  snapshot_time TEXT NOT NULL,
+  warehouse_raw_name TEXT NOT NULL,
+  sku_raw TEXT NOT NULL,
+  quantity REAL NOT NULL,
+  amount REAL NOT NULL,
+  source_api TEXT NOT NULL,
+  raw_json_reference TEXT NOT NULL,
+  extracted_at TEXT NOT NULL,
+  synced_at TEXT NOT NULL,
+  sync_job_id TEXT NOT NULL,
+  UNIQUE(source_system, source_record_id, snapshot_time)
+);
+CREATE INDEX IF NOT EXISTS idx_inventory_facts_snapshot ON inventory_facts(snapshot_time);
+CREATE TABLE IF NOT EXISTS sync_state (
+  domain TEXT PRIMARY KEY,
+  strategy TEXT NOT NULL,
+  cursor_field TEXT NOT NULL,
+  cursor_value TEXT,
+  lookback_days INTEGER NOT NULL DEFAULT 0,
+  last_job_id TEXT,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS metric_snapshots (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -120,7 +182,27 @@ class Database:
         self.connection = sqlite3.connect(str(self.path), check_same_thread=False)
         self.connection.row_factory = sqlite3.Row
         self.connection.executescript(SCHEMA)
+        self._migrate_governance_versions()
         self.connection.commit()
+
+    def _migrate_governance_versions(self) -> None:
+        """兼容V1本地数据库；不修改任何业务值。"""
+        columns = {
+            row["name"]
+            for row in self.connection.execute("PRAGMA table_info(governance_versions)").fetchall()
+        }
+        additions = {
+            "before_json": "TEXT NOT NULL DEFAULT '[]'",
+            "after_json": "TEXT NOT NULL DEFAULT '[]'",
+            "reason": "TEXT NOT NULL DEFAULT ''",
+            "affected_metrics_json": "TEXT NOT NULL DEFAULT '[]'",
+            "confirmed_at": "TEXT",
+        }
+        for name, definition in additions.items():
+            if name not in columns:
+                self.connection.execute(
+                    "ALTER TABLE governance_versions ADD COLUMN {} {}".format(name, definition)
+                )
 
     @synchronized
     def close(self) -> None:
@@ -251,6 +333,8 @@ class Database:
         item_ids: Iterable[int],
         actor: str,
         publish: bool,
+        reason: str,
+        affected_metrics: Iterable[str],
     ) -> Dict[str, Any]:
         ids = [int(value) for value in item_ids]
         if not ids:
@@ -264,8 +348,22 @@ class Database:
         invalid = [row["id"] for row in rows if row["entity_type"] != version_type]
         if invalid:
             raise ValueError("复核项类型与版本类型不一致")
-        payload = [self._decode_review_row(row) for row in rows]
+        decoded_rows = [self._decode_review_row(row) for row in rows]
+        payload = [
+            {
+                "source_key": row["source_key"],
+                "source_system": row["source_system"],
+                "before": row["raw_value"],
+                "value": row["suggestion"],
+                "review_item_id": row["id"],
+            }
+            for row in decoded_rows
+        ]
+        previous = self.published_version(version_type)
+        before = previous["after"] if previous else []
+        metrics = sorted({str(value) for value in affected_metrics if str(value)})
         status = "PUBLISHED" if publish else "DRAFT"
+        event_time = datetime.now(timezone.utc).isoformat()
         with self.connection:
             if publish:
                 self.connection.execute(
@@ -275,17 +373,23 @@ class Database:
                 )
             cursor = self.connection.execute(
                 "INSERT INTO governance_versions(version_type,version_name,status,payload_json,"
-                "created_by,confirmed_by,published_by,published_at) "
-                "VALUES(?,?,?,?,?,?,?,CASE WHEN ? THEN CURRENT_TIMESTAMP ELSE NULL END)",
+                "before_json,after_json,reason,affected_metrics_json,created_by,confirmed_by,"
+                "confirmed_at,published_by,published_at) "
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (
                     version_type,
                     version_name,
                     status,
                     json.dumps(payload, ensure_ascii=False),
+                    json.dumps(before, ensure_ascii=False),
+                    json.dumps(payload, ensure_ascii=False),
+                    reason,
+                    json.dumps(metrics, ensure_ascii=False),
                     actor,
                     actor,
+                    event_time,
                     actor if publish else None,
-                    1 if publish else 0,
+                    event_time if publish else None,
                 ),
             )
             self.connection.execute(
@@ -299,7 +403,17 @@ class Database:
                 "review.publish" if publish else "review.confirm",
                 "governance_version",
                 str(cursor.lastrowid),
-                {"version_name": version_name, "item_ids": ids},
+                {
+                    "version_name": version_name,
+                    "before": before,
+                    "after": payload,
+                    "reason": reason,
+                    "affected_metrics": metrics,
+                    "confirmed_by": actor,
+                    "confirmed_at": event_time,
+                    "published_by": actor if publish else None,
+                    "published_at": event_time if publish else None,
+                },
                 commit=False,
             )
         return self.get_version(int(cursor.lastrowid))
@@ -311,6 +425,7 @@ class Database:
             raise ValueError("版本不存在")
         if version["status"] != "DRAFT":
             raise ValueError("只有 DRAFT 版本可以发布")
+        event_time = datetime.now(timezone.utc).isoformat()
         with self.connection:
             self.connection.execute(
                 "UPDATE governance_versions SET status='SUPERSEDED' "
@@ -319,15 +434,25 @@ class Database:
             )
             self.connection.execute(
                 "UPDATE governance_versions SET status='PUBLISHED',published_by=?,"
-                "published_at=CURRENT_TIMESTAMP WHERE id=?",
-                (actor, version_id),
+                "published_at=? WHERE id=?",
+                (actor, event_time, version_id),
             )
             self.audit(
                 actor,
                 "review.publish",
                 "governance_version",
                 str(version_id),
-                {"version_name": version["version_name"]},
+                {
+                    "version_name": version["version_name"],
+                    "before": version["before"],
+                    "after": version["after"],
+                    "reason": version["reason"],
+                    "affected_metrics": version["affected_metrics"],
+                    "confirmed_by": version["confirmed_by"],
+                    "confirmed_at": version["confirmed_at"],
+                    "published_by": actor,
+                    "published_at": event_time,
+                },
                 commit=False,
             )
         return self.get_version(version_id)
@@ -341,6 +466,9 @@ class Database:
             return None
         result = dict(row)
         result["payload"] = json.loads(result.pop("payload_json"))
+        result["before"] = json.loads(result.pop("before_json"))
+        result["after"] = json.loads(result.pop("after_json"))
+        result["affected_metrics"] = json.loads(result.pop("affected_metrics_json"))
         return result
 
     @synchronized
@@ -352,6 +480,9 @@ class Database:
         for row in rows:
             item = dict(row)
             item["payload"] = json.loads(item.pop("payload_json"))
+            item["before"] = json.loads(item.pop("before_json"))
+            item["after"] = json.loads(item.pop("after_json"))
+            item["affected_metrics"] = json.loads(item.pop("affected_metrics_json"))
             results.append(item)
         return results
 
@@ -363,6 +494,110 @@ class Database:
             (version_type,),
         ).fetchone()
         return json.loads(row["payload_json"]) if row else []
+
+    @synchronized
+    def published_version(self, version_type: str) -> Optional[Dict[str, Any]]:
+        row = self.connection.execute(
+            "SELECT id FROM governance_versions WHERE version_type=? AND status='PUBLISHED' "
+            "ORDER BY id DESC LIMIT 1",
+            (version_type,),
+        ).fetchone()
+        return self.get_version(int(row["id"])) if row else None
+
+    @synchronized
+    def upsert_sales_facts(self, records: Iterable[Dict[str, Any]]) -> int:
+        fields = (
+            "source_system", "source_record_id", "trade_no", "line_id", "create_time",
+            "pay_time", "audit_time", "consign_time", "complete_time", "modified_time",
+            "trade_status", "quantity", "payment", "warehouse_raw_name", "channel_raw_name",
+            "store_raw_name", "goods_no", "sku_raw", "source_api", "raw_json_reference",
+            "extracted_at", "synced_at", "sync_job_id",
+        )
+        values = [tuple(record.get(field, "") for field in fields) for record in records]
+        if not values:
+            return 0
+        updates = ",".join(
+            "{0}=excluded.{0}".format(field)
+            for field in fields
+            if field not in {"source_system", "trade_no", "line_id"}
+        )
+        with self.connection:
+            self.connection.executemany(
+                "INSERT INTO sales_facts({}) VALUES({}) "
+                "ON CONFLICT(source_system,trade_no,line_id) DO UPDATE SET {}".format(
+                    ",".join(fields), ",".join("?" for _ in fields), updates
+                ),
+                values,
+            )
+        return len(values)
+
+    @synchronized
+    def list_sales_facts(self, sku_raw: str = "") -> List[Dict[str, Any]]:
+        sql = "SELECT * FROM sales_facts"
+        params: List[Any] = []
+        if sku_raw:
+            sql += " WHERE sku_raw=?"
+            params.append(sku_raw)
+        sql += " ORDER BY pay_time,trade_no,line_id"
+        return [dict(row) for row in self.connection.execute(sql, params).fetchall()]
+
+    @synchronized
+    def upsert_inventory_facts(self, records: Iterable[Dict[str, Any]]) -> int:
+        fields = (
+            "source_system", "source_record_id", "snapshot_time", "warehouse_raw_name",
+            "sku_raw", "quantity", "amount", "source_api", "raw_json_reference",
+            "extracted_at", "synced_at", "sync_job_id",
+        )
+        values = [tuple(record.get(field, "") for field in fields) for record in records]
+        if not values:
+            return 0
+        updates = ",".join(
+            "{0}=excluded.{0}".format(field)
+            for field in fields
+            if field not in {"source_system", "source_record_id", "snapshot_time"}
+        )
+        with self.connection:
+            self.connection.executemany(
+                "INSERT INTO inventory_facts({}) VALUES({}) "
+                "ON CONFLICT(source_system,source_record_id,snapshot_time) DO UPDATE SET {}".format(
+                    ",".join(fields), ",".join("?" for _ in fields), updates
+                ),
+                values,
+            )
+        return len(values)
+
+    @synchronized
+    def list_inventory_facts(self, sku_raw: str = "") -> List[Dict[str, Any]]:
+        sql = "SELECT * FROM inventory_facts"
+        params: List[Any] = []
+        if sku_raw:
+            sql += " WHERE sku_raw=?"
+            params.append(sku_raw)
+        sql += " ORDER BY snapshot_time,warehouse_raw_name,sku_raw"
+        return [dict(row) for row in self.connection.execute(sql, params).fetchall()]
+
+    @synchronized
+    def save_sync_state(self, state: Dict[str, Any]) -> None:
+        self.connection.execute(
+            "INSERT INTO sync_state(domain,strategy,cursor_field,cursor_value,lookback_days,last_job_id) "
+            "VALUES(?,?,?,?,?,?) ON CONFLICT(domain) DO UPDATE SET strategy=excluded.strategy,"
+            "cursor_field=excluded.cursor_field,cursor_value=excluded.cursor_value,"
+            "lookback_days=excluded.lookback_days,last_job_id=excluded.last_job_id,"
+            "updated_at=CURRENT_TIMESTAMP",
+            (
+                state["domain"], state["strategy"], state["cursor_field"],
+                state.get("cursor_value"), int(state.get("lookback_days", 0)),
+                state.get("last_job_id"),
+            ),
+        )
+        self.connection.commit()
+
+    @synchronized
+    def get_sync_state(self, domain: str) -> Optional[Dict[str, Any]]:
+        row = self.connection.execute(
+            "SELECT * FROM sync_state WHERE domain=?", (domain,)
+        ).fetchone()
+        return dict(row) if row else None
 
     @synchronized
     def audit(

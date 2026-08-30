@@ -1,6 +1,10 @@
 "use strict";
 
-const state = { user: null, route: "home" };
+const savedFilters = JSON.parse(sessionStorage.getItem("caixiao.globalFilters") || "{}");
+const state = {
+  user: null, route: "home", selectedSku: sessionStorage.getItem("caixiao.selectedSku") || "",
+  filters: { businessUnit:"", brand:"", channel:"", start:"", end:"", compare:"none", ...savedFilters }
+};
 const page = document.getElementById("page");
 const app = document.getElementById("app");
 const loginView = document.getElementById("loginView");
@@ -33,6 +37,13 @@ async function api(path, options = {}) {
   return data;
 }
 
+function filterQuery() {
+  const names = {businessUnit:"business_unit",brand:"brand",channel:"channel",start:"start",end:"end",compare:"compare"};
+  const query = new URLSearchParams();
+  Object.entries(names).forEach(([stateKey, apiKey]) => { if (state.filters[stateKey] && state.filters[stateKey] !== "none") query.set(apiKey, state.filters[stateKey]); });
+  return query.toString() ? `?${query}` : "";
+}
+
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[char]));
 }
@@ -41,9 +52,36 @@ function metricCards(metrics, colors = []) {
   return `<div class="metric-grid">${metrics.map((item, index) => `
     <article class="metric-card ${colors[index] || ""}">
       <div class="metric-label">${escapeHtml(item.name)}</div>
-      <div class="metric-value ${item.value == null ? "pending-value" : ""}">${item.value == null ? "待接入" : escapeHtml(item.value)}${item.value == null ? "" : escapeHtml(item.unit)}</div>
+      <div class="metric-value ${item.value == null ? "pending-value" : ""}">${item.value == null ? escapeHtml(item.status || "待接入") : escapeHtml(item.value)}${item.value == null ? "" : escapeHtml(item.unit)}</div>
       <div class="metric-meta" title="${escapeHtml(item.caliber)}">${escapeHtml(item.caliber)}</div>
     </article>`).join("")}</div>`;
+}
+
+function renderGlobalFilters() {
+  const filters = state.filters;
+  document.getElementById("globalFilters").innerHTML = `<form id="globalFilterForm">
+    <label>业务板块<input name="businessUnit" value="${escapeHtml(filters.businessUnit)}" placeholder="字段待接入"></label>
+    <label>品牌<input name="brand" value="${escapeHtml(filters.brand)}" placeholder="字段待接入"></label>
+    <label>渠道<input name="channel" value="${escapeHtml(filters.channel)}" placeholder="按已发布渠道"></label>
+    <label>开始日期<input name="start" type="date" value="${escapeHtml(filters.start)}"></label>
+    <label>结束日期<input name="end" type="date" value="${escapeHtml(filters.end)}"></label>
+    <label>对比口径<select name="compare"><option value="none">不对比</option><option value="previous">上一周期</option><option value="year_on_year">同比</option></select></label>
+    <button class="secondary" type="submit">应用</button>
+    <button id="resetFilters" class="ghost light" type="button">重置</button>
+  </form><small>筛选条件在页面间继承；未接入的业务板块、品牌、库存维度或对比字段会返回待接入，不会静默伪造过滤结果。</small>`;
+  const form = document.getElementById("globalFilterForm");
+  form.compare.value = filters.compare;
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    state.filters = Object.fromEntries(new FormData(form).entries());
+    sessionStorage.setItem("caixiao.globalFilters", JSON.stringify(state.filters));
+    navigate(window.location.pathname, false);
+  });
+  document.getElementById("resetFilters").addEventListener("click", () => {
+    state.filters = { businessUnit:"", brand:"", channel:"", start:"", end:"", compare:"none" };
+    sessionStorage.setItem("caixiao.globalFilters", JSON.stringify(state.filters));
+    renderGlobalFilters(); navigate(window.location.pathname, false);
+  });
 }
 
 function pendingMetrics(names) {
@@ -68,11 +106,11 @@ function panel(title, body, extra = "") {
 
 async function renderHome() {
   const [sales, inventory, purchase] = await Promise.all([
-    api("/api/v1/sales/summary"), api("/api/v1/inventory/summary"), api("/api/v1/purchase/summary")
+    api(`/api/v1/sales/summary${filterQuery()}`), api(`/api/v1/inventory/summary${filterQuery()}`), api(`/api/v1/purchase/summary${filterQuery()}`)
   ]);
-  const metrics = [...sales.data.slice(0,2), ...inventory.data.slice(0,2)];
+  const metrics = [...sales.data.slice(0,2), ...inventory.data.slice(0,3), ...(sales.woi?.data || [])];
   page.innerHTML = hero("一屏掌握销售、库存、采购与政策风险", "所有经营数值必须来自真实接口，并在口径、映射和版本通过人工确认后进入本页。") +
-    sectionTitle("核心经营指标", "付款销售、库存双视图与采购在途") + metricCards(metrics, ["gold","green","","red"]) +
+    sectionTitle("核心经营指标", "付款销售、现货/在途/经营库存与双WOI；缺少发布版本时逐项显示待确认") + metricCards(metrics, ["gold","green","","red","green","gold",""]) +
     sectionTitle("采销联动作战", "从经营异常到闭环动作，当前不生成静态 AI 经营结论") +
     `<div class="two-col">${panel("销售与库存趋势", emptyState())}${panel("补货与调拨动作", emptyState("待接入", "动作必须由授权人员确认并留痕"))}</div>` +
     sectionTitle("正式经营链路", "发布门禁状态") +
@@ -81,21 +119,31 @@ async function renderHome() {
 }
 
 async function renderSku() {
-  const result = await api("/api/v1/sales/sku/UNSELECTED");
-  const metrics = pendingMetrics([["sku_sales","SKU销售额","元"],["sku_units","销量","台"],["sku_inventory","可用库存","台"],["sku_woi","周转周数","周"]]);
+  const skus = await api("/api/v1/dim/skus");
+  const available = skus.data.map(item => ({ key:item.source_key, name:item.value?.canonical || item.source_key }));
+  const selected = state.selectedSku || available[0]?.key || "UNSELECTED";
+  const query = filterQuery();
+  const result = await api(`/api/v1/sales/sku/${encodeURIComponent(selected)}${query}`);
+  const metrics = [...(result.sales?.data || []), ...(result.inventory?.data || []), ...(result.woi?.data || [])];
+  const windows = result.sales_windows || {};
   page.innerHTML = hero("SKU 360：从销售表现看到库存、采购与政策", "SKU/SPU 通过人工映射并发布前，不进入正式商品经营视图。", `${result.eligible_sku_count} 个已发布 SKU`) +
-    `<section class="panel"><div class="panel-body"><div class="form-grid"><label>SKU / SPU 搜索<input placeholder="待发布映射后可搜索" disabled></label><label>渠道范围<select disabled><option>待接入</option></select></label></div></div></section>` +
-    sectionTitle("商品经营概览", "五时间字段保留，正式销售主时间按已确认规则计算") + metricCards(metrics,["gold","green","","red"]) +
+    `<section class="panel"><div class="panel-body"><form id="skuSearchForm" class="form-grid"><label>SKU / SPU 搜索<input name="sku" list="skuOptions" value="${escapeHtml(selected === "UNSELECTED" ? "" : selected)}" placeholder="输入已发布 SKU 来源键" required><datalist id="skuOptions">${available.map(item=>`<option value="${escapeHtml(item.key)}">${escapeHtml(item.name)}</option>`).join("")}</datalist></label><label>渠道范围<input value="${escapeHtml(state.filters.channel || "全部已授权渠道")}" disabled></label><div class="wide"><button class="primary" type="submit">查看 SKU 详情</button></div></form></div></section>` +
+    sectionTitle("销量窗口", "7/14/28/90 天分别计算；缺数据项独立显示待接入") + metricCards([[7,windows["7"]],[14,windows["14"]],[28,windows["28"]],[90,windows["90"]]].map(([days,value])=>({name:`近${days}天销量`,value,unit:"台",status:"待接入",caliber:"按已发布 sales_caliber 与状态调整版本"})),["gold","green","",""]) +
+    sectionTitle("商品经营概览", "销售、现货、在途、经营库存和双WOI均经过人工发布门禁") + metricCards(metrics,["gold","green","","red","green","gold",""]) +
     sectionTitle("全链路画像", "销售 → 库存 → 采购 → 调拨 → 政策") +
-    `<div class="equal-col">${panel("渠道与价格表现", emptyState())}${panel("库存与库龄", emptyState())}${panel("采购与到货", emptyState())}${panel("政策与返利", emptyState())}</div>`;
+    `<div class="equal-col">${panel("渠道与价格表现", `<div class="callout"><strong>渠道</strong><br>${escapeHtml((result.dimensions?.channels || []).join("、") || "待接入")}<br><strong>价格</strong><br>${escapeHtml(result.price || "待接入")}</div>`)}${panel("仓库与库龄", `<div class="callout"><strong>仓库</strong><br>${escapeHtml((result.dimensions?.warehouses || []).join("、") || "待接入")}<br><strong>库龄</strong><br>${escapeHtml(result.aging || "待接入")}</div>`)}${panel("采购与到货", emptyState())}${panel("DG / 政策", `<div class="callout"><strong>${escapeHtml(result.dg_policy || "待接入")}</strong><br>正式政策不得由 AI 生成</div>`)}</div>`;
+  document.getElementById("skuSearchForm").addEventListener("submit", event => {
+    event.preventDefault(); state.selectedSku = new FormData(event.currentTarget).get("sku").trim();
+    sessionStorage.setItem("caixiao.selectedSku", state.selectedSku); renderSku();
+  });
 }
 
 async function renderInventory() {
   const [inventory, purchase] = await Promise.all([api("/api/v1/inventory/summary"), api("/api/v1/purchase/summary")]);
-  page.innerHTML = hero("库存与采购全链路", "并列保留实物库存、可销售库存与财务库存视图；仓库、库位和成本规则未确认前不合并。") +
+  page.innerHTML = hero("库存与采购全链路", "现货、在途、经营库存三口径并列；未确认仓库不会静默进入任何经营库存。") +
     sectionTitle("库存与采购总览", "不简单累计全部仓库，不将未确认数据写入 KPI") + metricCards([...inventory.data, ...purchase.data], ["","gold","green","red"]) +
     sectionTitle("库存结构", "仓库/库位映射发布后展示") +
-    `<div class="two-col">${panel("三库存视图", `<div class="three-col">${["实物库存","可销售库存","财务库存"].map(name=>`<div class="callout"><strong>${name}</strong><br>待接入</div>`).join("")}</div>`)}${panel("库龄与周转", emptyState())}</div>` +
+    `<div class="two-col">${panel("三库存口径", `<div class="three-col">${["现货库存","在途库存","经营库存"].map(name=>`<div class="callout"><strong>${name}</strong><br>按已发布仓库分类计算</div>`).join("")}</div>`)}${panel("双WOI与库龄", emptyState("待接入", "现货WOI、含在途WOI和库龄分别展示"))}</div>` +
     sectionTitle("采购与调拨", "采购单、状态、ETA 和调拨明细待真实接口确认") +
     panel("采购—到货—入库—调拨追踪", `<div class="table-scroll"><table><thead><tr><th>业务单据</th><th>SKU</th><th>仓库</th><th>状态</th><th>预计到货</th><th>来源</th></tr></thead><tbody><tr><td colspan="6">${emptyState()}</td></tr></tbody></table></div>`);
 }
@@ -117,11 +165,11 @@ async function renderReviewMapping() {
   const [items, versions] = await Promise.all([api("/api/v1/review/items"), api("/api/v1/review/versions")]);
   page.innerHTML = hero("映射与口径复核中心", "系统识别与建议只进入待复核池；人工确认后形成草稿，发布版本后才具备正式 KPI 资格。", `${items.data.filter(i=>i.status==="UNCONFIRMED").length} 项待复核`) +
     sectionTitle("识别对象登记", "用于接入联调，不在代码中预置真实业务对象") +
-    `<div class="equal-col">${panel("新增待复核对象", `<form id="discoverForm" class="form-grid"><label>对象类型<select name="entity_type"><option value="warehouse_mapping">仓库/库位</option><option value="channel_mapping">渠道/门店/店铺</option><option value="sku_mapping">SKU/SPU</option><option value="sales_caliber">销售口径/API字段</option><option value="inventory_caliber">库存口径/API字段</option></select></label><label>来源系统<input name="source_system" value="jikexyun" required></label><label>来源键<input name="source_key" required placeholder="真实源标识"></label><label>建议置信度<input name="confidence" type="number" min="0" max="1" step="0.01" placeholder="可选"></label><label class="wide">系统识别结果（JSON）<textarea name="raw_value" required placeholder='{"name":"..."}'></textarea></label><label class="wide">AI/规则建议（JSON）<textarea name="suggestion" placeholder='{"canonical_name":"..."}'></textarea></label><div class="wide"><button class="primary" type="submit">进入待复核池</button><span id="discoverMessage"></span></div></form>`)}${panel("确认并形成版本", `<form id="confirmForm" class="stack-form"><label>版本类型<select name="version_type"><option value="warehouse_mapping">warehouse_mapping</option><option value="channel_mapping">channel_mapping</option><option value="sku_mapping">sku_mapping</option><option value="sales_caliber">sales_caliber</option><option value="inventory_caliber">inventory_caliber</option></select></label><label>版本名称<input name="version_name" value="warehouse_mapping_v1" required></label><label class="inline-check"><input name="publish" type="checkbox">确认后立即发布（需要发布权限）</label><div class="callout warning"><strong>发布门禁：</strong>只有选中的同类型对象可形成版本；已发布版本会替代该类型旧版本，审计记录永久保留。</div><button class="primary" type="submit">确认所选对象</button><div id="confirmMessage"></div></form>`)}</div>` +
+    `<div class="equal-col">${panel("新增待复核对象", `<form id="discoverForm" class="form-grid"><label>对象类型<select name="entity_type"><option value="warehouse_mapping">仓库/库位</option><option value="channel_mapping">渠道/门店/店铺</option><option value="sku_mapping">SKU/SPU</option><option value="sales_caliber">销售口径/API字段</option><option value="inventory_caliber">库存口径/API字段</option><option value="sales_adjustment_rules">退款/退货/红冲/状态调整</option></select></label><label>来源系统<input name="source_system" value="jikexyun" required></label><label>来源键<input name="source_key" required placeholder="真实源标识"></label><label>建议置信度<input name="confidence" type="number" min="0" max="1" step="0.01" placeholder="可选"></label><label class="wide">系统识别结果（JSON）<textarea name="raw_value" required placeholder='{"name":"..."}'></textarea></label><label class="wide">AI/规则建议（JSON）<textarea name="suggestion" placeholder='{"canonical":"..."}'></textarea></label><div class="wide"><button class="primary" type="submit">进入待复核池</button><span id="discoverMessage"></span></div></form>`)}${panel("确认并形成版本", `<form id="confirmForm" class="stack-form"><label>版本类型<select name="version_type"><option value="warehouse_mapping">warehouse_mapping</option><option value="channel_mapping">channel_mapping</option><option value="sku_mapping">sku_mapping</option><option value="sales_caliber">sales_caliber</option><option value="inventory_caliber">inventory_caliber</option><option value="sales_adjustment_rules">sales_adjustment_rules</option></select></label><label>版本名称<input name="version_name" value="warehouse_mapping_v1" required></label><label>确认/发布原因<textarea name="reason" required></textarea></label><label>受影响指标（逗号分隔）<input name="affected_metrics" required placeholder="sales_amount,paid_orders"></label><label class="inline-check"><input name="publish" type="checkbox">确认后立即发布（需要发布权限）</label><div class="callout warning"><strong>发布门禁：</strong>只有选中的同类型对象可形成版本；已发布版本会替代该类型旧版本，审计记录永久保留。</div><button class="primary" type="submit">确认所选对象</button><div id="confirmMessage"></div></form>`)}</div>` +
     sectionTitle("待复核池", "仓库、库位、渠道、门店、店铺、SKU、SPU、API字段与口径统一处理") +
     panel("识别与建议清单", `<div class="table-scroll"><table><thead><tr><th>选择</th><th>类型</th><th>来源</th><th>来源键</th><th>识别结果</th><th>建议</th><th>状态</th></tr></thead><tbody>${reviewItemRows(items.data)}</tbody></table></div>`) +
     sectionTitle("版本记录", "草稿与发布历史") +
-    panel("人工确认版本", `<div class="table-scroll"><table><thead><tr><th>版本</th><th>类型</th><th>状态</th><th>确认人</th><th>发布时间</th></tr></thead><tbody>${versions.data.length ? versions.data.map(v=>`<tr><td class="code">${escapeHtml(v.version_name)}</td><td>${escapeHtml(v.version_type)}</td><td><span class="tag ${v.status==="PUBLISHED"?"published":"pending"}">${escapeHtml(v.status)}</span></td><td>${escapeHtml(v.confirmed_by)}</td><td>${escapeHtml(v.published_at || "—")}</td></tr>`).join("") : `<tr><td colspan="5">暂无版本</td></tr>`}</tbody></table></div>`);
+    panel("人工确认版本", `<div class="table-scroll"><table><thead><tr><th>版本</th><th>类型</th><th>状态</th><th>原因</th><th>影响指标</th><th>确认人/时间</th><th>发布人/时间</th></tr></thead><tbody>${versions.data.length ? versions.data.map(v=>`<tr><td class="code">${escapeHtml(v.version_name)}</td><td>${escapeHtml(v.version_type)}</td><td><span class="tag ${v.status==="PUBLISHED"?"published":"pending"}">${escapeHtml(v.status)}</span></td><td>${escapeHtml(v.reason)}</td><td>${escapeHtml((v.affected_metrics||[]).join("、"))}</td><td>${escapeHtml(v.confirmed_by)}<br>${escapeHtml(v.confirmed_at||"—")}</td><td>${escapeHtml(v.published_by||"—")}<br>${escapeHtml(v.published_at || "—")}</td></tr>`).join("") : `<tr><td colspan="7">暂无版本</td></tr>`}</tbody></table></div>`);
   bindReviewForms();
 }
 
@@ -138,7 +186,7 @@ function bindReviewForms() {
   confirmForm.addEventListener("submit", async event => {
     event.preventDefault(); const selected = [...document.querySelectorAll(".review-select:checked")].map(item=>Number(item.value)); const values = new FormData(confirmForm);
     try {
-      await api("/api/v1/review/confirm", { method:"POST", body:{ version_type:values.get("version_type"), version_name:values.get("version_name"), item_ids:selected, publish:values.get("publish")==="on" }});
+      await api("/api/v1/review/confirm", { method:"POST", body:{ version_type:values.get("version_type"), version_name:values.get("version_name"), item_ids:selected, publish:values.get("publish")==="on", reason:values.get("reason"), affected_metrics:String(values.get("affected_metrics")||"").split(",").map(value=>value.trim()).filter(Boolean) }});
       toast("人工确认版本已保存"); await renderReviewMapping();
     } catch (error) { document.getElementById("confirmMessage").textContent = error.message; }
   });
@@ -151,7 +199,7 @@ async function renderReviewApi() {
     sectionTitle("API 确认卡", "WorkBuddy 在实际环境完成文档与接口联调") +
     `<div class="equal-col">${cards.data.map(card=>`<article class="api-card"><div class="api-card-head"><div><h3>${escapeHtml(card.name)}</h3><span class="code">${escapeHtml(card.domain)}</span></div><span class="tag pending">${escapeHtml(card.status)}</span></div><dl><dt>端点</dt><dd>${escapeHtml(card.endpoint)}</dd><dt>缺少配置</dt><dd>${escapeHtml(card.missing.join("、") || "无")}</dd><dt>正式 KPI</dt><dd>禁止</dd></dl><div class="pipeline">${card.pipeline.map(step=>`<span>${escapeHtml(step)}</span>`).join("")}</div></article>`).join("")}</div>` +
     sectionTitle("销售五时间字段", "任何正式统计时间选择前都保留源事实") +
-    panel("字段保留门禁", `<div class="workflow">${["create_time","pay_time","audit_time","consign_time","complete_time"].map((name,index)=>`<div class="flow-step ${index===1?"active":""}"><strong>${name}</strong>${index===1?"已确认主时间":"保留待复算"}</div>`).join("")}</div><div class="callout warning"><strong>注意：</strong>付款状态、退款冲销、订单去重键、跨日边界等细节仍需业务确认，不在适配层硬编码。</div>`);
+    panel("字段保留门禁", `<div class="workflow">${["create_time","pay_time","audit_time","consign_time","complete_time","modified_time"].map((name,index)=>`<div class="flow-step ${index===1?"active":""}"><strong>${name}</strong>${index===1?"发布口径的主时间":"事实层独立保留"}</div>`).join("")}</div><div class="callout warning"><strong>同步原则：</strong>优先按 modified_time 增量；不稳定时滚动回溯并 upsert。禁止用 consign_time 窗口决定付款销售事实是否入库。</div>`);
 }
 
 async function renderSandbox() {
@@ -162,8 +210,15 @@ async function renderSandbox() {
     `<div class="equal-col">${panel("正式经营视图", `<div class="callout"><strong>${escapeHtml(compare.formal.message)}</strong><br>${escapeHtml(compare.formal.gate.gate)}</div>`)}${panel("既有快照", `<div class="callout warning"><strong>${escapeHtml(compare.snapshot.label)}</strong><br>${escapeHtml(files.length ? `识别 ${files.length} 个允许的快照文件，仅展示结构和哈希` : "未配置 Sandbox 快照目录")}</div>`)}</div>` +
     sectionTitle("快照文件身份", "不在页面输出真实经营值") +
     panel("结构检查", `<div class="table-scroll"><table><thead><tr><th>文件</th><th>SHA-256</th><th>结构</th><th>数据值</th></tr></thead><tbody>${files.length ? files.map(file=>`<tr><td>${escapeHtml(file.name)}</td><td class="code">${escapeHtml(file.sha256)}</td><td>${escapeHtml(JSON.stringify(file.shape || {}))}</td><td><span class="tag sandbox">不暴露</span></td></tr>`).join("") : `<tr><td colspan="4">${emptyState("快照待接入", "设置 CAIXIAO_SANDBOX_SNAPSHOT_DIR 后只读验证")}</td></tr>`}</tbody></table></div>`) +
+    sectionTitle("真实差异比较", "销售支持订单/渠道/门店/SKU差异，库存支持数量/金额/仓库/SKU/映射差异") +
+    panel("Sandbox 差异引擎", `<form id="diffForm" class="stack-form"><label>数据域<select name="domain"><option value="sales">销售</option><option value="inventory">库存</option></select></label><label>旧逻辑记录（JSON数组）<textarea name="old_records" placeholder='[]'></textarea></label><label>新事实记录（JSON数组）<textarea name="new_records" placeholder='[]'></textarea></label><button class="primary" type="submit">执行差异比较</button><pre id="diffResult" class="code"></pre></form>`) +
     sectionTitle("五时间口径复算工具", "输入仅在本次请求内计算，不写入正式指标") +
     panel("Sandbox 复算", `<form id="recomputeForm" class="stack-form"><label>金额字段<input name="amount_field" value="amount"></label><label>JSON 记录数组<textarea name="records" placeholder='[{"create_time":"...","pay_time":"...","amount":0}]'></textarea></label><button class="primary" type="submit">隔离复算</button><pre id="recomputeResult" class="code"></pre></form>`);
+  document.getElementById("diffForm").addEventListener("submit", async event => {
+    event.preventDefault(); const values = new FormData(event.currentTarget);
+    try { const result = await api("/api/v1/sandbox/compare", {method:"POST",body:{domain:values.get("domain"),old_records:JSON.parse(values.get("old_records")||"[]"),new_records:JSON.parse(values.get("new_records")||"[]")}}); document.getElementById("diffResult").textContent=JSON.stringify(result,null,2); }
+    catch(error){ document.getElementById("diffResult").textContent=error.message; }
+  });
   document.getElementById("recomputeForm").addEventListener("submit", async event => {
     event.preventDefault(); const values = new FormData(event.currentTarget);
     try { const result = await api("/api/v1/sandbox/recompute-times", {method:"POST", body:{records:JSON.parse(values.get("records")||"[]"),amount_field:values.get("amount_field")}}); document.getElementById("recomputeResult").textContent=JSON.stringify(result,null,2); }
@@ -186,7 +241,7 @@ async function navigate(path, push = true) {
 }
 
 function showLogin() { app.hidden = true; loginView.hidden = false; }
-function showApp(user) { state.user=user; document.getElementById("userName").textContent=user.username; loginView.hidden=true; app.hidden=false; navigate(window.location.pathname,false); }
+function showApp(user) { state.user=user; document.getElementById("userName").textContent=user.username; loginView.hidden=true; app.hidden=false; renderGlobalFilters(); navigate(window.location.pathname,false); }
 function toast(message) { const node=document.createElement("div"); node.className="toast"; node.textContent=message; document.body.appendChild(node); setTimeout(()=>node.remove(),2600); }
 
 document.getElementById("loginForm").addEventListener("submit", async event => {

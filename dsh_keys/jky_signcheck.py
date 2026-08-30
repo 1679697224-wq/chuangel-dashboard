@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import hashlib, json, time, urllib.request, urllib.parse
-APPKEY = "90871460"
-APPSECRET = "4e0ca84911ab48aeb2cccad89587222f"
+import os, hashlib, json, time, urllib.request, urllib.parse
+APPKEY = os.environ.get("JKY_APP_KEY", "")
+APPSECRET = os.environ.get("JKY_APP_SECRET", "")
 GATEWAY = "https://open.jackyun.com/open/openapi/do"
 
 def md5(s):

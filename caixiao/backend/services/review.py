@@ -17,6 +17,8 @@ class ReviewService:
         item_ids: Iterable[int],
         actor: str,
         publish: bool = False,
+        reason: str = "",
+        affected_metrics: Iterable[str] = (),
     ) -> Dict[str, Any]:
         expected = VERSION_PREFIXES.get(version_type)
         if not expected:
@@ -26,8 +28,16 @@ class ReviewService:
         suffix = version_name[len(expected) :]
         if not suffix.isdigit() or int(suffix) < 1:
             raise ValueError("版本号必须是正整数")
+        if not str(reason).strip():
+            raise ValueError("人工确认必须填写 reason")
         return self.database.create_version(
-            version_type, version_name, item_ids, actor, publish
+            version_type,
+            version_name,
+            item_ids,
+            actor,
+            publish,
+            str(reason).strip(),
+            affected_metrics,
         )
 
     def publish(self, version_id: int, actor: str) -> Dict[str, Any]:

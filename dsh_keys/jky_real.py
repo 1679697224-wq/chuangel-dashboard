@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """吉客云客户端（签名与接口名来自 传天羽AI工作台 已验证实现）"""
-import hashlib, json, time, urllib.request, urllib.parse
+import os, hashlib, json, time, urllib.request, urllib.parse
 from datetime import datetime, timedelta
 
-APPKEY = "90871460"
-APPSECRET = "4e0ca84911ab48aeb2cccad89587222f"
+APPKEY = os.environ.get("JKY_APP_KEY", "")
+APPSECRET = os.environ.get("JKY_APP_SECRET", "")
 GATEWAY = "https://open.jackyun.com/open/openapi/do"
 VERSION = "v1.0"
 

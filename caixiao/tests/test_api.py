@@ -80,7 +80,7 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertFalse(body["generated_business_data"])
         self.assertTrue(all(metric["value"] is None for metric in body["data"]))
-        self.assertTrue(all(metric["status"] == "待接入" for metric in body["data"]))
+        self.assertTrue(all(metric["status"] == "待确认" for metric in body["data"]))
         for metric in body["data"]:
             self.assertTrue({"value","caliber","source","updated_at","conflict","unit"}.issubset(metric))
 
@@ -92,7 +92,8 @@ class ApiTests(unittest.TestCase):
         }, cookie)
         self.assertEqual(status, 201)
         status, _, _ = self.request("POST", "/api/v1/review/confirm", {
-            "version_type":"channel_mapping","version_name":"channel_mapping_v1","item_ids":[discovered["id"]],"publish":False
+            "version_type":"channel_mapping","version_name":"channel_mapping_v1","item_ids":[discovered["id"]],"publish":False,
+            "reason":"测试确认","affected_metrics":["sales_amount"]
         }, cookie)
         self.assertEqual(status, 201)
         _, _, dimensions = self.request("GET", "/api/v1/dim/channels", cookie=cookie)
@@ -106,7 +107,8 @@ class ApiTests(unittest.TestCase):
         }, cookie)
         self.assertEqual(status, 201)
         status, _, version = self.request("POST", "/api/v1/review/confirm", {
-            "version_type":"sku_mapping","version_name":"sku_mapping_v1","item_ids":[discovered["id"]],"publish":False
+            "version_type":"sku_mapping","version_name":"sku_mapping_v1","item_ids":[discovered["id"]],"publish":False,
+            "reason":"测试确认","affected_metrics":["sales_amount"]
         }, cookie)
         self.assertEqual(status, 201)
         status, _, published = self.request("POST", "/api/v1/review/publish", {"version_id":version["id"]}, cookie)
@@ -131,6 +133,40 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(len(body["views"]), 5)
         self.assertFalse(body["formal_kpi_enabled"])
 
+    def test_sandbox_sales_difference_endpoint(self):
+        cookie = self.login()
+        status, _, body = self.request("POST", "/api/v1/sandbox/compare", {
+            "domain":"sales",
+            "old_records":[{"trade_no":"A","amount":100,"channel_raw_name":"C","store_raw_name":"S","sku_raw":"K"}],
+            "new_records":[{"trade_no":"A","payment":90,"pay_time":"2026-08-01","channel_raw_name":"C","store_raw_name":"S","sku_raw":"K"}],
+        }, cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual(body["difference"], -10)
+        self.assertEqual(body["label"], "验证数据，不代表正式经营口径")
+        self.assertFalse(body["formal_kpi_enabled"])
+
+    def test_fact_upsert_remains_behind_formal_gate(self):
+        cookie = self.login()
+        raw = {
+            "trade_no":"API-T1","line_id":"L1","create_time":"2026-07-31T22:00:00",
+            "pay_time":"2026-07-31T23:00:00","audit_time":"2026-08-01T00:00:00",
+            "consign_time":"2026-08-03T12:00:00","complete_time":"2026-08-05T00:00:00",
+            "modified_time":"2026-08-05T01:00:00","trade_status":"待审核","quantity":1,"payment":100,
+            "warehouse_raw_name":"WH-API","channel_raw_name":"CH-API","store_raw_name":"STORE-API",
+            "goods_no":"G-API","sku_raw":"SKU-API","source_api":"orders.modified",
+            "raw_json_reference":"blob://sales/API-T1/L1"
+        }
+        metadata = {"source_system":"jikexyun","source_record_id":"API-R1","extracted_at":"2026-08-05T01:01:00Z","synced_at":"2026-08-05T01:02:00Z","sync_job_id":"API-JOB1"}
+        status, _, body = self.request("POST", "/api/v1/facts/sales/upsert", {"records":[raw],"field_mapping":{},"metadata":metadata}, cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual(body["upserted"], 1)
+        self.assertFalse(body["formal_kpi_enabled"])
+        _, _, summary = self.request("GET", "/api/v1/sales/summary", cookie=cookie)
+        self.assertFalse(summary["gate"]["eligible"])
+        self.assertTrue(all(item["value"] is None for item in summary["data"]))
+        _, _, statuses = self.request("GET", "/api/v1/sales/status-review", cookie=cookie)
+        self.assertTrue(any(item["raw_trade_status"] == "待审核" for item in statuses["data"]))
+
     def test_origin_not_allowlisted_for_preflight(self):
         status, headers, _ = self.request("OPTIONS", "/api/v1/sales/summary", headers={"Origin":"https://not-allowed.example"})
         self.assertEqual(status, 403)
@@ -154,6 +190,7 @@ class ApiTests(unittest.TestCase):
             "/api/v1/sandbox/compare", "/api/v1/metrics/dict",
             "/api/v1/review/items", "/api/v1/review/versions",
             "/api/v1/review/api-cards", "/api/v1/review/audit-log",
+            "/api/v1/sales/status-review", "/api/v1/sync/sales/plan",
         )
         for endpoint in endpoints:
             with self.subTest(endpoint=endpoint):

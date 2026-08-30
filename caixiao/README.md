@@ -37,12 +37,12 @@ export CAIXIAO_SANDBOX_SNAPSHOT_DIR='/绝对路径/吉客云数据'
 
 ## 数据门禁
 
-`系统识别 → AI/规则建议 → 人工确认 → 发布版本 → 正式 KPI`。待复核和草稿版本只能在复核中心/Sandbox 使用。当前没有真实吉客云连接，因此所有正式经营值显示“待接入”。
+`事实数据 → 映射版本 → 口径版本 → 正式 KPI`。待复核、已确认未发布或含未映射事实时均返回“待确认”和缺失清单。当前没有真实吉客云连接，因此不会产生正式经营值。
 
 ## 测试
 
 ```bash
-python3 -m unittest discover -s caixiao/tests -v
+python3 caixiao/tests/run_with_coverage.py
 ```
 
-完整接口、部署与测试记录见 `caixiao/docs/`。
+该命令运行完整测试并生成机器可读的 `caixiao/coverage.xml`。完整接口、部署与测试记录见 `caixiao/docs/`。

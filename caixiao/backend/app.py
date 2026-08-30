@@ -16,7 +16,14 @@ from .adapters.snapshot import SnapshotAdapter
 from .auth import issue_token, verify_password, verify_token
 from .config import ROOT_DIR, Settings
 from .database import Database
+from .etl import (
+    build_status_review,
+    canonical_inventory_fact,
+    canonical_sales_fact,
+    plan_sales_sync,
+)
 from .pipeline import recompute_five_time_views
+from .sandbox import SANDBOX_LABEL, compare_inventory, compare_sales
 from .services.metrics import MetricsService
 from .services.review import ReviewService
 
@@ -34,7 +41,7 @@ class DashboardApplication:
             settings.bootstrap_user, settings.bootstrap_password
         )
         self.review = ReviewService(self.database)
-        self.metrics = MetricsService(self.review)
+        self.metrics = MetricsService(self.review, self.database)
         self.jky = JikexyunAdapter(settings.jky)
         self.snapshot = SnapshotAdapter(settings.sandbox_snapshot_dir)
         self.login_failures: Dict[str, Tuple[int, float]] = {}
@@ -272,27 +279,49 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         elif path == "/api/v1/dim/skus":
             self._send_json(200, {"data": review.formal_dimensions("sku_mapping"), "gate": "PUBLISHED_ONLY"})
         elif path == "/api/v1/sales/summary":
-            self._send_json(200, self.application.metrics.sales_summary())
+            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+            payload = self.application.metrics.sales_summary(filters=filters)
+            payload["woi"] = self.application.metrics.woi_summary(filters=filters)
+            self._send_json(200, payload)
         elif path == "/api/v1/sales/daily":
-            payload = self.application.metrics.sales_summary()
+            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+            payload = self.application.metrics.sales_summary(filters=filters)
             payload["rows"] = []
             payload["date_range"] = {"start": query.get("start", [None])[0], "end": query.get("end", [None])[0]}
             self._send_json(200, payload)
         elif re.match(r"^/api/v1/sales/sku/[^/]+$", path):
             sku = unquote(path.rsplit("/", 1)[-1])
-            payload = self.application.metrics.sales_summary()
-            payload["sku"] = sku
+            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+            payload = self.application.metrics.sku_detail(sku, filters)
             payload["eligible_sku_count"] = len(review.formal_dimensions("sku_mapping"))
             self._send_json(200, payload)
+        elif path == "/api/v1/sales/status-review":
+            rules = {
+                item["source_key"]: str(item.get("value", {}).get("action", "PENDING"))
+                for item in review.formal_dimensions("sales_adjustment_rules")
+            }
+            self._send_json(200, {"data": build_status_review(database.list_sales_facts(), rules), "adjustment_rules_published": bool(rules), "sales_caliber_published": bool(database.published_version("sales_caliber"))})
+        elif path == "/api/v1/sync/sales/plan":
+            state = database.get_sync_state("sales") or {}
+            supports_modified = query.get("supports_modified", ["true"])[0].lower() != "false"
+            try:
+                lookback = int(query.get("lookback_days", ["7"])[0])
+                payload = plan_sales_sync(state.get("cursor_value"), supports_modified=supports_modified, lookback_days=lookback)
+            except (TypeError, ValueError) as exc:
+                self._send_json(422, {"error": "SYNC_PLAN_VALIDATION", "message": str(exc)})
+                return
+            self._send_json(200, payload)
         elif path == "/api/v1/inventory/summary":
-            self._send_json(200, self.application.metrics.inventory_summary())
+            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+            self._send_json(200, self.application.metrics.inventory_summary(filters=filters))
         elif path == "/api/v1/inventory/aging":
             payload = self.application.metrics.inventory_summary()
             payload["rows"] = []
             payload["aging_buckets"] = "待业务确认"
             self._send_json(200, payload)
         elif path == "/api/v1/purchase/summary":
-            self._send_json(200, self.application.metrics.purchase_summary())
+            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+            self._send_json(200, self.application.metrics.purchase_summary(filters=filters))
         elif path == "/api/v1/policy/summary":
             self._send_json(200, self.application.metrics.policy_summary())
         elif path == "/api/v1/anomaly/list":
@@ -328,7 +357,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 200,
                 {
                     "mode": "sandbox",
-                    "label": "快照验证",
+                    "label": SANDBOX_LABEL,
                     "snapshot": self.application.snapshot.inspect(),
                     "formal": {
                         "message": "待接入",
@@ -384,6 +413,21 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if identity:
                 self._recompute_times()
             return
+        if path == "/api/v1/sandbox/compare":
+            identity = self._require("sandbox:view")
+            if identity:
+                self._sandbox_compare()
+            return
+        if path == "/api/v1/facts/sales/upsert":
+            identity = self._require("api:inspect")
+            if identity:
+                self._upsert_sales_facts(identity)
+            return
+        if path == "/api/v1/facts/inventory/upsert":
+            identity = self._require("api:inspect")
+            if identity:
+                self._upsert_inventory_facts(identity)
+            return
         self._send_json(404, {"error": "NOT_FOUND", "message": "接口不存在"})
 
     def _login(self) -> None:
@@ -433,6 +477,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             "warehouse_mapping",
             "channel_mapping",
             "sku_mapping",
+            "sales_adjustment_rules",
         }:
             self._send_json(422, {"error": "INVALID_ENTITY_TYPE"})
             return
@@ -471,6 +516,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 body.get("item_ids", []),
                 identity["username"],
                 bool(body.get("publish", False)),
+                str(body.get("reason", "")),
+                body.get("affected_metrics", []),
             )
         except (ValueError, TypeError) as exc:
             self._send_json(422, {"error": "REVIEW_VALIDATION", "message": str(exc)})
@@ -502,11 +549,58 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             200,
             {
                 "mode": "sandbox",
-                "label": "五时间口径复算",
+                "label": SANDBOX_LABEL,
                 "views": recompute_five_time_views(body["records"], amount_field),
                 "formal_kpi_enabled": False,
             },
         )
+
+    def _sandbox_compare(self) -> None:
+        body = self._read_json()
+        if not body or not isinstance(body.get("old_records"), list) or not isinstance(body.get("new_records"), list):
+            self._send_json(400, {"error": "INVALID_JSON", "message": "old_records 和 new_records 必须是数组"})
+            return
+        if len(body["old_records"]) + len(body["new_records"]) > 10000:
+            self._send_json(413, {"error": "TOO_MANY_RECORDS"})
+            return
+        domain = str(body.get("domain", ""))
+        try:
+            result = compare_sales(body["old_records"], body["new_records"]) if domain == "sales" else compare_inventory(body["old_records"], body["new_records"]) if domain == "inventory" else None
+        except (TypeError, ValueError) as exc:
+            self._send_json(422, {"error": "COMPARE_VALIDATION", "message": str(exc)})
+            return
+        if result is None:
+            self._send_json(422, {"error": "INVALID_DOMAIN", "allowed": ["sales", "inventory"]})
+            return
+        self._send_json(200, result)
+
+    def _upsert_sales_facts(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        if not body or not isinstance(body.get("records"), list) or not isinstance(body.get("field_mapping"), dict):
+            self._send_json(400, {"error": "INVALID_JSON", "message": "records 和 field_mapping 必填"})
+            return
+        try:
+            records = [canonical_sales_fact(raw, body["field_mapping"], body.get("metadata", {})) for raw in body["records"]]
+            count = self.application.database.upsert_sales_facts(records)
+        except (TypeError, ValueError) as exc:
+            self._send_json(422, {"error": "FACT_VALIDATION", "message": str(exc)})
+            return
+        self.application.database.audit(identity["username"], "facts.upsert", "sales", None, {"record_count": count, "sync_job_id": body.get("metadata", {}).get("sync_job_id")})
+        self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "事实已入库；仍须通过映射和口径发布门禁"})
+
+    def _upsert_inventory_facts(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        if not body or not isinstance(body.get("records"), list) or not isinstance(body.get("field_mapping"), dict):
+            self._send_json(400, {"error": "INVALID_JSON", "message": "records 和 field_mapping 必填"})
+            return
+        try:
+            records = [canonical_inventory_fact(raw, body["field_mapping"], body.get("metadata", {})) for raw in body["records"]]
+            count = self.application.database.upsert_inventory_facts(records)
+        except (TypeError, ValueError) as exc:
+            self._send_json(422, {"error": "FACT_VALIDATION", "message": str(exc)})
+            return
+        self.application.database.audit(identity["username"], "facts.upsert", "inventory", None, {"record_count": count, "sync_job_id": body.get("metadata", {}).get("sync_job_id")})
+        self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "事实已入库；仍须通过映射和口径发布门禁"})
 
 
 def create_server(settings: Settings) -> DashboardServer:

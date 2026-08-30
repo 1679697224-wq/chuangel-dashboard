@@ -22,12 +22,30 @@ class DataMode(str, Enum):
     SANDBOX = "sandbox"
 
 
+class AdjustmentAction(str, Enum):
+    """销售调整动作。最终状态归类必须由人工发布版本决定。"""
+
+    INCLUDE = "INCLUDE"
+    EXCLUDE = "EXCLUDE"
+    OFFSET = "OFFSET"
+    PENDING = "PENDING"
+
+
+class InventoryClass(str, Enum):
+    """经营库存的三种可配置归类。"""
+
+    SPOT = "SPOT"
+    IN_TRANSIT = "IN_TRANSIT"
+    EXCLUDE = "EXCLUDE"
+
+
 VERSION_PREFIXES = {
     "sales_caliber": "sales_caliber_v",
     "inventory_caliber": "inventory_caliber_v",
     "warehouse_mapping": "warehouse_mapping_v",
     "channel_mapping": "channel_mapping_v",
     "sku_mapping": "sku_mapping_v",
+    "sales_adjustment_rules": "sales_adjustment_rules_v",
 }
 
 

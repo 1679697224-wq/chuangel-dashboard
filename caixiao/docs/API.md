@@ -17,6 +17,8 @@
 | GET | `/api/v1/sales/summary` | `dashboard:view` | 销售核心指标 |
 | GET | `/api/v1/sales/daily` | `dashboard:view` | 销售日趋势 |
 | GET | `/api/v1/sales/sku/{sku}` | `dashboard:view` | SKU 销售视图 |
+| GET | `/api/v1/sales/status-review` | `dashboard:view` | 源订单状态聚合复核清单，程序不自动裁定 |
+| GET | `/api/v1/sync/sales/plan` | `dashboard:view` | modified 增量或滚动回溯 upsert 同步计划 |
 | GET | `/api/v1/inventory/summary` | `dashboard:view` | 三库存视图总览 |
 | GET | `/api/v1/inventory/aging` | `dashboard:view` | 库龄明细 |
 | GET | `/api/v1/purchase/summary` | `dashboard:view` | 采购与在途 |
@@ -35,11 +37,11 @@
   "updated_at": null,
   "conflict": false,
   "unit": "元",
-  "status": "待接入"
+  "status": "待确认"
 }
 ```
 
-没有真实数据时 `value` 必须为 `null`，严禁生成演示经营数值。
+缺少事实、映射或口径发布版本时 `value` 必须为 `null`，并返回 `gate.missing_published_versions` 或 `gate.unmapped_facts`；严禁生成演示经营数值。
 
 ## 复核与发布
 
@@ -53,13 +55,25 @@
 | GET | `/api/v1/review/api-cards` | `review:view` | 销售/库存/采购/调拨接口确认卡 |
 | GET | `/api/v1/review/audit-log` | `review:view` | 复核与发布审计 |
 
-正式版本命名：`sales_caliber_vX`、`inventory_caliber_vX`、`warehouse_mapping_vX`、`channel_mapping_vX`、`sku_mapping_vX`。
+正式版本命名：`sales_caliber_vX`、`inventory_caliber_vX`、`warehouse_mapping_vX`、`channel_mapping_vX`、`sku_mapping_vX`、`sales_adjustment_rules_vX`。
+
+确认请求必须包含 `reason` 和 `affected_metrics`。版本及审计记录持久化 `before`、`after`、`reason`、`affected_metrics`、`confirmed_by/at`、`published_by/at`。
+
+## 事实写入与追溯
+
+| 方法 | 路径 | 权限 | 用途 |
+|---|---|---|---|
+| POST | `/api/v1/facts/sales/upsert` | `api:inspect` | 通过显式字段映射写入销售事实；不会直接开启正式 KPI |
+| POST | `/api/v1/facts/inventory/upsert` | `api:inspect` | 写入库存快照事实；不会直接开启正式 KPI |
+
+销售 upsert 键为 `source_system + trade_no + line_id`。同步优先使用 `modified_time` 或等同更新时间；接口不稳定时使用滚动回溯窗口和同一业务键 upsert。`consign_time` 不得用于决定付款销售事实是否入库。
 
 ## Sandbox
 
 | 方法 | 路径 | 权限 | 用途 |
 |---|---|---|---|
 | GET | `/api/v1/sandbox/compare` | `sandbox:view` | 快照文件身份/结构与正式门禁对照 |
+| POST | `/api/v1/sandbox/compare` | `sandbox:view` | 销售或库存旧/新记录差异比较 |
 | POST | `/api/v1/sandbox/recompute-times` | `sandbox:view` | 五时间字段口径复算，不写正式指标 |
 
-所有 Sandbox 响应包含 `mode: sandbox` 和 `formal_kpi_enabled: false` 或等价隔离说明。
+所有 Sandbox 响应包含 `mode: sandbox`、`验证数据，不代表正式经营口径` 和 `formal_kpi_enabled: false` 或等价隔离说明。
