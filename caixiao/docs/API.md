@@ -10,6 +10,7 @@
 | POST | `/api/v1/auth/login` | 公开 | 登录，5 次失败后临时阻断 |
 | POST | `/api/v1/auth/logout` | 已登录 | 撤销服务端会话 |
 | GET | `/api/v1/auth/me` | `dashboard:view` | 当前账号、功能权限和数据范围 |
+| GET | `/api/v1/system/context` | `dashboard:view` | 当前 FORMAL/DEMO 模式、数据隔离与筛选选项 |
 | GET | `/api/v1/dim/boards` | `dashboard:view` | 看板模块 |
 | GET | `/api/v1/dim/channels` | `dashboard:view` | 仅已发布渠道映射 |
 | GET | `/api/v1/dim/warehouses` | `dashboard:view` | 仅已发布仓库映射 |
@@ -25,6 +26,7 @@
 | GET | `/api/v1/policy/summary` | `dashboard:view` | Apple 政策经营 |
 | GET | `/api/v1/anomaly/list` | `dashboard:view` | 经营异常 |
 | GET | `/api/v1/action/list` | `dashboard:view` | 待确认经营动作 |
+| GET | `/api/v1/traffic/summary` | `dashboard:view` | APR客流统一输入合同：date/store/traffic/source/updated_at |
 | GET | `/api/v1/metrics/dict` | `dashboard:view` | 指标字典 |
 
 每个正式指标对象至少返回：
@@ -83,3 +85,15 @@
 | POST | `/api/v1/sandbox/recompute-times` | `sandbox:view` | 五时间字段口径复算，不写正式指标 |
 
 所有 Sandbox 响应包含 `mode: sandbox`、`验证数据，不代表正式经营口径` 和 `formal_kpi_enabled: false` 或等价隔离说明。
+
+## Demo Adapter
+
+只有进程环境 `DEMO_MODE=true` 时才会创建纯 Mock Demo Adapter。Demo 业务响应必须包含：
+
+- `mode: demo`；
+- `data_class: DEMO`；
+- `label: 演示数据，仅用于页面及流程验证`；
+- `formal_kpi_enabled: false`；
+- `real_system_connected: false`。
+
+Demo 模式禁止向正式销售、库存、库龄、动作和复核发现表写入数据；演示复核确认/发布只保存在当前进程内存。`DEMO_MODE=false` 不会在事实或版本缺失时自动回退到 Demo。

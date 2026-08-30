@@ -46,13 +46,17 @@
         <button id="menuButton" class="menu-button" type="button" aria-label="展开导航">☰</button>
         <div><div id="pageEyebrow" class="eyebrow">经营控制台</div><h1 id="pageTitle">采销作战首页</h1></div>
         <div class="topbar-actions">
-          <span class="status-pill pending">正式数据：待接入</span>
+          <span id="modePill" class="status-pill pending">正在识别数据模式</span>
           <span id="clock" class="clock">—</span>
         </div>
       </header>
-      <section class="data-notice">
+      <section id="demoBanner" class="demo-banner" hidden>
+        <strong>DEMO MODE</strong>
+        <span>演示数据，仅用于页面及流程验证</span>
+      </section>
+      <section id="dataNotice" class="data-notice">
         <strong>数据门禁已启用</strong>
-        <span>未确认数据仅可进入复核中心和 Sandbox，不进入正式经营 KPI。</span>
+        <span>FORMAL、SANDBOX、DEMO 三类数据严格隔离，未确认数据不得进入正式经营 KPI。</span>
       </section>
       <section id="globalFilters" class="global-filters" aria-label="全局经营筛选"></section>
       <div id="page" class="page" aria-live="polite"></div>

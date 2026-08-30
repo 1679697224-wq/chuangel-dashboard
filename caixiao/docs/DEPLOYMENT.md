@@ -4,8 +4,8 @@
 
 | 环境 | 数据 | 用途 | Mock/快照 |
 |---|---|---|---|
-| 开发 | 本地空库/经批准快照 | 开发与单测 | 仅 Sandbox，必须标“快照验证” |
-| 测试 | 脱敏测试数据 | 集成、权限、安全测试 | 允许，禁止进入正式视图 |
+| 开发 | 本地空库/纯Mock Demo/经批准快照 | 开发、页面体验与单测 | Demo与Sandbox必须显著标识并隔离 |
+| 测试 | 脱敏测试数据/纯Mock Demo | 集成、权限、安全测试 | 允许，禁止进入正式视图 |
 | 试点 | 真实 API、受控账号 | 小范围业务验收 | 默认禁止 Mock |
 | 生产 | 真实 API、正式身份 | 正式经营 | 禁止 Mock/静默混用 |
 
@@ -17,9 +17,12 @@
 export CAIXIAO_TOKEN_SECRET='至少32位随机字符串'
 export CAIXIAO_BOOTSTRAP_USER='review-admin'
 export CAIXIAO_BOOTSTRAP_PASSWORD='至少12位本地强密码'
+export DEMO_MODE='false'
 python3 -m caixiao.backend.app --check
 python3 -m caixiao.backend.app
 ```
+
+页面体验可临时设置 `DEMO_MODE=true`；此时只启用纯Mock Demo Adapter，固定显示演示横幅，禁止写正式事实库。试点与生产必须保持 `DEMO_MODE=false`，且不得在缺数据时自动回退Demo。
 
 ## 生产前门禁
 

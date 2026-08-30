@@ -11,6 +11,7 @@ import time
 from typing import Any, Dict, Optional, Tuple
 from urllib.parse import parse_qs, unquote, urlparse
 
+from .adapters.demo import BUSINESS_UNITS, CHANNELS, DEMO_LABEL, DemoAdapter
 from .adapters.jikexyun import JikexyunAdapter
 from .adapters.snapshot import SnapshotAdapter
 from .auth import issue_token, verify_password, verify_token
@@ -50,6 +51,7 @@ class DashboardApplication:
         self.review = ReviewService(self.database)
         self.metrics = MetricsService(self.review, self.database)
         self.jky = JikexyunAdapter(settings.jky)
+        self.demo = DemoAdapter() if settings.demo_mode else None
         self.snapshot = SnapshotAdapter(settings.sandbox_snapshot_dir)
         self.login_failures: Dict[str, Tuple[int, float]] = {}
 
@@ -226,6 +228,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "service": "caixiao-dashboard",
                     "version": "0.1.0",
                     "real_system_connected": False,
+                    "demo_mode": self.application.settings.demo_mode,
+                    "mode": "DEMO" if self.application.settings.demo_mode else "FORMAL",
                 },
             )
             return
@@ -260,46 +264,63 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
     ) -> None:
         database = self.application.database
         review = self.application.review
-        if path == "/api/v1/dim/boards":
+        demo = self.application.demo
+        filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+        if path == "/api/v1/system/context":
+            if demo:
+                self._send_json(200, demo.context())
+            else:
+                self._send_json(
+                    200,
+                    {
+                        "mode": "formal", "data_class": "FORMAL", "label": "正式数据模式",
+                        "banner": "", "demo_mode": False, "formal_kpi_enabled": True,
+                        "real_system_connected": False, "generated_business_data": False,
+                        "filters": {
+                            "business_units": list(BUSINESS_UNITS), "brands": ["Apple", "Shure"],
+                            "channels": [], "compare_modes": ["不对比", "环比/上一周期", "同比", "目标", "差额"],
+                        },
+                        "isolation": {
+                            "FORMAL": "仅人工确认并发布后的真实事实、映射与口径可进入正式KPI",
+                            "SANDBOX": "只用于差异验证，不进入正式KPI",
+                            "DEMO": "关闭；正式模式绝不自动回退到演示数据",
+                        },
+                    },
+                )
+        elif path == "/api/v1/dim/boards":
             self._send_json(
                 200,
                 {
-                    "data": [
-                        {"code": "operations", "name": "采销作战首页", "path": "/cx/"},
-                        {"code": "sku360", "name": "SKU 360", "path": "/cx/sku"},
-                        {
-                            "code": "inventory_purchase",
-                            "name": "库存&采购全链路",
-                            "path": "/cx/inventory-purchase",
-                        },
-                        {"code": "apple_policy", "name": "Apple政策经营", "path": "/cx/apple-policy"},
-                    ],
-                    "source": "产品任务包",
+                    "data": DemoAdapter.boards(),
+                    "source": "DEMO Adapter" if demo else "产品任务包",
                     "updated_at": None,
                     "conflict": False,
+                    "data_class": "DEMO" if demo else "FORMAL",
                 },
             )
         elif path == "/api/v1/dim/channels":
-            self._send_json(200, {"data": review.formal_dimensions("channel_mapping"), "gate": "PUBLISHED_ONLY"})
+            self._send_json(200, {"data": demo.dimensions("channel_mapping") if demo else review.formal_dimensions("channel_mapping"), "gate": "DEMO_PUBLISHED" if demo else "PUBLISHED_ONLY", "data_class": "DEMO" if demo else "FORMAL"})
         elif path == "/api/v1/dim/warehouses":
-            self._send_json(200, {"data": review.formal_dimensions("warehouse_mapping"), "gate": "PUBLISHED_ONLY"})
+            self._send_json(200, {"data": demo.dimensions("warehouse_mapping") if demo else review.formal_dimensions("warehouse_mapping"), "gate": "DEMO_PUBLISHED" if demo else "PUBLISHED_ONLY", "data_class": "DEMO" if demo else "FORMAL"})
         elif path == "/api/v1/dim/skus":
-            self._send_json(200, {"data": review.formal_dimensions("sku_mapping"), "gate": "PUBLISHED_ONLY"})
+            self._send_json(200, {"data": demo.dimensions("sku_mapping") if demo else review.formal_dimensions("sku_mapping"), "gate": "DEMO_PUBLISHED" if demo else "PUBLISHED_ONLY", "data_class": "DEMO" if demo else "FORMAL"})
         elif path == "/api/v1/sales/summary":
-            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
-            payload = self.application.metrics.sales_summary(filters=filters)
-            payload["woi"] = self.application.metrics.woi_summary(filters=filters)
+            payload = demo.sales_summary(filters) if demo else self.application.metrics.sales_summary(filters=filters)
+            payload["woi"] = {
+                "data": [
+                    {"code": "spot_woi", "name": "现货WOI", "value": 3.6, "unit": "周", "caliber": "演示近28天销量窗口", "source": "DEMO Adapter（纯 Mock）", "updated_at": None, "conflict": False, "status": "演示"},
+                    {"code": "operating_woi", "name": "含在途WOI", "value": 4.8, "unit": "周", "caliber": "演示近28天销量窗口", "source": "DEMO Adapter（纯 Mock）", "updated_at": None, "conflict": False, "status": "演示"},
+                ], "data_class": "DEMO", "formal_kpi_enabled": False,
+            } if demo else self.application.metrics.woi_summary(filters=filters)
             self._send_json(200, payload)
         elif path == "/api/v1/sales/daily":
-            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
-            payload = self.application.metrics.sales_daily(filters=filters)
+            payload = demo.sales_daily(filters) if demo else self.application.metrics.sales_daily(filters=filters)
             payload["date_range"] = {"start": query.get("start", [None])[0], "end": query.get("end", [None])[0]}
             self._send_json(200, payload)
         elif re.match(r"^/api/v1/sales/sku/[^/]+$", path):
             sku = unquote(path.rsplit("/", 1)[-1])
-            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
-            payload = self.application.metrics.sku_detail(sku, filters)
-            payload["eligible_sku_count"] = len(review.formal_dimensions("sku_mapping"))
+            payload = demo.sku_detail(sku, filters) if demo else self.application.metrics.sku_detail(sku, filters)
+            payload["eligible_sku_count"] = len(demo.dimensions("sku_mapping") if demo else review.formal_dimensions("sku_mapping"))
             self._send_json(200, payload)
         elif path == "/api/v1/sales/status-review":
             rules = {
@@ -318,21 +339,27 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 return
             self._send_json(200, payload)
         elif path == "/api/v1/inventory/summary":
-            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
-            self._send_json(200, self.application.metrics.inventory_summary(filters=filters))
+            self._send_json(200, demo.inventory_summary(filters) if demo else self.application.metrics.inventory_summary(filters=filters))
         elif path == "/api/v1/inventory/aging":
-            self._send_json(200, self.application.metrics.inventory_aging())
+            self._send_json(200, demo.inventory_aging() if demo else self.application.metrics.inventory_aging())
         elif path == "/api/v1/purchase/summary":
-            filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
-            self._send_json(200, self.application.metrics.purchase_summary(filters=filters))
+            self._send_json(200, demo.purchase_summary(filters) if demo else self.application.metrics.purchase_summary(filters=filters))
         elif path == "/api/v1/policy/summary":
-            self._send_json(200, self.application.metrics.policy_summary())
+            self._send_json(200, demo.policy_summary() if demo else self.application.metrics.policy_summary())
         elif path == "/api/v1/anomaly/list":
-            self._send_json(200, self.application.metrics.anomaly_list())
+            self._send_json(200, demo.anomaly_list() if demo else self.application.metrics.anomaly_list())
         elif path == "/api/v1/action/list":
             status = query.get("status", [""])[0]
             if status and status not in ALLOWED_ACTION_STATUSES:
                 self._send_json(422, {"error": "INVALID_ACTION_STATUS", "allowed": ALLOWED_ACTION_STATUSES})
+                return
+            if demo:
+                payload = demo.action_list()
+                if status:
+                    payload["data"] = [item for item in payload["data"] if item["status"] == status]
+                payload["allowed_action_types"] = ALLOWED_ACTION_TYPES
+                payload["allowed_statuses"] = ALLOWED_ACTION_STATUSES
+                self._send_json(200, payload)
                 return
             actions = database.list_actions(status)
             self._send_json(
@@ -346,19 +373,27 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                     "generated_business_data": False,
                 },
             )
+        elif path == "/api/v1/traffic/summary":
+            if demo:
+                self._send_json(200, demo.traffic_summary())
+            else:
+                self._send_json(200, {"data": [], "message": "待接入", "contract_fields": ["date", "store", "traffic", "source", "updated_at"], "formal_kpi_enabled": False, "real_system_connected": False, "generated_business_data": False, "data_class": "FORMAL"})
         elif path == "/api/v1/metrics/dict":
             self._send_json(200, {"data": self.application.metrics.dictionary()})
         elif path == "/api/v1/review/items":
             entity_type = query.get("entity_type", [""])[0]
             status = query.get("status", [""])[0]
-            self._send_json(200, {"data": database.list_review_items(entity_type, status)})
+            self._send_json(200, {"data": demo.review_items(entity_type, status) if demo else database.list_review_items(entity_type, status), "data_class": "DEMO" if demo else "FORMAL"})
         elif path == "/api/v1/review/versions":
-            self._send_json(200, {"data": database.list_versions()})
+            self._send_json(200, {"data": demo.versions() if demo else database.list_versions(), "data_class": "DEMO" if demo else "FORMAL"})
         elif path == "/api/v1/review/api-cards":
-            self._send_json(200, {"data": self.application.jky.review_cards()})
+            self._send_json(200, {"data": demo.api_cards() if demo else self.application.jky.review_cards(), "data_class": "DEMO" if demo else "FORMAL", "label": DEMO_LABEL if demo else "正式接口配置复核"})
         elif path == "/api/v1/review/audit-log":
             self._send_json(200, {"data": database.audit_log()})
         elif path == "/api/v1/sandbox/compare":
+            if demo:
+                self._send_json(200, demo.sandbox_overview())
+                return
             self._send_json(
                 200,
                 {
@@ -479,6 +514,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         )
 
     def _discover(self, identity: Dict[str, Any]) -> None:
+        if self.application.demo:
+            self._send_json(409, {"error": "DEMO_ISOLATION", "message": "Demo模式不写入正式复核库；请使用预置演示复核对象"})
+            return
         body = self._read_json()
         if not body:
             self._send_json(400, {"error": "INVALID_JSON"})
@@ -539,15 +577,10 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self._send_json(403, {"error": "FORBIDDEN", "message": "当前账号无版本发布权限"})
             return
         try:
-            result = self.application.review.confirm(
-                str(body.get("version_type", "")),
-                str(body.get("version_name", "")),
-                body.get("item_ids", []),
-                identity["username"],
-                bool(body.get("publish", False)),
-                str(body.get("reason", "")),
-                body.get("affected_metrics", []),
-                body.get("decisions", []),
+            result = self.application.demo.confirm(body, identity["username"]) if self.application.demo else self.application.review.confirm(
+                str(body.get("version_type", "")), str(body.get("version_name", "")), body.get("item_ids", []),
+                identity["username"], bool(body.get("publish", False)), str(body.get("reason", "")),
+                body.get("affected_metrics", []), body.get("decisions", []),
             )
         except (ValueError, TypeError) as exc:
             self._send_json(422, {"error": "REVIEW_VALIDATION", "message": str(exc)})
@@ -560,7 +593,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self._send_json(400, {"error": "INVALID_JSON"})
             return
         try:
-            result = self.application.review.publish(int(body.get("version_id", 0)), identity["username"])
+            result = self.application.demo.publish(int(body.get("version_id", 0)), identity["username"]) if self.application.demo else self.application.review.publish(int(body.get("version_id", 0)), identity["username"])
         except (ValueError, TypeError) as exc:
             self._send_json(422, {"error": "PUBLISH_VALIDATION", "message": str(exc)})
             return
@@ -605,6 +638,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._send_json(200, result)
 
     def _upsert_sales_facts(self, identity: Dict[str, Any]) -> None:
+        if self.application.demo:
+            self._send_json(409, {"error": "DEMO_ISOLATION", "message": "Demo模式禁止写入正式销售事实"})
+            return
         body = self._read_json()
         if not body or not isinstance(body.get("records"), list) or not isinstance(body.get("field_mapping"), dict):
             self._send_json(400, {"error": "INVALID_JSON", "message": "records 和 field_mapping 必填"})
@@ -619,6 +655,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "事实已入库；仍须通过映射和口径发布门禁"})
 
     def _upsert_inventory_facts(self, identity: Dict[str, Any]) -> None:
+        if self.application.demo:
+            self._send_json(409, {"error": "DEMO_ISOLATION", "message": "Demo模式禁止写入正式库存事实"})
+            return
         body = self._read_json()
         if not body or not isinstance(body.get("records"), list) or not isinstance(body.get("field_mapping"), dict):
             self._send_json(400, {"error": "INVALID_JSON", "message": "records 和 field_mapping 必填"})
@@ -633,6 +672,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "事实已入库；仍须通过映射和口径发布门禁"})
 
     def _upsert_inventory_aging(self, identity: Dict[str, Any]) -> None:
+        if self.application.demo:
+            self._send_json(409, {"error": "DEMO_ISOLATION", "message": "Demo模式禁止写入正式库龄事实"})
+            return
         body = self._read_json()
         if not body or not isinstance(body.get("records"), list):
             self._send_json(400, {"error": "INVALID_JSON", "message": "records 必须是数组"})
@@ -647,6 +689,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "库龄结构已入库；确认状态及映射发布通过后方可展示正式数值"})
 
     def _upsert_action(self, identity: Dict[str, Any]) -> None:
+        if self.application.demo:
+            self._send_json(409, {"error": "DEMO_ISOLATION", "message": "Demo模式不写入正式动作台账"})
+            return
         body = self._read_json()
         required = ("action_code", "action_type", "title", "status")
         if not body or any(not body.get(field) for field in required):

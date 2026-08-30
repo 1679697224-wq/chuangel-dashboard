@@ -13,6 +13,18 @@ def _csv(name: str, default: str) -> Tuple[str, ...]:
     return tuple(item.strip() for item in os.getenv(name, default).split(",") if item.strip())
 
 
+def _bool(name: str, default: bool = False) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    normalized = value.strip().lower()
+    if normalized in {"1", "true", "yes", "on"}:
+        return True
+    if normalized in {"0", "false", "no", "off"}:
+        return False
+    raise ValueError("{} 必须为 true 或 false".format(name))
+
+
 @dataclass(frozen=True)
 class Settings:
     host: str
@@ -25,6 +37,7 @@ class Settings:
     session_ttl_seconds: int
     sandbox_snapshot_dir: str
     jky: Dict[str, str]
+    demo_mode: bool = False
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -55,6 +68,7 @@ class Settings:
                 "purchase_endpoint": os.getenv("JKY_PURCHASE_ENDPOINT", ""),
                 "transfer_endpoint": os.getenv("JKY_TRANSFER_ENDPOINT", ""),
             },
+            demo_mode=_bool("DEMO_MODE", False),
         )
 
     def validate_for_server(self) -> None:

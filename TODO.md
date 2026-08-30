@@ -19,7 +19,14 @@
 - [x] Fix Round 2：完成 raw/display 复核模型、raw强制只读和确认/发布门禁
 - [x] Fix Round 2：实现 sales/daily、inventory/aging、anomaly/list、action/list 最小可用链路
 - [x] Fix Round 2：完成业务板块枚举、日期快捷、对比口径和 SKU URL 下钻
-- [x] 生成 79 项测试结果及机器可读 `coverage.xml`
+- [x] 生成 88 项测试结果及机器可读 `coverage.xml`
+- [x] Framework Completion：建立FORMAL/SANDBOX/DEMO三模式严格隔离
+- [x] Framework Completion：完成纯Mock Demo Adapter和固定演示标识
+- [x] Framework Completion：补齐七个页面的完整经营与复核内容
+- [x] Framework Completion：补齐SKU URL下钻、全局筛选、人工确认发布和Sandbox交互
+- [x] Framework Completion：完成PC与375px移动端浏览器检查并保存8张截图
+- [ ] PO 对V1页面结构、信息层级和演示流程进行第一次业务体验
+- [ ] WorkBuddy 对 `feature/caixiao-framework-complete` 执行独立Review
 - [ ] PO 完成吉客云旧凭据撤销、轮换和泄露范围核查
 - [ ] PO/客流系统管理员完成历史 Token 轮换和传播范围核查
 - [ ] WorkBuddy 对 `fix/caixiao-v1-review2` 执行 Review Round 3

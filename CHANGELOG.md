@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 2026-08-30 — Framework Completion Sprint（待 PO 体验与 WorkBuddy Review）
+
+- 在独立 `feature/caixiao-framework-complete` 分支补齐可运行、可交互、可展示的V1完整框架，未合并 `main`。
+- 新增精确 `DEMO_MODE=true/false` 开关与纯Mock Demo Adapter；FORMAL、SANDBOX、DEMO严格隔离，正式模式不自动回退演示数据。
+- 将采销首页补齐为销售、目标、毛利、三库存、双WOI、库龄、政策、风险Top10、动作和APR客流的一屏决策入口。
+- 完整补齐SKU 360、库存→采购→门店/渠道链路、DG SI/DG ST/单店补贴三类政策台账。
+- 补齐映射/口径确认发布、非技术PO可读的吉客云四域确认卡、销售六时间字段和Sandbox预置/交互差异。
+- AI最小能力限定为发现问题、数据证据、可能原因、建议动作、待确认事项，无计算和执行权。
+- 保存7张桌面截图和1张375px移动端截图；浏览器七页无横向溢出，控制台warning/error为0。
+- 未连接吉客云、APR、客流、钉钉或生产数据库；未部署生产，未执行P2扩展。
+
 ## 2026-08-30 — WorkBuddy Review Fix Round 2（待 Review Round 3）
 
 - 从三个 `master_fill` 清除真实经营金额/数量常量，改为显式模式的仓库外运行时数据注入。
