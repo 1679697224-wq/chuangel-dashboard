@@ -71,6 +71,38 @@ class ReviewTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.review.confirm("warehouse_mapping", "warehouse_mapping_v1", [self.item_id], "reviewer")
 
+    def test_raw_name_cannot_be_modified_after_discovery(self):
+        with self.assertRaisesRegex(ValueError, "永久只读"):
+            self.database.upsert_review_item(
+                "warehouse_mapping", "jikexyun", "warehouse-1",
+                {"name": "changed"}, {"canonical": "display"}, 0.8,
+                raw_code="warehouse-1", raw_name="changed",
+            )
+
+    def test_raw_code_cannot_be_modified_after_discovery(self):
+        with self.assertRaisesRegex(ValueError, "永久只读"):
+            self.database.upsert_review_item(
+                "warehouse_mapping", "jikexyun", "warehouse-1",
+                {"name": "source"}, {"canonical": "display"}, 0.8,
+                raw_code="changed-code", raw_name="source",
+            )
+
+    def test_display_name_requires_confirmation_and_publication(self):
+        version = self.review.confirm(
+            "warehouse_mapping", "warehouse_mapping_v1", [self.item_id], "reviewer",
+            False, "确认展示名", ["inventory_qty"],
+            [{"item_id": self.item_id, "display_name": "PO确认展示名", "inventory_class": "SPOT"}],
+        )
+        item = self.database.list_review_items()[0]
+        self.assertEqual(item["raw_name"], "source")
+        self.assertEqual(item["display_name"], "PO确认展示名")
+        self.assertEqual(item["version"], "warehouse_mapping_v1")
+        self.assertEqual(self.review.formal_dimensions("warehouse_mapping"), [])
+        self.review.publish(version["id"], "publisher")
+        published = self.review.formal_dimensions("warehouse_mapping")[0]
+        self.assertEqual(published["value"]["display_name"], "PO确认展示名")
+        self.assertEqual(published["value"]["canonical"], "PO确认展示名")
+
 
 if __name__ == "__main__":
     unittest.main()

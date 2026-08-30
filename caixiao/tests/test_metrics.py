@@ -166,6 +166,53 @@ class MetricsGateTests(unittest.TestCase):
         self.assertEqual(values["spot_woi"], 2)
         self.assertEqual(values["operating_woi"], 2)
 
+    def test_sales_daily_uses_published_caliber_and_filters(self):
+        self.publish_sales_chain()
+        self.database.upsert_sales_facts([
+            self.sales_fact("T1", "L1", pay="2026-08-01T09:00:00", payment=100),
+            self.sales_fact("T2", "L1", pay="2026-08-02T09:00:00", payment=50),
+        ])
+        result = self.metrics.sales_daily({"start": "2026-08-02", "end": "2026-08-02", "channel": "CH-C"})
+        self.assertTrue(result["gate"]["eligible"])
+        self.assertEqual(result["sales_time_field"], "pay_time")
+        self.assertEqual(result["rows"], [{
+            "date": "2026-08-02", "sales_amount": 50.0, "order_count": 1,
+            "source": "吉客云销售事实层", "caliber": "pay_time",
+            "updated_at": "2026-08-05T01:02:00Z", "status": "正式",
+        }])
+
+    def test_inventory_aging_reads_confirmed_structured_records(self):
+        self.publish("warehouse_mapping", "WH1", {"canonical": "WH-C", "inventory_class": "SPOT"})
+        self.publish("sku_mapping", "SKU1", {"canonical": "SKU-C"})
+        self.publish("inventory_caliber", "default", {"operating_classes": ["SPOT", "IN_TRANSIT"]})
+        self.database.upsert_inventory_aging_records([
+            {"source_system":"upload","source_record_id":"A1","sku_raw":"SKU1","warehouse_raw_name":"WH1","age_days":30,"quantity":2,"amount":20,"source_reference":"file://private/aging#A1","caliber":"结构化上传库龄天数","extracted_at":"2026-08-30T00:00:00Z","synced_at":"2026-08-30T00:01:00Z","sync_job_id":"AGING1","confirmation_status":"CONFIRMED"},
+            {"source_system":"upload","source_record_id":"A2","sku_raw":"SKU1","warehouse_raw_name":"WH1","age_days":360,"quantity":1,"amount":10,"source_reference":"file://private/aging#A2","caliber":"结构化上传库龄天数","extracted_at":"2026-08-30T00:00:00Z","synced_at":"2026-08-30T00:01:00Z","sync_job_id":"AGING1","confirmation_status":"CONFIRMED"},
+        ])
+        result = self.metrics.inventory_aging()
+        values = {item["bucket"]: item for item in result["rows"]}
+        self.assertEqual(values["<90"]["quantity"], 2)
+        self.assertEqual(values["360+"]["amount"], 10)
+        self.assertEqual(result["confirmation_status"], "已确认")
+
+    def test_anomaly_list_requires_published_thresholds_then_calculates(self):
+        pending = self.metrics.anomaly_list()
+        self.assertEqual(len(pending["data"]), 5)
+        self.assertTrue(all(item["conclusion"] is None for item in pending["data"]))
+        self.publish_sales_chain()
+        self.publish("inventory_caliber", "default", {"operating_classes": ["SPOT", "IN_TRANSIT"]})
+        self.publish("anomaly_thresholds", "default", {"stockout_qty_max": 0, "high_inventory_qty_min": 10, "long_aging_amount_min": 5, "slow_moving_woi_min": 1})
+        self.database.upsert_sales_facts([self.sales_fact(quantity=28)])
+        self.database.upsert_inventory_facts([self.inventory_fact("I1", "WH1", 14, 140)])
+        self.database.upsert_inventory_aging_records([
+            {"source_system":"upload","source_record_id":"A1","sku_raw":"SKU1","warehouse_raw_name":"WH1","age_days":360,"quantity":1,"amount":10,"source_reference":"file://private/aging#A1","caliber":"结构化上传库龄天数","extracted_at":"2026-08-30T00:00:00Z","synced_at":"2026-08-30T00:01:00Z","sync_job_id":"AGING1","confirmation_status":"CONFIRMED"}
+        ])
+        result = self.metrics.anomaly_list()
+        indexed = {item["type"]: item for item in result["data"]}
+        self.assertEqual(indexed["高库存"]["status"], "异常")
+        self.assertEqual(indexed["长库龄"]["status"], "异常")
+        self.assertEqual(indexed["政策风险"]["status"], "待接入")
+
 
 if __name__ == "__main__":
     unittest.main()

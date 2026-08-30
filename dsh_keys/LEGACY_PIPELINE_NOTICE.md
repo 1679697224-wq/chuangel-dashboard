@@ -9,5 +9,7 @@
 - 新销售事实同步必须通过 `caixiao/backend/etl.py`：优先使用 `modified_time` 或同等订单更新时间增量；接口不支持时使用滚动回溯窗口及 `(source_system, trade_no, line_id)` upsert。
 - 付款时间只由已人工确认并发布的 `sales_caliber` 版本决定，不得由同步窗口替代。
 - 本目录不允许保存本地凭据；吉客云凭据仅从环境变量读取。
+- `master_fill.py`、`master_fill2.py`、`master_fill3.py` 不再内置经营金额或数量；只能通过 `CHUANGEL_BUSINESS_DATA_FILE` 读取仓库外私有运行文件。
+- 目录内其他历史快照替换/验证脚本不得作为新采销正式链路；今后的真实经营值必须改为受控运行时注入。
 
 旧系统脚本如需迁移或停用，须由 PO 单独授权并完成现网影响评估。本轮不改动现有总部看板的生产行为。

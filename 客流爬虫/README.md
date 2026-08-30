@@ -13,7 +13,9 @@
 | `run_daily.sh` | 每日一键：抓取 + 填表 |
 | `lib/ipva.js` | 登录/门店树/客流 API 封装（token 自动轮换） |
 | `bin/ocr_v2` | 验证码 OCR（Vision 框架，含源码 ocr_v2.m） |
-| `data/` | token 缓存、门店树缓存、客流数据 |
+| `data/` | 门店树缓存和客流数据；token不再保存在仓库目录 |
+
+Token通过 `IPVA_ACCESS_TOKEN` 环境变量注入，或由 `IPVA_TOKEN_FILE` 指向仓库外的私有运行时文件。未指定路径时使用用户私有目录，文件权限为仅当前用户可读写。
 
 ## 使用
 

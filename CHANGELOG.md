@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2026-08-30 — WorkBuddy Review Fix Round 2（待 Review Round 3）
+
+- 从三个 `master_fill` 清除真实经营金额/数量常量，改为显式模式的仓库外运行时数据注入。
+- 移除当前 Git 树中已跟踪的客流 Token 缓存，改为环境变量或仓库外私有文件；补充 Token 轮换清单。
+- 复核中心拆分 raw/display 字段；raw code/name/history mapping 在数据库、API和前端层保持不可变。
+- 实现按日销售、库龄、异常清单和动作台账四个最小可用数据链路；无发布版本或真实数据时待确认/待接入。
+- 完成业务板块闭集选项、日期快捷区间、五个对比口径和 URL 可恢复的 SKU 下钻。
+- 自动测试增至79项，全部通过；`coverage.xml` 已更新，实测覆盖率40.05%。
+- 未执行P2、真实吉客云/客流联调、生产部署或 `main` 合并。
+
 ## 2026-08-30 — WorkBuddy Review Fix Round 1（待 Review Round 2）
 
 - 修复 P0 凭据问题：13 个 `dsh_keys` 脚本改为环境变量；补充敏感文件忽略和人工轮换清单。明确历史泄露风险仍须 PO 处理。

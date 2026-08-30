@@ -125,6 +125,39 @@ def canonical_inventory_fact(
     return record
 
 
+def canonical_inventory_aging_record(
+    raw: Mapping[str, Any],
+    metadata: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """校验已结构化库龄上传记录；不读取原始客户或交易明细。"""
+    record = {
+        key: raw.get(key, metadata.get(key))
+        for key in (
+            "source_system", "source_record_id", "sku_raw", "warehouse_raw_name",
+            "age_days", "quantity", "amount", "source_reference", "caliber",
+            "extracted_at", "synced_at", "sync_job_id", "confirmation_status",
+        )
+    }
+    required = tuple(record)
+    missing = [key for key in required if record.get(key) in (None, "")]
+    if missing:
+        raise ValueError("库龄记录缺少字段：{}".format(", ".join(missing)))
+    try:
+        record["age_days"] = int(record["age_days"])
+        record["quantity"] = float(record["quantity"])
+        record["amount"] = float(record["amount"])
+    except (TypeError, ValueError):
+        raise ValueError("age_days、quantity 和 amount 必须是数值")
+    if record["age_days"] < 0:
+        raise ValueError("age_days 不得为负数")
+    if record["confirmation_status"] not in {"UNCONFIRMED", "CONFIRMED"}:
+        raise ValueError("confirmation_status 仅支持 UNCONFIRMED 或 CONFIRMED")
+    reference = record["source_reference"]
+    if not isinstance(reference, str) or reference.lstrip().startswith(("{", "[")):
+        raise ValueError("source_reference 必须是受控文件/载荷引用")
+    return record
+
+
 def build_status_review(
     records: Iterable[Mapping[str, Any]],
     current_rules: Optional[Mapping[str, str]] = None,

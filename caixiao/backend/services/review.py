@@ -1,6 +1,6 @@
 """人工复核、版本确认和发布门禁。"""
 
-from typing import Any, Dict, Iterable
+from typing import Any, Dict, Iterable, Mapping
 
 from ..database import Database
 from ..models import VERSION_PREFIXES
@@ -19,6 +19,7 @@ class ReviewService:
         publish: bool = False,
         reason: str = "",
         affected_metrics: Iterable[str] = (),
+        decisions: Iterable[Mapping[str, Any]] = (),
     ) -> Dict[str, Any]:
         expected = VERSION_PREFIXES.get(version_type)
         if not expected:
@@ -38,6 +39,7 @@ class ReviewService:
             publish,
             str(reason).strip(),
             affected_metrics,
+            decisions,
         )
 
     def publish(self, version_id: int, actor: str) -> Dict[str, Any]:

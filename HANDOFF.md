@@ -1,57 +1,42 @@
-# HANDOFF — 采销经营驾驶舱 V1 Fix Round 1
+# HANDOFF — 采销经营驾驶舱 V1 Fix Round 2
 
 ## 交付状态
 
-- Review 基准提交：`b5d3c28f5f2798013abf46837c568b2c3a47d695`。
-- 整改分支：`fix/caixiao-v1-review1`。
-- 状态：全部 P0 和 P1 已完成本地整改与验证，待 WorkBuddy Review Round 2。
-- Review 对象：以 Codex 最终回复中的完整提交哈希及远端 `fix/caixiao-v1-review1` 分支头为准，避免同一提交回写自身哈希。
+- WorkBuddy Round 2 基准提交：`8b5b4b9234cc0b82fbad42685f4c8f7fdf77c6c7`。
+- 整改分支：`fix/caixiao-v1-review2`。
+- 状态：5项 P1 已完成代码整改与本地验证，待 WorkBuddy Review Round 3。
+- Review 对象：以 Codex 最终交付回复中的完整提交哈希及远端 `fix/caixiao-v1-review2` 分支头为准，不在同一提交中回写自身哈希。
 - `main`：未合并、未移动。
 - 正式环境：未部署。
-- 吉客云生产接口：未连接。
+- 真实生产系统：未连接吉客云、客流、钉钉或其他生产数据源。
 
-## P0 完成
+## 5项 P1 完成情况
 
-1. 当前 `dsh_keys/` 脚本中的吉客云 AppKey/AppSecret 已改为环境变量读取；未在输出、测试或文档复述旧值。
-2. `.env.example` 仅保留空占位，`.gitignore` 增加 `.env`、credentials、secrets 和 `dsh_keys` 本地敏感配置规则。
-3. 新增 `CREDENTIAL_ROTATION_REQUIRED.md`；明确 PO 仍必须撤销/轮换旧凭据并核查 Git 历史风险。
-4. 新销售 ETL 使用 `modified_time` 或等同更新时间增量；不稳定时采用滚动回溯 + `(source_system, trade_no, line_id)` upsert。
-5. 同步范围与经营统计口径分离；`consign_time` 不再决定付款销售事实是否入库，`pay_time` 由发布后的 `sales_caliber` 读取。
-6. `dsh_keys/` 旧聚合脚本仅保留用于旧系统维护/受控验证，禁止接入新正式链路；隔离规则及自动测试已建立，未改变受保护旧看板现网行为。
+1. **敏感经营数据**：`master_fill.py`、`master_fill2.py`、`master_fill3.py` 的真实经营常量已删除，改为 `CHUANGEL_BUSINESS_DATA_FILE` 指向的仓库外运行时 JSON；Mock 必须显式标记并开启开发开关。
+2. **客流 Token**：从当前 Git 树移除已跟踪的 Token 缓存，改为环境变量或仓库外私有文件；客流登录、验证码、门店树和抓取业务逻辑不变。
+3. **复核中心**：`raw_code`、`raw_name`、`history_mapping` 全链只读；`display_name` 及映射决策由 PO 确认，仅“已确认+已发布”可进入正式看板。
+4. **正式数据接口**：`/sales/daily`、`/inventory/aging`、`/anomaly/list`、`/action/list` 已从 stub 转为最小可用链路；无数据或无已发布口径时返回待接入/待确认，不生成经营数字。
+5. **前端交互**：四个业务板块为闭集选项；日期快捷区间、五个对比口径、目标待接入提示和 SKU URL 下钻/刷新恢复已完成。
 
-## P1 完成
+## 安全交接
 
-- 销售/库存事实表、同步状态、全链路追溯字段。
-- 脱敏销售状态 distinct 扫描及《销售状态复核清单》；程序不自行裁定状态。
-- `sales_adjustment_rules` 的 `INCLUDE/EXCLUDE/OFFSET/PENDING` 结构和发布门禁。
-- 销售及库存真实 Sandbox 差异引擎，统一显示“验证数据，不代表正式经营口径”。
-- 事实 → 仓库/渠道/SKU映射 → 销售/库存口径 → 正式 KPI 的全链门禁。
-- 现货、在途、经营库存三口径，未知仓库和缺失分类阻断。
-- 现货WOI、含在途WOI，默认28天可配置及三个零值边界。
-- 全局筛选跨页继承、SKU搜索/详情、首页门禁指标、复核审计字段、Sandbox交互。
+- `SENSITIVE_BUSINESS_DATA_CLEANUP.md` 只记录位置、类型和整改方式，不包含原数值。
+- `TRAFFIC_TOKEN_ROTATION_REQUIRED.md` 只记录需 PO 轮换/确认的 Token 类型，不包含 Token 原文。
+- 删除当前文件不能解除 Git 历史风险；PO 仍须完成旧凭据轮换、日志核查和传播范围评估。
 
 ## 测试与检查
 
-- 自动测试：63 项通过，0 失败，0 错误。
-- 覆盖率：494 / 1,301 个后端可执行语句行，37.97%；机器可读报告 `caixiao/coverage.xml`。
-- 浏览器：PC 与 375px 移动端通过；7个页面可访问；无横向溢出；控制台 warning/error 为 0。
-- Sandbox：脱敏示例实际返回总额、差异率、差异订单、渠道、门店和SKU差异。
-- 当前未生成任何正式经营数字，未连接真实系统。
+- 自动测试：79项通过，0失败，0错误。
+- 覆盖率：626 / 1,563 个可执行语句行，40.05%；机器可读报告 `caixiao/coverage.xml`。
+- 源码扫描：三个 `master_fill` 文件敏感经营常量匹配为0；`dsh_keys` 凭据字面量赋值匹配为0；客流 Token 缓存已不在当前工作树和跟踪清单中。
+- 浏览器：四业务板块闭集、本月日期区间、目标待接入、SKU URL恢复、raw字段无编辑入口均通过；375×812 无横向溢出；控制台 warning/error 为0。
 
 ## 待 PO / WorkBuddy
 
-- 立即完成吉客云历史凭据撤销、轮换、日志核查及仓库传播范围评估。
-- 确认受保护旧客流爬虫目录中的已跟踪 token 类文件是否仍有效；如有效另行轮换和迁移。
-- 提供并确认吉客云 API 文档、鉴权、分页、限流、稳定 `modified` 字段和稳定明细行 ID。
-- 对 `caixiao/docs/SALES_STATUS_REVIEW.md` 的每个源状态发布人工结论。
-- 确认销售金额字段、退款/退货/红冲符号和 `OFFSET` multiplier。
-- 确认仓库、渠道、SKU映射及库存口径；当前没有任何默认公司映射。
-- `WORKBUDDY_REVIEW.md` 在本地和远端分支均未找到；本轮以 PO 消息列明的全部 P0/P1 作为整改基准。
+- PO/客流系统管理员确认并轮换历史 Token，核查访问日志和 Git 历史传播范围。
+- PO 审批库龄起算规则、异常阈值、映射版本和运营动作责任归属。
+- WorkBuddy 重点审查当前树与 Git 历史风险的区分、raw不可变约束、四个数据接口的门禁、阈值未发布阻断和 SKU URL 恢复。
 
-## 延后 P2
+## 范围边界
 
-本轮没有新增业务页面、市场价、合同发票、完整钉钉H5或AI预测。以上继续留待单独授权。
-
-## 下一步
-
-停止开发，将最终提交交给 WorkBuddy 执行 Review Round 2。不得自行合并 `main` 或部署生产。
+本轮没有执行 P2、真实吉客云/客流生产联调或生产部署；没有合并 `main`。交付后停止开发，等待 WorkBuddy Review Round 3。

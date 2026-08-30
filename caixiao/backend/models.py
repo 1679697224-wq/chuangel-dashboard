@@ -39,6 +39,14 @@ class InventoryClass(str, Enum):
     EXCLUDE = "EXCLUDE"
 
 
+class ActionStatus(str, Enum):
+    PENDING = "待确认"
+    CONFIRMED = "已确认"
+    IN_PROGRESS = "执行中"
+    COMPLETED = "已完成"
+    CANCELLED = "已取消"
+
+
 VERSION_PREFIXES = {
     "sales_caliber": "sales_caliber_v",
     "inventory_caliber": "inventory_caliber_v",
@@ -46,6 +54,7 @@ VERSION_PREFIXES = {
     "channel_mapping": "channel_mapping_v",
     "sku_mapping": "sku_mapping_v",
     "sales_adjustment_rules": "sales_adjustment_rules_v",
+    "anomaly_thresholds": "anomaly_thresholds_v",
 }
 
 

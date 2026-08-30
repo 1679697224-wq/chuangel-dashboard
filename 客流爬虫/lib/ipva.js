@@ -2,9 +2,10 @@
  * IPVA 客流系统 API 客户端（汇纳科技 apple.winneryun.com）
  * 登录 + 门店树 + 客流趋势抓取，token 自动轮换
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import crypto from 'node:crypto';
+import { homedir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -22,7 +23,13 @@ function loadConfig() {
   return JSON.parse(readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
 }
 
-function tokenFile() { return path.join(ROOT, 'data', 'token.txt'); }
+function tokenFile() {
+  if (process.env.IPVA_TOKEN_FILE) return path.resolve(process.env.IPVA_TOKEN_FILE);
+  const privateRoot = process.env.CHUANGEL_PRIVATE_DATA_DIR
+    ? path.resolve(process.env.CHUANGEL_PRIVATE_DATA_DIR)
+    : path.join(homedir(), '.chuangel-private');
+  return path.join(privateRoot, 'ipva-token.json');
+}
 function sitesFile() { return path.join(ROOT, 'data', 'sites.json'); }
 
 // ---------- 工具 ----------
@@ -68,7 +75,11 @@ export class IpvaClient {
     this.token = '';
     this.userId = '';
     this.userName = '';
-    if (existsSync(tokenFile())) {
+    if (process.env.IPVA_ACCESS_TOKEN) {
+      this.token = process.env.IPVA_ACCESS_TOKEN;
+      this.userId = process.env.IPVA_USER_ID || '';
+      this.userName = process.env.IPVA_USER_NAME || '';
+    } else if (existsSync(tokenFile())) {
       try {
         const saved = JSON.parse(readFileSync(tokenFile(), 'utf8'));
         this.token = saved.token || '';
@@ -90,9 +101,10 @@ export class IpvaClient {
   }
 
   saveToken() {
+    mkdirSync(path.dirname(tokenFile()), { recursive: true, mode: 0o700 });
     writeFileSync(tokenFile(), JSON.stringify({
       token: this.token, userId: this.userId, userName: this.userName, savedAt: new Date().toISOString()
-    }, null, 1));
+    }, null, 1), { mode: 0o600 });
   }
 
   async post(path, body) {

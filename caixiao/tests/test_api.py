@@ -208,6 +208,71 @@ class ApiTests(unittest.TestCase):
             ["补货", "暂停采购", "调拨", "分销", "价格清理", "活动", "搭售", "赠送", "退货", "报废", "继续观察"],
         )
 
+    def test_review_api_rejects_raw_field_modification(self):
+        cookie = self.login()
+        status, _, item = self.request("POST", "/api/v1/review/discover", {
+            "entity_type":"channel_mapping", "source_system":"round2",
+            "raw_code":"RAW-LOCKED", "raw_name":"原始名称",
+            "history_mapping":[], "suggested_display_name":"建议展示名",
+            "raw_value":{}, "suggestion":{"canonical":"建议展示名"},
+        }, cookie)
+        self.assertEqual(status, 201)
+        status, _, body = self.request("POST", "/api/v1/review/discover", {
+            "entity_type":"channel_mapping", "source_system":"round2",
+            "raw_code":"RAW-LOCKED", "raw_name":"试图修改",
+            "history_mapping":[], "raw_value":{}, "suggestion":{},
+        }, cookie)
+        self.assertEqual(status, 422)
+        self.assertEqual(body["error"], "IMMUTABLE_RAW_FIELDS")
+        status, _, _ = self.request("POST", "/api/v1/review/discover", {
+            "entity_type":"warehouse_mapping", "source_system":"round2",
+            "source_key":"IMMUTABLE-SOURCE-1", "raw_code":"RAW-CODE-1",
+            "raw_name":"原始仓库名", "history_mapping":[],
+            "raw_value":{}, "suggestion":{"canonical":"建议仓库名"},
+        }, cookie)
+        self.assertEqual(status, 201)
+        status, _, body = self.request("POST", "/api/v1/review/discover", {
+            "entity_type":"warehouse_mapping", "source_system":"round2",
+            "source_key":"IMMUTABLE-SOURCE-1", "raw_code":"MUTATED-CODE",
+            "raw_name":"原始仓库名", "history_mapping":[],
+            "raw_value":{}, "suggestion":{},
+        }, cookie)
+        self.assertEqual(status, 422)
+        self.assertEqual(body["error"], "IMMUTABLE_RAW_FIELDS")
+        status, _, body = self.request("POST", "/api/v1/review/confirm", {
+            "version_type":"channel_mapping", "version_name":"channel_mapping_v99",
+            "item_ids":[item["id"]], "raw_code":"MUTATED", "reason":"非法请求",
+        }, cookie)
+        self.assertEqual(status, 422)
+        self.assertEqual(body["error"], "RAW_FIELDS_READ_ONLY")
+
+    def test_action_list_reads_persisted_ledger(self):
+        cookie = self.login()
+        status, _, saved = self.request("POST", "/api/v1/actions/upsert", {
+            "action_code":"ACT-ROUND2-001", "action_type":"补货",
+            "title":"结构化动作记录", "status":"待确认", "sku":"SKU-MOCK",
+        }, cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual(saved["status"], "待确认")
+        status, _, body = self.request("GET", "/api/v1/action/list?status=%E5%BE%85%E7%A1%AE%E8%AE%A4", cookie=cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual(body["data"][0]["action_code"], "ACT-ROUND2-001")
+        self.assertEqual(body["allowed_statuses"], ["待确认", "已确认", "执行中", "已完成", "已取消"])
+
+    def test_inventory_aging_upload_stays_pending_until_confirmed(self):
+        cookie = self.login()
+        status, _, saved = self.request("POST", "/api/v1/facts/inventory-aging/upsert", {
+            "records":[{"source_record_id":"AGING-MOCK-1","sku_raw":"SKU-MOCK","warehouse_raw_name":"WH-MOCK","age_days":90,"quantity":1,"amount":1,"source_reference":"file://private/mock-aging#1","caliber":"MOCK结构化库龄","confirmation_status":"UNCONFIRMED"}],
+            "metadata":{"source_system":"mock-upload","extracted_at":"2026-08-30T00:00:00Z","synced_at":"2026-08-30T00:01:00Z","sync_job_id":"MOCK-AGING-1"},
+        }, cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual(saved["upserted"], 1)
+        status, _, body = self.request("GET", "/api/v1/inventory/aging", cookie=cookie)
+        self.assertEqual(status, 200)
+        self.assertEqual([item["bucket"] for item in body["rows"]], ["<90", "90-180", "180-360", "360+"])
+        self.assertEqual(body["confirmation_status"], "待确认")
+        self.assertTrue(all(item["amount"] is None for item in body["rows"]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -57,7 +57,9 @@
 
 正式版本命名：`sales_caliber_vX`、`inventory_caliber_vX`、`warehouse_mapping_vX`、`channel_mapping_vX`、`sku_mapping_vX`、`sales_adjustment_rules_vX`。
 
-确认请求必须包含 `reason` 和 `affected_metrics`。版本及审计记录持久化 `before`、`after`、`reason`、`affected_metrics`、`confirmed_by/at`、`published_by/at`。
+复核项拆分为 `raw_code`、`raw_name`、`history_mapping`、`suggested_display_name`、`display_name`、`business_unit`、`channel`、`store_shop`、`inventory_class`、`status` 和 `version`。系统可在首次发现时同时提交稳定 `source_key`用于识别同一来源对象；之后 `raw_code`、`raw_name`、`history_mapping` 永久只读。API重复识别或确认请求尝试修改raw字段时返回422。确认请求必须包含 `reason` 和 `affected_metrics`，映射项必须由PO确认 `display_name`。只有确认并发布的展示名和映射规则进入正式维表。
+
+版本及审计记录持久化 `before`、`after`、`reason`、`affected_metrics`、`confirmed_by/at`、`published_by/at`。阈值版本使用 `anomaly_thresholds_vX`。
 
 ## 事实写入与追溯
 
@@ -65,8 +67,12 @@
 |---|---|---|---|
 | POST | `/api/v1/facts/sales/upsert` | `api:inspect` | 通过显式字段映射写入销售事实；不会直接开启正式 KPI |
 | POST | `/api/v1/facts/inventory/upsert` | `api:inspect` | 写入库存快照事实；不会直接开启正式 KPI |
+| POST | `/api/v1/facts/inventory-aging/upsert` | `api:inspect` | 写入已结构化库龄上传记录；未确认记录不展示正式数值 |
+| POST | `/api/v1/actions/upsert` | `review:confirm` | 写入最小动作台账；动作类型和状态使用封闭枚举 |
 
 销售 upsert 键为 `source_system + trade_no + line_id`。同步优先使用 `modified_time` 或等同更新时间；接口不稳定时使用滚动回溯窗口和同一业务键 upsert。`consign_time` 不得用于决定付款销售事实是否入库。
+
+`sales/daily` 读取销售事实、已发布 `sales_caliber`、状态调整及仓库/渠道/SKU映射，支持 `start`、`end`、`channel`。`inventory/aging` 固定输出 `<90`、`90-180`、`180-360`、`360+`，并返回来源、口径、更新时间和确认状态。`anomaly/list` 仅在 `anomaly_thresholds` 已发布且依赖指标可用时形成缺货、高库存、长库龄和慢动销结论；政策数据未接入时政策风险保持“待接入”。
 
 ## Sandbox
 

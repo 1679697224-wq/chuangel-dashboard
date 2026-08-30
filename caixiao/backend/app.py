@@ -18,12 +18,14 @@ from .config import ROOT_DIR, Settings
 from .database import Database
 from .etl import (
     build_status_review,
+    canonical_inventory_aging_record,
     canonical_inventory_fact,
     canonical_sales_fact,
     plan_sales_sync,
 )
 from .pipeline import recompute_five_time_views
 from .sandbox import SANDBOX_LABEL, compare_inventory, compare_sales
+from .models import ActionStatus
 from .services.metrics import MetricsService
 from .services.review import ReviewService
 
@@ -31,6 +33,11 @@ from .services.review import ReviewService
 FRONTEND_DIR = ROOT_DIR / "caixiao" / "frontend"
 COOKIE_NAME = "caixiao_session"
 MAX_REQUEST_BYTES = 2 * 1024 * 1024
+ALLOWED_ACTION_TYPES = [
+    "补货", "暂停采购", "调拨", "分销", "价格清理", "活动",
+    "搭售", "赠送", "退货", "报废", "继续观察",
+]
+ALLOWED_ACTION_STATUSES = [item.value for item in ActionStatus]
 
 
 class DashboardApplication:
@@ -285,8 +292,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self._send_json(200, payload)
         elif path == "/api/v1/sales/daily":
             filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
-            payload = self.application.metrics.sales_summary(filters=filters)
-            payload["rows"] = []
+            payload = self.application.metrics.sales_daily(filters=filters)
             payload["date_range"] = {"start": query.get("start", [None])[0], "end": query.get("end", [None])[0]}
             self._send_json(200, payload)
         elif re.match(r"^/api/v1/sales/sku/[^/]+$", path):
@@ -315,27 +321,27 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
             self._send_json(200, self.application.metrics.inventory_summary(filters=filters))
         elif path == "/api/v1/inventory/aging":
-            payload = self.application.metrics.inventory_summary()
-            payload["rows"] = []
-            payload["aging_buckets"] = "待业务确认"
-            self._send_json(200, payload)
+            self._send_json(200, self.application.metrics.inventory_aging())
         elif path == "/api/v1/purchase/summary":
             filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
             self._send_json(200, self.application.metrics.purchase_summary(filters=filters))
         elif path == "/api/v1/policy/summary":
             self._send_json(200, self.application.metrics.policy_summary())
         elif path == "/api/v1/anomaly/list":
-            self._send_json(200, {"data": [], "message": "待接入", "generated_business_data": False})
+            self._send_json(200, self.application.metrics.anomaly_list())
         elif path == "/api/v1/action/list":
+            status = query.get("status", [""])[0]
+            if status and status not in ALLOWED_ACTION_STATUSES:
+                self._send_json(422, {"error": "INVALID_ACTION_STATUS", "allowed": ALLOWED_ACTION_STATUSES})
+                return
+            actions = database.list_actions(status)
             self._send_json(
                 200,
                 {
-                    "data": [],
-                    "message": "待接入",
-                    "allowed_action_types": [
-                        "补货", "暂停采购", "调拨", "分销", "价格清理", "活动",
-                        "搭售", "赠送", "退货", "报废", "继续观察",
-                    ],
+                    "data": actions,
+                    "message": "已读取动作台账" if actions else "待接入",
+                    "allowed_action_types": ALLOWED_ACTION_TYPES,
+                    "allowed_statuses": ALLOWED_ACTION_STATUSES,
                     "approval_required": True,
                     "generated_business_data": False,
                 },
@@ -428,6 +434,16 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if identity:
                 self._upsert_inventory_facts(identity)
             return
+        if path == "/api/v1/facts/inventory-aging/upsert":
+            identity = self._require("api:inspect")
+            if identity:
+                self._upsert_inventory_aging(identity)
+            return
+        if path == "/api/v1/actions/upsert":
+            identity = self._require("review:confirm")
+            if identity:
+                self._upsert_action(identity)
+            return
         self._send_json(404, {"error": "NOT_FOUND", "message": "接口不存在"})
 
     def _login(self) -> None:
@@ -467,8 +483,12 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         if not body:
             self._send_json(400, {"error": "INVALID_JSON"})
             return
-        required = ("entity_type", "source_system", "source_key", "raw_value")
-        if any(not body.get(field) for field in required):
+        raw_code = str(body.get("raw_code") or body.get("source_key") or "").strip()
+        source_key = str(body.get("source_key") or raw_code).strip()
+        raw_value = body.get("raw_value", {})
+        raw_name = str(body.get("raw_name") or (raw_value.get("name") if isinstance(raw_value, dict) else "") or "").strip()
+        required = ("entity_type", "source_system", "raw_code", "raw_name")
+        if not body.get("entity_type") or not body.get("source_system") or not raw_code or not raw_name:
             self._send_json(422, {"error": "MISSING_FIELD", "required": list(required)})
             return
         if body["entity_type"] not in {
@@ -478,20 +498,24 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             "channel_mapping",
             "sku_mapping",
             "sales_adjustment_rules",
+            "anomaly_thresholds",
         }:
             self._send_json(422, {"error": "INVALID_ENTITY_TYPE"})
             return
-        if not isinstance(body["raw_value"], dict) or not isinstance(body.get("suggestion", {}), dict):
+        if not isinstance(raw_value, dict) or not isinstance(body.get("suggestion", {}), dict):
             self._send_json(422, {"error": "INVALID_VALUE"})
             return
-        item_id = self.application.database.upsert_review_item(
-            body["entity_type"],
-            str(body["source_system"]),
-            str(body["source_key"]),
-            body["raw_value"],
-            body.get("suggestion", {}),
-            body.get("confidence"),
-        )
+        try:
+            item_id = self.application.database.upsert_review_item(
+                body["entity_type"], str(body["source_system"]), source_key,
+                raw_value, body.get("suggestion", {}), body.get("confidence"),
+                raw_code=raw_code, raw_name=raw_name,
+                history_mapping=body.get("history_mapping", []),
+                suggested_display_name=str(body.get("suggested_display_name") or ""),
+            )
+        except (ValueError, TypeError) as exc:
+            self._send_json(422, {"error": "IMMUTABLE_RAW_FIELDS", "message": str(exc)})
+            return
         self.application.database.audit(
             identity["username"],
             "review.discover",
@@ -499,12 +523,17 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             str(item_id),
             {"entity_type": body["entity_type"], "source_system": body["source_system"]},
         )
-        self._send_json(201, {"id": item_id, "status": "UNCONFIRMED", "formal_kpi_enabled": False})
+        item = next(value for value in self.application.database.list_review_items() if value["id"] == item_id)
+        self._send_json(201, {**item, "formal_kpi_enabled": False})
 
     def _confirm(self, identity: Dict[str, Any]) -> None:
         body = self._read_json()
         if not body:
             self._send_json(400, {"error": "INVALID_JSON"})
+            return
+        forbidden = {"raw_code", "raw_name", "history_mapping", "raw_value", "source_key"}
+        if forbidden.intersection(body) or any(forbidden.intersection(item) for item in body.get("decisions", []) if isinstance(item, dict)):
+            self._send_json(422, {"error": "RAW_FIELDS_READ_ONLY", "message": "raw_code、raw_name 和 history_mapping 永久只读"})
             return
         if bool(body.get("publish", False)) and "review:publish" not in identity["scopes"]:
             self._send_json(403, {"error": "FORBIDDEN", "message": "当前账号无版本发布权限"})
@@ -518,6 +547,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                 bool(body.get("publish", False)),
                 str(body.get("reason", "")),
                 body.get("affected_metrics", []),
+                body.get("decisions", []),
             )
         except (ValueError, TypeError) as exc:
             self._send_json(422, {"error": "REVIEW_VALIDATION", "message": str(exc)})
@@ -601,6 +631,38 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             return
         self.application.database.audit(identity["username"], "facts.upsert", "inventory", None, {"record_count": count, "sync_job_id": body.get("metadata", {}).get("sync_job_id")})
         self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "事实已入库；仍须通过映射和口径发布门禁"})
+
+    def _upsert_inventory_aging(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        if not body or not isinstance(body.get("records"), list):
+            self._send_json(400, {"error": "INVALID_JSON", "message": "records 必须是数组"})
+            return
+        try:
+            records = [canonical_inventory_aging_record(raw, body.get("metadata", {})) for raw in body["records"]]
+            count = self.application.database.upsert_inventory_aging_records(records)
+        except (TypeError, ValueError) as exc:
+            self._send_json(422, {"error": "AGING_VALIDATION", "message": str(exc)})
+            return
+        self.application.database.audit(identity["username"], "facts.upsert", "inventory_aging", None, {"record_count": count, "sync_job_id": body.get("metadata", {}).get("sync_job_id")})
+        self._send_json(200, {"upserted": count, "formal_kpi_enabled": False, "message": "库龄结构已入库；确认状态及映射发布通过后方可展示正式数值"})
+
+    def _upsert_action(self, identity: Dict[str, Any]) -> None:
+        body = self._read_json()
+        required = ("action_code", "action_type", "title", "status")
+        if not body or any(not body.get(field) for field in required):
+            self._send_json(422, {"error": "MISSING_FIELD", "required": list(required)})
+            return
+        if body["action_type"] not in ALLOWED_ACTION_TYPES or body["status"] not in ALLOWED_ACTION_STATUSES:
+            self._send_json(422, {"error": "ACTION_VALIDATION", "allowed_action_types": ALLOWED_ACTION_TYPES, "allowed_statuses": ALLOWED_ACTION_STATUSES})
+            return
+        record = {key: str(body.get(key) or "").strip() for key in (
+            "action_code", "action_type", "title", "status", "business_unit", "channel",
+            "store_shop", "sku", "source_reference", "reason",
+        )}
+        record["created_by"] = identity["username"]
+        action_id = self.application.database.upsert_action(record)
+        self.application.database.audit(identity["username"], "action.upsert", "action_ledger", str(action_id), {"action_code": record["action_code"], "status": record["status"]})
+        self._send_json(200, {"id": action_id, "status": record["status"]})
 
 
 def create_server(settings: Settings) -> DashboardServer:

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """主聚合 v2：在 sales_lines_export(原口径) 基础上补充业务员/门店线上线下/同比/品类/日报"""
 import json, re
+from runtime_business_data import load_runtime_business_data
 from collections import defaultdict
 from zipfile import ZipFile
 from xml.etree import ElementTree as ET
@@ -247,20 +248,9 @@ F['lastyear_trend'] = {dd: round(a25['@day:' + dd]['amount'], 2) for dd in
 
 # ===== 4) 库存：商务表 =====
 inv = xlsx_sheets(ROOT + '/库存分析表_260826.xlsx')
-F['inv_category'] = [
-    {'name': '苹果主机', 'amount': 1603.3783376326, 'qty': 2422, 'pct': 76.03},
-    {'name': '原装配件', 'amount': 139.6055536141, 'qty': 3178, 'pct': 6.62},
-    {'name': '舒尔', 'amount': 302.8152990727, 'qty': 6065, 'pct': 14.36},
-    {'name': '第三方配件', 'amount': 63.0520116143, 'qty': 12293, 'pct': 2.99},
-]
-F['inv_machine'] = {
-    'APR 门店': {'normal': 1136.2241968626, 'demo': 299.498783999499, 'defect': 6.858652},
-    '电商-羽通': {'normal': 242.3158729986, 'demo': 0.0, 'defect': 4.7413699999},
-    '电商-啟韬': {'normal': 90.9637199998, 'demo': 0.0, 'defect': 4.259351},
-    '电商-舒尔': {'normal': 136.4208829682, 'demo': 0.0, 'defect': 26.0231896109},
-    '电商-其他': {'normal': 6.7176799995, 'demo': 0.0, 'defect': 0.95711},
-    '京东-舒尔': {'normal': 92.2035994945, 'demo': 0.0, 'defect': 0.0},
-}
+runtime_business = load_runtime_business_data()
+F['inv_category'] = runtime_business['inv_category']
+F['inv_machine'] = runtime_business['inv_machine']
 F['inv_aging'] = {
     '0~30 天': 869.466139999999, '30~60 天': 217.776742, '60~90 天': 57.56853,
     '90~180 天': 351.86624, '180~360 天': 230.19718, '360 天以上': 123.977267,

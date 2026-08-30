@@ -13,9 +13,16 @@
 - [x] Fix Round 1：完成状态复核、销售调整规则和真实 Sandbox 差异引擎
 - [x] Fix Round 1：完成全链 KPI 门禁、三库存、双WOI及阻断测试
 - [x] Fix Round 1：完成全局筛选、SKU下钻、审计字段和浏览器验证
-- [x] 生成 63 项测试结果及机器可读 `coverage.xml`
+- [x] WorkBuddy 完成 Round 2 Review，确认 P0 代码层清零并提出5项P1
+- [x] Fix Round 2：清理三个 `master_fill` 的敏感经营常量并建立私有运行时注入
+- [x] Fix Round 2：移除当前树客流 Token 缓存并建立环境/仓库外私有文件注入
+- [x] Fix Round 2：完成 raw/display 复核模型、raw强制只读和确认/发布门禁
+- [x] Fix Round 2：实现 sales/daily、inventory/aging、anomaly/list、action/list 最小可用链路
+- [x] Fix Round 2：完成业务板块枚举、日期快捷、对比口径和 SKU URL 下钻
+- [x] 生成 79 项测试结果及机器可读 `coverage.xml`
 - [ ] PO 完成吉客云旧凭据撤销、轮换和泄露范围核查
-- [ ] WorkBuddy 对 `fix/caixiao-v1-review1` 执行 Review Round 2
+- [ ] PO/客流系统管理员完成历史 Token 轮换和传播范围核查
+- [ ] WorkBuddy 对 `fix/caixiao-v1-review2` 执行 Review Round 3
 - [ ] WorkBuddy 使用真实吉客云文档/凭据完成接口联调
 - [ ] 业务负责人逐项确认 `BUSINESS_CONFIRMATION_REQUIRED.md`
 - [ ] 通过正式身份、权限和数据范围验收

@@ -27,6 +27,11 @@ dsh_keys/.env*
 dsh_keys/*credentials*
 dsh_keys/*secret*
 dsh_keys/local_*
+dsh_keys/*business_data*.json
+dsh_keys/*runtime_data*.json
+客流爬虫/data/token*
+客流爬虫/data/private/
+客流爬虫/.runtime/
 caixiao/runtime/
 caixiao/**/__pycache__/
 caixiao/**/*.pyc

@@ -61,6 +61,27 @@
 - 经营库存：现货 + 符合经营规则的在途；`EXCLUDE` 不计入。
 - 现货WOI与含在途WOI并列；销量窗口默认 28 天但由版本配置，零库存/零销量组合分别返回明确状态。
 
+## 映射复核字段
+
+| 字段 | 可编辑性 | 用途 |
+|---|---|---|
+| `raw_code` | 永久只读 | 源系统原始编码 |
+| `raw_name` | 永久只读 | 源系统原始名称 |
+| `history_mapping` | 永久只读 | 历史映射追溯 |
+| `suggested_display_name` | 系统建议 | AI/规则建议，不直接进入正式看板 |
+| `display_name` | PO确认 | 正式展示名；发布后进入维表 |
+| `business_unit` / `channel` / `store_shop` | PO确认 | 组织和渠道归属 |
+| `inventory_class` | PO确认 | `SPOT/IN_TRANSIT/EXCLUDE` |
+| `status` / `version` | 系统维护 | 确认和发布追溯 |
+
+## 结构化库龄上传
+
+字段包括 `source_system`、`source_record_id`、`sku_raw`、`warehouse_raw_name`、`age_days`、`quantity`、`amount`、`source_reference`、`caliber`、`extracted_at`、`synced_at`、`sync_job_id` 和 `confirmation_status`。分段固定为 `<90`、`90-180`、`180-360`、`360+`；未确认记录或未发布映射不输出正式金额/数量。
+
+## 动作台账
+
+动作状态封闭为：待确认、已确认、执行中、已完成、已取消。动作类型仍使用已批准词汇；台账记录仅表示流程事实，不表示AI自动下达经营决策。
+
 ## 采购与调拨
 
 采购、调拨的源字段名不在未取得 API 文档时编造。标准层必须具备：稳定源记录 ID、单据/明细业务键、SKU、数量、源/目标仓库、原始状态、标准状态、创建/审核/出入库/关闭时间、抽取时间和映射版本。具体字段绑定分别由 BC-008、BC-009 决定。
