@@ -11,7 +11,7 @@
     <form id="loginForm" class="login-card">
       <div class="brand-mark">传天羽</div>
       <h1>采销经营驾驶舱</h1>
-      <p>使用本地初始化的复核账号登录</p>
+      <p>登录后进入已授权的采销经营范围</p>
       <label>账号<input id="username" name="username" autocomplete="username" required></label>
       <label>密码<input id="password" name="password" type="password" autocomplete="current-password" required></label>
       <button class="primary full" type="submit">安全登录</button>
@@ -23,41 +23,60 @@
     <aside class="sidebar">
       <div class="brand">
         <span class="brand-mark small">传天羽</span>
-        <div><strong>采销经营驾驶舱</strong><small>CAIXIAO CONTROL TOWER</small></div>
+        <div><strong>采销经营驾驶舱</strong><small>经营判断 · 协同执行</small></div>
       </div>
       <nav id="mainNav" aria-label="主导航">
-        <a href="/cx/" data-route="home"><span>总</span>采销作战首页</a>
-        <a href="/cx/sku" data-route="sku"><span>品</span>SKU 360</a>
-        <a href="/cx/inventory-purchase" data-route="inventory"><span>链</span>库存&采购全链路</a>
-        <a href="/cx/apple-policy" data-route="policy"><span>政</span>Apple政策经营</a>
-        <div class="nav-divider">人工复核</div>
-        <a href="/cx/review-mapping" data-route="review-mapping"><span>映</span>映射与口径复核</a>
-        <a href="/cx/review-api" data-route="review-api"><span>接</span>吉客云 API 复核</a>
-        <a href="/cx/sandbox" data-route="sandbox"><span>沙</span>Sandbox</a>
+        <details class="nav-group" open>
+          <summary><b>01</b><span>经营总览</span><i>⌄</i></summary>
+          <a href="/cx/" data-route="home">采销经营总览</a>
+          <a href="/cx/anomalies" data-route="anomalies">经营异常</a>
+          <a href="/cx/priorities" data-route="priorities">今日重点</a>
+        </details>
+        <details class="nav-group" open>
+          <summary><b>02</b><span>商品经营</span><i>⌄</i></summary>
+          <a href="/cx/products" data-route="products">商品经营分析</a>
+          <a href="/cx/sku" data-route="sku">SKU 360</a>
+        </details>
+        <details class="nav-group" open>
+          <summary><b>03</b><span>库存与采购</span><i>⌄</i></summary>
+          <a href="/cx/inventory" data-route="inventory">库存经营</a>
+          <a href="/cx/purchase" data-route="purchase">报需与采购</a>
+          <a href="/cx/transfer" data-route="transfer">调拨与在途</a>
+        </details>
+        <details class="nav-group" open>
+          <summary><b>04</b><span>政策经营</span><i>⌄</i></summary>
+          <a href="/cx/policy/dg" data-route="dg">DG任务</a>
+          <a href="/cx/policy/subsidy" data-route="subsidy">单店补贴</a>
+          <a href="/cx/policy" data-route="policy">政策与返利</a>
+        </details>
+        <details class="nav-group" open>
+          <summary><b>05</b><span>行动中心</span><i>⌄</i></summary>
+          <a href="/cx/actions" data-route="actions">我的待办</a>
+          <a href="/cx/actions/tracking" data-route="tracking">执行跟踪</a>
+        </details>
       </nav>
       <div class="sidebar-foot">
-        <span id="userName">—</span>
-        <button id="logoutButton" class="ghost" type="button">退出</button>
+        <details id="adminNav" class="admin-nav" hidden>
+          <summary>⚙ 系统管理</summary>
+          <div><small>数据治理</small><a href="/cx/admin/data-mapping" data-route="review-mapping">数据映射</a><a href="/cx/admin/calibers" data-route="review-mapping">口径管理</a><a href="/cx/admin/versions" data-route="review-mapping">版本管理</a></div>
+          <div><small>数据接入</small><a href="/cx/admin/connectors/jikexyun" data-route="review-api">吉客云</a><a href="/cx/admin/connectors/traffic" data-route="review-api">APR客流</a><a href="/cx/admin/connectors/shure" data-route="review-api">Shure平台</a><a href="/cx/admin/connectors/manual" data-route="review-api">手工数据</a></div>
+          <div><small>数据验证</small><a href="/cx/admin/validation/sandbox" data-route="sandbox">Sandbox</a><a href="/cx/admin/validation/quality" data-route="sandbox">数据质量</a><a href="/cx/admin/validation/sync-log" data-route="sandbox">同步日志</a></div>
+        </details>
+        <div class="account-row"><span id="userName">—</span><button id="logoutButton" class="ghost" type="button">退出</button></div>
       </div>
     </aside>
 
     <main class="main">
       <header class="topbar">
         <button id="menuButton" class="menu-button" type="button" aria-label="展开导航">☰</button>
-        <div><div id="pageEyebrow" class="eyebrow">经营控制台</div><h1 id="pageTitle">采销作战首页</h1></div>
+        <div><div id="pageEyebrow" class="eyebrow">经营总览</div><h1 id="pageTitle">采销经营总览</h1></div>
         <div class="topbar-actions">
           <span id="modePill" class="status-pill pending">正在识别数据模式</span>
           <span id="clock" class="clock">—</span>
         </div>
       </header>
-      <section id="demoBanner" class="demo-banner" hidden>
-        <strong>DEMO MODE</strong>
-        <span>演示数据，仅用于页面及流程验证</span>
-      </section>
-      <section id="dataNotice" class="data-notice">
-        <strong>数据门禁已启用</strong>
-        <span>FORMAL、SANDBOX、DEMO 三类数据严格隔离，未确认数据不得进入正式经营 KPI。</span>
-      </section>
+      <button id="demoBanner" class="demo-banner" type="button" title="当前为模拟数据，仅用于页面和交互验证。" hidden>演示数据</button>
+      <section id="dataNotice" class="data-notice" hidden></section>
       <section id="globalFilters" class="global-filters" aria-label="全局经营筛选"></section>
       <div id="page" class="page" aria-live="polite"></div>
     </main>

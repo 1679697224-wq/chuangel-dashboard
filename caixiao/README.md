@@ -40,15 +40,23 @@ export CAIXIAO_SANDBOX_SNAPSHOT_DIR='/绝对路径/吉客云数据'
 
 ## 页面
 
-| 路径 | 页面 |
-|---|---|
-| `/cx/` | 采销作战首页 |
-| `/cx/sku` | SKU 360 |
-| `/cx/inventory-purchase` | 库存&采购全链路 |
-| `/cx/apple-policy` | Apple政策经营 |
-| `/cx/review-mapping` | 映射与口径复核中心 |
-| `/cx/review-api` | 吉客云 API 复核中心 |
-| `/cx/sandbox` | Sandbox 差异验证 |
+| 业务分组 | 路径 | 页面 |
+|---|---|---|
+| 经营总览 | `/cx/` | 采销经营总览 |
+| 经营总览 | `/cx/anomalies` | 经营异常 |
+| 经营总览 | `/cx/priorities` | 今日重点 |
+| 商品经营 | `/cx/products` | 商品经营分析 |
+| 商品经营 | `/cx/sku?sku=...` | SKU 360 |
+| 库存与采购 | `/cx/inventory` | 库存经营 |
+| 库存与采购 | `/cx/purchase` | 报需与采购 |
+| 库存与采购 | `/cx/transfer` | 调拨与在途 |
+| 政策经营 | `/cx/policy/dg` | DG任务 |
+| 政策经营 | `/cx/policy/subsidy` | 单店补贴 |
+| 政策经营 | `/cx/policy` | 政策与返利 |
+| 行动中心 | `/cx/actions` | 我的待办 |
+| 行动中心 | `/cx/actions/tracking` | 执行跟踪 |
+
+映射、口径、版本、数据接入和Sandbox仍保留，但只在授权角色的“系统管理”入口中出现，不进入业务主导航。旧业务路径保留兼容跳转。
 
 ## 数据门禁
 
@@ -68,4 +76,4 @@ python3 caixiao/tests/run_with_coverage.py
 
 该命令运行完整测试并生成机器可读的 `caixiao/coverage.xml`。完整接口、部署与测试记录见 `caixiao/docs/`。
 
-本轮页面、模式、截图、未接入项和人工验收清单见 `caixiao/docs/FRAMEWORK_COMPLETION_V1.md`。
+当前业务前台、截图、未接入项和人工验收清单见 `caixiao/docs/UI_BUSINESS_REBUILD_V1.md`；上一轮框架记录保留在 `caixiao/docs/FRAMEWORK_COMPLETION_V1.md`。

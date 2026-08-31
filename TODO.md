@@ -25,8 +25,14 @@
 - [x] Framework Completion：补齐七个页面的完整经营与复核内容
 - [x] Framework Completion：补齐SKU URL下钻、全局筛选、人工确认发布和Sandbox交互
 - [x] Framework Completion：完成PC与375px移动端浏览器检查并保存8张截图
-- [ ] PO 对V1页面结构、信息层级和演示流程进行第一次业务体验
-- [ ] WorkBuddy 对 `feature/caixiao-framework-complete` 执行独立Review
+- [x] PO 对V1页面结构、信息层级和技术入口提出第一次业务反馈
+- [x] UI重构：将主导航重组为五组业务任务并把技术治理入口移入系统管理
+- [x] UI重构：完成13个业务路由、业务化页面语言和首页决策层级
+- [x] UI重构：完成商品筛选、SKU下钻、动态渠道、日期快捷和表格交互
+- [x] UI重构：完成PC与375px回归并保存11张截图
+- [x] 生成97项测试结果及机器可读 `coverage.xml`
+- [ ] PO 对 `feature/caixiao-ui-business-rebuild` 进行业务体验和界面确认
+- [ ] WorkBuddy 对 `feature/caixiao-ui-business-rebuild` 执行独立Review
 - [ ] PO 完成吉客云旧凭据撤销、轮换和泄露范围核查
 - [ ] PO/客流系统管理员完成历史 Token 轮换和传播范围核查
 - [ ] WorkBuddy 对 `fix/caixiao-v1-review2` 执行 Review Round 3

@@ -21,7 +21,7 @@ class FrontendRound2Tests(unittest.TestCase):
 
     def test_business_unit_is_closed_enumeration(self):
         values = self.node_eval("u.BUSINESS_UNITS")
-        self.assertEqual(values, ["Apple线下/APR", "Apple电商", "Shure电商", "Apple渠道/3PP分销"])
+        self.assertEqual(values, ["Apple线下/APR", "Apple电商", "Shure电商", "Apple渠道"])
         source = APP_JS.read_text(encoding="utf-8")
         self.assertIn('<select name="businessUnit">', source)
         self.assertNotIn('<input name="businessUnit"', source)
@@ -39,7 +39,7 @@ class FrontendRound2Tests(unittest.TestCase):
             self.assertIn('value="{}"'.format(value), source)
         notice = self.node_eval("u.compareNotice('target')")
         self.assertIn("目标数据待接入", notice)
-        self.assertIn("filterNotice\").textContent = compareNotice", source)
+        self.assertIn("compareNotice(filters.compare)", source)
 
     def test_sku_url_drilldown_and_refresh_restore(self):
         parsed = self.node_eval("u.skuFromSearch('?sku=SKU-MOCK-001')")

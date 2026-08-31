@@ -131,10 +131,13 @@ class DemoModeApiTests(unittest.TestCase):
         self.assertIn("不代表正式经营口径", body["label"])
         self.assertFalse(body["formal_kpi_enabled"])
 
-    def test_all_seven_page_routes_are_available(self):
+    def test_business_and_admin_page_routes_are_available(self):
         for path in (
-            "/cx/", "/cx/sku", "/cx/inventory-purchase", "/cx/apple-policy",
-            "/cx/review-mapping", "/cx/review-api", "/cx/sandbox",
+            "/cx/", "/cx/anomalies", "/cx/priorities", "/cx/products", "/cx/sku",
+            "/cx/inventory", "/cx/purchase", "/cx/transfer", "/cx/policy/dg",
+            "/cx/policy/subsidy", "/cx/policy", "/cx/actions", "/cx/actions/tracking",
+            "/cx/admin/data-mapping", "/cx/admin/connectors/jikexyun",
+            "/cx/admin/validation/sandbox",
         ):
             with self.subTest(path=path):
                 connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=4)
@@ -160,7 +163,7 @@ class FrameworkSourceTests(unittest.TestCase):
         source = (REPO_ROOT / "caixiao/frontend/assets/app.js").read_text(encoding="utf-8")
         index = (REPO_ROOT / "caixiao/frontend/index.html").read_text(encoding="utf-8")
         for phrase in (
-            "演示数据，仅用于页面及流程验证", "DG SI", "DG ST", "单店补贴",
+            "当前为模拟数据，仅用于页面和交互验证", "DG SI", "DG ST", "单店补贴",
             "现货WOI", "含在途WOI", "7/14/28/90", "date / store / traffic / source / updated_at",
             "验证数据，不代表正式经营口径", "raw_code、raw_name、history_mapping永久只读",
         ):

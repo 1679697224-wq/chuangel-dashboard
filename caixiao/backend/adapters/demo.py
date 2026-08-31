@@ -16,9 +16,12 @@ BUSINESS_UNITS = (
     "Apple线下/APR",
     "Apple电商",
     "Shure电商",
-    "Apple渠道/3PP分销",
+    "Apple渠道",
 )
-CHANNELS = ("APR门店", "O2O", "羽通-JD", "啟韬-Suning", "Shure天猫", "Shure京东", "3PP分销")
+CHANNELS = (
+    "APR门店", "O2O / 即时零售", "羽通 - 京东", "啟韬 - 苏宁",
+    "京东", "天猫", "3PP", "分销",
+)
 
 
 def _now() -> str:
@@ -97,13 +100,11 @@ class DemoAdapter:
     @staticmethod
     def boards() -> List[Dict[str, str]]:
         return [
-            {"code": "operations", "name": "采销作战首页", "path": "/cx/"},
-            {"code": "sku360", "name": "SKU 360", "path": "/cx/sku"},
-            {"code": "inventory_purchase", "name": "库存&采购全链路", "path": "/cx/inventory-purchase"},
-            {"code": "apple_policy", "name": "Apple政策经营", "path": "/cx/apple-policy"},
-            {"code": "review_mapping", "name": "映射与口径复核", "path": "/cx/review-mapping"},
-            {"code": "review_api", "name": "吉客云 API 复核", "path": "/cx/review-api"},
-            {"code": "sandbox", "name": "Sandbox", "path": "/cx/sandbox"},
+            {"code": "overview", "name": "经营总览", "path": "/cx/"},
+            {"code": "products", "name": "商品经营", "path": "/cx/products"},
+            {"code": "inventory_purchase", "name": "库存与采购", "path": "/cx/inventory"},
+            {"code": "policy", "name": "政策经营", "path": "/cx/policy/dg"},
+            {"code": "actions", "name": "行动中心", "path": "/cx/actions"},
         ]
 
     @staticmethod
@@ -117,40 +118,40 @@ class DemoAdapter:
                 "spot": 36, "in_transit": 24, "operating": 60, "spot_woi": 2.0, "operating_woi": 3.33,
                 "aging": {"<90": 28, "90-180": 6, "180-360": 2, "360+": 0},
                 "dg": "DG SI / ST 演示范围", "policy": "演示政策版本 demo-policy-v1",
-                "channels": [{"name": "APR门店", "sales": 54}, {"name": "O2O", "sales": 18}],
+                "channels": [{"name": "APR门店", "sales": 54}, {"name": "O2O / 即时零售", "sales": 18}],
                 "warehouses": [{"name": "APR演示正品仓01", "spot": 22}, {"name": "APR演示正品仓02", "spot": 14}],
             },
             {
                 "sku": "DEMO-APL-TAB-002", "spu": "DEMO-APL-TAB", "name": "Apple 演示平板 B2",
-                "brand": "Apple", "category": "平板", "business_unit": "Apple电商", "channel": "羽通-JD",
+                "brand": "Apple", "category": "平板", "business_unit": "Apple电商", "channel": "羽通 - 京东",
                 "lifecycle": "在售", "price": 4299, "cost": 3500, "gross_profit": 799, "gross_margin": 18.59,
                 "sales_windows": {"7": 12, "14": 25, "28": 48, "90": 156},
                 "spot": 15, "in_transit": 28, "operating": 43, "spot_woi": 1.25, "operating_woi": 3.58,
                 "aging": {"<90": 11, "90-180": 4, "180-360": 0, "360+": 0},
                 "dg": "DG ST 演示范围", "policy": "演示电商政策 demo-policy-v1",
-                "channels": [{"name": "羽通-JD", "sales": 31}, {"name": "啟韬-Suning", "sales": 17}],
+                "channels": [{"name": "羽通 - 京东", "sales": 31}, {"name": "啟韬 - 苏宁", "sales": 17}],
                 "warehouses": [{"name": "电商演示仓01", "spot": 15}],
             },
             {
                 "sku": "DEMO-SHU-AUD-003", "spu": "DEMO-SHU-AUD", "name": "Shure 演示无线音频 S1",
-                "brand": "Shure", "category": "音频", "business_unit": "Shure电商", "channel": "Shure天猫",
+                "brand": "Shure", "category": "音频", "business_unit": "Shure电商", "channel": "天猫",
                 "lifecycle": "在售", "price": 2899, "cost": 1980, "gross_profit": 919, "gross_margin": 31.70,
                 "sales_windows": {"7": 7, "14": 15, "28": 31, "90": 98},
                 "spot": 45, "in_transit": 10, "operating": 55, "spot_woi": 5.81, "operating_woi": 7.10,
                 "aging": {"<90": 18, "90-180": 13, "180-360": 9, "360+": 5},
                 "dg": "不适用", "policy": "Shure 演示动销规则",
-                "channels": [{"name": "Shure天猫", "sales": 20}, {"name": "Shure京东", "sales": 11}],
+                "channels": [{"name": "天猫", "sales": 20}, {"name": "京东", "sales": 11}],
                 "warehouses": [{"name": "Shure演示正品仓", "spot": 45}],
             },
             {
                 "sku": "DEMO-APL-ACC-004", "spu": "DEMO-APL-ACC", "name": "Apple 演示配件 C3",
-                "brand": "Apple", "category": "配件", "business_unit": "Apple渠道/3PP分销", "channel": "3PP分销",
+                "brand": "Apple", "category": "配件", "business_unit": "Apple渠道", "channel": "3PP",
                 "lifecycle": "在售", "price": 799, "cost": 520, "gross_profit": 279, "gross_margin": 34.92,
                 "sales_windows": {"7": 2, "14": 4, "28": 7, "90": 28},
                 "spot": 86, "in_transit": 0, "operating": 86, "spot_woi": 49.14, "operating_woi": 49.14,
                 "aging": {"<90": 16, "90-180": 20, "180-360": 30, "360+": 20},
                 "dg": "DG SI 演示范围", "policy": "3PP 演示政策待人工复核",
-                "channels": [{"name": "3PP分销", "sales": 7}],
+                "channels": [{"name": "3PP", "sales": 4}, {"name": "分销", "sales": 3}],
                 "warehouses": [{"name": "渠道演示仓", "spot": 86}],
             },
         ]
@@ -243,13 +244,38 @@ class DemoAdapter:
             {"code": "DEMO-DG-ST", "name": "DG ST（Sell-through）", "target": 610, "actual": 492, "rate": 80.66, "period": "演示周期", "scope": "演示终端动销范围", "risk": "差额 118 台", "source": DEMO_SOURCE},
             {"code": "DEMO-STORE-SUBSIDY", "name": "单店补贴", "target": 10, "actual": 7, "rate": 70.0, "period": "演示周期", "scope": "10 家演示门店", "risk": "3 家门店待复核", "source": DEMO_SOURCE},
         ]
+        dg_tasks = [
+            {"task": "DG SI · 手机产品组", "type": "DG SI", "product": "手机", "target": 420000, "actual": 371000, "rate": 88.33, "time_progress": 76.67, "gap": 49000, "deadline": "2026-09-30", "status": "关注"},
+            {"task": "DG SI · 平板产品组", "type": "DG SI", "product": "平板", "target": 300000, "actual": 227000, "rate": 75.67, "time_progress": 76.67, "gap": 73000, "deadline": "2026-09-30", "status": "落后"},
+            {"task": "DG ST · 手机产品组", "type": "DG ST", "product": "手机", "target": 360, "actual": 318, "rate": 88.33, "time_progress": 76.67, "gap": 42, "deadline": "2026-09-30", "status": "正常"},
+            {"task": "DG ST · 平板产品组", "type": "DG ST", "product": "平板", "target": 250, "actual": 174, "rate": 69.60, "time_progress": 76.67, "gap": 76, "deadline": "2026-09-30", "status": "严重落后"},
+        ]
+        store_subsidies = [
+            {"store": "APR演示门店01", "category": "Mac", "target": 28, "actual": 25, "rate": 89.29, "time_progress": 76.67, "gap": 3, "forecast": 32, "status": "领先时间进度"},
+            {"store": "APR演示门店02", "category": "Watch", "target": 34, "actual": 26, "rate": 76.47, "time_progress": 76.67, "gap": 8, "forecast": 34, "status": "接近时间进度"},
+            {"store": "APR演示门店03", "category": "Mac", "target": 30, "actual": 20, "rate": 66.67, "time_progress": 76.67, "gap": 10, "forecast": 26, "status": "落后"},
+            {"store": "APR演示门店04", "category": "Watch", "target": 40, "actual": 23, "rate": 57.50, "time_progress": 76.67, "gap": 17, "forecast": 30, "status": "严重落后"},
+            {"store": "APR演示门店05", "category": "Mac", "target": 22, "actual": 19, "rate": 86.36, "time_progress": 76.67, "gap": 3, "forecast": 25, "status": "领先时间进度"},
+            {"store": "APR演示门店06", "category": "Watch", "target": 36, "actual": 28, "rate": 77.78, "time_progress": 76.67, "gap": 8, "forecast": 37, "status": "接近时间进度"},
+            {"store": "APR演示门店07", "category": "Mac", "target": 26, "actual": 16, "rate": 61.54, "time_progress": 76.67, "gap": 10, "forecast": 21, "status": "落后"},
+            {"store": "APR演示门店08", "category": "Watch", "target": 32, "actual": 15, "rate": 46.88, "time_progress": 76.67, "gap": 17, "forecast": 20, "status": "严重落后"},
+            {"store": "APR演示门店09", "category": "Mac", "target": 24, "actual": 21, "rate": 87.50, "time_progress": 76.67, "gap": 3, "forecast": 27, "status": "领先时间进度"},
+            {"store": "APR演示门店10", "category": "Watch", "target": 38, "actual": 29, "rate": 76.32, "time_progress": 76.67, "gap": 9, "forecast": 38, "status": "接近时间进度"},
+        ]
         return _envelope(
             data=[
                 _metric("DG SI 达成率", 83.06, "%", "演示 Sell-in 目标 / 实际", "dg_si_rate"),
                 _metric("DG ST 达成率", 80.66, "%", "演示 Sell-through 目标 / 实际", "dg_st_rate"),
                 _metric("单店补贴覆盖", 7, "店", "演示独立补贴台账", "store_subsidy"),
             ],
-            items=items,
+            items=items, dg_tasks=dg_tasks, store_subsidies=store_subsidies,
+            rebate_items=[
+                {"name": "价格政策", "status": "待接入"},
+                {"name": "国补", "status": "待接入"},
+                {"name": "返利", "status": "待接入"},
+                {"name": "采购激励", "status": "待接入"},
+                {"name": "销售激励", "status": "待接入"},
+            ],
             future_policies=["价格保护", "市场基金", "返利政策", "其他品牌政策"],
             reason="三类政策独立展示，不能混算",
         )
@@ -430,4 +456,3 @@ class DemoAdapter:
             }
             for row in rows
         ]
-
