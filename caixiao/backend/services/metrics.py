@@ -170,6 +170,8 @@ class MetricsService:
         gate = self._gate(definitions)
         requested = dict(filters or {})
         unsupported = []
+        if requested.get("store"):
+            unsupported.append("store")
         if requested.get("compare") not in (None, "", "none"):
             unsupported.append("compare")
         if unsupported:
@@ -212,6 +214,9 @@ class MetricsService:
         definitions = self._definitions(("sales_amount", "paid_orders"))
         gate = self._gate(definitions)
         requested = dict(filters or {})
+        if requested.get("store"):
+            gate.update({"eligible": False, "pending_filter_fields": ["store"]})
+            return {**self._pending(definitions, gate, "门店/店铺筛选字段尚未进入正式事实合同"), "rows": []}
         if requested.get("compare") not in (None, "", "none"):
             gate.update({"eligible": False, "pending_filter_fields": ["compare"]})
             return {**self._pending(definitions, gate, "对比趋势口径尚未发布"), "rows": []}
@@ -379,7 +384,7 @@ class MetricsService:
         definitions = self._definitions(("spot_woi", "operating_woi"))
         gate = self._gate(definitions)
         requested = dict(filters or {})
-        unsupported = [name for name in ("business_unit", "brand") if requested.get(name)]
+        unsupported = [name for name in ("business_unit", "brand", "store") if requested.get(name)]
         if requested.get("compare") not in (None, "", "none"):
             unsupported.append("compare")
         if unsupported:

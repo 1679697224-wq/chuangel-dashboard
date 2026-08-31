@@ -5,6 +5,7 @@ import tempfile
 import threading
 import unittest
 from unittest.mock import patch
+from urllib.parse import urlencode
 
 from caixiao.backend.app import create_server
 from caixiao.backend.config import Settings
@@ -88,6 +89,26 @@ class DemoModeApiTests(unittest.TestCase):
                 self.assertFalse(body["formal_kpi_enabled"])
                 self.assertFalse(body["real_system_connected"])
                 self.assertEqual(body["label"], "演示数据，仅用于页面及流程验证")
+
+    def test_seven_business_scopes_change_sales_and_inventory_together(self):
+        cookie = self.login()
+        scopes = (
+            ("Apple线下", "APR"), ("Apple线下", "即时零售"),
+            ("Apple电商", "京东"), ("Apple电商", "苏宁"),
+            ("舒尔电商", "天猫"), ("舒尔电商", "京东"),
+            ("分销渠道", "分销"),
+        )
+        results = []
+        for business_unit, channel in scopes:
+            query = urlencode({"business_unit": business_unit, "channel": channel})
+            _, _, sales = self.request("GET", "/api/v1/sales/summary?" + query, cookie=cookie)
+            _, _, inventory = self.request("GET", "/api/v1/inventory/summary?" + query, cookie=cookie)
+            sales_amount = next(item["value"] for item in sales["data"] if item["code"] == "sales_amount")
+            inventory_amount = next(item["value"] for item in inventory["data"] if item["code"] == "operating_inventory_amount")
+            self.assertIn(business_unit, sales["scope"])
+            self.assertIn(channel, inventory["scope"])
+            results.append((sales_amount, inventory_amount))
+        self.assertEqual(len(set(results)), len(scopes))
 
     def test_demo_review_is_in_memory_and_raw_fields_stay_read_only(self):
         cookie = self.login()

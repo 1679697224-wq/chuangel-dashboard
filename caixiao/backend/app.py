@@ -265,7 +265,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         database = self.application.database
         review = self.application.review
         demo = self.application.demo
-        filters = {name: query.get(name, [""])[0] for name in ("business_unit", "brand", "channel", "start", "end", "compare")}
+        filters = {name: query.get(name, [""])[0] for name in ("business_unit", "channel", "store", "start", "end", "compare")}
         if path == "/api/v1/system/context":
             if demo:
                 self._send_json(200, demo.context())
@@ -277,8 +277,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
                         "banner": "", "demo_mode": False, "formal_kpi_enabled": True,
                         "real_system_connected": False, "generated_business_data": False,
                         "filters": {
-                            "business_units": list(BUSINESS_UNITS), "brands": ["Apple", "Shure"],
-                            "channels": [], "compare_modes": ["不对比", "环比/上一周期", "同比", "目标", "差额"],
+                            "business_units": list(BUSINESS_UNITS), "channels": [], "stores": [],
+                            "compare_modes": ["不对比", "环比/上一周期", "同比", "目标", "差额"],
                         },
                         "isolation": {
                             "FORMAL": "仅人工确认并发布后的真实事实、映射与口径可进入正式KPI",
@@ -306,12 +306,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self._send_json(200, {"data": demo.dimensions("sku_mapping") if demo else review.formal_dimensions("sku_mapping"), "gate": "DEMO_PUBLISHED" if demo else "PUBLISHED_ONLY", "data_class": "DEMO" if demo else "FORMAL"})
         elif path == "/api/v1/sales/summary":
             payload = demo.sales_summary(filters) if demo else self.application.metrics.sales_summary(filters=filters)
-            payload["woi"] = {
-                "data": [
-                    {"code": "spot_woi", "name": "现货WOI", "value": 3.6, "unit": "周", "caliber": "演示近28天销量窗口", "source": "DEMO Adapter（纯 Mock）", "updated_at": None, "conflict": False, "status": "演示"},
-                    {"code": "operating_woi", "name": "含在途WOI", "value": 4.8, "unit": "周", "caliber": "演示近28天销量窗口", "source": "DEMO Adapter（纯 Mock）", "updated_at": None, "conflict": False, "status": "演示"},
-                ], "data_class": "DEMO", "formal_kpi_enabled": False,
-            } if demo else self.application.metrics.woi_summary(filters=filters)
+            payload["woi"] = demo.woi_summary(filters) if demo else self.application.metrics.woi_summary(filters=filters)
             self._send_json(200, payload)
         elif path == "/api/v1/sales/daily":
             payload = demo.sales_daily(filters) if demo else self.application.metrics.sales_daily(filters=filters)
@@ -341,20 +336,20 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         elif path == "/api/v1/inventory/summary":
             self._send_json(200, demo.inventory_summary(filters) if demo else self.application.metrics.inventory_summary(filters=filters))
         elif path == "/api/v1/inventory/aging":
-            self._send_json(200, demo.inventory_aging() if demo else self.application.metrics.inventory_aging())
+            self._send_json(200, demo.inventory_aging(filters) if demo else self.application.metrics.inventory_aging())
         elif path == "/api/v1/purchase/summary":
             self._send_json(200, demo.purchase_summary(filters) if demo else self.application.metrics.purchase_summary(filters=filters))
         elif path == "/api/v1/policy/summary":
-            self._send_json(200, demo.policy_summary() if demo else self.application.metrics.policy_summary())
+            self._send_json(200, demo.policy_summary(filters) if demo else self.application.metrics.policy_summary())
         elif path == "/api/v1/anomaly/list":
-            self._send_json(200, demo.anomaly_list() if demo else self.application.metrics.anomaly_list())
+            self._send_json(200, demo.anomaly_list(filters) if demo else self.application.metrics.anomaly_list())
         elif path == "/api/v1/action/list":
             status = query.get("status", [""])[0]
             if status and status not in ALLOWED_ACTION_STATUSES:
                 self._send_json(422, {"error": "INVALID_ACTION_STATUS", "allowed": ALLOWED_ACTION_STATUSES})
                 return
             if demo:
-                payload = demo.action_list()
+                payload = demo.action_list(filters)
                 if status:
                     payload["data"] = [item for item in payload["data"] if item["status"] == status]
                 payload["allowed_action_types"] = ALLOWED_ACTION_TYPES

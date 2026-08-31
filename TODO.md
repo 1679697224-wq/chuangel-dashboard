@@ -31,6 +31,12 @@
 - [x] UI重构：完成商品筛选、SKU下钻、动态渠道、日期快捷和表格交互
 - [x] UI重构：完成PC与375px回归并保存11张截图
 - [x] 生成97项测试结果及机器可读 `coverage.xml`
+- [x] PO体验整改 Round 1：正式Logo替换与旧分销板块名称清理
+- [x] PO体验整改 Round 1：三级业务筛选、非法组合清理及唯一全局状态
+- [x] PO体验整改 Round 1：销售、库存、异常、政策、行动和商品范围联动
+- [x] PO体验整改 Round 1：首页销售/库存指标、长库龄清理及采购指标位置补齐
+- [x] PO体验整改 Round 1：指标Gap Audit、Roadmap和8组浏览器Demo截图
+- [x] 生成102项测试结果及机器可读 `coverage.xml`
 - [ ] PO 对 `feature/caixiao-ui-business-rebuild` 进行业务体验和界面确认
 - [ ] WorkBuddy 对 `feature/caixiao-ui-business-rebuild` 执行独立Review
 - [ ] PO 完成吉客云旧凭据撤销、轮换和泄露范围核查

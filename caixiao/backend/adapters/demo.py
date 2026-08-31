@@ -13,14 +13,17 @@ from typing import Any, Dict, Iterable, List, Mapping
 DEMO_LABEL = "演示数据，仅用于页面及流程验证"
 DEMO_SOURCE = "DEMO Adapter（纯 Mock）"
 BUSINESS_UNITS = (
-    "Apple线下/APR",
+    "Apple线下",
     "Apple电商",
-    "Shure电商",
-    "Apple渠道",
+    "舒尔电商",
+    "分销渠道",
 )
 CHANNELS = (
-    "APR门店", "O2O / 即时零售", "羽通 - 京东", "啟韬 - 苏宁",
-    "京东", "天猫", "3PP", "分销",
+    "APR", "即时零售", "京东", "苏宁", "天猫", "分销",
+)
+APR_STORES = (
+    "徐州彭城店", "无锡店", "连云港店", "太原店", "宿州店",
+    "镇江店", "运城店", "日照店", "徐州宝龙店", "苏家屯店",
 )
 
 
@@ -86,8 +89,11 @@ class DemoAdapter:
             demo_mode=True,
             filters={
                 "business_units": list(BUSINESS_UNITS),
-                "brands": ["Apple", "Shure"],
                 "channels": list(CHANNELS),
+                "stores": list(APR_STORES) + [
+                    "京东羽通分期免息店", "苏宁啟韬专卖店",
+                    "舒尔官方旗舰店", "京东舒尔自营专卖店",
+                ],
                 "compare_modes": ["不对比", "环比/上一周期", "同比", "目标", "差额"],
             },
             isolation={
@@ -112,47 +118,68 @@ class DemoAdapter:
         return [
             {
                 "sku": "DEMO-APL-PH-001", "spu": "DEMO-APL-PH", "name": "Apple 演示手机 A1",
-                "brand": "Apple", "category": "手机", "business_unit": "Apple线下/APR", "channel": "APR门店",
+                "brand": "Apple", "category": "手机", "business_unit": "Apple线下", "channel": "APR", "stores": list(APR_STORES),
                 "lifecycle": "在售", "price": 6999, "cost": 5600, "gross_profit": 1399, "gross_margin": 19.99,
                 "sales_windows": {"7": 18, "14": 36, "28": 72, "90": 228},
                 "spot": 36, "in_transit": 24, "operating": 60, "spot_woi": 2.0, "operating_woi": 3.33,
                 "aging": {"<90": 28, "90-180": 6, "180-360": 2, "360+": 0},
                 "dg": "DG SI / ST 演示范围", "policy": "演示政策版本 demo-policy-v1",
-                "channels": [{"name": "APR门店", "sales": 54}, {"name": "O2O / 即时零售", "sales": 18}],
+                "channels": [{"name": "APR", "sales": 72}],
                 "warehouses": [{"name": "APR演示正品仓01", "spot": 22}, {"name": "APR演示正品仓02", "spot": 14}],
             },
             {
-                "sku": "DEMO-APL-TAB-002", "spu": "DEMO-APL-TAB", "name": "Apple 演示平板 B2",
-                "brand": "Apple", "category": "平板", "business_unit": "Apple电商", "channel": "羽通 - 京东",
+                "sku": "DEMO-APL-O2O-002", "spu": "DEMO-APL-O2O", "name": "Apple 演示即时零售商品 A2",
+                "brand": "Apple", "category": "手机", "business_unit": "Apple线下", "channel": "即时零售", "stores": list(APR_STORES),
+                "lifecycle": "在售", "price": 5299, "cost": 4400, "gross_profit": 899, "gross_margin": 16.97,
+                "sales_windows": {"7": 11, "14": 23, "28": 46, "90": 145}, "spot": 27, "in_transit": 8, "operating": 35,
+                "spot_woi": 2.35, "operating_woi": 3.04, "aging": {"<90": 21, "90-180": 4, "180-360": 2, "360+": 0},
+                "dg": "DG ST 演示范围", "policy": "演示即时零售政策", "channels": [{"name": "即时零售", "sales": 46}],
+                "warehouses": [{"name": "APR演示O2O仓", "spot": 27}],
+            },
+            {
+                "sku": "DEMO-APL-JD-003", "spu": "DEMO-APL-JD", "name": "Apple 演示京东商品 B1",
+                "brand": "Apple", "category": "平板", "business_unit": "Apple电商", "channel": "京东", "stores": ["京东羽通分期免息店"],
                 "lifecycle": "在售", "price": 4299, "cost": 3500, "gross_profit": 799, "gross_margin": 18.59,
-                "sales_windows": {"7": 12, "14": 25, "28": 48, "90": 156},
-                "spot": 15, "in_transit": 28, "operating": 43, "spot_woi": 1.25, "operating_woi": 3.58,
-                "aging": {"<90": 11, "90-180": 4, "180-360": 0, "360+": 0},
-                "dg": "DG ST 演示范围", "policy": "演示电商政策 demo-policy-v1",
-                "channels": [{"name": "羽通 - 京东", "sales": 31}, {"name": "啟韬 - 苏宁", "sales": 17}],
-                "warehouses": [{"name": "电商演示仓01", "spot": 15}],
+                "sales_windows": {"7": 12, "14": 25, "28": 48, "90": 156}, "spot": 15, "in_transit": 28, "operating": 43,
+                "spot_woi": 1.25, "operating_woi": 3.58, "aging": {"<90": 11, "90-180": 4, "180-360": 0, "360+": 0},
+                "dg": "DG ST 演示范围", "policy": "演示电商政策", "channels": [{"name": "京东", "sales": 48}],
+                "warehouses": [{"name": "电商演示京东仓", "spot": 15}],
             },
             {
-                "sku": "DEMO-SHU-AUD-003", "spu": "DEMO-SHU-AUD", "name": "Shure 演示无线音频 S1",
-                "brand": "Shure", "category": "音频", "business_unit": "Shure电商", "channel": "天猫",
+                "sku": "DEMO-APL-SN-004", "spu": "DEMO-APL-SN", "name": "Apple 演示苏宁商品 B2",
+                "brand": "Apple", "category": "配件", "business_unit": "Apple电商", "channel": "苏宁", "stores": ["苏宁啟韬专卖店"],
+                "lifecycle": "在售", "price": 2199, "cost": 1760, "gross_profit": 439, "gross_margin": 19.96,
+                "sales_windows": {"7": 8, "14": 17, "28": 33, "90": 104}, "spot": 22, "in_transit": 13, "operating": 35,
+                "spot_woi": 2.67, "operating_woi": 4.24, "aging": {"<90": 14, "90-180": 5, "180-360": 2, "360+": 1},
+                "dg": "DG SI 演示范围", "policy": "演示苏宁政策", "channels": [{"name": "苏宁", "sales": 33}],
+                "warehouses": [{"name": "电商演示苏宁仓", "spot": 22}],
+            },
+            {
+                "sku": "DEMO-SHU-TM-005", "spu": "DEMO-SHU-TM", "name": "舒尔演示天猫商品 S1",
+                "brand": "Shure", "category": "音频", "business_unit": "舒尔电商", "channel": "天猫", "stores": ["舒尔官方旗舰店"],
                 "lifecycle": "在售", "price": 2899, "cost": 1980, "gross_profit": 919, "gross_margin": 31.70,
-                "sales_windows": {"7": 7, "14": 15, "28": 31, "90": 98},
-                "spot": 45, "in_transit": 10, "operating": 55, "spot_woi": 5.81, "operating_woi": 7.10,
-                "aging": {"<90": 18, "90-180": 13, "180-360": 9, "360+": 5},
-                "dg": "不适用", "policy": "Shure 演示动销规则",
-                "channels": [{"name": "天猫", "sales": 20}, {"name": "京东", "sales": 11}],
-                "warehouses": [{"name": "Shure演示正品仓", "spot": 45}],
+                "sales_windows": {"7": 7, "14": 15, "28": 31, "90": 98}, "spot": 45, "in_transit": 10, "operating": 55,
+                "spot_woi": 5.81, "operating_woi": 7.10, "aging": {"<90": 18, "90-180": 13, "180-360": 9, "360+": 5},
+                "dg": "不适用", "policy": "舒尔演示动销规则", "channels": [{"name": "天猫", "sales": 31}],
+                "warehouses": [{"name": "舒尔演示天猫仓", "spot": 45}],
             },
             {
-                "sku": "DEMO-APL-ACC-004", "spu": "DEMO-APL-ACC", "name": "Apple 演示配件 C3",
-                "brand": "Apple", "category": "配件", "business_unit": "Apple渠道", "channel": "3PP",
+                "sku": "DEMO-SHU-JD-006", "spu": "DEMO-SHU-JD", "name": "舒尔演示京东商品 S2",
+                "brand": "Shure", "category": "音频", "business_unit": "舒尔电商", "channel": "京东", "stores": ["京东舒尔自营专卖店"],
+                "lifecycle": "在售", "price": 1699, "cost": 1120, "gross_profit": 579, "gross_margin": 34.08,
+                "sales_windows": {"7": 5, "14": 10, "28": 21, "90": 67}, "spot": 9, "in_transit": 18, "operating": 27,
+                "spot_woi": 1.71, "operating_woi": 5.14, "aging": {"<90": 7, "90-180": 2, "180-360": 0, "360+": 0},
+                "dg": "不适用", "policy": "舒尔演示动销规则", "channels": [{"name": "京东", "sales": 21}],
+                "warehouses": [{"name": "舒尔演示京东仓", "spot": 9}],
+            },
+            {
+                "sku": "DEMO-DIST-007", "spu": "DEMO-DIST", "name": "演示分销商品 D1",
+                "brand": "Apple", "category": "配件", "business_unit": "分销渠道", "channel": "分销", "stores": [],
                 "lifecycle": "在售", "price": 799, "cost": 520, "gross_profit": 279, "gross_margin": 34.92,
-                "sales_windows": {"7": 2, "14": 4, "28": 7, "90": 28},
-                "spot": 86, "in_transit": 0, "operating": 86, "spot_woi": 49.14, "operating_woi": 49.14,
-                "aging": {"<90": 16, "90-180": 20, "180-360": 30, "360+": 20},
-                "dg": "DG SI 演示范围", "policy": "3PP 演示政策待人工复核",
-                "channels": [{"name": "3PP", "sales": 4}, {"name": "分销", "sales": 3}],
-                "warehouses": [{"name": "渠道演示仓", "spot": 86}],
+                "sales_windows": {"7": 2, "14": 4, "28": 7, "90": 28}, "spot": 86, "in_transit": 0, "operating": 86,
+                "spot_woi": 49.14, "operating_woi": 49.14, "aging": {"<90": 16, "90-180": 20, "180-360": 30, "360+": 20},
+                "dg": "不适用", "policy": "分销政策待接入", "channels": [{"name": "分销", "sales": 7}],
+                "warehouses": [{"name": "分销演示仓", "spot": 86}],
             },
         ]
 
@@ -172,73 +199,173 @@ class DemoAdapter:
         return []
 
     @staticmethod
+    def _filtered_skus(filters: Mapping[str, str]) -> List[Dict[str, Any]]:
+        rows = DemoAdapter._skus()
+        business_unit = str(filters.get("business_unit", "")).strip()
+        channel = str(filters.get("channel", "")).strip()
+        store = str(filters.get("store", "")).strip()
+        if business_unit:
+            rows = [row for row in rows if row["business_unit"] == business_unit]
+        if channel:
+            rows = [row for row in rows if row["channel"] == channel]
+        if store:
+            rows = [row for row in rows if store in row.get("stores", [])]
+        return rows
+
+    @staticmethod
+    def _store_factor(filters: Mapping[str, str]) -> float:
+        store = str(filters.get("store", "")).strip()
+        if not store:
+            return 1.0
+        if store in APR_STORES:
+            return 0.055 + APR_STORES.index(store) * 0.005
+        return 1.0
+
+    @staticmethod
+    def _aggregate(filters: Mapping[str, str]) -> Dict[str, Any]:
+        rows = DemoAdapter._filtered_skus(filters)
+        factor = DemoAdapter._store_factor(filters)
+        sales = round(sum(row["sales_windows"]["28"] * row["price"] for row in rows) * factor)
+        target = round(sales * 1.18) if sales else 0
+        quantity = round(sum(row["sales_windows"]["28"] for row in rows) * factor)
+        gross = round(sum(row["sales_windows"]["28"] * row["gross_profit"] for row in rows) * factor)
+        spot = round(sum(row["spot"] for row in rows) * factor)
+        transit = round(sum(row["in_transit"] for row in rows) * factor)
+        spot_amount = round(sum(row["spot"] * row["cost"] for row in rows) * factor)
+        transit_amount = round(sum(row["in_transit"] * row["cost"] for row in rows) * factor)
+        aging_90 = round(sum((row["aging"]["90-180"] + row["aging"]["180-360"] + row["aging"]["360+"]) * row["cost"] for row in rows) * factor)
+        aging_180 = round(sum((row["aging"]["180-360"] + row["aging"]["360+"]) * row["cost"] for row in rows) * factor)
+        aging_360 = round(sum(row["aging"]["360+"] * row["cost"] for row in rows) * factor)
+        weeks = (spot / quantity * 4) if quantity else None
+        operating_weeks = ((spot + transit) / quantity * 4) if quantity else None
+        return {
+            "rows": rows, "sales": sales, "target": target, "quantity": quantity, "gross": gross,
+            "spot": spot, "transit": transit, "operating": spot + transit,
+            "spot_amount": spot_amount, "transit_amount": transit_amount,
+            "operating_amount": spot_amount + transit_amount, "aging_90": aging_90,
+            "aging_180": aging_180, "aging_360": aging_360,
+            "spot_woi": round(weeks, 2) if weeks is not None else None,
+            "operating_woi": round(operating_weeks, 2) if operating_weeks is not None else None,
+        }
+
+    @staticmethod
     def sales_summary(filters: Mapping[str, str]) -> Dict[str, Any]:
         scope = DemoAdapter._scope(filters)
+        values = DemoAdapter._aggregate(filters)
+        amount, target, gross = values["sales"], values["target"], values["gross"]
+        rate = round(amount / target * 100, 2) if target else None
+        time_progress = 74.2
+        forecast_rate = round(rate / time_progress * 100, 2) if rate is not None else None
         return _envelope(
             data=[
-                _metric("销售额", 1286420, "元", "演示付款口径 demo_sales_caliber_v1", "sales_amount"),
-                _metric("销售数量", 438, "台", "演示净销量，调整规则仅用于流程验证", "sales_quantity"),
-                _metric("销售目标", 1500000, "元", "演示目标台账 demo_target_v1", "sales_target"),
-                _metric("目标达成率", 85.76, "%", "销售额 / 演示目标", "target_rate"),
-                _metric("毛利额", 262300, "元", "演示成本与售价，不代表真实毛利", "gross_profit"),
-                _metric("毛利率", 20.39, "%", "演示毛利额 / 演示销售额", "gross_margin"),
+                _metric("销售额", amount, "元", "演示付款口径 demo_sales_caliber_v1", "sales_amount"),
+                _metric("销售数量", values["quantity"], "台", "演示净销量，调整规则仅用于流程验证", "sales_quantity"),
+                _metric("销售目标", target, "元", "演示目标台账 demo_target_v1", "sales_target"),
+                _metric("目标达成率", rate, "%", "销售额 / 演示目标", "target_rate"),
+                _metric("时间进度", time_progress, "%", "演示当前周期进度", "time_progress"),
+                _metric("销售差额", target - amount if target else None, "元", "目标 - 销售额", "sales_gap"),
+                _metric("月末预计达成率", forecast_rate, "%", "演示：当前销售日均速度线性外推至期末", "forecast_target_rate"),
+                _metric("同比", 6.8 if amount else None, "%", "演示同期比较", "year_on_year"),
+                _metric("环比", 3.2 if amount else None, "%", "演示上一周期比较", "month_on_month"),
+                _metric("毛利额", gross, "元", "演示成本与售价，不代表真实毛利", "gross_profit"),
+                _metric("毛利率", round(gross / amount * 100, 2) if amount else None, "%", "演示毛利额 / 演示销售额", "gross_margin"),
             ],
+            woi=DemoAdapter.woi_summary(filters),
             scope=scope,
             gate={"eligible": False, "gate": "DEMO_ONLY", "missing": ["正式事实与发布版本"]},
         )
 
     @staticmethod
     def sales_daily(filters: Mapping[str, str]) -> Dict[str, Any]:
+        total = DemoAdapter._aggregate(filters)["sales"]
         rows = []
         today = date.today()
         for index in range(13, -1, -1):
             day = today - timedelta(days=index)
-            amount = 64200 + ((13 - index) % 5) * 7100 + ((13 - index) % 3) * 2900
+            weight = 0.045 + ((13 - index) % 5) * 0.006 + ((13 - index) % 3) * 0.002
+            amount = round(total * weight)
             rows.append({"date": day.isoformat(), "sales_amount": amount, "order_count": 18 + ((13 - index) % 7), "quantity": 24 + ((13 - index) % 9), "caliber": "演示付款口径", "data_class": "DEMO"})
         return _envelope(rows=rows, data=rows, scope=DemoAdapter._scope(filters), message="演示按日销售趋势")
 
     @staticmethod
     def inventory_summary(filters: Mapping[str, str]) -> Dict[str, Any]:
+        values = DemoAdapter._aggregate(filters)
+        rows = values["rows"]
+        cleanup_baseline = round(values["aging_90"] * 1.28)
+        cleanup_cumulative = cleanup_baseline - values["aging_90"]
         return _envelope(
             data=[
-                _metric("现货库存", 182, "台", "演示已发布仓库映射中的现货", "spot_inventory"),
-                _metric("在途库存", 62, "台", "演示采购/调拨在途规则", "in_transit_inventory"),
-                _metric("经营库存", 244, "台", "现货 + 符合演示规则的在途", "operating_inventory"),
+                _metric("现货库存", values["spot"], "台", "演示已发布仓库映射中的现货", "spot_inventory"),
+                _metric("在途库存", values["transit"], "台", "演示采购/调拨在途规则", "in_transit_inventory"),
+                _metric("经营库存", values["operating"], "台", "现货 + 符合演示规则的在途", "operating_inventory"),
+                _metric("现货库存金额", values["spot_amount"], "元", "演示现货数量 × 演示成本", "spot_inventory_amount"),
+                _metric("在途库存金额", values["transit_amount"], "元", "演示在途数量 × 演示成本", "in_transit_inventory_amount"),
+                _metric("经营库存金额", values["operating_amount"], "元", "演示现货金额 + 在途金额", "operating_inventory_amount"),
+                _metric("现货WOI", values["spot_woi"], "周", "近28天演示销量窗口", "spot_woi"),
+                _metric("含在途WOI", values["operating_woi"], "周", "近28天演示销量窗口", "operating_woi"),
+                _metric("周转天数", round(values["spot_woi"] * 7, 1) if values["spot_woi"] is not None else None, "天", "现货WOI × 7", "turnover_days"),
+                _metric("90天+库存", values["aging_90"], "元", "演示库龄金额", "aging_90_amount"),
+                _metric("180天+库存", values["aging_180"], "元", "演示库龄金额", "aging_180_amount"),
+                _metric("360天+库存", values["aging_360"], "元", "演示库龄金额", "aging_360_amount"),
+                _metric("已计提库存", None, "元", "正式财务计提数据待接入", "provisioned_inventory_amount"),
+                _metric("缺货SKU", sum(1 for row in rows if row["spot"] == 0), "个", "演示阈值", "stockout_sku_count"),
+                _metric("零库存SKU", sum(1 for row in rows if row["spot"] == 0), "个", "演示阈值", "zero_inventory_sku_count"),
+                _metric("高库存SKU", sum(1 for row in rows if row["spot_woi"] > 12), "个", "演示阈值", "high_inventory_sku_count"),
+                _metric("慢动销SKU", sum(1 for row in rows if row["sales_windows"]["28"] <= 10), "个", "演示阈值", "slow_moving_sku_count"),
+                _metric("清理基线", cleanup_baseline, "元", "演示清理基线", "cleanup_baseline_amount"),
+                _metric("当前长库龄", values["aging_90"], "元", "当前90天+演示库存", "cleanup_current_amount"),
+                _metric("本期清理", round(cleanup_cumulative * 0.45), "元", "演示本期变化", "cleanup_period_amount"),
+                _metric("累计清理", cleanup_cumulative, "元", "基线 - 当前", "cleanup_cumulative_amount"),
+                _metric("累计清理率", round(cleanup_cumulative / cleanup_baseline * 100, 2) if cleanup_baseline else None, "%", "累计清理 / 基线", "cleanup_cumulative_rate"),
             ],
             scope=DemoAdapter._scope(filters),
             gate={"eligible": False, "gate": "DEMO_ONLY", "missing": ["正式库存事实与发布版本"]},
         )
 
     @staticmethod
-    def inventory_aging() -> Dict[str, Any]:
-        rows = [
-            {"bucket": "<90", "quantity": 73, "amount": 256400, "ratio": 40.1, "status": "演示"},
-            {"bucket": "90-180", "quantity": 43, "amount": 132600, "ratio": 23.6, "status": "演示"},
-            {"bucket": "180-360", "quantity": 41, "amount": 104800, "ratio": 22.5, "status": "演示"},
-            {"bucket": "360+", "quantity": 25, "amount": 61800, "ratio": 13.8, "status": "演示"},
-        ]
-        return _envelope(rows=rows, data=rows, source=DEMO_SOURCE, updated_at=_now(), confirmation_status="DEMO_PUBLISHED")
+    def inventory_aging(filters: Mapping[str, str]) -> Dict[str, Any]:
+        values = DemoAdapter._aggregate(filters)
+        quantities = {bucket: sum(row["aging"][bucket] for row in values["rows"]) for bucket in ("<90", "90-180", "180-360", "360+")}
+        total = sum(quantities.values())
+        rows = [{"bucket": bucket, "quantity": quantity, "amount": round(quantity * (values["spot_amount"] / values["spot"])) if values["spot"] else 0, "ratio": round(quantity / total * 100, 1) if total else 0, "status": "演示"} for bucket, quantity in quantities.items()]
+        return _envelope(rows=rows, data=rows, source=DEMO_SOURCE, updated_at=_now(), confirmation_status="DEMO_PUBLISHED", scope=DemoAdapter._scope(filters))
+
+    @staticmethod
+    def woi_summary(filters: Mapping[str, str]) -> Dict[str, Any]:
+        values = DemoAdapter._aggregate(filters)
+        return _envelope(data=[
+            _metric("现货WOI", values["spot_woi"], "周", "近28天演示销量", "spot_woi"),
+            _metric("含在途WOI", values["operating_woi"], "周", "近28天演示销量", "operating_woi"),
+        ], scope=DemoAdapter._scope(filters))
 
     @staticmethod
     def purchase_summary(filters: Mapping[str, str]) -> Dict[str, Any]:
+        values = DemoAdapter._aggregate(filters)
         steps = [
             {"name": "需求", "count": 12, "status": "演示"}, {"name": "采购单", "count": 8, "status": "演示"},
             {"name": "在途", "count": 5, "status": "演示"}, {"name": "到货", "count": 3, "status": "演示"},
             {"name": "入库", "count": 2, "status": "演示"}, {"name": "分配", "count": 7, "status": "演示"},
             {"name": "门店/渠道", "count": 7, "status": "演示"},
         ]
+        allowed = {row["sku"] for row in values["rows"]}
         orders = [
-            {"code": "DEMO-PO-001", "sku": "DEMO-APL-TAB-002", "warehouse": "电商演示仓01", "quantity": 20, "status": "在途", "eta": "2026-09-03", "source": DEMO_SOURCE},
+            {"code": "DEMO-PO-001", "sku": "DEMO-APL-JD-003", "warehouse": "电商演示京东仓", "quantity": 20, "status": "在途", "eta": "2026-09-03", "source": DEMO_SOURCE},
             {"code": "DEMO-TR-002", "sku": "DEMO-APL-PH-001", "warehouse": "APR演示正品仓02", "quantity": 12, "status": "待分配", "eta": "2026-09-01", "source": DEMO_SOURCE},
-            {"code": "DEMO-PO-003", "sku": "DEMO-SHU-AUD-003", "warehouse": "Shure演示正品仓", "quantity": 10, "status": "待到货", "eta": "2026-09-05", "source": DEMO_SOURCE},
+            {"code": "DEMO-PO-003", "sku": "DEMO-SHU-TM-005", "warehouse": "舒尔演示天猫仓", "quantity": 10, "status": "待到货", "eta": "2026-09-05", "source": DEMO_SOURCE},
         ]
+        orders = [order for order in orders if order["sku"] in allowed]
         return _envelope(
-            data=[_metric("在途采购", 5, "单", "演示采购/调拨单据", "open_purchase"), _metric("预计到货", 42, "台", "演示ETA范围内数量", "eta_quantity")],
+            data=[
+                _metric("在途采购", len(orders), "单", "演示采购/调拨单据", "open_purchase"),
+                _metric("预计到货", sum(order["quantity"] for order in orders), "台", "演示ETA范围内数量", "eta_quantity"),
+                _metric("报需满足率", 78.0 if values["rows"] else None, "%", "演示已满足需求 / 演示实际需求；正式公式待确认", "request_fulfillment_rate"),
+                _metric("分货满足率", 71.0 if values["rows"] else None, "%", "演示实际分配 / 演示到货；正式公式待确认", "distribution_fulfillment_rate"),
+            ],
             flow_steps=steps, orders=orders, scope=DemoAdapter._scope(filters),
         )
 
     @staticmethod
-    def policy_summary() -> Dict[str, Any]:
+    def policy_summary(filters: Mapping[str, str]) -> Dict[str, Any]:
         items = [
             {"code": "DEMO-DG-SI", "name": "DG SI（Sell-in）", "target": 720000, "actual": 598000, "rate": 83.06, "period": "演示周期", "scope": "演示 SKU/SPU 范围", "risk": "差额 122000 元", "source": DEMO_SOURCE},
             {"code": "DEMO-DG-ST", "name": "DG ST（Sell-through）", "target": 610, "actual": 492, "rate": 80.66, "period": "演示周期", "scope": "演示终端动销范围", "risk": "差额 118 台", "source": DEMO_SOURCE},
@@ -251,17 +378,15 @@ class DemoAdapter:
             {"task": "DG ST · 平板产品组", "type": "DG ST", "product": "平板", "target": 250, "actual": 174, "rate": 69.60, "time_progress": 76.67, "gap": 76, "deadline": "2026-09-30", "status": "严重落后"},
         ]
         store_subsidies = [
-            {"store": "APR演示门店01", "category": "Mac", "target": 28, "actual": 25, "rate": 89.29, "time_progress": 76.67, "gap": 3, "forecast": 32, "status": "领先时间进度"},
-            {"store": "APR演示门店02", "category": "Watch", "target": 34, "actual": 26, "rate": 76.47, "time_progress": 76.67, "gap": 8, "forecast": 34, "status": "接近时间进度"},
-            {"store": "APR演示门店03", "category": "Mac", "target": 30, "actual": 20, "rate": 66.67, "time_progress": 76.67, "gap": 10, "forecast": 26, "status": "落后"},
-            {"store": "APR演示门店04", "category": "Watch", "target": 40, "actual": 23, "rate": 57.50, "time_progress": 76.67, "gap": 17, "forecast": 30, "status": "严重落后"},
-            {"store": "APR演示门店05", "category": "Mac", "target": 22, "actual": 19, "rate": 86.36, "time_progress": 76.67, "gap": 3, "forecast": 25, "status": "领先时间进度"},
-            {"store": "APR演示门店06", "category": "Watch", "target": 36, "actual": 28, "rate": 77.78, "time_progress": 76.67, "gap": 8, "forecast": 37, "status": "接近时间进度"},
-            {"store": "APR演示门店07", "category": "Mac", "target": 26, "actual": 16, "rate": 61.54, "time_progress": 76.67, "gap": 10, "forecast": 21, "status": "落后"},
-            {"store": "APR演示门店08", "category": "Watch", "target": 32, "actual": 15, "rate": 46.88, "time_progress": 76.67, "gap": 17, "forecast": 20, "status": "严重落后"},
-            {"store": "APR演示门店09", "category": "Mac", "target": 24, "actual": 21, "rate": 87.50, "time_progress": 76.67, "gap": 3, "forecast": 27, "status": "领先时间进度"},
-            {"store": "APR演示门店10", "category": "Watch", "target": 38, "actual": 29, "rate": 76.32, "time_progress": 76.67, "gap": 9, "forecast": 38, "status": "接近时间进度"},
+            {"store": store, "category": "Mac" if index % 2 == 0 else "Watch", "target": 22 + index * 2, "actual": 18 + index, "rate": round((18 + index) / (22 + index * 2) * 100, 2), "time_progress": 76.67, "gap": 4 + index, "forecast": 24 + index, "status": "领先时间进度" if index % 3 == 0 else "接近时间进度" if index % 3 == 1 else "落后"}
+            for index, store in enumerate(APR_STORES)
         ]
+        business_unit = str(filters.get("business_unit", ""))
+        store = str(filters.get("store", ""))
+        if business_unit and business_unit != "Apple线下":
+            items, dg_tasks, store_subsidies = [], [], []
+        elif store:
+            store_subsidies = [item for item in store_subsidies if item["store"] == store]
         return _envelope(
             data=[
                 _metric("DG SI 达成率", 83.06, "%", "演示 Sell-in 目标 / 实际", "dg_si_rate"),
@@ -277,55 +402,68 @@ class DemoAdapter:
                 {"name": "销售激励", "status": "待接入"},
             ],
             future_policies=["价格保护", "市场基金", "返利政策", "其他品牌政策"],
-            reason="三类政策独立展示，不能混算",
+            reason="三类政策独立展示，不能混算", scope=DemoAdapter._scope(filters),
         )
 
     @staticmethod
-    def anomaly_list() -> Dict[str, Any]:
+    def anomaly_list(filters: Mapping[str, str]) -> Dict[str, Any]:
         data = [
-            {"id": "DEMO-RISK-001", "type": "缺货", "sku": "DEMO-APL-TAB-002", "level": "高", "status": "待确认", "evidence": "演示近28天销量与现货结构显示补货风险", "threshold": "演示阈值 v1", "ai": DemoAdapter._ai("现货覆盖偏低", "近28天销量48台，现货15台", "补货节奏可能晚于销售节奏", "复核在途ETA并准备补货方案")},
-            {"id": "DEMO-RISK-002", "type": "高库存", "sku": "DEMO-APL-ACC-004", "level": "高", "status": "待确认", "evidence": "演示经营库存86台，含在途WOI 49.14周", "threshold": "演示阈值 v1", "ai": DemoAdapter._ai("经营库存偏高", "近28天销量7台，现货86台", "渠道动销不及演示计划", "复核调拨、分销或促销动作")},
-            {"id": "DEMO-RISK-003", "type": "长库龄", "sku": "DEMO-SHU-AUD-003", "level": "中", "status": "待确认", "evidence": "演示180天以上库存14台", "threshold": "演示阈值 v1", "ai": DemoAdapter._ai("长库龄占比偏高", "180天以上14台", "历史备货与当前动销不匹配", "按渠道复核慢动销SKU")},
+            {"id": "DEMO-RISK-001", "type": "缺货", "sku": "DEMO-APL-JD-003", "level": "高", "status": "待确认", "evidence": "演示销量与现货结构显示补货风险", "threshold": "演示阈值 v1", "ai": DemoAdapter._ai("现货覆盖偏低", "演示现货覆盖低于建议范围", "补货节奏可能晚于销售节奏", "复核在途ETA并准备补货方案")},
+            {"id": "DEMO-RISK-002", "type": "高库存", "sku": "DEMO-DIST-007", "level": "高", "status": "待确认", "evidence": "演示经营库存与动销速度不匹配", "threshold": "演示阈值 v1", "ai": DemoAdapter._ai("经营库存偏高", "演示WOI高于建议范围", "渠道动销不及演示计划", "复核调拨、分销或促销动作")},
+            {"id": "DEMO-RISK-003", "type": "长库龄", "sku": "DEMO-SHU-TM-005", "level": "中", "status": "待确认", "evidence": "演示180天以上库存需关注", "threshold": "演示阈值 v1", "ai": DemoAdapter._ai("长库龄占比偏高", "演示180天以上库存", "历史备货与当前动销不匹配", "按渠道复核慢动销SKU")},
             {"id": "DEMO-RISK-004", "type": "DG风险", "sku": "DEMO-APL-PH-001", "level": "中", "status": "待确认", "evidence": "演示DG SI与ST均有差额", "threshold": "演示政策 v1", "ai": DemoAdapter._ai("政策达成存在差额", "SI 83.06%，ST 80.66%", "结构性缺货或渠道分配可能影响达成", "复核可供货SKU与重点门店分配")},
             {"id": "DEMO-RISK-005", "type": "补贴风险", "sku": "", "level": "中", "status": "待确认", "evidence": "3家演示门店未覆盖", "threshold": "演示补贴 v1", "ai": DemoAdapter._ai("单店补贴覆盖不足", "10家演示门店中7家达成", "门店目标或证明材料可能待核", "逐店复核补贴条件与资料")},
         ]
-        return _envelope(data=data, threshold_status="DEMO_PUBLISHED", approval_required=True)
+        allowed = {row["sku"] for row in DemoAdapter._filtered_skus(filters)}
+        data = [item for item in data if (item["sku"] and item["sku"] in allowed) or (not item["sku"] and not any(filters.get(key) for key in ("business_unit", "channel", "store")))]
+        return _envelope(data=data, threshold_status="DEMO_PUBLISHED", approval_required=True, scope=DemoAdapter._scope(filters))
 
     @staticmethod
-    def action_list() -> Dict[str, Any]:
+    def action_list(filters: Mapping[str, str]) -> Dict[str, Any]:
         data = [
-            {"action_code": "DEMO-ACT-001", "title": "复核平板B2在途ETA并准备补货", "action_type": "补货", "sku": "DEMO-APL-TAB-002", "status": "待确认", "owner": "待PO指定", "due_at": "2026-09-01", "source_reference": "DEMO-RISK-001"},
-            {"action_code": "DEMO-ACT-002", "title": "复核配件C3跨渠道调拨可行性", "action_type": "调拨", "sku": "DEMO-APL-ACC-004", "status": "已确认", "owner": "演示责任人", "due_at": "2026-09-02", "source_reference": "DEMO-RISK-002"},
-            {"action_code": "DEMO-ACT-003", "title": "形成Shure慢动销清理建议", "action_type": "继续观察", "sku": "DEMO-SHU-AUD-003", "status": "执行中", "owner": "演示责任人", "due_at": "2026-09-05", "source_reference": "DEMO-RISK-003"},
+            {"action_code": "DEMO-ACT-001", "title": "复核京东在途ETA并准备补货", "action_type": "补货", "sku": "DEMO-APL-JD-003", "status": "待确认", "owner": "待PO指定", "due_at": "2026-09-01", "source_reference": "DEMO-RISK-001"},
+            {"action_code": "DEMO-ACT-002", "title": "复核分销商品跨渠道调拨可行性", "action_type": "调拨", "sku": "DEMO-DIST-007", "status": "已确认", "owner": "演示责任人", "due_at": "2026-09-02", "source_reference": "DEMO-RISK-002"},
+            {"action_code": "DEMO-ACT-003", "title": "形成舒尔慢动销清理建议", "action_type": "继续观察", "sku": "DEMO-SHU-TM-005", "status": "执行中", "owner": "演示责任人", "due_at": "2026-09-05", "source_reference": "DEMO-RISK-003"},
         ]
-        return _envelope(data=data, message="演示动作台账", approval_required=True)
+        allowed = {row["sku"] for row in DemoAdapter._filtered_skus(filters)}
+        data = [item for item in data if not item["sku"] or item["sku"] in allowed]
+        return _envelope(data=data, message="演示动作台账", approval_required=True, scope=DemoAdapter._scope(filters))
 
     @staticmethod
     def traffic_summary() -> Dict[str, Any]:
         stores = [
-            {"date": date.today().isoformat(), "store": "APR演示门店01", "traffic": 126, "source": "手工演示上传", "updated_at": _now()},
-            {"date": date.today().isoformat(), "store": "APR演示门店02", "traffic": 98, "source": "自动演示接口", "updated_at": _now()},
-            {"date": date.today().isoformat(), "store": "APR演示门店03", "traffic": 87, "source": "手工演示上传", "updated_at": _now()},
+            {"date": date.today().isoformat(), "store": APR_STORES[0], "traffic": 126, "source": "手工演示上传", "updated_at": _now()},
+            {"date": date.today().isoformat(), "store": APR_STORES[1], "traffic": 98, "source": "自动演示接口", "updated_at": _now()},
+            {"date": date.today().isoformat(), "store": APR_STORES[2], "traffic": 87, "source": "手工演示上传", "updated_at": _now()},
         ]
         return _envelope(data=stores, contract_fields=["date", "store", "traffic", "source", "updated_at"], automation_connected=False)
 
     @staticmethod
     def sku_detail(sku: str, filters: Mapping[str, str]) -> Dict[str, Any]:
-        item = next((value for value in DemoAdapter._skus() if value["sku"] == sku), None)
+        item = next((value for value in DemoAdapter._filtered_skus(filters) if value["sku"] == sku), None)
         if item is None:
             return _envelope(
                 sku=sku, found=False, message="演示数据中未找到该 SKU",
                 sales={"data": []}, inventory={"data": []}, woi={"data": []}, sales_windows={},
             )
+        item = deepcopy(item)
+        factor = DemoAdapter._store_factor(filters)
+        if factor != 1.0:
+            item["sales_windows"] = {key: round(value * factor) for key, value in item["sales_windows"].items()}
+            for key in ("spot", "in_transit", "operating"):
+                item[key] = round(item[key] * factor)
+            item["aging"] = {key: round(value * factor) for key, value in item["aging"].items()}
+            item["channels"] = [{"name": value["name"], "sales": round(value["sales"] * factor)} for value in item["channels"]]
+            item["warehouses"] = [{"name": str(filters.get("store")), "spot": item["spot"]}]
         return _envelope(
-            sku=item["sku"], found=True, master={key: item[key] for key in ("sku", "spu", "name", "brand", "category", "business_unit", "channel", "lifecycle")},
+            sku=item["sku"], found=True, master={key: item[key] for key in ("sku", "spu", "name", "brand", "category", "business_unit", "channel", "stores", "lifecycle")},
             sales_windows=item["sales_windows"],
             sales={"data": [_metric("近28天销量", item["sales_windows"]["28"], "台", "演示付款销售口径"), _metric("演示销售额", item["sales_windows"]["28"] * item["price"], "元", "演示数量 × 演示售价")]},
             inventory={"data": [_metric("现货库存", item["spot"], "台", "演示现货分类"), _metric("在途库存", item["in_transit"], "台", "演示在途分类"), _metric("经营库存", item["operating"], "台", "演示现货 + 在途")]},
             woi={"data": [_metric("现货WOI", item["spot_woi"], "周", "近28天演示销量"), _metric("含在途WOI", item["operating_woi"], "周", "近28天演示销量")]},
             price={"selling": item["price"], "cost": item["cost"], "gross_profit": item["gross_profit"], "gross_margin": item["gross_margin"], "status": "演示"},
             aging=item["aging"], dimensions={"channels": item["channels"], "warehouses": item["warehouses"]},
-            dg_policy=item["dg"], policy=item["policy"], risk=next((risk for risk in DemoAdapter.anomaly_list()["data"] if risk["sku"] == sku), None),
+            dg_policy=item["dg"], policy=item["policy"], risk=next((risk for risk in DemoAdapter.anomaly_list(filters)["data"] if risk["sku"] == sku), None),
             source=DEMO_SOURCE, updated_at=_now(), scope=DemoAdapter._scope(filters),
         )
 
@@ -425,7 +563,7 @@ class DemoAdapter:
 
     @staticmethod
     def _scope(filters: Mapping[str, str]) -> str:
-        parts = [str(filters.get(name, "")).strip() for name in ("business_unit", "brand", "channel")]
+        parts = [str(filters.get(name, "")).strip() for name in ("business_unit", "channel", "store")]
         return " / ".join(value for value in parts if value) or "全部演示经营范围"
 
     @staticmethod
@@ -440,8 +578,8 @@ class DemoAdapter:
         rows = [
             (9001, "warehouse_mapping", "DEMO-WH-RAW-01", "演示原始仓库甲", "APR演示正品仓01", "SPOT"),
             (9002, "warehouse_mapping", "DEMO-WH-RAW-02", "演示原始仓库乙", "电商演示在途仓", "IN_TRANSIT"),
-            (9003, "channel_mapping", "DEMO-CH-RAW-01", "演示原始渠道甲", "APR门店", ""),
-            (9004, "channel_mapping", "DEMO-CH-RAW-02", "演示原始渠道乙", "羽通-JD", ""),
+            (9003, "channel_mapping", "DEMO-CH-RAW-01", "演示原始渠道甲", "APR", ""),
+            (9004, "channel_mapping", "DEMO-CH-RAW-02", "演示原始渠道乙", "京东", ""),
             (9005, "sku_mapping", "DEMO-SKU-RAW-01", "演示原始商品甲", "Apple 演示手机 A1", ""),
             (9006, "sales_caliber", "DEMO-CAL-SALE", "演示销售口径", "付款时间净销售演示口径", ""),
             (9007, "inventory_caliber", "DEMO-CAL-INV", "演示库存口径", "现货/在途/经营库存演示口径", ""),

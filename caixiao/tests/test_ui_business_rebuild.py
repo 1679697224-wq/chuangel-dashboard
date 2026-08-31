@@ -60,6 +60,26 @@ class BusinessFrontendInformationArchitectureTests(unittest.TestCase):
         self.assertIn("mobileFilterToggle", self.source)
         self.assertIn(".global-filters form.open", self.css)
 
+    def test_formal_logo_asset_replaces_simulated_text_mark(self):
+        self.assertIn('src="/cx/assets/chuangel-logo-white.png"', self.index)
+        self.assertIn('src="/cx/assets/chuangel-logo-navy.png"', self.index)
+        self.assertNotIn('class="brand-mark"', self.index)
+
+    def test_home_has_complete_sales_and_inventory_metric_positions(self):
+        for phrase in (
+            "月末预计达成率", "同比", "环比", "毛利额", "毛利率",
+            "现货库存金额", "在途库存金额", "经营库存金额", "周转天数",
+            "90天+库存", "180天+库存", "360天+库存", "已计提库存",
+            "零库存SKU", "累计清理率",
+        ):
+            self.assertIn(phrase, self.source)
+
+    def test_distribution_channel_name_has_no_legacy_business_wording(self):
+        frontend = "".join(path.read_text(encoding="utf-8") for path in (REPO_ROOT / "caixiao/frontend").rglob("*.js"))
+        business_docs = "".join(path.read_text(encoding="utf-8") for path in (REPO_ROOT / "caixiao/docs").glob("*.md"))
+        self.assertNotIn("Apple渠道", frontend + business_docs)
+        self.assertIn("分销渠道", frontend)
+
     def test_product_filter_has_derived_business_tags(self):
         for phrase in ("productSearchTags", "畅销", "慢动销", "滞销", "DG商品"):
             self.assertIn(phrase, self.source)
