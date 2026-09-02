@@ -106,6 +106,52 @@ class DesignSystemV15Tests(unittest.TestCase):
         self.assertIn("overflow: auto", self.css)
         self.assertIn(".executive-grid { grid-template-columns: 1fr; }", self.css)
 
+    def test_dg_tabs_are_real_interactive_controls(self):
+        self.assertIn('role="tablist"', self.app)
+        self.assertIn('data-dg-tab="si"', self.app)
+        self.assertIn('data-dg-tab="st"', self.app)
+        self.assertIn('data-dg-panel="si"', self.app)
+        self.assertIn('data-dg-panel="st"', self.app)
+        self.assertIn("bindDgTabs();", self.app)
+        for key in ("ArrowLeft", "ArrowRight", "Home", "End"):
+            self.assertIn(key, self.app)
+
+    def test_subsidy_uses_all_five_display_statuses(self):
+        for status in ("已完成", "领先 / 正常", "关注", "落后", "严重落后"):
+            self.assertIn(status, self.app)
+        self.assertIn("正式阈值待业务确认", self.app)
+
+    def test_subsidy_progress_has_time_reference_marker(self):
+        self.assertIn("function progressComparison", self.app)
+        self.assertIn('class="comparison-time"', self.app)
+        self.assertIn("时间参考", self.app)
+        self.assertIn(".comparison-progress", self.css)
+
+    def test_dg_table_has_display_risk_without_formalizing_thresholds(self):
+        self.assertIn('["任务","SKU / 产品","目标","完成","达成率","时间进度","差距","截止日期","状态","风险"]', self.app)
+        self.assertIn("policyProgressStatus(item)", self.app)
+        self.assertIn("页面风险分级不构成正式口径", self.app)
+
+    def test_anomaly_table_shows_possible_cause(self):
+        self.assertIn("可能原因", self.app)
+        self.assertIn("possible_causes", self.app)
+        self.assertIn("待真实规则或数据支持", self.app)
+
+    def test_action_table_shows_traceable_data_evidence(self):
+        self.assertIn("数据依据", self.app)
+        self.assertIn("anomalyMap", self.app)
+        self.assertIn("source?.ai?.evidence", self.app)
+
+    def test_sidebar_core_colors_use_semantic_tokens(self):
+        for token in (
+            "--color-sidebar-bg", "--color-sidebar-border", "--color-sidebar-hover",
+            "--color-sidebar-active", "--color-sidebar-text",
+            "--color-sidebar-text-muted", "--color-sidebar-marker",
+        ):
+            self.assertIn(token, self.css)
+        self.assertNotIn(".sales-focus", self.css)
+        self.assertNotIn(".sales-primary", self.css)
+
 
 if __name__ == "__main__":
     unittest.main()
